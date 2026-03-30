@@ -62,7 +62,7 @@ export function FeaturesSection() {
                 onClick={() => goTo(i)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   i === activeIndex
-                    ? 'bg-[#b86880] text-white font-semibold shadow-sm'
+                    ? 'bg-[#763d50] text-white font-semibold shadow-sm'
                     : 'text-[#3a3a3a]/55 hover:text-[#1f2020]'
                 }`}
               >
