@@ -222,7 +222,7 @@ function ProductMockup() {
         setActiveIndex((prev) => (prev + 1) % screens.length)
         setFading(false)
       }, 200)
-    }, 5000)
+    }, 3000)
     return () => clearInterval(interval)
   }, [isHovered])
 
