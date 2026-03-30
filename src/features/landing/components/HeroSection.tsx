@@ -369,6 +369,25 @@ export function HeroSection() {
                 {t.hero.cta2}
               </Link>
             </div>
+
+            {/* Norm ticker */}
+            <div
+              className="mt-8 overflow-hidden w-full max-w-lg"
+              style={{ animation: 'fadeInUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 600ms both', maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}
+            >
+              <div
+                className="flex gap-6 whitespace-nowrap"
+                style={{ animation: 'ticker 22s linear infinite', width: 'max-content' }}
+              >
+                {['ISO 9001', 'ISO 14001', 'ISO 45001', 'IATF 16949', 'ISO 27001', 'ISO 22000', 'AS9100', 'ISO 13485', 'HACCP', 'FSSC 22000', 'ISO 50001', 'BRC', 'GMP', 'ISO 17025', 'VDA 6.3',
+                  'ISO 9001', 'ISO 14001', 'ISO 45001', 'IATF 16949', 'ISO 27001', 'ISO 22000', 'AS9100', 'ISO 13485', 'HACCP', 'FSSC 22000', 'ISO 50001', 'BRC', 'GMP', 'ISO 17025', 'VDA 6.3'].map((norm, i) => (
+                  <span key={i} className="text-xs text-[#3a3a3a]/35 font-medium tracking-wide">
+                    {norm}
+                    <span className="ml-6 text-[#d9d9d9]">·</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Right: animated product mockup */}
