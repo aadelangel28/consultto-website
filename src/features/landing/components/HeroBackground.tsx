@@ -18,18 +18,14 @@ const NORMS = [
 interface Badge {
   x: number
   y: number
-  vx: number
-  vy: number
   label: string
   alphaDim: number
   alphaHigh: number
-  ox: number
-  oy: number
+  currentAlpha: number
 }
 
 const N_BADGES = 50
-const SPOTLIGHT_RADIUS = 200
-const REPEL_RADIUS = 160
+const SPOTLIGHT_RADIUS = 220
 
 export function HeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -40,7 +36,6 @@ export function HeroBackground() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Non-null refs for closures
     const cvs = canvas
     const c2d = ctx
 
@@ -55,105 +50,46 @@ export function HeroBackground() {
       cvs.width = W * devicePixelRatio
       cvs.height = H * devicePixelRatio
       c2d.scale(devicePixelRatio, devicePixelRatio)
+      // Redistribute badges on resize
+      badges.forEach((b, i) => {
+        b.x = (i % 10) / 10 * W + (Math.random() - 0.5) * (W / 10)
+        b.y = Math.floor(i / 10) / Math.ceil(N_BADGES / 10) * H + (Math.random() - 0.5) * 60
+      })
     }
 
     function init() {
       badges.length = 0
       for (let i = 0; i < N_BADGES; i++) {
+        const alphaDim = 0.1 + Math.random() * 0.08
         badges.push({
           x: Math.random() * W,
           y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
           label: NORMS[i % NORMS.length],
-          alphaDim: 0.05 + Math.random() * 0.04,
-          alphaHigh: 0.85 + Math.random() * 0.15,
-          ox: 0,
-          oy: 0,
+          alphaDim,
+          alphaHigh: 0.9,
+          currentAlpha: alphaDim,
         })
       }
     }
 
-    function roundRect(x: number, y: number, w: number, h: number, r: number) {
-      c2d.beginPath()
-      c2d.moveTo(x + r, y)
-      c2d.lineTo(x + w - r, y)
-      c2d.quadraticCurveTo(x + w, y, x + w, y + r)
-      c2d.lineTo(x + w, y + h - r)
-      c2d.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
-      c2d.lineTo(x + r, y + h)
-      c2d.quadraticCurveTo(x, y + h, x, y + h - r)
-      c2d.lineTo(x, y + r)
-      c2d.quadraticCurveTo(x, y, x + r, y)
-      c2d.closePath()
-    }
-
     function draw() {
       c2d.clearRect(0, 0, W, H)
+      c2d.font = '500 11px ui-sans-serif, system-ui, sans-serif'
+      c2d.textBaseline = 'middle'
+      c2d.textAlign = 'center'
 
       for (const b of badges) {
-        // Move
-        b.x += b.vx
-        b.y += b.vy
-        if (b.x < -100) b.x = W + 100
-        if (b.x > W + 100) b.x = -100
-        if (b.y < -30) b.y = H + 30
-        if (b.y > H + 30) b.y = -30
+        const dx = b.x - mouse.x
+        const dy = b.y - mouse.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const t = Math.max(0, 1 - dist / SPOTLIGHT_RADIUS)
+        const target = b.alphaDim + (b.alphaHigh - b.alphaDim) * t
+        // Smooth interpolation
+        b.currentAlpha += (target - b.currentAlpha) * 0.08
 
-        // Mouse repulsion
-        const rdx = (b.x + b.ox) - mouse.x
-        const rdy = (b.y + b.oy) - mouse.y
-        const rdist = Math.sqrt(rdx * rdx + rdy * rdy)
-        if (rdist < REPEL_RADIUS && rdist > 0) {
-          const force = (REPEL_RADIUS - rdist) / REPEL_RADIUS
-          b.ox += (rdx / rdist) * force * 3.5
-          b.oy += (rdy / rdist) * force * 3.5
-        }
-        b.ox *= 0.88
-        b.oy *= 0.88
-
-        const rx = b.x + b.ox
-        const ry = b.y + b.oy
-
-        // Spotlight alpha
-        const sdx = rx - mouse.x
-        const sdy = ry - mouse.y
-        const sdist = Math.sqrt(sdx * sdx + sdy * sdy)
-        const t = Math.max(0, 1 - sdist / SPOTLIGHT_RADIUS)
-        const alpha = b.alphaDim + (b.alphaHigh - b.alphaDim) * t
-
-        c2d.save()
-        c2d.font = '600 11px ui-sans-serif, system-ui, sans-serif'
-        c2d.textBaseline = 'middle'
-        c2d.textAlign = 'center'
-
-        const tw = c2d.measureText(b.label).width
-        const padX = 9
-        const padY = 5
-        const bw = tw + padX * 2
-        const bh = 22
-
-        if (t > 0.05) {
-          // Badge background (only near cursor)
-          c2d.globalAlpha = alpha * 0.12
-          c2d.fillStyle = '#763d50'
-          roundRect(rx - bw / 2, ry - bh / 2, bw, bh, 5)
-          c2d.fill()
-
-          // Badge border
-          c2d.globalAlpha = alpha * 0.35
-          c2d.strokeStyle = '#763d50'
-          c2d.lineWidth = 1
-          roundRect(rx - bw / 2, ry - bh / 2, bw, bh, 5)
-          c2d.stroke()
-        }
-
-        // Text
-        c2d.globalAlpha = alpha
-        c2d.fillStyle = '#763d50'
-        c2d.fillText(b.label, rx, ry)
-
-        c2d.restore()
+        c2d.globalAlpha = b.currentAlpha
+        c2d.fillStyle = '#888888'
+        c2d.fillText(b.label, b.x, b.y)
       }
 
       rafId = requestAnimationFrame(draw)
