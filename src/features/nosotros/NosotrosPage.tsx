@@ -140,7 +140,7 @@ function OrigenSection() {
               href="/contacto"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm"
             >
-              Hablar con el equipo
+              Hablar con un consultor
             </Link>
           </div>
         </Reveal>
@@ -424,7 +424,7 @@ function CTASection() {
               href="/contacto"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
             >
-              Hablar con el equipo
+              Hablar con un consultor
             </Link>
           </div>
         </Reveal>
