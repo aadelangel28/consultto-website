@@ -335,7 +335,7 @@ export function HeroSection() {
                 {t.hero.h1Line1}
               </span>
               <span
-                className="block text-[#763d50] font-medium"
+                className="block text-[#3a3a3a]/50 font-medium text-3xl md:text-4xl lg:text-5xl"
                 style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both' }}
               >
                 {t.hero.h1Line2}
