@@ -230,7 +230,7 @@ function ProductMockup() {
 
   return (
     <div
-      className="w-full bg-[#f5f2ef] rounded-3xl p-5"
+      className="w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
