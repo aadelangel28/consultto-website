@@ -230,17 +230,17 @@ function ProductMockup() {
 
   return (
     <div
-      className="relative w-full flex gap-6 items-start"
+      className="w-full bg-[#f5f2ef] rounded-3xl p-5"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Left: vertical tab switcher */}
-      <div className="flex flex-col gap-2 shrink-0 w-40 pt-12">
+      {/* Tab buttons — horizontal row inside card */}
+      <div className="flex gap-1.5 mb-4 justify-center">
         {screens.map((screen, i) => (
           <button
             key={screen.id}
             onClick={() => goTo(i)}
-            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap ${
               i === activeIndex
                 ? 'bg-[#763d50] text-white shadow-sm shadow-[#763d50]/30'
                 : 'bg-white border border-[#d9d9d9] text-[#3a3a3a]/60 hover:text-[#1f2020] hover:border-[#3a3a3a]/30'
@@ -251,19 +251,19 @@ function ProductMockup() {
         ))}
       </div>
 
-      {/* Right: Mockup shell */}
-      <div className="relative flex-1 rounded-2xl overflow-hidden border border-[#d9d9d9] shadow-2xl shadow-[#2e3e49]/10">
+      {/* Mockup shell */}
+      <div className="rounded-2xl overflow-hidden border border-[#d9d9d9]/60 shadow-xl shadow-[#2e3e49]/8">
         {/* Window bar */}
-        <div className="bg-[#2e3e49] px-4 py-3 flex items-center gap-2 border-b border-[#d9d9d9]/20">
-          <div className="w-3 h-3 rounded-full bg-[#763d50]/80" />
-          <div className="w-3 h-3 rounded-full bg-[#d9d9d9]/40" />
-          <div className="w-3 h-3 rounded-full bg-[#d9d9d9]/40" />
-          <span className="ml-4 text-[#d9d9d9]/40 text-xs font-mono">consultto — Sistema de Gestión de Calidad</span>
+        <div className="bg-[#2e3e49] px-4 py-2.5 flex items-center gap-2 border-b border-[#d9d9d9]/20">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#763d50]/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/40" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/40" />
+          <span className="ml-3 text-[#d9d9d9]/40 text-xs font-mono">consultto — Sistema de Gestión de Calidad</span>
         </div>
 
-        <div className="flex bg-[#f8f8f8]" style={{ minHeight: '500px' }}>
+        <div className="flex bg-[#f8f8f8]" style={{ minHeight: '360px' }}>
           {/* Sidebar */}
-          <div className="w-44 bg-white border-r border-[#d9d9d9] p-3 flex flex-col gap-1 shrink-0">
+          <div className="w-40 bg-white border-r border-[#d9d9d9] p-3 flex flex-col gap-1 shrink-0">
             <div className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-2 px-2">
               consultto
             </div>
@@ -299,9 +299,6 @@ function ProductMockup() {
           </div>
         </div>
       </div>
-
-      {/* Glow */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-[#2e3e49]/5 via-[#763d50]/5 to-[#2e3e49]/5 rounded-2xl blur-xl -z-10" />
     </div>
   )
 }
@@ -312,7 +309,7 @@ export function HeroSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="relative bg-white flex flex-col items-center pt-24 pb-16 overflow-hidden">
+    <section className="relative bg-white min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#f4f4f4] via-white to-white" />
       <div
         className="absolute inset-0 opacity-[0.4]"
@@ -322,49 +319,74 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto px-6 w-full">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2.5 bg-[#763d50]/8 border border-[#763d50]/20 rounded-full px-5 py-2 mb-6 animate-fade-in">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
-          <span className="text-[#763d50] text-sm font-medium tracking-wide">
-            {t.hero.badge}
-          </span>
-        </div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-24 pt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
-        {/* H1 */}
-        <h1 className="text-4xl md:text-5xl font-black text-[#1f2020] leading-[1.1] mb-6 animate-fade-in-up delay-100">
-          {t.hero.h1Line1}
-          <br />
-          {t.hero.h1Line2}
-        </h1>
+          {/* Left: text content */}
+          <div className="flex flex-col items-start">
+            {/* Badge */}
+            <p
+              className="text-[#763d50] text-sm font-semibold mb-3"
+              style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both' }}
+            >
+              {t.hero.badge}
+            </p>
 
-        {/* Subtitle */}
-        <p className="text-[#3a3a3a]/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200">
-          {t.hero.subtitle}{' '}
-          {t.hero.subtitleBold}
-          {t.hero.subtitleEnd}
-        </p>
+            {/* H1 — each line animates individually */}
+            <h1 className="text-3xl md:text-4xl font-bold text-[#1f2020] leading-[1.1] mb-6">
+              <span
+                className="block"
+                style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both' }}
+              >
+                {t.hero.h1Line1}
+              </span>
+              <span
+                className="block"
+                style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both' }}
+              >
+                {t.hero.h1Line2}
+              </span>
+            </h1>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
-          <Link
-            href="/signup"
-            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base"
+            {/* Subtitle */}
+            <p
+              className="text-[#3a3a3a]/60 text-base md:text-lg leading-relaxed max-w-lg mb-10"
+              style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 350ms both' }}
+            >
+              {t.hero.subtitle}{' '}
+              {t.hero.subtitleBold}
+              {t.hero.subtitleEnd}
+            </p>
+
+            {/* CTAs */}
+            <div
+              className="flex flex-col sm:flex-row gap-4"
+              style={{ animation: 'fadeInUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both' }}
+            >
+              <Link
+                href="/signup"
+                className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base"
+              >
+                {t.hero.cta1}
+              </Link>
+              <Link
+                href="#como-funciona"
+                className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-8 py-4 rounded-full font-semibold transition-all text-base bg-white hover:bg-[#f8f8f8]"
+              >
+                {t.hero.cta2}
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: animated product mockup */}
+          <div
+            className="w-full"
+            style={{ animation: 'fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 650ms both' }}
           >
-            {t.hero.cta1}
-          </Link>
-          <Link
-            href="#como-funciona"
-            className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-8 py-4 rounded-full font-semibold transition-all text-base bg-white hover:bg-[#f8f8f8]"
-          >
-            {t.hero.cta2}
-          </Link>
-        </div>
-      </div>
+            <ProductMockup />
+          </div>
 
-      {/* Animated product mockup */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-16 animate-fade-in-up delay-500">
-        <ProductMockup />
+        </div>
       </div>
     </section>
   )

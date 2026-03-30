@@ -3,125 +3,107 @@
 import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
-type TabCard = { tag: string; title: string; description: string }
-type TabData = { label: string; left: TabCard; rightTop: TabCard; rightBottom: TabCard }
+type FeatureCard = {
+  tag: string
+  title: string
+  description: string
+  bullets: string[]
+}
 
-function SmallCard({ card }: { card: TabCard }) {
+function BulletIcon() {
   return (
-    <div className="bg-[#f8f6f6] rounded-2xl p-6 flex flex-col gap-2 border border-[#ede8e8] flex-1">
-      <span className="text-[#763d50] text-xs font-bold uppercase tracking-wider leading-none">
-        {card.tag}
-      </span>
-      <h3 className="text-[#1f2020] text-[17px] font-black leading-snug">
-        {card.title}
-      </h3>
-      <p className="text-[#3a3a3a]/55 text-sm leading-relaxed">
-        {card.description}
-      </p>
-    </div>
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0">
+      <circle cx="9" cy="9" r="9" fill="#763d50" fillOpacity="0.1" />
+      <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#763d50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 
 export function FeaturesSection() {
   const { t } = useLanguage()
-  const [activeTab, setActiveTab] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const cards = t.features.cards as unknown as FeatureCard[]
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [fading, setFading] = useState(false)
 
-  function switchTab(i: number) {
-    if (i === activeTab) return
-    setVisible(false)
+  function goTo(i: number) {
+    if (i === activeIndex) return
+    setFading(true)
     setTimeout(() => {
-      setActiveTab(i)
-      setVisible(true)
+      setActiveIndex(i)
+      setFading(false)
     }, 150)
   }
 
-  const tabs = t.features.tabs as unknown as TabData[]
-  const tab = tabs[activeTab]
+  const active = cards[activeIndex]
 
   return (
     <section id="producto" className="bg-white py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-[#763d50] text-xs font-bold uppercase tracking-widest mb-4">
             {t.features.label}
           </p>
-          <h2 className="text-[#1f2020] text-4xl md:text-5xl font-black leading-tight mb-4 max-w-3xl mx-auto">
+          <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-4">
             {t.features.title}
           </h2>
-          <p className="text-[#3a3a3a]/60 text-base leading-relaxed max-w-xl mx-auto">
+          <p className="text-[#3a3a3a]/60 text-sm leading-relaxed max-w-xl mx-auto">
             {t.features.subtitle}
           </p>
         </div>
 
-        {/* Nav bar: tabs + CTA buttons */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between border-b border-[#e0e0e0]">
-          {/* Tabs */}
-          <div className="flex overflow-x-auto scrollbar-hide -mb-px gap-0">
-            {tabs.map((tabItem, i) => (
+        {/* Tab nav */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-wrap justify-center gap-1 bg-[#f0f0f0] rounded-full p-1.5">
+            {cards.map((card, i) => (
               <button
-                key={tabItem.label}
-                onClick={() => switchTab(i)}
-                className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors duration-200 ${
-                  activeTab === i
-                    ? 'border-[#1f2020] text-[#1f2020]'
-                    : 'border-transparent text-[#3a3a3a]/40 hover:text-[#3a3a3a]/70'
+                key={card.tag}
+                onClick={() => goTo(i)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  i === activeIndex
+                    ? 'bg-[#b86880] text-white font-semibold shadow-sm'
+                    : 'text-[#3a3a3a]/55 hover:text-[#1f2020]'
                 }`}
               >
-                {tabItem.label}
+                {card.tag}
               </button>
             ))}
           </div>
-
-          {/* CTA buttons */}
-          <div className="flex items-center gap-3 pb-3 shrink-0">
-            <button className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap">
-              {t.features.ctaPrimary}
-            </button>
-            <button className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-6 py-2.5 rounded-full font-semibold transition-all text-sm bg-white hover:bg-[#f8f8f8] whitespace-nowrap">
-              {t.features.ctaSecondary}
-            </button>
-          </div>
         </div>
 
-        {/* Cards */}
-        <div
-          className={`pt-5 transition-opacity duration-150 ${visible ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-4 items-stretch">
+        {/* Content card */}
+        <div className="bg-[#f7f7f7] rounded-3xl px-10 py-12 md:px-16 md:py-14">
 
-            {/* Left large card */}
-            <div className="bg-[#f8f6f6] rounded-2xl overflow-hidden flex flex-col border border-[#ede8e8]">
-              <div className="p-7 flex flex-col gap-3">
-                <span className="text-[#763d50] text-xs font-bold uppercase tracking-wider leading-none">
-                  {tab.left.tag}
-                </span>
-                <h3 className="text-[#1f2020] text-2xl md:text-[28px] font-black leading-tight max-w-xs">
-                  {tab.left.title}
-                </h3>
-                <p className="text-[#3a3a3a]/55 text-sm leading-relaxed max-w-sm">
-                  {tab.left.description}
-                </p>
+          {/* Description */}
+          <p
+            className={`text-[#1f2020] text-lg md:text-xl leading-relaxed text-center max-w-3xl mx-auto mb-10 transition-opacity duration-150 ${
+              fading ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            <span className="font-bold">{active.title}</span>
+            {' — '}
+            <span className="text-[#3a3a3a]/70">{active.description}</span>
+          </p>
+
+          {/* Bullets as chips */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-3 transition-opacity duration-150 ${
+              fading ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            {active.bullets.map((bullet) => (
+              <div
+                key={bullet}
+                className="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-[#e8e8e8]"
+              >
+                <BulletIcon />
+                <span className="text-[#1f2020] text-sm font-medium leading-snug">{bullet}</span>
               </div>
-              {/* Mockup area */}
-              <div className="flex-1 mx-5 mb-5 rounded-xl bg-white border border-[#e0e0e0] overflow-hidden min-h-[200px] flex items-center justify-center">
-                <span className="text-[#3a3a3a]/15 text-xs font-medium uppercase tracking-widest">
-                  Screenshot
-                </span>
-              </div>
-            </div>
-
-            {/* Right: 2 stacked cards */}
-            <div className="flex flex-col gap-4">
-              <SmallCard card={tab.rightTop} />
-              <SmallCard card={tab.rightBottom} />
-            </div>
-
+            ))}
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   )

@@ -13,8 +13,10 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [industriasOpen, setIndustriasOpen] = useState(false)
+  const [normasOpen, setNormasOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const normasRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -27,6 +29,9 @@ export function Navbar() {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIndustriasOpen(false)
+      }
+      if (normasRef.current && !normasRef.current.contains(e.target as Node)) {
+        setNormasOpen(false)
       }
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false)
@@ -46,23 +51,27 @@ export function Navbar() {
       <div
         className={`transition-all duration-500 flex items-center justify-between ${
           scrolled
-            ? 'max-w-5xl mx-auto mt-3 px-6 py-2.5 bg-white/95 backdrop-blur-md border border-[#d9d9d9] shadow-lg rounded-full'
+            ? 'max-w-6xl mx-auto mt-3 px-10 py-2.5 bg-white/95 backdrop-blur-md border border-[#d9d9d9] shadow-lg rounded-full'
             : 'max-w-7xl mx-auto px-6 py-4'
         }`}
       >
         <Link href="/">
-          <Image src="/logo.png" alt="Consultto" height={32} width={140} />
+          <Image src="/logo.png" alt="Consultto" height={scrolled ? 28 : 32} width={scrolled ? 120 : 140} />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#producto" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
+          <Link href="/agente-ia" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
+            {t.nav.agentIA}
+          </Link>
+
+          <Link href="/plataforma" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
             {t.nav.platform}
           </Link>
 
           {/* Industrias dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
-              onClick={() => setIndustriasOpen(!industriasOpen)}
+              onClick={() => { setIndustriasOpen(!industriasOpen); setNormasOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.industries}
@@ -78,25 +87,58 @@ export function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-[#d9d9d9] rounded-2xl shadow-xl shadow-black/8 overflow-hidden animate-fade-in">
                 <div className="p-2">
                   {t.industrias.map((industria) => (
-                    <button
+                    <Link
                       key={industria.label}
-                      className="w-full text-left px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                      href={industria.href}
+                      className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                       onClick={() => setIndustriasOpen(false)}
                     >
                       <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">
                         {industria.label}
                       </div>
-                      <div className="text-[#3a3a3a]/50 text-xs mt-0.5">
-                        {industria.description}
-                      </div>
-                    </button>
+                    </Link>
                   ))}
                 </div>
               </div>
             )}
           </div>
 
-          <Link href="#nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
+          {/* Normas dropdown */}
+          <div className="relative" ref={normasRef}>
+            <button
+              onClick={() => { setNormasOpen(!normasOpen); setIndustriasOpen(false) }}
+              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
+            >
+              {t.nav.norms}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${normasOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {normasOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-[#d9d9d9] rounded-2xl shadow-xl shadow-black/8 overflow-hidden animate-fade-in">
+                <div className="p-2 grid grid-cols-2 gap-0.5">
+                  {(t.normas as unknown as { label: string; href: string }[]).map((norma) => (
+                    <Link
+                      key={norma.label}
+                      href={norma.href}
+                      className="text-left px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors"
+                      onClick={() => setNormasOpen(false)}
+                    >
+                      <div className="text-[#1f2020] text-xs font-medium hover:text-[#763d50] transition-colors">
+                        {norma.label}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Link href="/nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
             {t.nav.about}
           </Link>
         </div>
@@ -169,7 +211,11 @@ export function Navbar() {
             scrolled ? 'max-w-5xl mx-auto mt-2 rounded-2xl shadow-lg' : 'border-t border-x-0 border-b-0'
           }`}
         >
-          <Link href="#producto" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
+          <Link href="/agente-ia" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
+            {t.nav.agentIA}
+          </Link>
+
+          <Link href="/plataforma" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
             {t.nav.platform}
           </Link>
 
@@ -189,19 +235,49 @@ export function Navbar() {
             {industriasOpen && (
               <div className="mt-2 pl-3 flex flex-col gap-1 border-l-2 border-[#d9d9d9]">
                 {t.industrias.map((industria) => (
-                  <button
+                  <Link
                     key={industria.label}
-                    className="text-left py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                    href={industria.href}
+                    className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
                     onClick={() => { setIndustriasOpen(false); setMobileOpen(false) }}
                   >
                     {industria.label}
-                  </button>
+                  </Link>
                 ))}
               </div>
             )}
           </div>
 
-          <Link href="#nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
+          <div>
+            <button
+              className="flex items-center gap-1.5 text-[#3a3a3a] font-medium w-full"
+              onClick={() => setNormasOpen(!normasOpen)}
+            >
+              {t.nav.norms}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${normasOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {normasOpen && (
+              <div className="mt-2 pl-3 flex flex-col gap-1 border-l-2 border-[#d9d9d9]">
+                {(t.normas as unknown as { label: string; href: string }[]).map((norma) => (
+                  <Link
+                    key={norma.label}
+                    href={norma.href}
+                    className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                    onClick={() => { setNormasOpen(false); setMobileOpen(false) }}
+                  >
+                    {norma.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link href="/nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
             {t.nav.about}
           </Link>
 

@@ -62,15 +62,12 @@ function StatCard({
   }, [triggered, num, duration])
 
   return (
-    <div
-      ref={ref}
-      className="bg-white p-8 flex flex-col gap-3 hover:bg-[#f8f8f8] transition-colors duration-300"
-    >
-      <div className="text-[#763d50] text-5xl font-black leading-none tabular-nums">
+    <div ref={ref} className="flex flex-col gap-3 px-10 py-2">
+      <div className="text-[#763d50] text-5xl font-semibold leading-none tabular-nums">
         {triggered ? count : 0}
         <span>{suffix}</span>
       </div>
-      <div className="text-[#1f2020] font-bold text-base leading-snug">{stat.label}</div>
+      <div className="text-[#1f2020] font-semibold text-base leading-snug">{stat.label}</div>
       <div className="text-[#3a3a3a]/50 text-sm leading-relaxed">{stat.description}</div>
     </div>
   )
@@ -86,14 +83,19 @@ export function StatsSection() {
           <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-4">
             {t.stats.label}
           </p>
-          <h2 className="text-[#1f2020] text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight">
             {t.stats.title}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#d9d9d9] rounded-2xl overflow-hidden border border-[#d9d9d9]">
+        <div className="flex flex-col sm:flex-row">
           {t.stats.items.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} />
+            <div
+              key={index}
+              className={`flex-1 ${index < t.stats.items.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-[#e0e0e0]' : ''}`}
+            >
+              <StatCard stat={stat} index={index} />
+            </div>
           ))}
         </div>
       </div>
