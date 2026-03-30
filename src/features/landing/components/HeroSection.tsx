@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
-import { HeroBackground } from './HeroBackground'
 
 // ─── Screen contents ────────────────────────────────────────────────────────
 
@@ -312,7 +311,6 @@ export function HeroSection() {
   return (
     <section className="relative bg-white min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#f4f4f4] via-white to-white" />
-      <HeroBackground />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-24 pt-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
