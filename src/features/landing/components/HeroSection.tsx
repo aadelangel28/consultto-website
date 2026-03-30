@@ -326,7 +326,7 @@ export function HeroSection() {
             </p>
 
             {/* H1 — each line animates individually */}
-            <h1 className="text-3xl md:text-4xl font-bold text-[#1f2020] leading-[1.1] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-[1.05] mb-6">
               <span
                 className="block"
                 style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both' }}
