@@ -376,7 +376,9 @@ export function HeroSection() {
             className="w-full"
             style={{ animation: 'fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 650ms both' }}
           >
-            <ProductMockup />
+            <div style={{ animation: 'float 5s ease-in-out infinite' }}>
+              <ProductMockup />
+            </div>
           </div>
 
         </div>
