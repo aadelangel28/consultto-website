@@ -144,9 +144,9 @@ function RetosSection({ industria }: { industria: IndustriaData }) {
             alt={industria.name}
             fill
             className="object-cover"
-            style={{ opacity: 0.07 }}
+            style={{ opacity: 0.25 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f8f8f8] via-[#f8f8f8]/90 to-[#f8f8f8]/60 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f8f8f8] via-[#f8f8f8]/80 to-[#f8f8f8]/40 pointer-events-none" />
         </>
       )}
 
