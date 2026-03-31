@@ -173,7 +173,7 @@ function StatCard({
       ref={ref}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
-      className="relative flex flex-col gap-3 p-7 cursor-default rounded-2xl transition-all duration-300 overflow-hidden"
+      className="relative flex flex-col gap-3 p-7 cursor-default rounded-2xl transition-all duration-300 overflow-hidden h-full"
       style={{
         background: isActive
           ? 'linear-gradient(135deg, #1f2020 0%, #2d1f24 100%)'
@@ -248,18 +248,18 @@ export function StatsSection() {
   return (
     <section id="como-funciona" className="bg-white py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
 
           {/* Left: title + stats grid */}
-          <div>
+          <div className="flex flex-col">
             <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-4">
               {t.stats.label}
             </p>
-            <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-12">
+            <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-6">
               {t.stats.title}
             </h2>
 
-            <div className="grid grid-cols-2 gap-3 h-[480px]">
+            <div className="grid grid-cols-2 gap-3 flex-1">
               {t.stats.items.map((stat, index) => (
                 <StatCard
                   key={index}
