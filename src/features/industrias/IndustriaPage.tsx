@@ -1,8 +1,22 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useRef, type ReactNode } from 'react'
 import type { IndustriaData } from './data'
+
+const INDUSTRIA_IMAGES: Record<string, string> = {
+  'manufactura':                  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80',
+  'automotriz':                   'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1600&q=80',
+  'alimentos-y-bebidas':          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80',
+  'construccion':                 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+  'tecnologia-y-software':        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80',
+  'salud-y-dispositivos-medicos': 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1600&q=80',
+  'logistica-y-transporte':       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80',
+  'servicios-profesionales':      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
+  'educacion':                    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&q=80',
+  'farmaceutica':                 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80',
+}
 
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 
@@ -118,9 +132,25 @@ function HeroSection({ industria }: { industria: IndustriaData }) {
 }
 
 function RetosSection({ industria }: { industria: IndustriaData }) {
+  const image = INDUSTRIA_IMAGES[industria.slug]
+
   return (
-    <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-24 border-t border-[#efefef] relative overflow-hidden" style={{ background: '#f8f8f8' }}>
+      {/* Background image with overlay */}
+      {image && (
+        <>
+          <Image
+            src={image}
+            alt={industria.name}
+            fill
+            className="object-cover"
+            style={{ opacity: 0.07 }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f8f8f8] via-[#f8f8f8]/90 to-[#f8f8f8]/60 pointer-events-none" />
+        </>
+      )}
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Los retos del sector</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-16 max-w-2xl">
