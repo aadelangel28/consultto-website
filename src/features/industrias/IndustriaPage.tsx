@@ -291,33 +291,33 @@ function SolRow({ sol, index }: { sol: { title: string; description: string }; i
 }
 
 const NORM_IMAGES: Record<string, string> = {
-  'ISO 9001:2015':        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', // equipo revisando documentos de calidad
-  'ISO 14001:2015':       'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80', // naturaleza / medio ambiente
-  'ISO 45001:2018':       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80', // trabajador con casco en planta
-  'IATF 16949:2016':      'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80', // ensamblaje automotriz
-  'ISO 50001:2018':       'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80', // paneles solares / energía
-  'FSSC 22000 v6':        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80', // planta de alimentos / cocina industrial
-  'BRC Food Issue 9':     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', // producción de alimentos
-  'IFS Food v8':          'https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=800&q=80', // almacén de alimentos
-  'SQF Edition 9':        'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&q=80', // control de calidad alimentos
-  'ISO 22000:2018':       'https://images.unsplash.com/photo-1576867757603-05b134ebc379?w=800&q=80', // inocuidad alimentaria / laboratorio alimentos
-  'HACCP':                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80', // control de procesos / manufactura
-  'ISO 27001:2022':       'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80', // ciberseguridad / servidores
-  'ISO 20000-1:2018':     'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80', // equipo de TI trabajando
-  'SOC 2':                'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', // datacenter / nube
-  'ISO 13485:2016':       'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80', // dispositivos médicos
-  'ISO 14971:2019':       'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80', // análisis de riesgo médico
-  'ISO 62304':            'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80', // software / desarrollo
-  'FDA 21 CFR Part 820':  'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80', // manufactura médica
-  'FDA 21 CFR Part 211':  'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80', // laboratorio farmacéutico
-  'ISO 19650':            'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80', // construcción / BIM
-  'CTPAT':                'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80', // logística / contenedores
-  'ISO 21001:2018':       'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80', // educación / aula
-  'GMP Farmacéutica':     'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=800&q=80', // planta farmacéutica
-  'ICH Q10':              'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80', // calidad farmacéutica
-  'ICH Q9':               'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', // gestión de riesgos / análisis
-  'NOM-059-SSA1':         'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80', // regulación sanitaria
-  'AIAG FMEA':            'https://images.unsplash.com/photo-1619641523706-fc99b2a40b2c?w=800&q=80', // ingeniería / análisis técnico
+  'ISO 9001:2015':        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
+  'ISO 14001:2015':       'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',
+  'ISO 45001:2018':       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+  'IATF 16949:2016':      'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80',
+  'ISO 50001:2018':       'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80',
+  'FSSC 22000 v6':        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+  'BRC Food Issue 9':     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+  'IFS Food v8':          'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80',
+  'SQF Edition 9':        'https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?w=800&q=80',
+  'ISO 22000:2018':       'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?w=800&q=80',
+  'HACCP':                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
+  'ISO 27001:2022':       'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
+  'ISO 20000-1:2018':     'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+  'SOC 2':                'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+  'ISO 13485:2016':       'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
+  'ISO 14971:2019':       'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80',
+  'ISO 62304':            'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80',
+  'FDA 21 CFR Part 820':  'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+  'FDA 21 CFR Part 211':  'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80',
+  'ISO 19650':            'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+  'CTPAT':                'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
+  'ISO 21001:2018':       'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
+  'GMP Farmacéutica':     'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
+  'ICH Q10':              'https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=800&q=80',
+  'ICH Q9':               'https://images.unsplash.com/photo-1532094349884-543559c5b656?w=800&q=80',
+  'NOM-059-SSA1':         'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&q=80',
+  'AIAG FMEA':            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
 }
 
 const NORM_META: Record<string, { description: string; scope: string; summary: string }> = {
