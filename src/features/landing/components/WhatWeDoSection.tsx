@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 const FULL_TEXT = 'Somos una plataforma de certificación y cumplimiento normativo que combina software, Agente IA y humanos expertos para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.'
 
@@ -45,6 +46,20 @@ export function WhatWeDoSection() {
             <span className="inline-block w-[2px] h-[1em] bg-[#763d50] ml-1 animate-pulse align-middle" />
           )}
         </h2>
+
+        {displayed.length >= FULL_TEXT.length && (
+          <div className="mt-10" style={{ animation: 'fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both' }}>
+            <Link
+              href="#como-funciona"
+              className="inline-flex items-center gap-2 text-[#3a3a3a]/50 hover:text-[#1f2020] transition-colors text-sm font-medium"
+            >
+              Conoce más
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
