@@ -56,7 +56,7 @@ export const translations = {
       title: 'Lo que Consultto significa en la práctica',
       items: [
         { value: '98%', label: 'de auditorías aprobadas al primer intento', description: 'Con Consultto, las empresas llegan a su auditoría con toda la evidencia lista y estructurada según la norma.' },
-        { value: '60%', label: 'de ahorro vs. consultoría tradicional', description: 'Automatizamos la parte operativa del sistema de calidad con software e IA, para que no pagues horas consultor en tareas que la tecnología puede hacer.' },
+        { value: '60%', label: 'de ahorro vs. consultoría tradicional', description: 'Software e IA automatizan lo operativo. Pagas por resultados, no por horas.' },
         { value: '5 días', label: 'promedio de implementación', description: 'Desde el arranque hasta tu sistema de calidad operando, sin meses de espera ni procesos interminables.' },
         { value: '100%', label: 'visibilidad organizacional', description: 'Documentos, procesos y evidencias centralizados en un solo lugar, con trazabilidad completa para toda tu organización.' },
       ],
