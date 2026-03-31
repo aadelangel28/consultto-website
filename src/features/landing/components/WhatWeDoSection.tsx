@@ -35,9 +35,9 @@ export function WhatWeDoSection() {
   }, [started])
 
   return (
-    <section ref={sectionRef} className="bg-white py-24 px-6 border-t border-[#f0f0f0]">
+    <section ref={sectionRef} className="bg-white py-32 px-6 border-t border-[#f0f0f0]">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-8">
+        <p className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-12">
           Qué es Consultto
         </p>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#1f2020] leading-[1.4] min-h-[8rem]">
@@ -48,7 +48,7 @@ export function WhatWeDoSection() {
         </h2>
 
         {displayed.length >= FULL_TEXT.length && (
-          <div className="mt-10" style={{ animation: 'fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both' }}>
+          <div className="mt-16" style={{ animation: 'fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both' }}>
             <Link
               href="#como-funciona"
               className="inline-flex items-center gap-2 text-[#3a3a3a]/50 hover:text-[#1f2020] transition-colors text-sm font-medium"
