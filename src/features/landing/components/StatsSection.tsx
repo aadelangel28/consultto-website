@@ -248,18 +248,18 @@ export function StatsSection() {
   return (
     <section id="como-funciona" className="bg-white py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-          {/* Left: title + stats grid */}
-          <div className="flex flex-col">
-            <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-4">
+          {/* Left: title + stats grid — fixed height to match image */}
+          <div className="flex flex-col h-[580px]">
+            <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
               {t.stats.label}
             </p>
-            <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-6">
+            <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-4">
               {t.stats.title}
             </h2>
 
-            <div className="grid grid-cols-2 gap-3 flex-1">
+            <div className="grid grid-cols-2 gap-3 flex-1 min-h-0">
               {t.stats.items.map((stat, index) => (
                 <StatCard
                   key={index}
@@ -273,7 +273,7 @@ export function StatsSection() {
           </div>
 
           {/* Right: image or mockup (changes on hover) */}
-          <div className="relative w-full h-[480px] rounded-2xl overflow-hidden">
+          <div className="relative w-full h-[580px] rounded-2xl overflow-hidden">
 
             {/* Images for stats 0-2 */}
             {STAT_IMAGES.map((img, i) => (
