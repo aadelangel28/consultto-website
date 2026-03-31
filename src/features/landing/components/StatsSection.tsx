@@ -106,13 +106,26 @@ function parseValue(value: string): { num: number; suffix: string } {
   return { num: 0, suffix: value }
 }
 
+const STAT_ICONS = [
+  // 98% — checkmark shield
+  'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z',
+  // 60% — lightning bolt
+  'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  // 5 días — clock
+  'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+  // 100% — eye
+  'M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+]
+
 function StatCard({
   stat,
   index,
+  isActive,
   onHover,
 }: {
   stat: { value: string; label: string; description: string }
   index: number
+  isActive: boolean
   onHover: (index: number | null) => void
 }) {
   const { num, suffix } = parseValue(stat.value)
@@ -158,16 +171,69 @@ function StatCard({
   return (
     <div
       ref={ref}
-      className="flex flex-col gap-3 p-8 cursor-default transition-colors duration-200 hover:bg-[#faf5f6] rounded-xl"
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
+      className="relative flex flex-col gap-3 p-7 cursor-default rounded-2xl transition-all duration-300 overflow-hidden"
+      style={{
+        background: isActive
+          ? 'linear-gradient(135deg, #1f2020 0%, #2d1f24 100%)'
+          : '#f9f9f9',
+        boxShadow: isActive
+          ? '0 0 0 1px rgba(118,61,80,0.5), 0 8px 32px rgba(118,61,80,0.15)'
+          : '0 0 0 1px rgba(0,0,0,0.06)',
+      }}
     >
-      <div className="text-[#763d50] text-5xl font-semibold leading-none tabular-nums">
+      {/* Subtle glow top-right */}
+      {isActive && (
+        <div
+          className="absolute -top-8 -right-8 w-24 h-24 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(118,61,80,0.4) 0%, transparent 70%)' }}
+        />
+      )}
+
+      {/* Icon */}
+      <div
+        className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-300"
+        style={{ background: isActive ? 'rgba(201,122,143,0.15)' : 'rgba(118,61,80,0.08)' }}
+      >
+        <svg
+          className="w-4 h-4 transition-colors duration-300"
+          style={{ color: isActive ? '#c97a8f' : '#763d50' }}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d={STAT_ICONS[index]} />
+        </svg>
+      </div>
+
+      {/* Number */}
+      <div
+        className="text-5xl font-semibold leading-none tabular-nums transition-colors duration-300"
+        style={{ color: isActive ? '#c97a8f' : '#763d50' }}
+      >
         {triggered ? count : 0}
         <span>{suffix}</span>
       </div>
-      <div className="text-[#1f2020] font-semibold text-base leading-snug">{stat.label}</div>
-      <div className="text-[#3a3a3a]/50 text-sm leading-relaxed">{stat.description}</div>
+
+      {/* Label */}
+      <div
+        className="font-semibold text-sm leading-snug transition-colors duration-300"
+        style={{ color: isActive ? '#ffffff' : '#1f2020' }}
+      >
+        {stat.label}
+      </div>
+
+      {/* Description */}
+      <div
+        className="text-xs leading-relaxed transition-colors duration-300"
+        style={{ color: isActive ? 'rgba(255,255,255,0.45)' : 'rgba(58,58,58,0.5)' }}
+      >
+        {stat.description}
+      </div>
+
+      {/* Active indicator dot */}
+      {isActive && (
+        <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-[#c97a8f] animate-pulse" />
+      )}
     </div>
   )
 }
@@ -177,6 +243,7 @@ export function StatsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const activeIndex = hoveredIndex ?? 2
+
 
   return (
     <section id="como-funciona" className="bg-white py-24 px-6">
@@ -192,19 +259,15 @@ export function StatsSection() {
               {t.stats.title}
             </h2>
 
-            <div className="grid grid-cols-2 gap-0">
+            <div className="grid grid-cols-2 gap-3">
               {t.stats.items.map((stat, index) => (
-                <div
+                <StatCard
                   key={index}
-                  className={`
-                    ${index === 0 ? 'border-b border-r' : ''}
-                    ${index === 1 ? 'border-b' : ''}
-                    ${index === 2 ? 'border-r' : ''}
-                    border-[#e8e8e8]
-                  `}
-                >
-                  <StatCard stat={stat} index={index} onHover={setHoveredIndex} />
-                </div>
+                  stat={stat}
+                  index={index}
+                  isActive={hoveredIndex === index}
+                  onHover={setHoveredIndex}
+                />
               ))}
             </div>
           </div>
