@@ -179,7 +179,7 @@ export const translations = {
       },
     },
     footer: {
-      tagline: 'La plataforma que combina software, Agente IA y expertos humanos para que tu empresa se certifique más rápido y nunca pierda su certificación.',
+      tagline: 'Plataforma de certificación y cumplimiento normativo, respaldada por Agente IA.',
       product: 'Producto',
       services: 'Servicios',
       company: 'Empresa',
