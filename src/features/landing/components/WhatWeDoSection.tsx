@@ -31,7 +31,7 @@ export function WhatWeDoSection() {
       i++
       setVisibleCount(i)
       if (i >= WORDS.length) clearInterval(interval)
-    }, 60)
+    }, 30)
     return () => clearInterval(interval)
   }, [started])
 
