@@ -179,7 +179,7 @@ export const translations = {
       },
     },
     footer: {
-      tagline: 'Plataforma de certificación y cumplimiento normativo, respaldada por Agente IA.',
+      tagline: 'Plataforma de certificación y cumplimiento normativo, respaldada por IA.',
       product: 'Producto',
       services: 'Servicios',
       company: 'Empresa',
