@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { IndustriaData } from './data'
 
 const INDUSTRIA_IMAGES: Record<string, string> = {
@@ -321,11 +321,27 @@ const NORM_META: Record<string, { description: string; scope: string }> = {
 }
 
 function NormasSection({ industria }: { industria: IndustriaData }) {
+  const headerRef = useRef<HTMLDivElement>(null)
+  const [offsetY, setOffsetY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!headerRef.current) return
+      const rect = headerRef.current.getBoundingClientRect()
+      const relativeY = -rect.top
+      setOffsetY(relativeY * 0.35)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const image = INDUSTRIA_IMAGES[industria.slug]
+
   return (
-    <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
+    <section className="border-t border-[#efefef]" style={{ background: '#ffffff' }}>
       <style>{`
         .norm-card { transition: border-color 0.25s ease, background 0.25s ease; }
-        .norm-card:hover { border-color: rgba(118,61,80,0.25) !important; background: white !important; }
+        .norm-card:hover { border-color: rgba(118,61,80,0.25) !important; background: #fafafa !important; }
         .norm-card .norm-bar {
           transform: scaleX(0);
           transform-origin: left;
@@ -340,14 +356,37 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
         .norm-card.revealed .norm-body { opacity: 1; transform: translateY(0); }
       `}</style>
 
-      <div className="max-w-6xl mx-auto px-6">
-        <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Normas aplicables</p>
-          <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-14 max-w-2xl">
+      {/* Parallax header */}
+      <div ref={headerRef} className="relative overflow-hidden" style={{ height: '280px' }}>
+        {image && (
+          <div
+            className="absolute inset-[-60px]"
+            style={{ transform: `translateY(${offsetY}px)`, willChange: 'transform' }}
+          >
+            <Image
+              src={image}
+              alt={industria.name}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(31,32,32,0.88) 0%, rgba(31,32,32,0.72) 100%)' }} />
+
+        {/* Header content */}
+        <div className="relative z-10 h-full flex flex-col justify-center max-w-6xl mx-auto px-6">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#c97a8f' }}>
+            Normas aplicables
+          </p>
+          <h2 className="text-3xl md:text-4xl font-light text-white leading-tight max-w-2xl">
             Certificaciones que gestionamos para {industria.name.toLowerCase()}
           </h2>
-        </Reveal>
+        </div>
+      </div>
 
+      {/* Cards */}
+      <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {industria.normas.map((norma, i) => {
             const meta = NORM_META[norma] ?? { description: 'Norma internacional', scope: 'Certificación' }
