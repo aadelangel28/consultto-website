@@ -19,11 +19,86 @@ const STAT_IMAGES = [
     src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
     alt: 'Equipo trabajando en implementación rápida',
   },
-  {
-    src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
-    alt: 'Dashboard con visibilidad completa del sistema',
-  },
 ]
+
+function PlatformMockup() {
+  const navItems = [
+    { label: 'Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+    { label: 'Agente IA', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2' },
+    { label: 'Auditorías', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+    { label: 'Documentación', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+    { label: 'CAPA', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
+  ]
+
+  return (
+    <div className="w-full h-full flex flex-col bg-white rounded-xl overflow-hidden border border-[#e8e8e8] shadow-xl shadow-black/10">
+      {/* Window bar */}
+      <div className="bg-[#1f2020] px-4 py-2.5 flex items-center gap-1.5 shrink-0">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#763d50]/70" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/25" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/25" />
+        <span className="ml-3 text-[#d9d9d9]/35 text-[10px] font-mono">consultto.app</span>
+      </div>
+      {/* Body */}
+      <div className="flex flex-1 min-h-0">
+        {/* Sidebar */}
+        <div className="w-36 bg-[#fafafa] border-r border-[#e8e8e8] flex flex-col py-4 gap-0.5 shrink-0">
+          <div className="px-4 mb-3">
+            <span className="text-[#1f2020] font-bold text-sm">consultto</span>
+          </div>
+          {navItems.map((item, i) => (
+            <div
+              key={item.label}
+              className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-xs font-medium transition-colors ${
+                i === 0 ? 'bg-[#763d50] text-white' : 'text-[#3a3a3a]/50 hover:bg-[#f0f0f0]'
+              }`}
+            >
+              <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+              </svg>
+              {item.label}
+            </div>
+          ))}
+        </div>
+        {/* Main content */}
+        <div className="flex-1 flex flex-col p-4 gap-3 overflow-hidden">
+          <div className="flex items-start justify-between">
+            <div>
+              <h3 className="text-[#1f2020] font-bold text-sm">Bienvenida, María</h3>
+              <p className="text-[#3a3a3a]/50 text-xs">Manufactura del Norte S.A. de C.V.</p>
+            </div>
+            <div className="bg-[#763d50] text-white text-xs px-2.5 py-1 rounded-full font-medium">ISO 9001:2015</div>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { value: '24', label: 'Documentos activos' },
+              { value: '12 días', label: 'Auditoría próxima' },
+              { value: '3', label: 'CAPA abiertas' },
+            ].map((s) => (
+              <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-lg p-2.5">
+                <div className="text-[#1f2020] font-black text-base">{s.value}</div>
+                <div className="text-[#3a3a3a]/50 text-xs mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-lg p-3 flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-pulse" />
+              <span className="text-[#763d50] text-xs font-semibold uppercase tracking-widest">Agente IA</span>
+            </div>
+            <p className="text-[#3a3a3a]/70 text-xs leading-relaxed">
+              Tu auditoría interna está en 12 días. Identifiqué 4 procedimientos que requieren actualización. ¿Revisamos el plan?
+            </p>
+            <div className="flex gap-2 mt-2.5">
+              <div className="bg-[#763d50]/10 border border-[#763d50]/30 text-[#763d50] text-xs px-2.5 py-1 rounded-full">Ver plan</div>
+              <div className="bg-white border border-[#e8e8e8] text-[#3a3a3a]/50 text-xs px-2.5 py-1 rounded-full">Después</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function parseValue(value: string): { num: number; suffix: string } {
   const match = value.match(/^(\d+)(.*)$/)
@@ -102,7 +177,6 @@ export function StatsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const activeIndex = hoveredIndex ?? 2
-  const activeImage = STAT_IMAGES[activeIndex]
 
   return (
     <section id="como-funciona" className="bg-white py-24 px-6">
@@ -135,8 +209,10 @@ export function StatsSection() {
             </div>
           </div>
 
-          {/* Right: image (changes on hover) */}
+          {/* Right: image or mockup (changes on hover) */}
           <div className="relative w-full h-[480px] rounded-2xl overflow-hidden">
+
+            {/* Images for stats 0-2 */}
             {STAT_IMAGES.map((img, i) => (
               <Image
                 key={i}
@@ -147,7 +223,19 @@ export function StatsSection() {
                 style={{ opacity: i === activeIndex ? 1 : 0 }}
               />
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/30 to-transparent" />
+
+            {/* Platform mockup for stat 3 */}
+            <div
+              className="absolute inset-0 p-6 bg-[#f5f5f5] transition-opacity duration-500"
+              style={{ opacity: activeIndex === 3 ? 1 : 0 }}
+            >
+              <PlatformMockup />
+            </div>
+
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/30 to-transparent transition-opacity duration-500"
+              style={{ opacity: activeIndex === 3 ? 0 : 1 }}
+            />
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6">
               <div className="bg-white/95 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center gap-4">
