@@ -111,7 +111,7 @@ export function StatsSection() {
           {/* Right: image */}
           <div className="relative w-full h-[480px] rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80"
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
               alt="Equipo revisando documentos de auditoría"
               fill
               className="object-cover"
