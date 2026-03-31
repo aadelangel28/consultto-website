@@ -244,7 +244,7 @@ function ProductMockup() {
           <span className="ml-3 text-[#d9d9d9]/40 text-xs font-mono">consultto — Sistema de Gestión de Calidad</span>
         </div>
 
-        <div className="flex bg-[#f8f8f8]" style={{ minHeight: '360px' }}>
+        <div className="flex bg-[#f8f8f8]" style={{ height: '360px', overflow: 'hidden' }}>
           {/* Sidebar */}
           <div className="w-40 bg-white border-r border-[#d9d9d9] p-3 flex flex-col gap-1 shrink-0">
             <div className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-2 px-2">
