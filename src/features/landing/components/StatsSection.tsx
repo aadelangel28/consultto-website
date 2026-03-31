@@ -136,7 +136,11 @@ export function StatsSection() {
           </div>
 
           {/* Right: image (changes on hover) */}
-          <div className="relative w-full h-[480px] rounded-2xl overflow-hidden">
+          {/* aspect ratio matches monitor-green.jpg (3293×1852) so overlay coords are always exact */}
+          <div
+            className="relative w-full rounded-2xl overflow-hidden"
+            style={{ aspectRatio: '3293/1852' }}
+          >
             {STAT_IMAGES.map((img, i) => (
               <Image
                 key={i}
@@ -144,52 +148,56 @@ export function StatsSection() {
                 alt={img.alt}
                 fill
                 className="object-cover transition-opacity duration-500"
-                style={{
-                  opacity: i === activeIndex ? 1 : 0,
-                  objectPosition: i === 3 ? '15% center' : 'center',
-                }}
+                style={{ opacity: i === activeIndex ? 1 : 0 }}
               />
             ))}
 
-            {/* Mockup overlay on green screen — visible only on stat 3 */}
+            {/* Mockup overlay — fits exactly inside the green screen */}
             <div
               className="absolute transition-opacity duration-500 pointer-events-none"
               style={{
                 opacity: activeIndex === 3 ? 1 : 0,
-                left: '14%',
-                top: '8.5%',
-                width: '40%',
-                height: '20%',
-                background: '#ffffff',
-                borderRadius: '4px',
+                left: '29%',
+                top: '9%',
+                width: '34%',
+                height: '51%',
                 overflow: 'hidden',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+                borderRadius: '2px',
               }}
             >
-              {/* Mini dashboard */}
-              <div className="w-full h-full flex flex-col bg-white p-2 gap-1.5">
+              <div className="w-full h-full flex flex-col bg-white p-[4%] gap-[3%]">
                 {/* Top bar */}
-                <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-bold text-[#1f2020]">Consultto</span>
-                  <span className="bg-[#763d50] text-white text-[7px] px-1.5 py-0.5 rounded-full font-semibold">ISO 9001</span>
+                <div className="flex items-center justify-between shrink-0">
+                  <span className="text-[clamp(6px,1.2cqw,11px)] font-bold text-[#1f2020]">Consultto</span>
+                  <span className="bg-[#763d50] text-white text-[clamp(5px,1cqw,9px)] px-[4%] py-[1.5%] rounded-full font-semibold">ISO 9001</span>
                 </div>
                 {/* Stats row */}
-                <div className="flex gap-1 flex-1">
+                <div className="flex gap-[3%] flex-1 min-h-0">
                   {[
-                    { v: '24', l: 'Docs' },
-                    { v: '3', l: 'CAPA' },
+                    { v: '24', l: 'Documentos' },
+                    { v: '3', l: 'CAPAs abiertas' },
                     { v: '12d', l: 'Auditoría' },
                   ].map((s) => (
-                    <div key={s.l} className="flex-1 bg-[#f8f8f8] rounded p-1 flex flex-col justify-between">
-                      <span className="text-[#1f2020] font-black text-[10px] leading-none">{s.v}</span>
-                      <span className="text-[#3a3a3a]/50 text-[7px] leading-none">{s.l}</span>
+                    <div key={s.l} className="flex-1 bg-[#f8f8f8] border border-[#e8e8e8] rounded-[4px] p-[6%] flex flex-col justify-between">
+                      <span className="text-[#1f2020] font-black text-[clamp(8px,2cqw,18px)] leading-none">{s.v}</span>
+                      <span className="text-[#3a3a3a]/50 text-[clamp(5px,0.9cqw,8px)] leading-none">{s.l}</span>
                     </div>
                   ))}
                 </div>
-                {/* Agent bar */}
-                <div className="bg-[#763d50]/10 rounded px-1.5 py-1 flex items-center gap-1">
-                  <div className="w-1 h-1 rounded-full bg-[#763d50] animate-pulse shrink-0" />
-                  <span className="text-[#763d50] text-[7px] font-semibold truncate">Agente IA activo — 4 procedimientos pendientes</span>
+                {/* Agente IA bar */}
+                <div className="bg-[#763d50]/10 border border-[#763d50]/20 rounded-[4px] px-[4%] py-[2.5%] flex items-center gap-[3%] shrink-0">
+                  <div className="w-[6%] aspect-square rounded-full bg-[#763d50] animate-pulse shrink-0" />
+                  <span className="text-[#763d50] text-[clamp(5px,0.9cqw,8px)] font-semibold truncate">Agente IA — 4 procedimientos pendientes de revisión</span>
+                </div>
+                {/* Progress bar */}
+                <div className="shrink-0">
+                  <div className="flex justify-between mb-[2%]">
+                    <span className="text-[#3a3a3a]/40 text-[clamp(4px,0.8cqw,7px)]">Progreso certificación</span>
+                    <span className="text-[#763d50] text-[clamp(4px,0.8cqw,7px)] font-bold">78%</span>
+                  </div>
+                  <div className="w-full bg-[#f0f0f0] rounded-full" style={{ height: '4px' }}>
+                    <div className="bg-[#763d50] rounded-full h-full" style={{ width: '78%' }} />
+                  </div>
                 </div>
               </div>
             </div>
