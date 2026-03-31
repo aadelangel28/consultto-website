@@ -320,34 +320,34 @@ const NORM_IMAGES: Record<string, string> = {
   'AIAG FMEA':            'https://images.unsplash.com/photo-1619641523706-fc99b2a40b2c?w=800&q=80', // ingeniería / análisis técnico
 }
 
-const NORM_META: Record<string, { description: string; scope: string }> = {
-  'ISO 9001:2015':        { description: 'Gestión de la calidad',              scope: 'Requisitos del sistema' },
-  'ISO 14001:2015':       { description: 'Gestión ambiental',                  scope: 'Impacto y cumplimiento' },
-  'ISO 45001:2018':       { description: 'Seguridad y salud en el trabajo',    scope: 'Riesgos laborales' },
-  'IATF 16949:2016':      { description: 'Calidad automotriz',                 scope: 'Cadena de suministro OEM' },
-  'ISO 50001:2018':       { description: 'Gestión de energía',                 scope: 'Eficiencia energética' },
-  'FSSC 22000 v6':        { description: 'Inocuidad alimentaria',              scope: 'Cadena alimentaria global' },
-  'BRC Food Issue 9':     { description: 'Seguridad alimentaria BRC',          scope: 'Proveedores retail' },
-  'IFS Food v8':          { description: 'Estándar IFS Food',                  scope: 'Industria alimentaria EU' },
-  'SQF Edition 9':        { description: 'Calidad y seguridad SQF',            scope: 'Mercado norteamericano' },
-  'ISO 22000:2018':       { description: 'Sistemas de inocuidad',              scope: 'Gestión de peligros' },
-  'HACCP':                { description: 'Análisis de peligros y PCC',         scope: 'Control de puntos críticos' },
-  'ISO 27001:2022':       { description: 'Seguridad de la información',        scope: 'Activos de información' },
-  'ISO 20000-1:2018':     { description: 'Gestión de servicios TI',            scope: 'Provisión de servicios' },
-  'SOC 2':                { description: 'Controles de seguridad y privacidad', scope: 'Servicios en la nube' },
-  'ISO 13485:2016':       { description: 'Dispositivos médicos',               scope: 'Diseño y fabricación' },
-  'ISO 14971:2019':       { description: 'Gestión de riesgos médicos',         scope: 'Análisis de riesgos' },
-  'ISO 62304':            { description: 'Software para dispositivos médicos', scope: 'Ciclo de vida del software' },
-  'FDA 21 CFR Part 820':  { description: 'Regulación de calidad FDA',          scope: 'Mercado estadounidense' },
-  'FDA 21 CFR Part 211':  { description: 'Buenas prácticas farmacéuticas',     scope: 'Fabricación y control' },
-  'ISO 19650':            { description: 'Gestión de información BIM',         scope: 'Activos construidos' },
-  'CTPAT':                { description: 'Comercio exterior seguro',           scope: 'Frontera EE.UU.–México' },
-  'ISO 21001:2018':       { description: 'Gestión educativa',                  scope: 'Organizaciones educativas' },
-  'GMP Farmacéutica':     { description: 'Buenas prácticas de manufactura',    scope: 'Planta farmacéutica' },
-  'ICH Q10':              { description: 'Sistema de calidad farmacéutico',    scope: 'Ciclo de vida del producto' },
-  'ICH Q9':               { description: 'Gestión de riesgos de calidad',      scope: 'Toma de decisiones' },
-  'NOM-059-SSA1':         { description: 'Regulación sanitaria mexicana',      scope: 'Autoridad COFEPRIS' },
-  'AIAG FMEA':            { description: 'Análisis de modo y efecto de falla', scope: 'Prevención de defectos' },
+const NORM_META: Record<string, { description: string; scope: string; summary: string }> = {
+  'ISO 9001:2015':        { description: 'Gestión de la calidad',               scope: 'Requisitos del sistema',       summary: 'El estándar global de calidad. Define cómo una organización debe controlar sus procesos para entregar productos y servicios consistentes que satisfagan al cliente.' },
+  'ISO 14001:2015':       { description: 'Gestión ambiental',                   scope: 'Impacto y cumplimiento',       summary: 'Marco para identificar, controlar y mejorar el impacto ambiental de la organización. Exige cumplimiento legal y mejora continua del desempeño ambiental.' },
+  'ISO 45001:2018':       { description: 'Seguridad y salud en el trabajo',     scope: 'Riesgos laborales',            summary: 'Sistema para prevenir accidentes y enfermedades laborales. Exige identificar peligros, evaluar riesgos y aplicar controles que protejan a los trabajadores.' },
+  'IATF 16949:2016':      { description: 'Calidad automotriz',                  scope: 'Cadena de suministro OEM',     summary: 'Estándar de calidad para proveedores de la industria automotriz global. Incluye APQP, PPAP, SPC y MSA como herramientas obligatorias de control.' },
+  'ISO 50001:2018':       { description: 'Gestión de energía',                  scope: 'Eficiencia energética',        summary: 'Ayuda a las organizaciones a establecer sistemas para reducir el consumo de energía, disminuir costos operativos y cumplir con objetivos de sostenibilidad.' },
+  'FSSC 22000 v6':        { description: 'Inocuidad alimentaria',               scope: 'Cadena alimentaria global',    summary: 'Esquema de certificación de inocuidad reconocido por GFSI. Combina ISO 22000 con requisitos adicionales del sector para garantizar la seguridad de los alimentos.' },
+  'BRC Food Issue 9':     { description: 'Seguridad alimentaria BRC',           scope: 'Proveedores retail',           summary: 'Estándar exigido por grandes cadenas de retail globales. Evalúa procesos de producción, higiene, trazabilidad y gestión de alérgenos en plantas de alimentos.' },
+  'IFS Food v8':          { description: 'Estándar IFS Food',                   scope: 'Industria alimentaria EU',     summary: 'Certificación requerida por distribuidores europeos. Asegura que los procesos de fabricación de alimentos cumplen con altos estándares de calidad e inocuidad.' },
+  'SQF Edition 9':        { description: 'Calidad y seguridad SQF',             scope: 'Mercado norteamericano',       summary: 'Estándar reconocido por GFSI enfocado en el mercado norteamericano. Certifica tanto la inocuidad como la calidad del producto a lo largo de toda la cadena.' },
+  'ISO 22000:2018':       { description: 'Sistemas de inocuidad',               scope: 'Gestión de peligros',          summary: 'Norma internacional que integra los principios HACCP en un sistema de gestión completo para controlar los peligros relacionados con la inocuidad alimentaria.' },
+  'HACCP':                { description: 'Análisis de peligros y PCC',          scope: 'Control de puntos críticos',   summary: 'Metodología preventiva para identificar, evaluar y controlar los peligros biológicos, químicos y físicos que representan un riesgo para la inocuidad de los alimentos.' },
+  'ISO 27001:2022':       { description: 'Seguridad de la información',         scope: 'Activos de información',       summary: 'Marco de gestión para proteger la confidencialidad, integridad y disponibilidad de la información. Exige análisis de riesgos y controles documentados.' },
+  'ISO 20000-1:2018':     { description: 'Gestión de servicios TI',             scope: 'Provisión de servicios',       summary: 'Define los requisitos para que una organización establezca, implemente y mejore un sistema de gestión de servicios de tecnología de información.' },
+  'SOC 2':                { description: 'Controles de seguridad y privacidad', scope: 'Servicios en la nube',         summary: 'Marco de auditoría para empresas de servicios en la nube que demuestra controles sobre seguridad, disponibilidad, integridad, confidencialidad y privacidad.' },
+  'ISO 13485:2016':       { description: 'Dispositivos médicos',                scope: 'Diseño y fabricación',         summary: 'Requisitos de calidad específicos para fabricantes de dispositivos médicos. Cubre diseño, producción, instalación y servicio con énfasis en la seguridad del paciente.' },
+  'ISO 14971:2019':       { description: 'Gestión de riesgos médicos',          scope: 'Análisis de riesgos',          summary: 'Estándar para la gestión de riesgos en dispositivos médicos. Define el proceso de identificación, evaluación y control de riesgos durante todo el ciclo de vida.' },
+  'ISO 62304':            { description: 'Software para dispositivos médicos',  scope: 'Ciclo de vida del software',   summary: 'Define los requisitos del ciclo de vida del software utilizado en dispositivos médicos, desde los requisitos hasta el mantenimiento y la gestión de problemas.' },
+  'FDA 21 CFR Part 820':  { description: 'Regulación de calidad FDA',           scope: 'Mercado estadounidense',       summary: 'Regulación de la FDA para fabricantes de dispositivos médicos que quieran comercializar en EE.UU. Exige un sistema de calidad documentado y auditable.' },
+  'FDA 21 CFR Part 211':  { description: 'Buenas prácticas farmacéuticas',      scope: 'Fabricación y control',        summary: 'Regulación de la FDA que establece las buenas prácticas de manufactura para productos farmacéuticos destinados al mercado de los Estados Unidos.' },
+  'ISO 19650':            { description: 'Gestión de información BIM',          scope: 'Activos construidos',          summary: 'Define cómo gestionar la información de activos construidos usando metodología BIM. Aplica durante el diseño, construcción y operación de infraestructura.' },
+  'CTPAT':                { description: 'Comercio exterior seguro',            scope: 'Frontera EE.UU.–México',       summary: 'Programa voluntario de la aduana estadounidense que certifica a las empresas que implementan controles de seguridad en su cadena de suministro internacional.' },
+  'ISO 21001:2018':       { description: 'Gestión educativa',                   scope: 'Organizaciones educativas',    summary: 'Sistema de gestión diseñado para organizaciones educativas. Busca mejorar la satisfacción de estudiantes y otros beneficiarios a través de procesos estructurados.' },
+  'GMP Farmacéutica':     { description: 'Buenas prácticas de manufactura',     scope: 'Planta farmacéutica',          summary: 'Conjunto de lineamientos que garantizan que los medicamentos se producen de forma consistente y controlada, minimizando riesgos de contaminación o error.' },
+  'ICH Q10':              { description: 'Sistema de calidad farmacéutico',     scope: 'Ciclo de vida del producto',   summary: 'Modelo de sistema de calidad farmacéutico que cubre todo el ciclo de vida del producto: desarrollo, fabricación, distribución y discontinuación.' },
+  'ICH Q9':               { description: 'Gestión de riesgos de calidad',       scope: 'Toma de decisiones',           summary: 'Guía para la gestión sistemática de riesgos de calidad en la industria farmacéutica, facilitando decisiones basadas en evidencia científica.' },
+  'NOM-059-SSA1':         { description: 'Regulación sanitaria mexicana',       scope: 'Autoridad COFEPRIS',           summary: 'Norma oficial mexicana que establece los requisitos mínimos para la fabricación de medicamentos alopáticos, supervisada por COFEPRIS.' },
+  'AIAG FMEA':            { description: 'Análisis de modo y efecto de falla',  scope: 'Prevención de defectos',       summary: 'Metodología estructurada para identificar modos de falla potenciales en productos y procesos, evaluando su severidad, ocurrencia y detectabilidad.' },
 }
 
 function NormasSection({ industria }: { industria: IndustriaData }) {
@@ -391,7 +391,7 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
 
 function NormaCard({ norma, meta, index }: {
   norma: string
-  meta: { description: string; scope: string }
+  meta: { description: string; scope: string; summary?: string }
   index: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -443,23 +443,15 @@ function NormaCard({ norma, meta, index }: {
       `}</style>
 
       <div className="norm-flip-inner">
-        {/* Front */}
-        <div className="norm-flip-front bg-white border border-[#ebebeb] p-6 flex flex-col">
+        {/* Front — large norm name only */}
+        <div className="norm-flip-front bg-white border border-[#ebebeb] flex flex-col items-center justify-center p-6">
           <div className="norm-bar absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: '#763d50' }} />
-          <div className="norm-body flex flex-col h-full">
-            <span className="text-[10px] font-bold tabular-nums text-[#3a3a3a]/25 mb-3 block">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <p className="text-[#1f2020] font-bold text-base leading-tight mb-1">{norma}</p>
-            <p className="text-[#763d50] text-xs font-semibold mb-3">{meta.description}</p>
-            <div className="flex items-center gap-1.5 mt-auto pt-3 border-t border-[#f0f0f0]">
-              <span className="w-1 h-1 rounded-full bg-[#3a3a3a]/20 shrink-0" />
-              <span className="text-[#3a3a3a]/40 text-xs">{meta.scope}</span>
-            </div>
+          <div className="norm-body flex flex-col items-center justify-center h-full text-center">
+            <p className="text-[#1f2020] font-extrabold text-2xl leading-tight tracking-tight">{norma}</p>
           </div>
         </div>
 
-        {/* Back */}
+        {/* Back — image + overlay + norm name + summary */}
         <div className="norm-flip-back">
           {image && (
             <Image
@@ -469,10 +461,10 @@ function NormaCard({ norma, meta, index }: {
               className="object-cover"
             />
           )}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(31,32,32,0.82) 0%, rgba(118,61,80,0.65) 100%)' }} />
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
-            <p className="text-white font-bold text-lg leading-tight mb-1">{norma}</p>
-            <p className="text-white/60 text-xs">{meta.description}</p>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(31,32,32,0.88) 0%, rgba(118,61,80,0.72) 100%)' }} />
+          <div className="absolute inset-0 flex flex-col justify-between p-5">
+            <p className="text-white font-bold text-sm leading-tight">{norma}</p>
+            <p className="text-white/80 text-xs leading-relaxed">{meta.summary ?? meta.description}</p>
           </div>
         </div>
       </div>
