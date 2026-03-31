@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 const FULL_TEXT = 'Somos una plataforma de certificación y cumplimiento normativo que combina software, Agente IA y humanos expertos para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.'
+const WORDS = FULL_TEXT.split(' ')
 
 export function WhatWeDoSection() {
-  const [displayed, setDisplayed] = useState('')
+  const [visibleCount, setVisibleCount] = useState(0)
   const [started, setStarted] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -28,26 +29,36 @@ export function WhatWeDoSection() {
     let i = 0
     const interval = setInterval(() => {
       i++
-      setDisplayed(FULL_TEXT.slice(0, i))
-      if (i >= FULL_TEXT.length) clearInterval(interval)
-    }, 18)
+      setVisibleCount(i)
+      if (i >= WORDS.length) clearInterval(interval)
+    }, 60)
     return () => clearInterval(interval)
   }, [started])
+
+  const done = visibleCount >= WORDS.length
 
   return (
     <section ref={sectionRef} className="bg-white py-32 px-6 border-t border-[#f0f0f0]">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-12">
+        <p className="text-[#763d50] text-xs font-semibold uppercase tracking-widest mb-12">
           Qué es Consultto
         </p>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#1f2020] leading-[1.4] min-h-[8rem]">
-          {displayed}
-          {displayed.length < FULL_TEXT.length && (
-            <span className="inline-block w-[2px] h-[1em] bg-[#763d50] ml-1 animate-pulse align-middle" />
-          )}
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#1f2020] leading-[1.6] min-h-[8rem]">
+          {WORDS.map((word, i) => (
+            <span
+              key={i}
+              className="inline-block mr-[0.25em] transition-all duration-300"
+              style={{
+                opacity: i < visibleCount ? 1 : 0,
+                transform: i < visibleCount ? 'translateY(0)' : 'translateY(6px)',
+              }}
+            >
+              {word}
+            </span>
+          ))}
         </h2>
 
-        {displayed.length >= FULL_TEXT.length && (
+        {done && (
           <div className="mt-16" style={{ animation: 'fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both' }}>
             <Link
               href="#como-funciona"
