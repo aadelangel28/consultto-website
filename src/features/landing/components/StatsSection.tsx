@@ -20,8 +20,8 @@ const STAT_IMAGES = [
     alt: 'Equipo trabajando en implementación rápida',
   },
   {
-    src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
-    alt: 'Dashboard con visibilidad completa del sistema',
+    src: '/monitor-green.jpg',
+    alt: 'Plataforma Consultto con visibilidad organizacional completa',
   },
 ]
 
@@ -144,9 +144,56 @@ export function StatsSection() {
                 alt={img.alt}
                 fill
                 className="object-cover transition-opacity duration-500"
-                style={{ opacity: i === activeIndex ? 1 : 0 }}
+                style={{
+                  opacity: i === activeIndex ? 1 : 0,
+                  objectPosition: i === 3 ? '15% center' : 'center',
+                }}
               />
             ))}
+
+            {/* Mockup overlay on green screen — visible only on stat 3 */}
+            <div
+              className="absolute transition-opacity duration-500 pointer-events-none"
+              style={{
+                opacity: activeIndex === 3 ? 1 : 0,
+                left: '14%',
+                top: '8.5%',
+                width: '40%',
+                height: '20%',
+                background: '#ffffff',
+                borderRadius: '4px',
+                overflow: 'hidden',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+              }}
+            >
+              {/* Mini dashboard */}
+              <div className="w-full h-full flex flex-col bg-white p-2 gap-1.5">
+                {/* Top bar */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-[#1f2020]">Consultto</span>
+                  <span className="bg-[#763d50] text-white text-[7px] px-1.5 py-0.5 rounded-full font-semibold">ISO 9001</span>
+                </div>
+                {/* Stats row */}
+                <div className="flex gap-1 flex-1">
+                  {[
+                    { v: '24', l: 'Docs' },
+                    { v: '3', l: 'CAPA' },
+                    { v: '12d', l: 'Auditoría' },
+                  ].map((s) => (
+                    <div key={s.l} className="flex-1 bg-[#f8f8f8] rounded p-1 flex flex-col justify-between">
+                      <span className="text-[#1f2020] font-black text-[10px] leading-none">{s.v}</span>
+                      <span className="text-[#3a3a3a]/50 text-[7px] leading-none">{s.l}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Agent bar */}
+                <div className="bg-[#763d50]/10 rounded px-1.5 py-1 flex items-center gap-1">
+                  <div className="w-1 h-1 rounded-full bg-[#763d50] animate-pulse shrink-0" />
+                  <span className="text-[#763d50] text-[7px] font-semibold truncate">Agente IA activo — 4 procedimientos pendientes</span>
+                </div>
+              </div>
+            </div>
+
             <div className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/30 to-transparent" />
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6">
