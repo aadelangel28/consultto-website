@@ -4,8 +4,26 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
-// Durations per stat index (language-independent)
 const DURATIONS = [2000, 2000, 2500, 2200]
+
+const STAT_IMAGES = [
+  {
+    src: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1200&q=80',
+    alt: 'Firma de certificado de auditoría exitosa',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+    alt: 'Persona analizando costos y ahorro en laptop',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
+    alt: 'Equipo trabajando en implementación rápida',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+    alt: 'Dashboard con visibilidad completa del sistema',
+  },
+]
 
 function parseValue(value: string): { num: number; suffix: string } {
   const match = value.match(/^(\d+)(.*)$/)
@@ -16,9 +34,11 @@ function parseValue(value: string): { num: number; suffix: string } {
 function StatCard({
   stat,
   index,
+  onHover,
 }: {
   stat: { value: string; label: string; description: string }
   index: number
+  onHover: (index: number | null) => void
 }) {
   const { num, suffix } = parseValue(stat.value)
   const duration = DURATIONS[index] ?? 2000
@@ -26,7 +46,6 @@ function StatCard({
   const [triggered, setTriggered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  // Trigger on scroll into view
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -43,7 +62,6 @@ function StatCard({
     return () => observer.disconnect()
   }, [])
 
-  // Count-up animation with ease-out
   useEffect(() => {
     if (!triggered) return
     let startTime: number | null = null
@@ -63,7 +81,12 @@ function StatCard({
   }, [triggered, num, duration])
 
   return (
-    <div ref={ref} className="flex flex-col gap-3 p-8">
+    <div
+      ref={ref}
+      className="flex flex-col gap-3 p-8 cursor-default transition-colors duration-200 hover:bg-[#faf5f6] rounded-xl"
+      onMouseEnter={() => onHover(index)}
+      onMouseLeave={() => onHover(null)}
+    >
       <div className="text-[#763d50] text-5xl font-semibold leading-none tabular-nums">
         {triggered ? count : 0}
         <span>{suffix}</span>
@@ -76,6 +99,10 @@ function StatCard({
 
 export function StatsSection() {
   const { t } = useLanguage()
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  const activeIndex = hoveredIndex ?? 2
+  const activeImage = STAT_IMAGES[activeIndex]
 
   return (
     <section id="como-funciona" className="bg-white py-24 px-6">
@@ -102,21 +129,24 @@ export function StatsSection() {
                     border-[#e8e8e8]
                   `}
                 >
-                  <StatCard stat={stat} index={index} />
+                  <StatCard stat={stat} index={index} onHover={setHoveredIndex} />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: image */}
+          {/* Right: image (changes on hover) */}
           <div className="relative w-full h-[480px] rounded-2xl overflow-hidden">
-            <Image
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
-              alt="Equipo revisando documentos de auditoría"
-              fill
-              className="object-cover"
-            />
-            {/* Subtle overlay */}
+            {STAT_IMAGES.map((img, i) => (
+              <Image
+                key={i}
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover transition-opacity duration-500"
+                style={{ opacity: i === activeIndex ? 1 : 0 }}
+              />
+            ))}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/30 to-transparent" />
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6">
