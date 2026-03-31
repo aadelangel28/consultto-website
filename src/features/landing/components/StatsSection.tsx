@@ -8,12 +8,12 @@ const DURATIONS = [2000, 2000, 2500, 2200]
 
 const STAT_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1200&q=80',
-    alt: 'Firma de certificado de auditoría exitosa',
+    src: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=80',
+    alt: 'Auditoría aprobada, apretón de manos entre cliente y auditor',
   },
   {
-    src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
-    alt: 'Persona analizando costos y ahorro en laptop',
+    src: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=80',
+    alt: 'Ahorro y reducción de costos en consultoría',
   },
   {
     src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
