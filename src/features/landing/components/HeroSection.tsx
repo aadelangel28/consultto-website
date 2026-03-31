@@ -234,23 +234,6 @@ function ProductMockup() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Tab buttons — horizontal row inside card */}
-      <div className="flex gap-1.5 mb-4 justify-center">
-        {screens.map((screen, i) => (
-          <button
-            key={screen.id}
-            onClick={() => goTo(i)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap ${
-              i === activeIndex
-                ? 'bg-[#763d50] text-white shadow-sm shadow-[#763d50]/30'
-                : 'bg-white border border-[#d9d9d9] text-[#3a3a3a]/60 hover:text-[#1f2020] hover:border-[#3a3a3a]/30'
-            }`}
-          >
-            {screen.label}
-          </button>
-        ))}
-      </div>
-
       {/* Mockup shell */}
       <div className="rounded-2xl overflow-hidden border border-[#d9d9d9]/60 shadow-xl shadow-[#2e3e49]/8">
         {/* Window bar */}
@@ -268,19 +251,25 @@ function ProductMockup() {
               consultto
             </div>
             {sidebarItems.map((item) => {
-              const isActive =
-                (item === 'Dashboard' && screens[activeIndex].id === 'dashboard') ||
-                (item === 'Auditorías' && screens[activeIndex].id === 'auditorias') ||
-                (item === 'Documentación' && screens[activeIndex].id === 'documentacion') ||
-                (item === 'CAPA' && screens[activeIndex].id === 'capa') ||
-                (item === 'Agente IA' && screens[activeIndex].id === 'agente-ia')
+              const screenIndex = screens.findIndex((s) =>
+                (item === 'Dashboard' && s.id === 'dashboard') ||
+                (item === 'Auditorías' && s.id === 'auditorias') ||
+                (item === 'Documentación' && s.id === 'documentacion') ||
+                (item === 'CAPA' && s.id === 'capa') ||
+                (item === 'Agente IA' && s.id === 'agente-ia')
+              )
+              const isActive = screenIndex === activeIndex
+              const isClickable = screenIndex !== -1
               return (
                 <div
                   key={item}
+                  onClick={() => isClickable && goTo(screenIndex)}
                   className={`px-3 py-2 rounded-lg text-xs transition-all duration-300 ${
                     isActive
                       ? 'bg-[#763d50]/10 text-[#763d50] font-semibold'
-                      : 'text-[#3a3a3a]/50'
+                      : isClickable
+                        ? 'text-[#3a3a3a]/50 hover:bg-[#f5f5f5] hover:text-[#1f2020] cursor-pointer'
+                        : 'text-[#3a3a3a]/30 cursor-default'
                   }`}
                 >
                   {item}
