@@ -350,6 +350,74 @@ const NORM_META: Record<string, { description: string; scope: string; summary: s
   'AIAG FMEA':            { description: 'Análisis de modo y efecto de falla',  scope: 'Prevención de defectos',       summary: 'Metodología estructurada para identificar modos de falla potenciales en productos y procesos, evaluando su severidad, ocurrencia y detectabilidad.' },
 }
 
+// ─── Resúmenes contextualizados por industria ─────────────────────────────────
+const NORM_INDUSTRY_SUMMARY: Record<string, Record<string, string>> = {
+  'manufactura': {
+    'ISO 9001:2015':   'Estandariza tus procesos productivos y reduce defectos en línea. Es la base para controlar variabilidad y entregar producto consistente a tus clientes sin reprocesos.',
+    'ISO 14001:2015':  'Gestiona los residuos, emisiones y consumo de recursos en tu planta. Cumple con regulaciones ambientales antes de que se conviertan en multas o paros de producción.',
+    'ISO 45001:2018':  'Previene accidentes en planta: caídas, atrapamientos, exposición a químicos. Protege a tu equipo operativo y reduce el ausentismo y los costos legales por siniestros.',
+    'IATF 16949:2016': 'Cumple los requisitos de las armadoras y tier-1 automotrices. Incluye APQP, PPAP y control estadístico para garantizar que cada pieza que sale de planta es conforme.',
+    'ISO 50001:2018':  'Monitorea y reduce el consumo energético de tus máquinas, hornos y sistemas de aire comprimido. Traduce eficiencia energética en ahorro real en tu factura eléctrica.',
+  },
+  'automotriz': {
+    'IATF 16949:2016': 'El pasaporte de calidad para proveer a OEMs y tier-1. Sin esta certificación no puedes estar en la cadena de suministro de las grandes armadoras.',
+    'ISO 9001:2015':   'La base del sistema de calidad que exige toda la industria automotriz. Documenta y controla cada proceso para que tu operación sea predecible y auditable.',
+    'ISO 14001:2015':  'Las armadoras exigen a sus proveedores responsabilidad ambiental. Gestiona los residuos de pintura, metales y fluidos de proceso que genera tu operación.',
+    'ISO 45001:2018':  'En plantas automotrices, los riesgos de atrapamiento, ruido y manejo de materiales son altos. Esta norma estructura la prevención de accidentes en toda tu operación.',
+    'AIAG FMEA':       'Analiza qué puede fallar en tu producto o proceso antes de que llegue al cliente. En automotriz, es un requisito de los OEMs para aprobar nuevos diseños y cambios de proceso.',
+  },
+  'alimentos-y-bebidas': {
+    'FSSC 22000 v6':   'Requisito de los grandes retailers globales para comprar tus productos. Certifica que tu planta controla los peligros de inocuidad desde materia prima hasta distribución.',
+    'BRC Food Issue 9':'Abre las puertas a cadenas de retail en Europa y Norteamérica. Evalúa higiene, trazabilidad, alérgenos y control de cuerpos extraños en tu proceso productivo.',
+    'IFS Food v8':     'Obligatorio para exportar a distribuidores alemanes, franceses e italianos. Revisa a fondo tus procesos de manufactura, higiene y calidad del producto terminado.',
+    'SQF Edition 9':   'Certifica la inocuidad y calidad de tus productos para el mercado norteamericano. Muchos importadores y retailers de EE.UU. lo exigen como condición de compra.',
+    'ISO 22000:2018':  'Integra el análisis HACCP en un sistema de gestión completo para identificar, prevenir y controlar peligros en cada etapa de tu proceso de alimentos.',
+    'HACCP':           'Identifica los puntos críticos donde un peligro biológico, químico o físico puede contaminar tu producto y define los controles exactos para evitarlo.',
+  },
+  'construccion': {
+    'ISO 9001:2015':   'Estandariza cómo se planean, ejecutan y entregan las obras. Reduce re-trabajos, quejas de clientes y sobrecostos por falta de control en los procesos de construcción.',
+    'ISO 45001:2018':  'El sector con mayor tasa de accidentes graves. Estructura la prevención de caídas de altura, golpes, atrapamientos y riesgos eléctricos en cada obra.',
+    'ISO 14001:2015':  'Gestiona el impacto ambiental de tus obras: residuos de construcción, ruido y contaminación de suelo. Cada vez más contratos públicos y privados lo exigen.',
+    'ISO 19650':       'Define cómo producir y gestionar la información digital de tus proyectos con metodología BIM. Reduce errores de coordinación entre disciplinas y mejora la entrega al cliente.',
+  },
+  'tecnologia-y-software': {
+    'ISO 27001:2022':    'El estándar de seguridad que tus clientes corporativos y enterprise te exigen. Demuestra que proteges sus datos con controles documentados y auditados.',
+    'ISO 9001:2015':     'Estructura tus procesos de desarrollo, soporte y entrega. Reduce defectos, incumplimientos de SLA y quejas de clientes con procesos repetibles y controlados.',
+    'ISO 20000-1:2018':  'Certifica la calidad de tu gestión de servicios de TI: incidentes, cambios, disponibilidad y capacidad. Diferencia tu empresa en licitaciones y contratos enterprise.',
+    'SOC 2':             'Auditoría de seguridad que exigen los clientes corporativos en EE.UU. Verifica que tus controles protegen la seguridad, disponibilidad y confidencialidad de los datos que manejas.',
+  },
+  'salud-y-dispositivos-medicos': {
+    'ISO 13485:2016':      'El sistema de calidad obligatorio para fabricar dispositivos médicos. Cubre diseño, producción, trazabilidad y servicio con foco total en la seguridad del paciente.',
+    'ISO 9001:2015':       'Complementa el sistema de calidad médico con estructura de mejora continua. Controla los procesos administrativos, de compras y de atención que rodean la fabricación.',
+    'ISO 14971:2019':      'Evalúa cada riesgo que tu dispositivo puede representar para el paciente. Es obligatorio antes de comercializar cualquier dispositivo médico en mercados regulados.',
+    'ISO 62304':           'Define cómo desarrollar, probar y mantener el software que controla tu dispositivo. Los organismos reguladores exigen cumplir este estándar antes de aprobar el producto.',
+    'FDA 21 CFR Part 820': 'El reglamento de calidad de la FDA para ingresar al mercado estadounidense. Exige un sistema documentado de control de diseño, trazabilidad y gestión de quejas de campo.',
+  },
+  'logistica-y-transporte': {
+    'ISO 9001:2015':   'Estandariza los procesos de recolección, almacenaje y entrega para reducir errores, daños y retrasos. Clientes como manufactureras y retailers lo exigen a sus operadores.',
+    'ISO 45001:2018':  'Protege a operadores, montacarguistas y personal de almacén frente a accidentes de carga, tráfico y manejo manual. Reduce siniestros y los costos que generan.',
+    'ISO 14001:2015':  'Gestiona el impacto ambiental de tu flota: emisiones, derrames de combustible y manejo de residuos. Clientes con objetivos de sostenibilidad lo exigen a sus proveedores.',
+    'CTPAT':           'Certificación de la aduana de EE.UU. que agiliza el cruce fronterizo de tus cargas. Reduce inspecciones y tiempos de espera en operaciones México–EE.UU.',
+  },
+  'servicios-profesionales': {
+    'ISO 9001:2015':   'Demuestra que la calidad de tu firma no depende de una sola persona, sino de procesos. Reduce re-trabajos, disputas contractuales y diferencia tu empresa de la competencia.',
+    'ISO 14001:2015':  'Gestiona el impacto ambiental de tus operaciones de servicio. Cada vez más contratos corporativos y públicos requieren proveedores con gestión ambiental certificada.',
+    'ISO 45001:2018':  'Gestiona riesgos laborales propios de los servicios: estrés, ergonomía y visitas a instalaciones de clientes. Protege a tu equipo y cumple con la normativa laboral vigente.',
+  },
+  'educacion': {
+    'ISO 21001:2018':  'Sistema de gestión diseñado para tu institución. Mejora la experiencia de estudiantes y familias estructurando los procesos académicos, administrativos y de mejora continua.',
+    'ISO 9001:2015':   'Aplica la gestión de calidad a admisiones, programas académicos y atención a alumnos. Base reconocida para acreditaciones nacionales e internacionales del sector educativo.',
+  },
+  'farmaceutica': {
+    'GMP Farmacéutica':    'Regula cómo se producen los medicamentos en tu planta. Garantiza que cada lote es idéntico, libre de contaminación y dentro de especificación para proteger al paciente.',
+    'ISO 9001:2015':       'Estructura los procesos de soporte: compras, gestión de proveedores y mantenimiento. Complementa el sistema regulatorio BPM con mejora continua y control documentado.',
+    'ICH Q10':             'Modelo de calidad para todo el ciclo de vida del medicamento. Integra las BPM con mejora continua para mantener tu operación en control regulatorio ante FDA y COFEPRIS.',
+    'ICH Q9':              'Guía para aplicar análisis de riesgo en decisiones de calidad farmacéutica. Permite justificar ante reguladores qué controles aplicas y por qué en tu operación.',
+    'NOM-059-SSA1':        'La norma que COFEPRIS revisa en cada inspección a tu planta. Define infraestructura, documentación y control de calidad mínimos para fabricar medicamentos en México.',
+    'FDA 21 CFR Part 211': 'Regulación de manufactura de la FDA para exportar medicamentos a EE.UU. Cubre instalaciones, equipos, control de procesos, pruebas de laboratorio y registros de lote.',
+  },
+}
+
 function NormasSection({ industria }: { industria: IndustriaData }) {
   return (
     <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
@@ -380,8 +448,9 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {industria.normas.map((norma, i) => {
-            const meta = NORM_META[norma] ?? { description: 'Norma internacional', scope: 'Certificación' }
-            return <NormaCard key={norma} norma={norma} meta={meta} index={i} />
+            const meta = NORM_META[norma] ?? { description: 'Norma internacional', scope: 'Certificación', summary: '' }
+            const industrySummary = NORM_INDUSTRY_SUMMARY[industria.slug]?.[norma]
+            return <NormaCard key={norma} norma={norma} meta={{ ...meta, summary: industrySummary ?? meta.summary }} index={i} />
           })}
         </div>
       </div>
