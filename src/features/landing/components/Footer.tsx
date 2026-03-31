@@ -26,10 +26,10 @@ export function Footer() {
   return (
     <footer className="bg-white border-t border-[#d9d9d9] py-16 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-10 mb-12">
+        <div className="flex flex-col md:flex-row gap-10 mb-12">
 
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div className="shrink-0 w-52">
             <div className="mb-4">
               <Image src="/logo.png" alt="Consultto" height={28} width={120} />
             </div>
@@ -39,7 +39,7 @@ export function Footer() {
           </div>
 
           {/* Producto */}
-          <div>
+          <div className="flex-1">
             <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
               {f.product}
             </h4>
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
 
           {/* Industrias */}
-          <div>
+          <div className="flex-1">
             <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
               {f.industries}
             </h4>
@@ -71,7 +71,7 @@ export function Footer() {
           </div>
 
           {/* Normas */}
-          <div>
+          <div className="flex-1">
             <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
               {f.norms}
             </h4>
@@ -87,7 +87,7 @@ export function Footer() {
           </div>
 
           {/* Empresa */}
-          <div>
+          <div className="flex-1">
             <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
               {f.company}
             </h4>
@@ -103,7 +103,7 @@ export function Footer() {
           </div>
 
           {/* Contacto */}
-          <div>
+          <div className="flex-1">
             <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
               {f.contact}
             </h4>
