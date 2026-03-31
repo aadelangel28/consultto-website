@@ -1,6 +1,7 @@
 import { LanguageProvider } from '@/lib/i18n/LanguageContext'
 import { Navbar } from '@/features/landing/components/Navbar'
 import { HeroSection } from '@/features/landing/components/HeroSection'
+import { WhatWeDoSection } from '@/features/landing/components/WhatWeDoSection'
 import { FeaturesSection } from '@/features/landing/components/FeaturesSection'
 import { ComparisonSection } from '@/features/landing/components/ComparisonSection'
 import { StatsSection } from '@/features/landing/components/StatsSection'
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Navbar />
         <HeroSection />
+        <WhatWeDoSection />
         <StatsSection />
         <FeaturesSection />
         <ComparisonSection />

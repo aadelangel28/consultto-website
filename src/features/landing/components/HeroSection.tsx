@@ -327,7 +327,7 @@ export function HeroSection() {
             </p>
 
             {/* H1 — each line animates individually */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-[1.05] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-[1.05] mb-10">
               <span
                 className="block"
                 style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both' }}
@@ -341,16 +341,6 @@ export function HeroSection() {
                 {t.hero.h1Line2}
               </span>
             </h1>
-
-            {/* Subtitle */}
-            <p
-              className="text-[#3a3a3a]/60 text-base md:text-lg leading-relaxed max-w-lg mb-10"
-              style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 350ms both' }}
-            >
-              {t.hero.subtitle}{' '}
-              {t.hero.subtitleBold}
-              {t.hero.subtitleEnd}
-            </p>
 
             {/* CTAs */}
             <div
