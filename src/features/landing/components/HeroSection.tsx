@@ -56,16 +56,20 @@ function AgenteIAScreen() {
         <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
       </div>
       <div className="flex-1 flex flex-col gap-2.5 overflow-hidden">
-        <div className="bg-[#f8f8f8] rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%]">
+        {/* Cliente — derecha */}
+        <div className="bg-[#f8f8f8] rounded-xl rounded-tr-sm px-4 py-3 max-w-[85%] self-end">
           <p className="text-xs text-[#3a3a3a]/80 leading-relaxed">¿Qué documentos necesito actualizar antes de la auditoría de ISO 9001?</p>
         </div>
-        <div className="bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl rounded-tr-sm px-4 py-3 max-w-[90%] self-end">
+        {/* Agente — izquierda */}
+        <div className="bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl rounded-tl-sm px-4 py-3 max-w-[90%]">
           <p className="text-xs text-[#1f2020] leading-relaxed">Basado en tu sistema actual, tienes 4 documentos críticos: Manual de Calidad (v2.1 → v2.2), Procedimiento de Auditorías Internas, Registro de No Conformidades y la Política de Calidad. ¿Quieres que prepare un checklist?</p>
         </div>
-        <div className="bg-[#f8f8f8] rounded-xl rounded-tl-sm px-4 py-3 max-w-[75%]">
+        {/* Cliente — derecha */}
+        <div className="bg-[#f8f8f8] rounded-xl rounded-tr-sm px-4 py-3 max-w-[75%] self-end">
           <p className="text-xs text-[#3a3a3a]/80 leading-relaxed">Sí, genera el checklist por favor.</p>
         </div>
-        <div className="flex items-center gap-2 bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl px-4 py-2.5 max-w-[70%] self-end">
+        {/* Agente — izquierda */}
+        <div className="flex items-center gap-2 bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl px-4 py-2.5 max-w-[70%]">
           <div className="flex gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-bounce" style={{ animationDelay: '0ms' }} />
             <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-bounce" style={{ animationDelay: '150ms' }} />
