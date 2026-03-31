@@ -127,8 +127,8 @@ export function StatsSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[#1f2020] text-sm font-semibold">Más de 200 organizaciones certificadas</p>
-                  <p className="text-[#3a3a3a]/50 text-xs mt-0.5">en ISO 9001, ISO 14001, ISO 45001 e IATF 16949</p>
+                  <p className="text-[#1f2020] text-sm font-semibold">Soporte para más de 16 normas internacionales</p>
+                  <p className="text-[#3a3a3a]/50 text-xs mt-0.5">ISO 9001, IATF, FSSC 22000, AS9100 y más — en un solo sistema</p>
                 </div>
               </div>
             </div>
