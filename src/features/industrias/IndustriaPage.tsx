@@ -290,6 +290,36 @@ function SolRow({ sol, index }: { sol: { title: string; description: string }; i
   )
 }
 
+const NORM_IMAGES: Record<string, string> = {
+  'ISO 9001:2015':        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', // equipo revisando documentos de calidad
+  'ISO 14001:2015':       'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80', // naturaleza / medio ambiente
+  'ISO 45001:2018':       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80', // trabajador con casco en planta
+  'IATF 16949:2016':      'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80', // ensamblaje automotriz
+  'ISO 50001:2018':       'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80', // paneles solares / energía
+  'FSSC 22000 v6':        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80', // planta de alimentos / cocina industrial
+  'BRC Food Issue 9':     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', // producción de alimentos
+  'IFS Food v8':          'https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=800&q=80', // almacén de alimentos
+  'SQF Edition 9':        'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&q=80', // control de calidad alimentos
+  'ISO 22000:2018':       'https://images.unsplash.com/photo-1576867757603-05b134ebc379?w=800&q=80', // inocuidad alimentaria / laboratorio alimentos
+  'HACCP':                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80', // control de procesos / manufactura
+  'ISO 27001:2022':       'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80', // ciberseguridad / servidores
+  'ISO 20000-1:2018':     'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80', // equipo de TI trabajando
+  'SOC 2':                'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', // datacenter / nube
+  'ISO 13485:2016':       'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80', // dispositivos médicos
+  'ISO 14971:2019':       'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80', // análisis de riesgo médico
+  'ISO 62304':            'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80', // software / desarrollo
+  'FDA 21 CFR Part 820':  'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80', // manufactura médica
+  'FDA 21 CFR Part 211':  'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80', // laboratorio farmacéutico
+  'ISO 19650':            'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80', // construcción / BIM
+  'CTPAT':                'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80', // logística / contenedores
+  'ISO 21001:2018':       'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80', // educación / aula
+  'GMP Farmacéutica':     'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=800&q=80', // planta farmacéutica
+  'ICH Q10':              'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80', // calidad farmacéutica
+  'ICH Q9':               'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', // gestión de riesgos / análisis
+  'NOM-059-SSA1':         'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80', // regulación sanitaria
+  'AIAG FMEA':            'https://images.unsplash.com/photo-1619641523706-fc99b2a40b2c?w=800&q=80', // ingeniería / análisis técnico
+}
+
 const NORM_META: Record<string, { description: string; scope: string }> = {
   'ISO 9001:2015':        { description: 'Gestión de la calidad',              scope: 'Requisitos del sistema' },
   'ISO 14001:2015':       { description: 'Gestión ambiental',                  scope: 'Impacto y cumplimiento' },
@@ -365,6 +395,8 @@ function NormaCard({ norma, meta, index }: {
   index: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  const image = NORM_IMAGES[norma]
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -379,28 +411,69 @@ function NormaCard({ norma, meta, index }: {
   return (
     <div
       ref={ref}
-      className="norm-card relative bg-white rounded-2xl p-6 border border-[#ebebeb] overflow-hidden"
-      style={{ transitionDelay: `${index * 40}ms` }}
+      className="norm-card"
+      style={{
+        transitionDelay: `${index * 40}ms`,
+        perspective: '1000px',
+        height: '180px',
+      }}
     >
-      {/* Animated top accent bar */}
-      <div className="norm-bar absolute top-0 left-0 right-0 h-[2px]" style={{ background: '#763d50' }} />
+      <style>{`
+        .norm-flip-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .norm-card:hover .norm-flip-inner {
+          transform: rotateY(180deg);
+        }
+        .norm-flip-front, .norm-flip-back {
+          position: absolute;
+          inset: 0;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+        .norm-flip-back {
+          transform: rotateY(180deg);
+        }
+      `}</style>
 
-      <div className="norm-body">
-        {/* Index */}
-        <span className="text-[10px] font-bold tabular-nums text-[#3a3a3a]/25 mb-4 block">
-          {String(index + 1).padStart(2, '0')}
-        </span>
+      <div className="norm-flip-inner">
+        {/* Front */}
+        <div className="norm-flip-front bg-white border border-[#ebebeb] p-6 flex flex-col">
+          <div className="norm-bar absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: '#763d50' }} />
+          <div className="norm-body flex flex-col h-full">
+            <span className="text-[10px] font-bold tabular-nums text-[#3a3a3a]/25 mb-3 block">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p className="text-[#1f2020] font-bold text-base leading-tight mb-1">{norma}</p>
+            <p className="text-[#763d50] text-xs font-semibold mb-3">{meta.description}</p>
+            <div className="flex items-center gap-1.5 mt-auto pt-3 border-t border-[#f0f0f0]">
+              <span className="w-1 h-1 rounded-full bg-[#3a3a3a]/20 shrink-0" />
+              <span className="text-[#3a3a3a]/40 text-xs">{meta.scope}</span>
+            </div>
+          </div>
+        </div>
 
-        {/* Norm code */}
-        <p className="text-[#1f2020] font-bold text-base leading-tight mb-1">{norma}</p>
-
-        {/* Description */}
-        <p className="text-[#763d50] text-xs font-semibold mb-3">{meta.description}</p>
-
-        {/* Scope */}
-        <div className="flex items-center gap-1.5 mt-auto pt-3 border-t border-[#f0f0f0]">
-          <span className="w-1 h-1 rounded-full bg-[#3a3a3a]/20 shrink-0" />
-          <span className="text-[#3a3a3a]/40 text-xs">{meta.scope}</span>
+        {/* Back */}
+        <div className="norm-flip-back">
+          {image && (
+            <Image
+              src={image}
+              alt={norma}
+              fill
+              className="object-cover"
+            />
+          )}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(31,32,32,0.82) 0%, rgba(118,61,80,0.65) 100%)' }} />
+          <div className="absolute inset-0 flex flex-col justify-end p-6">
+            <p className="text-white font-bold text-lg leading-tight mb-1">{norma}</p>
+            <p className="text-white/60 text-xs">{meta.description}</p>
+          </div>
         </div>
       </div>
     </div>
