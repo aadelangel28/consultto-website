@@ -8,14 +8,7 @@ export function WhatWeDoSection() {
           Qué es Consultto
         </p>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#1f2020] leading-[1.4]">
-          Somos una plataforma de{' '}
-          <span className="font-semibold">certificación y cumplimiento normativo</span>
-          {' '}que combina{' '}
-          <span className="font-semibold">software</span>,{' '}
-          <span className="font-semibold">Agente IA</span>
-          {' '}y{' '}
-          <span className="font-semibold">humanos expertos</span>
-          {' '}para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.
+          Somos una plataforma de certificación y cumplimiento normativo que combina software, Agente IA y humanos expertos para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.
         </h2>
       </div>
     </section>
