@@ -7,6 +7,7 @@ export interface Article {
   authorRole: string
   date: string
   readTime: string
+  image: string
   featured?: boolean
 }
 
@@ -20,6 +21,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '24 mar 2025',
     readTime: '8 min',
+    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80',
     featured: true,
   },
   {
@@ -31,6 +33,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '18 mar 2025',
     readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80',
   },
   {
     slug: 'ia-en-gestion-de-calidad',
@@ -41,6 +44,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '10 mar 2025',
     readTime: '7 min',
+    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
   },
   {
     slug: 'errores-comunes-iso-14001',
@@ -51,6 +55,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '3 mar 2025',
     readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',
   },
   {
     slug: 'capa-mejora-continua',
@@ -61,6 +66,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '24 feb 2025',
     readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
   },
   {
     slug: 'iso-45001-seguridad-laboral',
@@ -71,6 +77,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '17 feb 2025',
     readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
   },
 ]
 
