@@ -259,7 +259,7 @@ export function StatsSection() {
               {t.stats.title}
             </h2>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 h-[480px]">
               {t.stats.items.map((stat, index) => (
                 <StatCard
                   key={index}
