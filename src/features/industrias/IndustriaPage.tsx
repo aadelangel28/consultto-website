@@ -512,11 +512,13 @@ function NormaCard({ norma, meta, index }: {
       `}</style>
 
       <div className="norm-flip-inner">
-        {/* Front — large norm name only */}
-        <div className="norm-flip-front bg-white border border-[#ebebeb] flex flex-col items-center justify-center p-6">
-          <div className="norm-bar absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: '#763d50' }} />
-          <div className="norm-body flex flex-col items-center justify-center h-full text-center">
-            <p className="text-[#1f2020] font-extrabold text-2xl leading-tight tracking-tight">{norma}</p>
+        {/* Front — spotlight + norm name */}
+        <div className="norm-flip-front border border-[#ebebeb] flex flex-col items-center justify-center p-6" style={{ background: '#fcfcfc' }}>
+          {/* Spotlight from top, wine color */}
+          <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 55% at 50% -10%, rgba(118,61,80,0.18) 0%, transparent 70%)' }} />
+          <div className="norm-bar absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: 'linear-gradient(90deg, transparent, #763d50, transparent)' }} />
+          <div className="norm-body flex flex-col items-center justify-center h-full text-center relative z-10">
+            <p className="text-[#1f2020] font-medium text-2xl leading-tight tracking-tight">{norma}</p>
           </div>
         </div>
 
