@@ -179,12 +179,12 @@ export function Navbar() {
             )}
           </div>
 
-          <Link
-            href="/login"
+          <a
+            href="https://app.consultto.com"
             className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm px-4 py-2 font-medium"
           >
             {t.nav.login}
-          </Link>
+          </a>
           <Link
             href="/signup"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white text-sm px-5 py-2.5 rounded-full transition-all font-semibold hover:scale-105"
@@ -299,7 +299,7 @@ export function Navbar() {
           </div>
 
           <div className="pt-2 border-t border-[#d9d9d9] flex flex-col gap-3">
-            <Link href="/login" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
+            <a href="https://app.consultto.com" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
               {t.nav.login}
             </Link>
             <Link
