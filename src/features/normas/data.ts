@@ -274,9 +274,9 @@ export const NORMAS: NormaData[] = [
           'Registra el seguimiento diario de programas de prerrequisitos (limpieza, control de plagas, cadena de frío) con alertas automáticas ante desviaciones.',
       },
       {
-        title: 'Trazabilidad de lote a lote',
+        title: 'Registros de proceso organizados por lote',
         description:
-          'Consulta el historial completo de cualquier lote — desde materias primas hasta distribución — en segundos. Esencial para retiros de mercado eficientes.',
+          'Centraliza los registros de producción, materias primas y distribución de forma estructurada para que la información esté disponible y organizada cuando la auditoría o una contingencia lo requiera.',
       },
       {
         title: 'Gestión de no conformidades alimentarias',
@@ -468,29 +468,29 @@ export const NORMAS: NormaData[] = [
     ],
     comoGestiona: [
       {
-        title: 'Tablero de indicadores energéticos',
+        title: 'Documentación de la política y objetivos energéticos',
         description:
-          'Visualiza los IDEs en tiempo real con comparativas contra la línea de base, desglose por área o proceso, y tendencias históricas para la toma de decisiones.',
+          'Estructura y centraliza la política energética, los objetivos de reducción por período y los planes de acción asignados a responsables, con seguimiento de avance y evidencia para auditorías.',
       },
       {
         title: 'Registro de oportunidades de mejora energética',
         description:
-          'Captura proyectos de eficiencia, calcula el ahorro estimado vs. real y prioriza según ROI. El sistema hace seguimiento hasta la verificación del ahorro obtenido.',
+          'Captura y hace seguimiento a los proyectos de eficiencia energética identificados, documentando el ahorro estimado, las acciones definidas y el estado de implementación.',
       },
       {
-        title: 'Gestión de medidores y fuentes de energía',
+        title: 'Gestión de revisiones energéticas y línea de base',
         description:
-          'Administra el inventario de medidores, programa calibraciones y concentra las lecturas de electricidad, gas, vapor y otras fuentes en un solo repositorio.',
+          'Organiza la documentación de la revisión energética, la línea de base definida y los indicadores de desempeño (IDE) para que estén disponibles y actualizados en cada auditoría.',
       },
       {
-        title: 'Planes de acción y objetivos energéticos',
+        title: 'Planes de acción y seguimiento de objetivos',
         description:
-          'Define metas de reducción por período, asigna responsables, programa revisiones y genera los informes de desempeño energético para la revisión por la dirección.',
+          'Define metas de reducción, asigna responsables, programa revisiones periódicas y genera los informes de desempeño energético para la revisión por la dirección.',
       },
     ],
     ctaTitle: 'Menos consumo energético, más competitividad.',
     ctaSubtitle:
-      'Implementa ISO 50001 con un sistema que realmente mide, identifica desperdicios y documenta el ahorro.',
+      'Implementa ISO 50001 con un sistema que organiza, documenta y da seguimiento a tu gestión energética.',
   },
   {
     slug: 'iso-27001',
@@ -609,9 +609,9 @@ export const NORMAS: NormaData[] = [
           'Gestiona el plan HACCP digital con todos los peligros, PCC, límites críticos y acciones correctivas. Registra el monitoreo diario y alerta automáticamente ante desviaciones de límites.',
       },
       {
-        title: 'Control de alérgenos y trazabilidad',
+        title: 'Control y documentación de alérgenos',
         description:
-          'Gestiona la declaración de alérgenos por producto, el programa de limpieza validado y la trazabilidad de materias primas alérgenas desde el proveedor hasta el producto terminado.',
+          'Estructura el programa de gestión de alérgenos: declaración por producto, procedimientos de limpieza validados y registros de comunicación en la cadena de suministro, listos para auditoría.',
       },
       {
         title: 'Auditorías internas FSSC 22000',
@@ -944,9 +944,9 @@ export const NORMAS: NormaData[] = [
     ],
     comoGestiona: [
       {
-        title: 'Gestión de lotes y registros de fabricación',
+        title: 'Documentación y control de registros de fabricación',
         description:
-          'Centraliza los registros maestros de manufactura (BMR), los registros de lote, las desviaciones y las investigaciones OOS/OOT en un sistema con controles de acceso por rol.',
+          'Organiza y controla los documentos maestros de manufactura (BMR), los procedimientos de proceso, las desviaciones y las investigaciones OOS/OOT con acceso por rol y trazabilidad de cambios.',
       },
       {
         title: 'Control de cambios y gestión del ciclo de vida',
@@ -961,7 +961,7 @@ export const NORMAS: NormaData[] = [
       {
         title: 'Revisión anual del producto (APR)',
         description:
-          'Genera la revisión anual del producto con análisis de tendencias de lotes, quejas, desviaciones, cambios y resultados de estabilidad. Cumple con ICH Q10.',
+          'Estructura y documenta la revisión anual del producto consolidando quejas, desviaciones, cambios y resultados de estabilidad en un expediente organizado para la dirección y para inspecciones.',
       },
     ],
     ctaTitle: 'GMP Farmacéutica gestionada con el rigor que las autoridades exigen.',
@@ -1080,14 +1080,14 @@ export const NORMAS: NormaData[] = [
     ],
     comoGestiona: [
       {
-        title: 'Registro y seguimiento de sellos de seguridad',
+        title: 'Planificación del control de sellos de seguridad',
         description:
-          'Gestiona el inventario de sellos ISO 17712, registra la aplicación y remoción por unidad, operador y ruta, con alertas automáticas ante inconsistencias en el número de sello.',
+          'Planifica y estructura el programa de gestión de sellos ISO 17712: procedimientos de aplicación y remoción, responsables por unidad y ruta, y los registros necesarios para demostrar control ante una validación CBP.',
       },
       {
-        title: 'Inspecciones de vehículos con checklists de 7 puntos',
+        title: 'Estandarización de checklists de inspección de vehículos',
         description:
-          'Ejecuta checklists digitales de inspección de unidades (cabina, chasis, compartimientos, etc.) desde cualquier dispositivo, con evidencia fotográfica y firma del operador.',
+          'Planifica y estandariza los checklists digitales de inspección de unidades (cabina, chasis, compartimientos, etc.) con los campos requeridos para capturar evidencia fotográfica y firma del operador.',
       },
       {
         title: 'Gestión de incidentes de seguridad en frontera',

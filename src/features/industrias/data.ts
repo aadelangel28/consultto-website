@@ -88,7 +88,7 @@ export const INDUSTRIAS: IndustriaData[] = [
     name: 'Automotriz',
     heroTitle: 'IATF 16949 cumplido. Tu lugar en la cadena asegurado.',
     heroSubtitle:
-      'Los proveedores automotrices no tienen margen de error. Consultto te da el sistema para gestionar CSR, cambios de proceso y trazabilidad de lotes sin improvisaciones.',
+      'Los proveedores automotrices no tienen margen de error. Consultto te da el sistema para gestionar CSR, cambios de proceso y no conformidades sin improvisaciones.',
     retos: [
       {
         title: 'Requisitos específicos de cada OEM sin control',
@@ -106,9 +106,9 @@ export const INDUSTRIAS: IndustriaData[] = [
           'La cadena de suministro automotriz exige evaluar, calificar y monitorear proveedores continuamente. Hacerlo en spreadsheets es un riesgo de certificación.',
       },
       {
-        title: 'Trazabilidad de lotes que tarda días',
+        title: 'Respuesta a contingencias de cliente sin registros',
         description:
-          'Un recall o defecto de campo exige trazabilidad total hacia atrás. Sin registros estructurados en el sector automotriz, rastrear un lote puede tomar días.',
+          'Un defecto de campo o desvío notificado por el OEM exige información inmediata sobre procesos, materiales y cambios. Sin registros estructurados, la respuesta se improvisa y llega tarde.',
       },
     ],
     soluciones: [
@@ -128,9 +128,9 @@ export const INDUSTRIAS: IndustriaData[] = [
           'Califica a tus proveedores de la cadena automotriz, registra auditorías de segunda parte y mantén un panel de desempeño actualizado.',
       },
       {
-        title: 'Trazabilidad de producción en tiempo real',
+        title: 'Expedientes de contingencia listos para el OEM',
         description:
-          'Vincula lotes, materiales, equipos y operadores a cada pieza fabricada para responder en minutos ante cualquier contingencia de cliente.',
+          'Centraliza los registros de proceso, cambios y no conformidades por periodo para que cuando el OEM notifique una desviación, puedas construir el expediente de respuesta con la información ya documentada.',
       },
     ],
     normas: ['IATF 16949:2016', 'ISO 9001:2015', 'ISO 14001:2015', 'ISO 45001:2018', 'AIAG FMEA'],
@@ -165,9 +165,9 @@ export const INDUSTRIAS: IndustriaData[] = [
           'Los programas de limpieza, control de plagas y mantenimiento en la industria alimentaria tienen fechas críticas que se pierden entre hojas de cálculo y agendas personales.',
       },
       {
-        title: 'Trazabilidad de alimentos en más de 4 horas',
+        title: 'Registros de producción dispersos que complican las auditorías',
         description:
-          'BRC e IFS exigen demostrar trazabilidad completa en 4 horas. Sin un sistema digital en tu planta de alimentos, esto se convierte en una emergencia operativa.',
+          'BRC e IFS exigen demostrar trazabilidad de proceso. Sin registros organizados y accesibles en tu planta, reunir la evidencia para una auditoría se convierte en una emergencia.',
       },
       {
         title: 'No conformidades de producto sin disposición clara',
@@ -187,14 +187,14 @@ export const INDUSTRIAS: IndustriaData[] = [
           'Gestiona todos tus programas prerrequisito alimentarios con alertas de vencimiento, registros de ejecución y evidencia fotográfica centralizada.',
       },
       {
-        title: 'Trazabilidad bidireccional de lotes alimentarios',
+        title: 'Registros de proceso organizados para auditorías y contingencias',
         description:
-          'Registra materias primas, insumos y productos terminados con trazabilidad completa para responder en minutos ante cualquier retiro de mercado.',
+          'Centraliza los registros de materias primas, insumos y producción para que la información esté disponible cuando la necesites — sin buscar en carpetas ni correos.',
       },
       {
-        title: 'Gestión de no conformidades y retiro de producto',
+        title: 'Gestión de no conformidades de producto',
         description:
-          'Registra desviaciones de producto alimentario, gestiona la disposición de producto no conforme y activa el protocolo de retiro cuando se necesita.',
+          'Registra desviaciones de producto alimentario, estructura la disposición del producto no conforme y documenta las acciones tomadas con la evidencia que los auditores exigen.',
       },
     ],
     normas: ['FSSC 22000 v6', 'BRC Food Issue 9', 'IFS Food v8', 'SQF Edition 9', 'ISO 22000:2018', 'HACCP'],
