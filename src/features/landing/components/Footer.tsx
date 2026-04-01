@@ -97,9 +97,9 @@ export function Footer() {
               <ul className="space-y-3">
                 {f.companyLinks.map((item) => (
                   <li key={item.label}>
-                    <Link href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
+                    <a href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
                       {item.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -402,7 +402,7 @@ export const translations = {
       productLinks: ['AI Agent', 'Documentation', 'Audits', 'CAPA', 'Continuous improvement'],
       serviceLinks: ['On-site consulting', 'ISO 9001 implementation', 'ISO 14001 implementation', 'Internal audits', 'Training'],
       companyLinks: [
-        { label: 'Log in', href: '/login' },
+        { label: 'Log in', href: 'https://app.consultto.com' },
         { label: 'Create account', href: '/signup' },
         { label: 'FAQ', href: '#faq' },
       ],
@@ -597,7 +597,7 @@ export const translations = {
       productLinks: ['Agente de IA', 'Documentação', 'Auditorias', 'CAPA', 'Melhoria contínua'],
       serviceLinks: ['Consultoria presencial', 'Implementação ISO 9001', 'Implementação ISO 14001', 'Auditorias internas', 'Capacitação'],
       companyLinks: [
-        { label: 'Entrar', href: '/login' },
+        { label: 'Entrar', href: 'https://app.consultto.com' },
         { label: 'Criar conta', href: '/signup' },
         { label: 'Perguntas frequentes', href: '#faq' },
       ],
