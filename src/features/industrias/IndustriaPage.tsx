@@ -485,6 +485,7 @@ function NormaCard({ norma, meta, index }: {
   index: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  const innerRef = useRef<HTMLDivElement>(null)
   const image = NORM_IMAGES[norma]
 
   useEffect(() => {
@@ -502,15 +503,13 @@ function NormaCard({ norma, meta, index }: {
     <div
       ref={ref}
       className="norm-card"
-      style={{
-        transitionDelay: `${index * 40}ms`,
-        perspective: '1000px',
-        height: '180px',
-      }}
+      style={{ transitionDelay: `${index * 40}ms`, perspective: '1000px', height: '180px' }}
+      onMouseEnter={() => { if (innerRef.current) innerRef.current.style.transform = 'rotateY(180deg)' }}
+      onMouseLeave={() => { if (innerRef.current) innerRef.current.style.transform = 'rotateY(0deg)' }}
     >
-      <div className="norm-flip-inner">
+      <div ref={innerRef} className="norm-flip-inner" style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d', transition: 'transform 0.6s cubic-bezier(0.4,0,0.2,1)' }}>
         {/* Front — spotlight + norm name */}
-        <div className="norm-flip-front border border-[#ebebeb] flex flex-col items-center justify-center p-6" style={{ background: '#fcfcfc' }}>
+        <div className="norm-flip-front border border-[#ebebeb] flex flex-col items-center justify-center p-6" style={{ background: '#fcfcfc', position: 'absolute', inset: 0, borderRadius: 16, overflow: 'hidden', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
           {/* Spotlight from top, wine color */}
           <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 55% at 50% -10%, rgba(118,61,80,0.18) 0%, transparent 70%)' }} />
           <div className="norm-bar absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: 'linear-gradient(90deg, transparent, #763d50, transparent)' }} />
@@ -520,7 +519,7 @@ function NormaCard({ norma, meta, index }: {
         </div>
 
         {/* Back — image + overlay + norm name + summary */}
-        <div className="norm-flip-back">
+        <div className="norm-flip-back" style={{ position: 'absolute', inset: 0, borderRadius: 16, overflow: 'hidden', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
           {image && (
             <Image
               src={image}
