@@ -422,8 +422,6 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
   return (
     <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <style>{`
-        .norm-card { transition: border-color 0.25s ease, background 0.25s ease; }
-        .norm-card:hover { border-color: rgba(118,61,80,0.25) !important; background: white !important; }
         .norm-card .norm-bar {
           transform: scaleX(0);
           transform-origin: left;
@@ -436,6 +434,29 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
           transition: opacity 0.55s ease 0.25s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.25s;
         }
         .norm-card.revealed .norm-body { opacity: 1; transform: translateY(0); }
+
+        /* Flip card */
+        .norm-flip-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .norm-card:hover .norm-flip-inner {
+          transform: rotateY(180deg);
+        }
+        .norm-flip-front, .norm-flip-back {
+          position: absolute;
+          inset: 0;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+        .norm-flip-back {
+          transform: rotateY(180deg);
+        }
       `}</style>
 
       <div className="max-w-6xl mx-auto px-6">
@@ -487,30 +508,6 @@ function NormaCard({ norma, meta, index }: {
         height: '180px',
       }}
     >
-      <style>{`
-        .norm-flip-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .norm-card:hover .norm-flip-inner {
-          transform: rotateY(180deg);
-        }
-        .norm-flip-front, .norm-flip-back {
-          position: absolute;
-          inset: 0;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          border-radius: 16px;
-          overflow: hidden;
-        }
-        .norm-flip-back {
-          transform: rotateY(180deg);
-        }
-      `}</style>
-
       <div className="norm-flip-inner">
         {/* Front — spotlight + norm name */}
         <div className="norm-flip-front border border-[#ebebeb] flex flex-col items-center justify-center p-6" style={{ background: '#fcfcfc' }}>
