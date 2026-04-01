@@ -27,7 +27,7 @@ function PlatformMockup() {
     { label: 'Agente IA', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2' },
     { label: 'Auditorías', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
     { label: 'Documentación', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
-    { label: 'CAPA', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
+    { label: 'No conformidades', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
   ]
 
   return (
@@ -73,7 +73,7 @@ function PlatformMockup() {
             {[
               { value: '24', label: 'Documentos activos' },
               { value: '12 días', label: 'Auditoría próxima' },
-              { value: '3', label: 'CAPA abiertas' },
+              { value: '3', label: 'No conformidades abiertas' },
             ].map((s) => (
               <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-lg p-2.5">
                 <div className="text-[#1f2020] font-black text-base">{s.value}</div>

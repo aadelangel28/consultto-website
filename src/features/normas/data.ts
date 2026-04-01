@@ -65,7 +65,7 @@ export const NORMAS: NormaData[] = [
           'Todos los documentos del SGC viven en Consultto con control de versiones, flujos de aprobación y distribución automática. Sin carpetas compartidas ni versiones desactualizadas en planta.',
       },
       {
-        title: 'Gestión de CAPA con causa raíz',
+        title: 'Gestión de No conformidades con causa raíz',
         description:
           'Registra no conformidades, ejecuta análisis de causa raíz con metodologías guiadas (5 Porqués, Ishikawa) y da seguimiento automático hasta el cierre verificado con evidencia.',
       },
@@ -325,9 +325,9 @@ export const NORMAS: NormaData[] = [
       },
       {
         clause: '§8.5.2',
-        title: 'Acciones correctivas y acciones preventivas (CAPA)',
+        title: 'Acciones correctivas y acciones preventivas',
         description:
-          'Implementar un proceso robusto de CAPA que identifique causas raíz, defina e implemente acciones, y verifique su eficacia con evidencia objetiva.',
+          'Implementar un proceso robusto de No conformidades que identifique causas raíz, defina e implemente acciones, y verifique su eficacia con evidencia objetiva.',
       },
     ],
     comoGestiona: [
@@ -339,10 +339,10 @@ export const NORMAS: NormaData[] = [
       {
         title: 'Gestión de quejas y vigilancia post-mercado',
         description:
-          'Captura quejas de clientes, las clasifica según su criticidad, vincula con CAPA si aplica y genera los reportes regulatorios para autoridades sanitarias.',
+          'Captura quejas de clientes, las clasifica según su criticidad, vincula con No conformidad si aplica y genera los reportes regulatorios para autoridades sanitarias.',
       },
       {
-        title: 'Control de CAPA con trazabilidad regulatoria',
+        title: 'Control de No conformidades con trazabilidad regulatoria',
         description:
           'Gestiona acciones correctivas y preventivas con los campos requeridos por ISO 13485, FDA y MDR europeo. Evidencia siempre disponible para inspecciones.',
       },
@@ -966,7 +966,7 @@ export const NORMAS: NormaData[] = [
     ],
     ctaTitle: 'GMP Farmacéutica gestionada con el rigor que las autoridades exigen.',
     ctaSubtitle:
-      'Documentación, validaciones, lotes y CAPA centralizados. Tu planta siempre en estado de inspección.',
+      'Documentación, validaciones, lotes y No conformidades centralizadas. Tu planta siempre en estado de inspección.',
   },
   {
     slug: 'as9100',

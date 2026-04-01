@@ -20,7 +20,7 @@ function DashboardScreen() {
         {[
           { value: '24', label: 'Documentos activos' },
           { value: '12 días', label: 'Auditoría próxima' },
-          { value: '3', label: 'CAPA abiertas' },
+          { value: '3', label: 'No conformidades abiertas' },
         ].map((s) => (
           <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3">
             <div className="text-[#1f2020] font-black text-xl">{s.value}</div>
@@ -153,15 +153,15 @@ function DocumentacionScreen() {
 
 function CAPAScreen() {
   const capas = [
-    { id: 'CAPA-024', desc: 'Producto no conforme en línea 3', priority: 'Alta', priorityColor: 'bg-red-50 text-red-600 border-red-200', status: 'Abierta' },
-    { id: 'CAPA-023', desc: 'Procedimiento desactualizado', priority: 'Media', priorityColor: 'bg-amber-50 text-amber-600 border-amber-200', status: 'En proceso' },
-    { id: 'CAPA-022', desc: 'Falta de calibración en equipo', priority: 'Baja', priorityColor: 'bg-blue-50 text-blue-600 border-blue-200', status: 'Cerrada' },
+    { id: 'NC-024', desc: 'Producto no conforme en línea 3', priority: 'Alta', priorityColor: 'bg-red-50 text-red-600 border-red-200', status: 'Abierta' },
+    { id: 'NC-023', desc: 'Procedimiento desactualizado', priority: 'Media', priorityColor: 'bg-amber-50 text-amber-600 border-amber-200', status: 'En proceso' },
+    { id: 'NC-022', desc: 'Falta de calibración en equipo', priority: 'Baja', priorityColor: 'bg-blue-50 text-blue-600 border-blue-200', status: 'Cerrada' },
   ]
   return (
     <div className="flex-1 p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-[#1f2020] font-bold text-base">Acciones Correctivas</h3>
-        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Nueva CAPA</button>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Nueva No conformidad</button>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {[
@@ -197,10 +197,10 @@ const screens = [
   { id: 'agente-ia', label: 'Agente IA', content: AgenteIAScreen },
   { id: 'auditorias', label: 'Auditorías', content: AuditoriasScreen },
   { id: 'documentacion', label: 'Documentación', content: DocumentacionScreen },
-  { id: 'capa', label: 'CAPA', content: CAPAScreen },
+  { id: 'capa', label: 'No conformidades', content: CAPAScreen },
 ]
 
-const sidebarItems = ['Dashboard', 'Documentación', 'Auditorías', 'CAPA', 'Mejora Continua', 'Agente IA']
+const sidebarItems = ['Dashboard', 'Documentación', 'Auditorías', 'No conformidades', 'Mejora Continua', 'Agente IA']
 
 // ─── Animated Mockup ─────────────────────────────────────────────────────────
 
@@ -259,7 +259,7 @@ function ProductMockup() {
                 (item === 'Dashboard' && s.id === 'dashboard') ||
                 (item === 'Auditorías' && s.id === 'auditorias') ||
                 (item === 'Documentación' && s.id === 'documentacion') ||
-                (item === 'CAPA' && s.id === 'capa') ||
+                (item === 'No conformidades' && s.id === 'capa') ||
                 (item === 'Agente IA' && s.id === 'agente-ia')
               )
               const isActive = screenIndex === activeIndex

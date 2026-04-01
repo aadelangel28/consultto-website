@@ -87,7 +87,7 @@ function HeroSection() {
     'Genera plan de auditoría',
     'Detecta brechas',
     'Redacta procedimientos',
-    'Cierra CAPAs',
+    'Cierra No conformidades',
     'Revisa evidencias',
     'Prepara auditoría',
     'Actualiza documentos',
@@ -175,7 +175,7 @@ function HeroSection() {
         </h1>
 
         <p className="text-[#3a3a3a]/60 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Documentos, auditorías, riesgos, CAPAs e indicadores en una sola
+          Documentos, auditorías, riesgos, No conformidades e indicadores en una sola
           plataforma — respaldada por un Agente IA que entiende tu norma y
           acompaña a tu equipo en cada etapa.
         </p>
@@ -210,7 +210,7 @@ function ProductShowcaseSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e8e8e8]">
           {[
-            { icon: 'document' as IconKey, title: 'Un solo sistema', desc: 'Documentos, auditorías, CAPAs e indicadores conectados. Sin módulos aislados.' },
+            { icon: 'document' as IconKey, title: 'Un solo sistema', desc: 'Documentos, auditorías, No conformidades e indicadores conectados. Sin módulos aislados.' },
             { icon: 'shieldCheck' as IconKey, title: 'IA integrada de fábrica', desc: 'El Agente IA conoce tu norma y tu sistema desde el primer día. No es un chatbot genérico.' },
             { icon: 'arrowCycle' as IconKey, title: 'Implementación en días', desc: 'Sin proyectos de meses. Tu SGC operativo en menos de una semana.' },
             { icon: 'users' as IconKey, title: 'Consultores incluidos', desc: 'Acceso a expertos certificados que complementan el software cuando los necesitas.' },
@@ -388,7 +388,7 @@ function MockupAgenteIA() {
       <div className="flex-1 p-5 flex flex-col gap-3 overflow-hidden">
         {[
           { from: 'user', text: '¿Cuáles son las brechas más críticas en nuestro SGC?' },
-          { from: 'ai', text: 'Analicé tu sistema. Encontré 3 brechas críticas: (1) Cláusula 7.2 — 4 puestos sin evaluación de competencia documentada. (2) Cláusula 9.1 — sin indicadores definidos para proceso de producción. (3) Cláusula 10.2 — CAPA-047 lleva 45 días sin cierre.' },
+          { from: 'ai', text: 'Analicé tu sistema. Encontré 3 brechas críticas: (1) Cláusula 7.2 — 4 puestos sin evaluación de competencia documentada. (2) Cláusula 9.1 — sin indicadores definidos para proceso de producción. (3) Cláusula 10.2 — NC-047 lleva 45 días sin cierre.' },
           { from: 'user', text: '¿Puedes generarme el plan de acción para la cláusula 7.2?' },
           { from: 'ai', text: 'Claro. Generé el plan: 1) Matriz de competencias por puesto (plazo: 7 días), 2) Evaluaciones pendientes — 4 personas (plazo: 15 días), 3) Evidencia documental en sistema (plazo: 20 días). ¿Lo asigno al responsable de RRHH?' },
         ].map((msg, i) => (
@@ -463,7 +463,7 @@ function MockupAuditorias() {
     { num: '7.2', name: 'Competencia del personal', ok: false, findings: 2 },
     { num: '8.1', name: 'Planificación y control operacional', ok: false, findings: 0 },
     { num: '9.1', name: 'Seguimiento y medición', ok: false, findings: 0 },
-    { num: '10.2', name: 'No conformidad y CAPA', ok: false, findings: 0 },
+    { num: '10.2', name: 'No conformidades', ok: false, findings: 0 },
   ]
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
@@ -508,7 +508,7 @@ function MockupCAPA() {
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0f0f0]">
         <div>
-          <div className="text-[#1f2020] font-semibold text-sm">CAPA-047 · Desviación en sellado</div>
+          <div className="text-[#1f2020] font-semibold text-sm">NC-047 · Desviación en sellado</div>
           <div className="text-[#999] text-[10px] mt-0.5">Abierta: 12 feb 2025 · Vence: 28 abr 2025</div>
         </div>
         <span className="text-[10px] bg-[#ffbd2e]/15 text-[#b8860b] font-semibold px-2.5 py-1 rounded-full">En progreso</span>
@@ -538,7 +538,7 @@ function MockupCAPA() {
 function MockupIndicadores() {
   const kpis = [
     { label: 'Índice QMS', value: '94%', change: '+3%', bars: [72, 78, 80, 85, 88, 91, 94] },
-    { label: 'CAPAs cerradas / mes', value: '8', change: '+2', bars: [4, 5, 6, 5, 7, 6, 8] },
+    { label: 'No conformidades cerradas / mes', value: '8', change: '+2', bars: [4, 5, 6, 5, 7, 6, 8] },
     { label: 'Documentos vigentes', value: '97%', change: '+1%', bars: [90, 91, 93, 93, 95, 96, 97] },
   ]
   const maxBar = 100
@@ -599,7 +599,7 @@ const FEATURES = [
   },
   {
     id: 'capa',
-    label: 'CAPA',
+    label: 'No conformidades',
     icon: 'arrowCycle' as IconKey,
     description: 'Acciones correctivas con análisis de causa raíz, seguimiento y cierre verificado.',
     mockup: <MockupCAPA />,

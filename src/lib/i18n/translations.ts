@@ -96,11 +96,11 @@ export const translations = {
             'Planifica auditorías internas y externas',
             'Listas de verificación inteligentes por norma',
             'Registra hallazgos con evidencia fotográfica',
-            'Vincula automáticamente hallazgos a CAPAs',
+            'Vincula automáticamente hallazgos a No conformidades',
           ],
         },
         {
-          tag: 'CAPA',
+          tag: 'No conformidades',
           title: 'Resuelve problemas antes de que escalen',
           description: 'Desde cualquier dispositivo, cualquier miembro del equipo puede registrar un hallazgo con evidencia fotográfica.',
           bullets: [
@@ -312,11 +312,11 @@ export const translations = {
             'Plan internal and external audits',
             'Intelligent checklists by standard',
             'Log findings with photographic evidence',
-            'Automatically link findings to CAPAs',
+            'Automatically link findings to Non-conformities',
           ],
         },
         {
-          tag: 'CAPA',
+          tag: 'No conformidades',
           title: 'Resolve problems before they escalate',
           description: 'From any device, any team member can log a finding with photographic evidence.',
           bullets: [
@@ -399,7 +399,7 @@ export const translations = {
       product: 'Product',
       services: 'Services',
       company: 'Company',
-      productLinks: ['AI Agent', 'Documentation', 'Audits', 'CAPA', 'Continuous improvement'],
+      productLinks: ['AI Agent', 'Documentation', 'Audits', 'No conformidades', 'Continuous improvement'],
       serviceLinks: ['On-site consulting', 'ISO 9001 implementation', 'ISO 14001 implementation', 'Internal audits', 'Training'],
       companyLinks: [
         { label: 'Log in', href: 'https://app.consultto.com' },
@@ -507,11 +507,11 @@ export const translations = {
             'Planeje auditorias internas e externas',
             'Listas de verificação inteligentes por norma',
             'Registre achados com evidência fotográfica',
-            'Vincule automaticamente achados a CAPAs',
+            'Vincule automaticamente achados a No conformidades',
           ],
         },
         {
-          tag: 'CAPA',
+          tag: 'No conformidades',
           title: 'Resolva problemas antes que escalem',
           description: 'De qualquer dispositivo, qualquer membro da equipe pode registrar um achado com evidência fotográfica.',
           bullets: [
@@ -594,7 +594,7 @@ export const translations = {
       product: 'Produto',
       services: 'Serviços',
       company: 'Empresa',
-      productLinks: ['Agente de IA', 'Documentação', 'Auditorias', 'CAPA', 'Melhoria contínua'],
+      productLinks: ['Agente de IA', 'Documentação', 'Auditorias', 'No conformidades', 'Melhoria contínua'],
       serviceLinks: ['Consultoria presencial', 'Implementação ISO 9001', 'Implementação ISO 14001', 'Auditorias internas', 'Capacitação'],
       companyLinks: [
         { label: 'Entrar', href: 'https://app.consultto.com' },

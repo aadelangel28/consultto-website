@@ -199,7 +199,7 @@ const FEATURES = [
           { label: 'Industria', value: 'Manufactura' },
           { label: 'Próxima auditoría', value: '28 Abr 2025' },
           { label: 'Documentos activos', value: '24 documentos' },
-          { label: 'CAPAs abiertas', value: '3 acciones' },
+          { label: 'No conformidades abiertas', value: '3 acciones' },
         ].map(item => (
           <div key={item.label} className="flex items-center justify-between bg-white rounded-lg px-3 py-2 border border-[#e8e8e8]">
             <span className="text-[#3a3a3a]/50 text-xs">{item.label}</span>
@@ -256,7 +256,7 @@ const FEATURES = [
           { clause: '7.2 Competencia del personal', status: 'warn' },
           { clause: '8.4 Control de procesos externos', status: 'warn' },
           { clause: '9.1 Seguimiento y medición', status: 'ok' },
-          { clause: '10.2 No conformidad y CAPA', status: 'err' },
+          { clause: '10.2 No conformidades', status: 'err' },
         ].map(item => (
           <div key={item.clause} className="flex items-center justify-between bg-white rounded-lg px-3 py-2 border border-[#e8e8e8]">
             <span className="text-[#1f2020] text-xs">{item.clause}</span>
@@ -577,7 +577,7 @@ function DemoChatSection() {
           </Panel>
 
           <Panel className="p-3">
-            <Label>CAPAs por tipo</Label>
+            <Label>No conformidades por tipo</Label>
             <div className="flex items-end gap-1 h-10 mb-1">
               {[
                 { l: 'Correc.', v: 70, c: 'bg-[#763d50]/50' },
@@ -680,7 +680,7 @@ function DemoChatSection() {
               {[
                 { t: '11:47', a: 'Cláusula 7.1.5 verificada', s: 'ok' },
                 { t: '11:45', a: 'Documento PR-07 generado', s: 'ok' },
-                { t: '11:42', a: 'CAPA-003 analizada', s: 'warn' },
+                { t: '11:42', a: 'NC-003 analizada', s: 'warn' },
                 { t: '11:38', a: 'Calibración: 4 equipos sin registro', s: 'err' },
                 { t: '11:30', a: 'Contexto empresa cargado', s: 'ok' },
                 { t: '11:25', a: 'Pre-análisis auditoría iniciado', s: 'ok' },
@@ -785,7 +785,7 @@ function DemoChatSection() {
             <Label>Alertas recientes</Label>
             {[
               { msg: '7.2 Competencia: 3 registros faltantes', c: 'warn' },
-              { msg: '10.2 CAPA-003 vence en 5 días', c: 'err' },
+              { msg: '10.2 NC-003 vence en 5 días', c: 'err' },
               { msg: 'Calibración equipo EQ-04 vencida', c: 'err' },
               { msg: '9.1 Indicadores del mes listos', c: 'ok' },
             ].map((a, i) => (
@@ -802,7 +802,7 @@ function DemoChatSection() {
             <div className="flex flex-col gap-1.5">
               {[
                 { task: 'Actualizar competencia personal cláusula 7.2', due: 'Hoy', c: 'err' },
-                { task: 'Cerrar CAPA-003 acción correctiva', due: '5 días', c: 'warn' },
+                { task: 'Cerrar NC-003 acción correctiva', due: '5 días', c: 'warn' },
                 { task: 'Registrar calibración EQ-04 y EQ-07', due: '7 días', c: 'warn' },
                 { task: 'Revisión indicadores 9.1 por dirección', due: '10 días', c: 'ok' },
                 { task: 'Preparar evidencias auditoría interna', due: '14 días', c: 'ok' },
@@ -1063,7 +1063,7 @@ function DemoChatSection() {
 
           {/* Sparklines CAPAs */}
           <Panel className="p-3 shrink-0">
-            <Label>Evolución CAPAs</Label>
+            <Label>Evolución No conformidades</Label>
             <div className="flex flex-col gap-2">
               {[
                 { label: 'Abiertas', vals: [8,6,9,5,7,4,3] },
@@ -1226,7 +1226,7 @@ function DemoChatSection() {
             {[
               { r: 'Incumplimiento 7.2', nivel: 'Alto', c: 'err' },
               { r: 'Equipo sin calibrar', nivel: 'Alto', c: 'err' },
-              { r: 'CAPA vencida', nivel: 'Medio', c: 'warn' },
+              { r: 'No conformidad vencida', nivel: 'Medio', c: 'warn' },
               { r: 'Política desactualizada', nivel: 'Bajo', c: 'ok' },
             ].map((r, i) => (
               <div key={i} className="flex items-start justify-between gap-1 mb-1.5">

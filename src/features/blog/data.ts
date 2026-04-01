@@ -60,8 +60,8 @@ export const articles: Article[] = [
   {
     slug: 'capa-mejora-continua',
     category: 'Mejora Continua',
-    title: 'CAPA efectivo: cómo transformar una no conformidad en una oportunidad de mejora real',
-    excerpt: 'El proceso de acciones correctivas y preventivas es uno de los pilares de cualquier sistema de gestión. Sin embargo, en la mayoría de las organizaciones se convierte en un trámite burocrático. Aquí explicamos qué separa un CAPA funcional de uno que solo existe en papel.',
+    title: 'No conformidades efectivas: cómo transformar una no conformidad en una oportunidad de mejora real',
+    excerpt: 'El proceso de acciones correctivas y preventivas es uno de los pilares de cualquier sistema de gestión. Sin embargo, en la mayoría de las organizaciones se convierte en un trámite burocrático. Aquí explicamos qué separa una No conformidad funcional de uno que solo existe en papel.',
     author: 'Equipo Consultto',
     authorRole: 'Especialistas en SGC',
     date: '24 feb 2025',

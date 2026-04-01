@@ -49,7 +49,7 @@ export const INDUSTRIAS: IndustriaData[] = [
     ],
     soluciones: [
       {
-        title: 'CAPA con análisis de causa raíz para planta',
+        title: 'No conformidades con análisis de causa raíz para planta',
         description:
           'Registra no conformidades de manufactura, guía el análisis con metodologías estructuradas (5 Porqués, Ishikawa) y hace seguimiento automático hasta el cierre verificado.',
       },
@@ -80,7 +80,7 @@ export const INDUSTRIAS: IndustriaData[] = [
         '→ Equipo de soldadura sin calibración desde hace 18 días',
         '→ Sin evidencia de capacitación del operador B en los últimos 60 días',
       ],
-      aiFollowUp: '¿Genero el CAPA con las acciones correctivas sugeridas?',
+      aiFollowUp: '¿Genero la No conformidad con las acciones correctivas sugeridas?',
     },
   },
   {

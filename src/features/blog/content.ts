@@ -88,7 +88,7 @@ export const articleContent: ArticleContent[] = [
           'Actualización de procedimientos: reescribir o crear solo los documentos estrictamente necesarios, asegurando que describan la forma real de operar, no una versión idealizada.',
           'Implementación de controles en operación: instalar los puntos de control que el sistema requiere dentro de los flujos de trabajo reales, no como actividades paralelas.',
           'Primera auditoría interna: ejecutar al menos un ciclo completo de auditoría interna durante este mes, cubriendo todos los procesos del alcance.',
-          'Apertura y seguimiento de no conformidades: registrar las no conformidades encontradas en la auditoría interna y abrir CAPAs con análisis de causa raíz y acciones concretas.',
+          'Apertura y seguimiento de no conformidades: registrar las no conformidades encontradas en la auditoría interna y abrir No conformidades con análisis de causa raíz y acciones concretas.',
           'Revisión por la dirección: realizar la primera revisión por la dirección con la estructura que exige la norma: desempeño del sistema, resultados de indicadores, retroalimentación de clientes, oportunidades de mejora.',
         ],
       },
@@ -152,7 +152,7 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'El proceso de acciones correctivas es el termómetro del sistema. Un auditor que encuentra CAPAs abiertos sin avance, CAPAs cerrados sin evidencia de efectividad, o una organización que no puede mostrar no conformidades reales, concluye que el sistema no funciona. La ausencia de no conformidades no es señal de excelencia: es señal de que el sistema no está detectando sus propios problemas.',
+        content: 'El proceso de acciones correctivas es el termómetro del sistema. Un auditor que encuentra No conformidades abiertas sin avance, CAPAs cerrados sin evidencia de efectividad, o una organización que no puede mostrar no conformidades reales, concluye que el sistema no funciona. La ausencia de no conformidades no es señal de excelencia: es señal de que el sistema no está detectando sus propios problemas.',
       },
       {
         type: 'heading',
@@ -675,19 +675,19 @@ export const articleContent: ArticleContent[] = [
     body: [
       {
         type: 'paragraph',
-        content: 'Si hay un proceso que distingue a las organizaciones con sistemas de gestión maduros de las que solo tienen certificaciones, es la gestión de acciones correctivas y preventivas. El CAPA —Corrective Action and Preventive Action— no es una herramienta de compliance. Es la mecánica central de la mejora continua. Cuando funciona bien, el sistema aprende de sus errores y se vuelve progresivamente más robusto. Cuando funciona mal —que es la norma en la mayoría de las organizaciones certificadas—, es simplemente burocracia cara.',
+        content: 'Si hay un proceso que distingue a las organizaciones con sistemas de gestión maduros de las que solo tienen certificaciones, es la gestión de acciones correctivas y preventivas. La gestión de No conformidades no es una herramienta de compliance. Es la mecánica central de la mejora continua. Cuando funciona bien, el sistema aprende de sus errores y se vuelve progresivamente más robusto. Cuando funciona mal —que es la norma en la mayoría de las organizaciones certificadas—, es simplemente burocracia cara.',
       },
       {
         type: 'paragraph',
-        content: 'Este artículo explora por qué el CAPA falla tan frecuentemente, qué características tiene un proceso de CAPA que realmente funciona, y cómo las organizaciones pueden transformar su gestión de no conformidades de un trámite a una capacidad competitiva.',
+        content: 'Este artículo explora por qué el proceso de No conformidades falla tan frecuentemente, qué características tiene un proceso de No conformidades que realmente funciona, y cómo las organizaciones pueden transformar su gestión de No conformidades de un trámite a una capacidad competitiva.',
       },
       {
         type: 'heading',
-        content: 'El estado real del CAPA en organizaciones certificadas',
+        content: 'El estado real de las No conformidades en organizaciones certificadas',
       },
       {
         type: 'paragraph',
-        content: 'Cuando un auditor llega a una organización certificada y pide ver el estado de las acciones correctivas, lo que encuentra en la mayoría de los casos es un cuadro preocupante: decenas de CAPAs abiertos, muchos con más de 6 meses sin avance significativo; CAPAs "cerrados" sin evidencia de que la acción implementada fue efectiva; y un sistema donde cada auditoría genera nuevos CAPAs que se suman a los anteriores sin que el volumen total disminuya.',
+        content: 'Cuando un auditor llega a una organización certificada y pide ver el estado de las acciones correctivas, lo que encuentra en la mayoría de los casos es un cuadro preocupante: decenas de No conformidades abiertas, muchos con más de 6 meses sin avance significativo; CAPAs "cerrados" sin evidencia de que la acción implementada fue efectiva; y un sistema donde cada auditoría genera nuevas No conformidades que se suman a los anteriores sin que el volumen total disminuya.',
       },
       {
         type: 'paragraph',
@@ -695,11 +695,11 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'quote',
-        content: 'Un CAPA cerrado sin evidencia de efectividad es peor que un CAPA abierto. Le dice al auditor que el sistema no entiende la diferencia entre documentar y resolver.',
+        content: 'Una No conformidad cerrada sin evidencia de efectividad es peor que una No conformidad abierta. Le dice al auditor que el sistema no entiende la diferencia entre documentar y resolver.',
       },
       {
         type: 'heading',
-        content: 'Por qué el CAPA falla: las causas reales',
+        content: 'Por qué las No conformidades fallan: las causas reales',
       },
       {
         type: 'subheading',
@@ -711,7 +711,7 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'El patrón típico es este: se detecta una no conformidad (el producto no cumple con la especificación de rugosidad). Se "analiza" la causa raíz (el operador no ajustó correctamente el parámetro). Se define una acción correctiva (re-capacitar al operador). Se cierra el CAPA. Seis meses después, aparece la misma no conformidad con otro operador.',
+        content: 'El patrón típico es este: se detecta una no conformidad (el producto no cumple con la especificación de rugosidad). Se "analiza" la causa raíz (el operador no ajustó correctamente el parámetro). Se define una acción correctiva (re-capacitar al operador). Se cierra la No conformidad. Seis meses después, aparece la misma no conformidad con otro operador.',
       },
       {
         type: 'paragraph',
@@ -727,7 +727,7 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'El resultado es que el CAPA permanece abierto indefinidamente porque el responsable no sabe cómo cerrarlo, o se cierra con evidencia insuficiente que no demuestra que el problema fue resuelto.',
+        content: 'El resultado es que la No conformidad permanece abierto indefinidamente porque el responsable no sabe cómo cerrarlo, o se cierra con evidencia insuficiente que no demuestra que el problema fue resuelto.',
       },
       {
         type: 'subheading',
@@ -735,15 +735,15 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'Cerrar un CAPA después de implementar la acción, sin verificar que la acción resolvió el problema, es el error más común y el más difícil de detectar en la dinámica interna de un sistema de gestión. La verificación de efectividad requiere que transcurra tiempo suficiente y que se recopilen datos que demuestren que la no conformidad no ha recurrido.',
+        content: 'Cerrar una No conformidad después de implementar la acción, sin verificar que la acción resolvió el problema, es el error más común y el más difícil de detectar en la dinámica interna de un sistema de gestión. La verificación de efectividad requiere que transcurra tiempo suficiente y que se recopilen datos que demuestren que la no conformidad no ha recurrido.',
       },
       {
         type: 'paragraph',
-        content: 'Sin esta verificación, el CAPA puede cerrarse en días con buenas intenciones pero sin ninguna certeza de que el problema fue resuelto. El mismo modo de falla aparecerá en la siguiente auditoría, generando un nuevo CAPA que tampoco resolverá el problema de fondo.',
+        content: 'Sin esta verificación, la No conformidad puede cerrarse en días con buenas intenciones pero sin ninguna certeza de que el problema fue resuelto. El mismo modo de falla aparecerá en la siguiente auditoría, generando una nueva No conformidad que tampoco resolverá el problema de fondo.',
       },
       {
         type: 'heading',
-        content: 'Las tres fases de un CAPA efectivo',
+        content: 'Las tres fases de una No conformidad efectiva',
       },
       {
         type: 'subheading',
@@ -755,7 +755,7 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'Las acciones de contención son temporales por definición. No resuelven el problema: lo controlan mientras se trabaja en la solución permanente. Un error frecuente es confundir la contención con la acción correctiva y cerrar el CAPA una vez que el producto no conforme fue segregado.',
+        content: 'Las acciones de contención son temporales por definición. No resuelven el problema: lo controlan mientras se trabaja en la solución permanente. Un error frecuente es confundir la contención con la acción correctiva y cerrar la No conformidad una vez que el producto no conforme fue segregado.',
       },
       {
         type: 'subheading',
@@ -783,11 +783,11 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'Antes de cerrar el CAPA, la organización debe verificar que la acción fue efectiva. Los criterios de efectividad deben definirse cuando se abre el CAPA, no cuando se intenta cerrarlo. Típicamente incluyen: que la no conformidad no ha recurrido durante un período de tiempo determinado, y que los indicadores del proceso muestran mejora o estabilización en el parámetro relevante.',
+        content: 'Antes de cerrar la No conformidad, la organización debe verificar que la acción fue efectiva. Los criterios de efectividad deben definirse cuando se abre la No conformidad, no cuando se intenta cerrarla. Típicamente incluyen: que la no conformidad no ha recurrido durante un período de tiempo determinado, y que los indicadores del proceso muestran mejora o estabilización en el parámetro relevante.',
       },
       {
         type: 'heading',
-        content: 'Acciones preventivas: la parte olvidada del CAPA',
+        content: 'Acciones preventivas: la parte olvidada de las No conformidades',
       },
       {
         type: 'paragraph',
@@ -799,24 +799,24 @@ export const articleContent: ArticleContent[] = [
       },
       {
         type: 'heading',
-        content: 'El CAPA como termómetro del sistema',
+        content: 'Las No conformidades como termómetro del sistema',
       },
       {
         type: 'paragraph',
-        content: 'Un auditor experimentado puede evaluar la madurez de un sistema de gestión en minutos revisando la gestión de acciones correctivas. El volumen de CAPAs abiertos, su antigüedad, la calidad del análisis de causa raíz, la especificidad de las acciones definidas y la existencia de verificaciones de efectividad son indicadores que no mienten.',
+        content: 'Un auditor experimentado puede evaluar la madurez de un sistema de gestión en minutos revisando la gestión de acciones correctivas. El volumen de No conformidades abiertas, su antigüedad, la calidad del análisis de causa raíz, la especificidad de las acciones definidas y la existencia de verificaciones de efectividad son indicadores que no mienten.',
       },
       {
         type: 'paragraph',
-        content: 'Pero más importante que lo que el auditor puede ver es lo que la organización gana cuando el CAPA funciona bien. Los problemas no reaparecen. Los procesos se vuelven más estables. La carga de trabajo de corrección disminuye. Y el equipo desarrolla una capacidad genuina de análisis y resolución de problemas que es, en sí misma, una ventaja competitiva.',
+        content: 'Pero más importante que lo que el auditor puede ver es lo que la organización gana cuando el proceso de No conformidades funciona bien. Los problemas no reaparecen. Los procesos se vuelven más estables. La carga de trabajo de corrección disminuye. Y el equipo desarrolla una capacidad genuina de análisis y resolución de problemas que es, en sí misma, una ventaja competitiva.',
       },
       {
         type: 'bullets',
         content: [
           'Invertir en formación real en análisis de causa raíz, no solo en conceptos teóricos sino en práctica aplicada a problemas reales de la organización.',
-          'Definir criterios de efectividad antes de cerrar cada CAPA, con métricas específicas y períodos de verificación.',
-          'Limitar el número de CAPAs abiertos simultáneamente: un sistema con 80 CAPAs abiertos no está gestionando mejor que uno con 10; está gestionando peor.',
+          'Definir criterios de efectividad antes de cerrar cada No conformidad, con métricas específicas y períodos de verificación.',
+          'Limitar el número de No conformidades abiertas simultáneamente: un sistema con 80 No conformidades abiertas no está gestionando mejor que uno con 10; está gestionando peor.',
           'Conectar el análisis de tendencias de indicadores con la apertura de acciones preventivas.',
-          'Revisar el estado del CAPA en las reuniones de revisión por la dirección, no solo en las auditorías internas.',
+          'Revisar el estado de las No conformidades en las reuniones de revisión por la dirección, no solo en las auditorías internas.',
         ],
       },
       {
