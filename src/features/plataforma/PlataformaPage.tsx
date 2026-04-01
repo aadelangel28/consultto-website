@@ -537,7 +537,7 @@ function MockupCAPA() {
 
 function MockupIndicadores() {
   const kpis = [
-    { label: 'Índice QMS', value: '94%', change: '+3%', bars: [72, 78, 80, 85, 88, 91, 94] },
+    { label: 'Índice CMS', value: '94%', change: '+3%', bars: [72, 78, 80, 85, 88, 91, 94] },
     { label: 'No conformidades cerradas / mes', value: '8', change: '+2', bars: [4, 5, 6, 5, 7, 6, 8] },
     { label: 'Documentos vigentes', value: '97%', change: '+1%', bars: [90, 91, 93, 93, 95, 96, 97] },
   ]
