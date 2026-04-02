@@ -80,17 +80,36 @@ function HeroSection() {
         }} />
       </div>
 
-      {/* ── Logo centrado ── */}
+      {/* ── Logo + tagline ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
         <img
           src="/logo.png"
           alt="Consultto"
-          className="hn-l1 w-auto mx-auto"
-          style={{ height: 'clamp(60px, 10vw, 100px)' }}
+          className="hn-l1 w-auto mx-auto mb-7"
+          style={{ height: 'clamp(80px, 13vw, 130px)' }}
         />
+        <p
+          className="hn-sub text-[#3a3a3a]/50 font-light tracking-wide"
+          style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)', maxWidth: 460 }}
+        >
+          Plataforma de certificación y cumplimiento normativo, respaldada por IA.
+        </p>
       </div>
 
-{/* Bottom fade */}
+      {/* ── Scroll indicator ── */}
+      <div className="hn-cta absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
+        <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/35 font-medium">
+          Descubre nuestra historia
+        </p>
+        <svg
+          className="hn-scroll w-4 h-4 text-[#763d50]/40"
+          fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v10M4 9l4 4 4-4" />
+        </svg>
+      </div>
+
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, transparent, rgba(250,250,250,0.9))' }} />
     </section>
