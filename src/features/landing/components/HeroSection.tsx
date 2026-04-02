@@ -293,7 +293,6 @@ function ProductMockup() {
           <div className="w-2.5 h-2.5 rounded-full bg-[#763d50]/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/40" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/40" />
-          <span className="ml-3 text-[#d9d9d9]/40 text-xs font-mono">consultto — Sistema de Gestión de Calidad</span>
         </div>
 
         <div className="flex bg-[#f8f8f8]" style={{ height: '360px', overflow: 'hidden' }}>
