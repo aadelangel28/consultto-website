@@ -255,7 +255,7 @@ function PrincipioCard({ p, index }: { p: typeof PRINCIPIOS[number]; index: numb
         .prn-card.revealed .prn-text { opacity: 1; transform: translateY(0); }
       `}</style>
 
-      <div className="relative rounded-3xl p-8 border border-[#ebebeb] bg-white overflow-hidden transition-shadow duration-300 group-hover:shadow-md group-hover:shadow-[#763d50]/8">
+      <div className="relative rounded-3xl p-8 border border-[#ebebeb] bg-white overflow-hidden transition-shadow duration-300 group-hover:shadow-md group-hover:shadow-[#763d50]/8 h-full">
         {/* Animated bg fill on reveal */}
         <div className="prn-bg absolute inset-0 rounded-3xl" style={{ background: 'rgba(118,61,80,0.025)' }} />
 
@@ -299,7 +299,7 @@ function PrincipiosSection() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-stretch">
           {PRINCIPIOS.map((p, i) => (
             <PrincipioCard key={p.number} p={p} index={i} />
           ))}
