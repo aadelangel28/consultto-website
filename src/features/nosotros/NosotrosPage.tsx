@@ -182,7 +182,7 @@ function VisionSection() {
 const PRINCIPIOS = [
   {
     number: '01',
-    title: 'Simplicidad sin sacrificar rigor',
+    title: 'Simplicidad',
     description: 'Las normas ISO son exigentes por una razón. Nuestro trabajo es hacerlas accesibles sin restarles seriedad.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -192,7 +192,7 @@ const PRINCIPIOS = [
   },
   {
     number: '02',
-    title: 'Resultados sobre documentos',
+    title: 'Pragmatismo',
     description: 'El objetivo es que tu sistema funcione y que la auditoría sea una confirmación, no una sorpresa.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -202,7 +202,7 @@ const PRINCIPIOS = [
   },
   {
     number: '03',
-    title: 'Tecnología con propósito',
+    title: 'Propósito',
     description: 'No pusimos IA en Consultto porque es tendencia. La pusimos porque es lo único que puede estar disponible 24/7 y darte una respuesta concreta en segundos.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -212,7 +212,7 @@ const PRINCIPIOS = [
   },
   {
     number: '04',
-    title: 'Acompañamiento honesto',
+    title: 'Honestidad',
     description: 'Si tu sistema tiene brechas, te lo decimos. Preferimos una conversación difícil hoy a una auditoría fallida mañana.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
