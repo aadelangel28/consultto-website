@@ -101,9 +101,9 @@ function HeroSection() {
 
 function MisionSection() {
   return (
-    <section className="bg-white border-t border-[#efefef] py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+    <section className="bg-white border-t border-[#efefef] flex items-center min-h-[600px]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* ── Izquierda: texto ── */}
           <div>
