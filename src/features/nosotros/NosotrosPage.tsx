@@ -99,19 +99,84 @@ function HeroSection() {
 
 // ─── Misión ───────────────────────────────────────────────────────────────────
 
+const VC_PHOTOS = [
+  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', w: 250, h: 300, top: 80,  left: 20,  rotate: '-8deg',  from: 'translate(-40px,30px) rotate(-18deg)',  delay: 0   },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', w: 190, h: 235, top: 10,  left: 215, rotate: '6deg',   from: 'translate(30px,-40px) rotate(14deg)',  delay: 110 },
+  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', w: 220, h: 265, top: 210, left: 140, rotate: '-4deg',  from: 'translate(-25px,35px) rotate(-11deg)', delay: 180 },
+  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', w: 180, h: 220, top: 270, left: 330, rotate: '10deg',  from: 'translate(35px,35px) rotate(20deg)',   delay: 250 },
+]
+
+function VisionCollage() {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const photoRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const wrap = wrapRef.current; if (!wrap) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return
+      photoRefs.current.forEach((el, i) => {
+        if (!el) return
+        const p = VC_PHOTOS[i]
+        setTimeout(() => {
+          el.style.opacity = '1'
+          el.style.transform = `rotate(${p.rotate})`
+        }, p.delay)
+      })
+      obs.disconnect()
+    }, { threshold: 0.1 })
+    obs.observe(wrap)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <div ref={wrapRef} style={{ position: 'relative', height: '520px', width: '100%' }}>
+      <style>{`
+        .vc-photo {
+          position: absolute; background: white; padding: 10px; border-radius: 2px;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 24px 60px rgba(0,0,0,0.09);
+          opacity: 0; cursor: pointer; will-change: transform, opacity;
+          transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+        }
+        .vc-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+        .vc-photo:hover { z-index:10 !important; box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10) !important; }
+      `}</style>
+      {VC_PHOTOS.map((p, i) => (
+        <div
+          key={i}
+          className="vc-photo"
+          ref={el => { photoRefs.current[i] = el }}
+          style={{ top: p.top, left: p.left, width: p.w, height: p.h, zIndex: i + 1, transform: p.from }}
+          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'rotate(0deg) scale(1.06)' }}
+          onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = `rotate(${p.rotate})` }}
+        >
+          <img src={p.src} alt="" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function MisionSection() {
   return (
-    <section className="bg-white border-t border-[#efefef] py-16 md:py-20">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
-        <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
-            Nuestra visión
-          </p>
-          <h2 className="text-[#1f2020] leading-[1.4]"
-            style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-            Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
-          </h2>
-        </Reveal>
+    <section className="bg-white border-t border-[#efefef] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+          {/* ── Izquierda: collage ── */}
+          <VisionCollage />
+
+          {/* ── Derecha: texto ── */}
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
+              Nuestra visión
+            </p>
+            <h2 className="text-[#1f2020] leading-[1.4]"
+              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
+              Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
+            </h2>
+          </Reveal>
+
+        </div>
       </div>
     </section>
   )
