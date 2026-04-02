@@ -103,10 +103,10 @@ function MisionSection() {
   return (
     <section className="bg-white border-t border-[#efefef] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* ── Izquierda: texto ── */}
-          <div style={{ display: 'flex', alignItems: 'center', minHeight: '520px' }}>
+          <div>
             <Reveal>
               <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
                 Nuestra visión
@@ -119,9 +119,7 @@ function MisionSection() {
           </div>
 
           {/* ── Derecha: collage de fotos ── */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <MisionCollage />
-          </div>
+          <MisionCollage />
         </div>
       </div>
     </section>
