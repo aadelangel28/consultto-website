@@ -145,7 +145,7 @@ function MisionCollage() {
   ]
 
   return (
-    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3" style={{ height: '380px' }}>
+    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3 self-center" style={{ height: '380px' }}>
       <style>{`
         .mc-wrap .mc-photo {
           overflow: hidden; border-radius: 16px;
