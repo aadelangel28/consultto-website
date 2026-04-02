@@ -106,15 +106,17 @@ function MisionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch">
 
           {/* ── Izquierda: texto ── */}
-          <Reveal className="flex flex-col justify-center h-full">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
-              Nuestra misión
-            </p>
-            <h2 className="text-[#1f2020] leading-[1.4]"
-              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-              Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
-            </h2>
-          </Reveal>
+          <div style={{ display: 'flex', alignItems: 'center', minHeight: '520px' }}>
+            <Reveal>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
+                Nuestra misión
+              </p>
+              <h2 className="text-[#1f2020] leading-[1.4]"
+                style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
+                Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
+              </h2>
+            </Reveal>
+          </div>
 
           {/* ── Derecha: collage de fotos ── */}
           <MisionCollage />
