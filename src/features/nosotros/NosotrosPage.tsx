@@ -113,7 +113,7 @@ function MisionSection() {
               </p>
               <h2 className="text-[#1f2020] leading-[1.4]"
                 style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-                Ser la plataforma de referencia en Latinoamérica para la gestión de sistemas de calidad, donde cualquier empresa — sin importar su tamaño — pueda certificarse, mantenerse certificada y mejorar continuamente con el apoyo de tecnología inteligente y expertos que entienden su industria.
+                Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
               </h2>
             </Reveal>
           </div>
