@@ -177,90 +177,6 @@ function VisionSection() {
   )
 }
 
-// ─── El problema ──────────────────────────────────────────────────────────────
-
-function ProblemaSection() {
-  const lines = [
-    'Certificarse en ISO 9001 no debería costar $30,000 USD ni tomar 18 meses.',
-    'No debería requerir un equipo interno dedicado solo para mantener los documentos al día.',
-    'Y una auditoría no debería ser un evento de terror que paraliza la operación semanas antes.',
-  ]
-
-  return (
-    <section className="py-28 bg-white border-t border-[#efefef]">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-          {/* Left: label + conclusion */}
-          <div className="lg:sticky lg:top-32">
-            <Reveal>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">El problema que resolvemos</p>
-              <div
-                className="rounded-3xl p-8"
-                style={{ background: '#1f2020' }}
-              >
-                <p className="text-lg leading-relaxed font-light" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                  El problema no es la norma. El problema es que las herramientas para gestionarla nunca fueron diseñadas para las empresas que realmente las necesitan.
-                </p>
-                <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                  <p className="text-xs font-bold uppercase tracking-widest" style={{ color: '#c47a8f' }}>
-                    Consultto existe para cambiar eso.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right: problem lines */}
-          <div className="space-y-6">
-            {lines.map((line, i) => (
-              <ProblemCard key={i} text={line} index={i} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ProblemCard({ text, index }: { text: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } },
-      { threshold: 0.3 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <div ref={ref} className="pc-wrap">
-      <style>{`
-        .pc-wrap .pc-card {
-          opacity: 0; transform: translateX(30px);
-          transition: opacity 0.6s ease ${index * 120}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms;
-        }
-        .pc-wrap.revealed .pc-card { opacity: 1; transform: translateX(0); }
-        .pc-wrap .pc-accent {
-          transform: scaleY(0); transform-origin: top;
-          transition: transform 0.5s cubic-bezier(0.16,1,0.3,1) ${index * 120 + 100}ms;
-        }
-        .pc-wrap.revealed .pc-accent { transform: scaleY(1); }
-      `}</style>
-      <div className="pc-card flex gap-5 items-stretch">
-        <div className="pc-accent w-[3px] rounded-full shrink-0" style={{ background: '#763d50' }} />
-        <div className="rounded-2xl border border-[#ebebeb] p-6 flex-1">
-          <p className="text-[#1f2020] text-lg leading-relaxed font-light">{text}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-
 // ─── Principios ───────────────────────────────────────────────────────────────
 
 const PRINCIPIOS = [
@@ -435,7 +351,6 @@ export function NosotrosPage() {
       <HeroSection />
       <VisionSection />
       <MisionSection />
-      <ProblemaSection />
       <PrincipiosSection />
       <CTASection />
     </>
