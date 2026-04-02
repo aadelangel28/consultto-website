@@ -299,8 +299,8 @@ function ProductMockup() {
         <div className="flex bg-[#f8f8f8]" style={{ height: '360px', overflow: 'hidden' }}>
           {/* Sidebar */}
           <div className="w-40 bg-white border-r border-[#d9d9d9] p-3 flex flex-col gap-1 shrink-0">
-            <div className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-2 px-2">
-              consultto
+            <div className="mb-2 px-2">
+              <img src="/logo.png" alt="Consultto" className="h-5 w-auto" />
             </div>
             {sidebarItems.map((item) => {
               const screenIndex = screens.findIndex((s) =>
