@@ -101,79 +101,21 @@ function HeroSection() {
 
 function MisionSection() {
   return (
-    <section className="bg-white border-t border-[#efefef] flex items-center min-h-[600px]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-          {/* ── Izquierda: texto ── */}
-          <div>
-            <Reveal>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
-                Nuestra visión
-              </p>
-              <h2 className="text-[#1f2020] leading-[1.4]"
-                style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-                Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
-              </h2>
-            </Reveal>
-          </div>
-
-          {/* ── Derecha: collage de fotos ── */}
-          <MisionCollage />
-        </div>
+    <section className="bg-white border-t border-[#efefef] py-16 md:py-20">
+      <div className="max-w-4xl mx-auto px-6 md:px-12">
+        <Reveal>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
+            Nuestra visión
+          </p>
+          <h2 className="text-[#1f2020] leading-[1.4]"
+            style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
+            Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
+          </h2>
+        </Reveal>
       </div>
     </section>
   )
 }
-
-function MisionCollage() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('mc-revealed'); obs.disconnect() } },
-      { threshold: 0.1 }
-    )
-    obs.observe(el); return () => obs.disconnect()
-  }, [])
-
-  const photos = [
-    { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', alt: 'Equipo en auditoría', span: 'col-span-2 row-span-2' },
-    { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', alt: 'Consultora revisando documentos', span: 'col-span-1 row-span-1' },
-    { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80', alt: 'Equipo de trabajo', span: 'col-span-1 row-span-1' },
-    { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', alt: 'Revisión de sistema', span: 'col-span-2 row-span-1' },
-  ]
-
-  return (
-    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3 self-center" style={{ height: '520px' }}>
-      <style>{`
-        .mc-wrap .mc-photo {
-          overflow: hidden; border-radius: 16px;
-          opacity: 0; transform: translateY(20px) scale(0.97);
-        }
-        .mc-wrap .mc-photo img {
-          width: 100%; height: 100%; object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
-        }
-        .mc-wrap .mc-photo:hover img { transform: scale(1.05); }
-        .mc-revealed .mc-photo:nth-child(1) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
-        .mc-revealed .mc-photo:nth-child(2) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.18s both; }
-        .mc-revealed .mc-photo:nth-child(3) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
-        .mc-revealed .mc-photo:nth-child(4) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.38s both; }
-        @keyframes mc-in {
-          from { opacity: 0; transform: translateY(20px) scale(0.97); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
-      {photos.map((p, i) => (
-        <div key={i} className={`mc-photo ${p.span}`}>
-          <img src={p.src} alt={p.alt} />
-        </div>
-      ))}
-    </div>
-  )
-}
-
 // ─── Visión ───────────────────────────────────────────────────────────────────
 
 const VISION_PILLARS = [
