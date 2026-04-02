@@ -174,32 +174,62 @@ function MisionCollage() {
   )
 }
 
-// ─── Origen ───────────────────────────────────────────────────────────────────
+// ─── Visión ───────────────────────────────────────────────────────────────────
 
-function OrigenSection() {
+const VISION_PILLARS = [
+  { label: 'Referente en Latinoamérica', desc: 'La plataforma que toda empresa de la región elige para crecer.' },
+  { label: 'Accesible para todas', desc: 'Sin importar tamaño, industria ni punto de partida.' },
+  { label: 'Mejora continua real', desc: 'No solo conformidad — sistemas que evolucionan con el negocio.' },
+]
+
+function VisionSection() {
   return (
-    <section className="py-24 bg-white border-t border-[#efefef]">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section style={{ background: '#1f2020' }} className="py-28 md:py-36">
+      <style>{`
+        @keyframes vis-line {
+          from { transform: scaleX(0); opacity: 0; }
+          to   { transform: scaleX(1); opacity: 1; }
+        }
+        .vis-line { transform-origin: left; animation: vis-line 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+        @keyframes vis-pill-in {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+      <div className="max-w-5xl mx-auto px-6 md:px-12">
+
+        {/* Eyebrow + línea */}
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">De dónde venimos</p>
-          <p className="text-2xl md:text-3xl font-light text-[#1f2020] leading-relaxed mb-10 max-w-3xl mx-auto">
-            Consultto nació para democratizar la gestión de calidad — poner en manos de cualquier empresa las herramientas que antes solo tenían las grandes corporaciones.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/signup"
-              className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/25 text-sm"
-            >
-              Agendar demo gratuita
-            </Link>
-            <Link
-              href="/contacto"
-              className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm"
-            >
-              Hablar con un consultor
-            </Link>
+          <div className="flex items-center gap-4 mb-12">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] shrink-0" style={{ color: '#c47a8f' }}>
+              Nuestra visión
+            </p>
+            <div className="vis-line h-px flex-1" style={{ background: 'rgba(196,122,143,0.25)' }} />
           </div>
         </Reveal>
+
+        {/* Texto principal */}
+        <Reveal delay={80}>
+          <p
+            className="leading-[1.45] text-white/90 mb-16"
+            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
+          >
+            Ser la plataforma de referencia en Latinoamérica para la gestión de sistemas de calidad, donde cualquier empresa — sin importar su tamaño — pueda certificarse, mantenerse certificada y mejorar continuamente con el apoyo de tecnología inteligente y expertos que entienden su industria.
+          </p>
+        </Reveal>
+
+        {/* Pilares */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          {VISION_PILLARS.map((p, i) => (
+            <Reveal key={i} delay={i * 100}>
+              <div className="pt-8 pr-6">
+                <p className="text-sm font-medium text-white/80 mb-2">{p.label}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.38)' }}>{p.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
       </div>
     </section>
   )
@@ -462,7 +492,7 @@ export function NosotrosPage() {
     <>
       <HeroSection />
       <MisionSection />
-      <OrigenSection />
+      <VisionSection />
       <ProblemaSection />
       <PrincipiosSection />
       <CTASection />
