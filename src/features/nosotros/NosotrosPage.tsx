@@ -97,110 +97,85 @@ function HeroSection() {
   )
 }
 
-// ─── Misión + Visión ──────────────────────────────────────────────────────────
+// ─── Misión ───────────────────────────────────────────────────────────────────
 
 function MisionSection() {
   return (
-    <section className="flex flex-col md:flex-row" style={{ minHeight: '80vh' }}>
-      <style>{`
-        .mv-panel { position: relative; overflow: hidden; }
-        .mv-panel .mv-img {
-          position: absolute; inset: 0;
-          background-size: cover; background-position: center;
-          transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
-          opacity: 0.45;
-          transform: scale(1.04);
-        }
-        .mv-panel:hover .mv-img {
-          opacity: 0.65;
-          transform: scale(1);
-        }
-        .mv-panel .mv-overlay {
-          position: absolute; inset: 0;
-          transition: opacity 0.6s ease;
-        }
-        .mv-eyebrow {
-          opacity: 0; transform: translateY(12px);
-          transition: opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s;
-        }
-        .mv-title {
-          opacity: 0; transform: translateY(18px);
-          transition: opacity 0.7s ease 0.22s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.22s;
-        }
-        .mv-body {
-          opacity: 0; transform: translateY(14px);
-          transition: opacity 0.7s ease 0.38s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.38s;
-        }
-        .mv-panel.revealed .mv-eyebrow,
-        .mv-panel.revealed .mv-title,
-        .mv-panel.revealed .mv-body { opacity: 1; transform: none; }
-      `}</style>
+    <section className="bg-white border-t border-[#efefef] py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-      {/* ── Misión ── */}
-      <MisionPanel />
+          {/* ── Izquierda: texto ── */}
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
+              Nuestra misión
+            </p>
+            <h2 className="font-bold text-[#1f2020] leading-[1.08] mb-10"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+              Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
+            </h2>
+            <div className="space-y-5">
+              <p className="text-[#3a3a3a]/60 text-lg leading-relaxed">
+                La gestión de calidad lleva décadas siendo territorio exclusivo de grandes corporaciones con presupuestos enormes y equipos dedicados. Una PYME manufacturera en Monterrey merece exactamente el mismo nivel de herramientas que una multinacional en Frankfurt.
+              </p>
+              <p className="text-[#3a3a3a]/60 text-lg leading-relaxed">
+                Por eso combinamos software inteligente, un agente de IA que entiende normas e industrias, y consultoría presencial de personas que han vivido las auditorías desde adentro. No vendemos software. Construimos sistemas que funcionan.
+              </p>
+            </div>
+          </Reveal>
 
-      {/* ── Visión ── */}
-      <VisionPanel />
+          {/* ── Derecha: collage de fotos ── */}
+          <MisionCollage />
+        </div>
+      </div>
     </section>
   )
 }
 
-function MisionPanel() {
+function MisionCollage() {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } }, { threshold: 0.15 })
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add('mc-revealed'); obs.disconnect() } },
+      { threshold: 0.1 }
+    )
     obs.observe(el); return () => obs.disconnect()
   }, [])
-  return (
-    <div ref={ref} className="mv-panel flex-1 flex items-end justify-start" style={{ minHeight: '70vh' }}>
-      {/* Imagen */}
-      <div
-        className="mv-img"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=85')` }}
-      />
-      {/* Overlay: gradiente oscuro desde abajo */}
-      <div className="mv-overlay" style={{ background: 'linear-gradient(to top, rgba(15,10,12,0.92) 0%, rgba(31,32,32,0.6) 50%, rgba(31,32,32,0.25) 100%)' }} />
-      {/* Contenido */}
-      <div className="relative z-10 p-10 md:p-14 max-w-lg">
-        <div className="mv-eyebrow flex items-center gap-3 mb-6">
-          <span className="h-px w-6" style={{ background: '#c47a8f' }} />
-          <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Misión</span>
-        </div>
-        <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
-          Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental
-        </h2>
-      </div>
-    </div>
-  )
-}
 
-function VisionPanel() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } }, { threshold: 0.15 })
-    obs.observe(el); return () => obs.disconnect()
-  }, [])
+  const photos = [
+    { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', alt: 'Equipo en auditoría', span: 'col-span-2 row-span-2' },
+    { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', alt: 'Consultora revisando documentos', span: 'col-span-1 row-span-1' },
+    { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80', alt: 'Equipo de trabajo', span: 'col-span-1 row-span-1' },
+    { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', alt: 'Revisión de sistema', span: 'col-span-2 row-span-1' },
+  ]
+
   return (
-    <div ref={ref} className="mv-panel flex-1 flex items-end justify-start" style={{ minHeight: '70vh' }}>
-      {/* Imagen */}
-      <div
-        className="mv-img"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85')` }}
-      />
-      {/* Overlay: más azulado/frío para diferenciar del panel izquierdo */}
-      <div className="mv-overlay" style={{ background: 'linear-gradient(to top, rgba(10,14,20,0.94) 0%, rgba(20,28,40,0.65) 50%, rgba(20,28,40,0.25) 100%)' }} />
-      {/* Contenido */}
-      <div className="relative z-10 p-10 md:p-14 max-w-lg">
-        <div className="mv-eyebrow flex items-center gap-3 mb-6">
-          <span className="h-px w-6" style={{ background: '#c47a8f' }} />
-          <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Visión</span>
+    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3" style={{ height: '520px' }}>
+      <style>{`
+        .mc-wrap .mc-photo {
+          overflow: hidden; border-radius: 16px;
+          opacity: 0; transform: translateY(20px) scale(0.97);
+        }
+        .mc-wrap .mc-photo img {
+          width: 100%; height: 100%; object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .mc-wrap .mc-photo:hover img { transform: scale(1.05); }
+        .mc-revealed .mc-photo:nth-child(1) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
+        .mc-revealed .mc-photo:nth-child(2) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.18s both; }
+        .mc-revealed .mc-photo:nth-child(3) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+        .mc-revealed .mc-photo:nth-child(4) { animation: mc-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.38s both; }
+        @keyframes mc-in {
+          from { opacity: 0; transform: translateY(20px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+      `}</style>
+      {photos.map((p, i) => (
+        <div key={i} className={`mc-photo ${p.span}`}>
+          <img src={p.src} alt={p.alt} />
         </div>
-        <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
-          Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano
-        </h2>
-      </div>
+      ))}
     </div>
   )
 }
