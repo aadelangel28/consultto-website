@@ -110,18 +110,10 @@ function MisionSection() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
               Nuestra misión
             </p>
-            <h2 className="font-bold text-[#1f2020] leading-[1.08] mb-10"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+            <h2 className="text-[#1f2020] leading-[1.08]"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400 }}>
               Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
             </h2>
-            <div className="space-y-5">
-              <p className="text-[#3a3a3a]/60 text-lg leading-relaxed">
-                La gestión de calidad lleva décadas siendo territorio exclusivo de grandes corporaciones con presupuestos enormes y equipos dedicados. Una PYME manufacturera en Monterrey merece exactamente el mismo nivel de herramientas que una multinacional en Frankfurt.
-              </p>
-              <p className="text-[#3a3a3a]/60 text-lg leading-relaxed">
-                Por eso combinamos software inteligente, un agente de IA que entiende normas e industrias, y consultoría presencial de personas que han vivido las auditorías desde adentro. No vendemos software. Construimos sistemas que funcionan.
-              </p>
-            </div>
           </Reveal>
 
           {/* ── Derecha: collage de fotos ── */}
