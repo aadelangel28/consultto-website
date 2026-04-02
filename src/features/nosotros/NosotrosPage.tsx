@@ -168,11 +168,8 @@ function MisionPanel() {
           <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Misión</span>
         </div>
         <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
-          Que cualquier empresa pueda certificarse y mantener su certificación sin estrés
+          Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental
         </h2>
-        <p className="mv-body text-white/55 text-base leading-relaxed">
-          Combinamos software inteligente con un agente de IA y consultoría presencial para que cualquier empresa — sin importar su tamaño — gestione su calidad de forma real y sostenible.
-        </p>
       </div>
     </div>
   )
@@ -201,11 +198,8 @@ function VisionPanel() {
           <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Visión</span>
         </div>
         <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
-          Un mundo donde cualquier empresa pueda demostrar que hace las cosas bien
+          Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano
         </h2>
-        <p className="mv-body text-white/55 text-base leading-relaxed">
-          La gestión de calidad no debería ser un privilegio de empresas grandes. Una PYME merece las mismas herramientas que una multinacional — y Consultto existe para hacer eso posible.
-        </p>
       </div>
     </div>
   )
