@@ -97,30 +97,117 @@ function HeroSection() {
   )
 }
 
-// ─── Misión ───────────────────────────────────────────────────────────────────
+// ─── Misión + Visión ──────────────────────────────────────────────────────────
 
 function MisionSection() {
   return (
-    <section className="py-28 bg-white border-t border-[#efefef]">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <Reveal>
-          <div className="flex items-center gap-3 justify-center mb-8">
-            <span className="h-px w-8" style={{ background: '#763d50' }} />
-            <p className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Nuestra misión</p>
-            <span className="h-px w-8" style={{ background: '#763d50' }} />
-          </div>
-          <h2 className="font-bold max-w-4xl mx-auto" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)', lineHeight: 1.1, color: '#1f2020' }}>
-            Que cualquier empresa pueda{' '}
-            <span style={{ color: '#763d50' }}>certificarse</span>
-            {' '}y mantener su certificación sin estrés
-          </h2>
-          <div className="my-10 w-16 h-px mx-auto" style={{ background: 'linear-gradient(90deg, transparent, #763d50, transparent)' }} />
-          <p className="text-[#3a3a3a]/55 text-lg leading-relaxed max-w-2xl mx-auto">
-            Combinamos software inteligente con un agente de IA y consultoría presencial para que cualquier empresa — sin importar su tamaño — pueda gestionar su sistema de calidad de forma real y sostenible.
-          </p>
-        </Reveal>
-      </div>
+    <section className="flex flex-col md:flex-row" style={{ minHeight: '80vh' }}>
+      <style>{`
+        .mv-panel { position: relative; overflow: hidden; }
+        .mv-panel .mv-img {
+          position: absolute; inset: 0;
+          background-size: cover; background-position: center;
+          transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
+          opacity: 0.45;
+          transform: scale(1.04);
+        }
+        .mv-panel:hover .mv-img {
+          opacity: 0.65;
+          transform: scale(1);
+        }
+        .mv-panel .mv-overlay {
+          position: absolute; inset: 0;
+          transition: opacity 0.6s ease;
+        }
+        .mv-eyebrow {
+          opacity: 0; transform: translateY(12px);
+          transition: opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s;
+        }
+        .mv-title {
+          opacity: 0; transform: translateY(18px);
+          transition: opacity 0.7s ease 0.22s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.22s;
+        }
+        .mv-body {
+          opacity: 0; transform: translateY(14px);
+          transition: opacity 0.7s ease 0.38s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.38s;
+        }
+        .mv-panel.revealed .mv-eyebrow,
+        .mv-panel.revealed .mv-title,
+        .mv-panel.revealed .mv-body { opacity: 1; transform: none; }
+      `}</style>
+
+      {/* ── Misión ── */}
+      <MisionPanel />
+
+      {/* ── Visión ── */}
+      <VisionPanel />
     </section>
+  )
+}
+
+function MisionPanel() {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } }, { threshold: 0.15 })
+    obs.observe(el); return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} className="mv-panel flex-1 flex items-end justify-start" style={{ minHeight: '70vh' }}>
+      {/* Imagen */}
+      <div
+        className="mv-img"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=85')` }}
+      />
+      {/* Overlay: gradiente oscuro desde abajo */}
+      <div className="mv-overlay" style={{ background: 'linear-gradient(to top, rgba(15,10,12,0.92) 0%, rgba(31,32,32,0.6) 50%, rgba(31,32,32,0.25) 100%)' }} />
+      {/* Contenido */}
+      <div className="relative z-10 p-10 md:p-14 max-w-lg">
+        <div className="mv-eyebrow flex items-center gap-3 mb-6">
+          <span className="h-px w-6" style={{ background: '#c47a8f' }} />
+          <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Misión</span>
+        </div>
+        <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
+          Que cualquier empresa pueda certificarse y mantener su certificación sin estrés
+        </h2>
+        <p className="mv-body text-white/55 text-base leading-relaxed">
+          Combinamos software inteligente con un agente de IA y consultoría presencial para que cualquier empresa — sin importar su tamaño — gestione su calidad de forma real y sostenible.
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function VisionPanel() {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } }, { threshold: 0.15 })
+    obs.observe(el); return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} className="mv-panel flex-1 flex items-end justify-start" style={{ minHeight: '70vh' }}>
+      {/* Imagen */}
+      <div
+        className="mv-img"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85')` }}
+      />
+      {/* Overlay: más azulado/frío para diferenciar del panel izquierdo */}
+      <div className="mv-overlay" style={{ background: 'linear-gradient(to top, rgba(10,14,20,0.94) 0%, rgba(20,28,40,0.65) 50%, rgba(20,28,40,0.25) 100%)' }} />
+      {/* Contenido */}
+      <div className="relative z-10 p-10 md:p-14 max-w-lg">
+        <div className="mv-eyebrow flex items-center gap-3 mb-6">
+          <span className="h-px w-6" style={{ background: '#c47a8f' }} />
+          <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Visión</span>
+        </div>
+        <h2 className="mv-title text-white font-bold leading-tight mb-6" style={{ fontSize: 'clamp(1.7rem, 3vw, 2.6rem)' }}>
+          Un mundo donde cualquier empresa pueda demostrar que hace las cosas bien
+        </h2>
+        <p className="mv-body text-white/55 text-base leading-relaxed">
+          La gestión de calidad no debería ser un privilegio de empresas grandes. Una PYME merece las mismas herramientas que una multinacional — y Consultto existe para hacer eso posible.
+        </p>
+      </div>
+    </div>
   )
 }
 
@@ -238,40 +325,6 @@ function ProblemCard({ text, index }: { text: string; index: number }) {
   )
 }
 
-// ─── Visión ───────────────────────────────────────────────────────────────────
-
-function VisionSection() {
-  return (
-    <section className="py-0 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-
-          {/* Left: big visual */}
-          <Reveal className="lg:border-r border-[#e8e8e8] py-28 pr-0 lg:pr-16">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-8">Nuestra visión</p>
-            <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-0">
-              Un mundo donde cualquier empresa pueda demostrar que hace las cosas bien.
-            </h2>
-          </Reveal>
-
-          {/* Right: paragraphs */}
-          <div className="py-28 pl-0 lg:pl-16 space-y-8 flex flex-col justify-center">
-            {[
-              'Creemos que la gestión de calidad no debería ser un privilegio de empresas grandes con presupuestos enormes. Una PYME manufacturera merece exactamente el mismo acceso a herramientas de clase mundial que una multinacional.',
-              'Por eso combinamos software inteligente con un agente de IA que entiende las normas, entiende tu industria y trabaja contigo todos los días — no solo cuando hay una auditoría en puerta.',
-              'La certificación es el punto de partida, no el destino. Lo que importa es el sistema que queda funcionando después.',
-            ].map((p, i) => (
-              <Reveal key={i} delay={i * 100}>
-                <p className="text-[#3a3a3a]/60 text-base leading-relaxed">{p}</p>
-              </Reveal>
-            ))}
-          </div>
-
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ─── Principios ───────────────────────────────────────────────────────────────
 
@@ -448,7 +501,6 @@ export function NosotrosPage() {
       <MisionSection />
       <OrigenSection />
       <ProblemaSection />
-      <VisionSection />
       <PrincipiosSection />
       <CTASection />
     </>
