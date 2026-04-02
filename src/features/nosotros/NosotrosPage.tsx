@@ -118,6 +118,14 @@ function HeroSection() {
           from { opacity:0; transform: translateY(14px); }
           to   { opacity:1; transform: translateY(0); }
         }
+        @keyframes letters-out {
+          from { opacity:1; }
+          to   { opacity:0; pointer-events:none; }
+        }
+        @keyframes logo-reveal {
+          from { opacity:0; }
+          to   { opacity:1; }
+        }
       `}</style>
 
       <ParticleBackground />
@@ -134,18 +142,38 @@ function HeroSection() {
       {/* Logo animado + tagline */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
 
-        {/* Letras */}
-        <div className="flex items-baseline justify-center mb-7"
-          style={{ fontSize: 'clamp(52px, 10vw, 108px)', fontWeight: 300, color: '#1f2020', letterSpacing: '-0.02em' }}>
-          {LOGO_LETTERS.map((l, i) => (
-            <span
-              key={i}
-              className={l.char === 'l' ? 'll-span' : 'inline-block'}
-              style={{ animation: `${l.anim} ${l.dur}s cubic-bezier(0.16,1,0.3,1) ${l.delay}ms both` }}
-            >
-              {l.char}
-            </span>
-          ))}
+        {/* Logo container: letras animadas → crossfade → logo real */}
+        <div className="relative mb-7 flex items-center justify-center"
+          style={{ height: 'clamp(70px, 11vw, 118px)' }}>
+
+          {/* Letras — se desvanecen al terminar */}
+          <div className="absolute inset-0 flex items-baseline justify-center"
+            style={{
+              fontSize: 'clamp(52px, 10vw, 108px)', fontWeight: 300,
+              color: '#1f2020', letterSpacing: '-0.02em',
+              animation: 'letters-out 0.55s ease 1.75s forwards',
+            }}>
+            {LOGO_LETTERS.map((l, i) => (
+              <span
+                key={i}
+                className={l.char === 'l' ? 'll-span' : 'inline-block'}
+                style={{ animation: `${l.anim} ${l.dur}s cubic-bezier(0.16,1,0.3,1) ${l.delay}ms both` }}
+              >
+                {l.char}
+              </span>
+            ))}
+          </div>
+
+          {/* Logo real — aparece al terminar las letras */}
+          <img
+            src="/logo.png"
+            alt="Consultto"
+            style={{
+              height: '100%', width: 'auto', position: 'absolute',
+              opacity: 0,
+              animation: 'logo-reveal 0.55s ease 1.75s forwards',
+            }}
+          />
         </div>
 
         {/* Tagline */}
