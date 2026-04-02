@@ -184,25 +184,52 @@ function MisionSection() {
 // ─── Visión ───────────────────────────────────────────────────────────────────
 
 
+function WordReveal({ text, className = '', style = {} }: { text: string; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLParagraphElement>(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return
+      el.querySelectorAll<HTMLSpanElement>('.wr-word').forEach((span, i) => {
+        setTimeout(() => {
+          span.style.opacity = '1'
+          span.style.transform = 'translateY(0)'
+        }, i * 55)
+      })
+      obs.disconnect()
+    }, { threshold: 0.2 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  const words = text.split(' ')
+  return (
+    <p ref={ref} className={className} style={{ ...style, lineHeight: 1.45 }}>
+      {words.map((word, i) => (
+        <span key={i} className="wr-word inline-block"
+          style={{ opacity: 0, transform: 'translateY(18px)', transition: `opacity 0.5s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1)`, marginRight: '0.28em' }}>
+          {word}
+        </span>
+      ))}
+    </p>
+  )
+}
+
 function VisionSection() {
   return (
-    <section style={{ background: '#1f2020' }} className="py-28 md:py-36">
+    <section style={{ background: '#1f2020' }} className="py-16 md:py-20">
       <style>{`
         @keyframes vis-line {
           from { transform: scaleX(0); opacity: 0; }
           to   { transform: scaleX(1); opacity: 1; }
         }
         .vis-line { transform-origin: left; animation: vis-line 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-        @keyframes vis-pill-in {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
       `}</style>
       <div className="max-w-5xl mx-auto px-6 md:px-12">
 
         {/* Eyebrow + línea */}
         <Reveal>
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-4 mb-10">
             <p className="text-xs font-medium uppercase tracking-[0.2em] shrink-0" style={{ color: '#c47a8f' }}>
               Nuestra misión
             </p>
@@ -210,18 +237,14 @@ function VisionSection() {
           </div>
         </Reveal>
 
-        {/* Texto principal */}
-        <Reveal delay={80}>
-          <p
-            className="leading-[1.45] text-white/90 mb-16"
-            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
-          >
-            Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
-          </p>
-        </Reveal>
+        {/* Texto con animación palabra por palabra */}
+        <WordReveal
+          text="Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental."
+          className="text-white/90"
+          style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
+        />
 
-
-</div>
+      </div>
     </section>
   )
 }
