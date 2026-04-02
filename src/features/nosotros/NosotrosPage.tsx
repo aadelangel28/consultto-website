@@ -119,7 +119,9 @@ function MisionSection() {
           </div>
 
           {/* ── Derecha: collage de fotos ── */}
-          <MisionCollage />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <MisionCollage />
+          </div>
         </div>
       </div>
     </section>
