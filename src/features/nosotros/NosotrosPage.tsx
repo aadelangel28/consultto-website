@@ -108,7 +108,7 @@ function MisionSection() {
           {/* ── Izquierda: texto ── */}
           <div style={{ display: 'flex', alignItems: 'center', minHeight: '520px' }}>
             <Reveal>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
                 Nuestra visión
               </p>
               <h2 className="text-[#1f2020] leading-[1.4]"
