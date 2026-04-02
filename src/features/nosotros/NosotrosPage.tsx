@@ -110,8 +110,8 @@ function MisionSection() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
               Nuestra misión
             </p>
-            <h2 className="text-[#1f2020] leading-[1.08]"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400 }}>
+            <h2 className="text-[#1f2020] leading-[1.2]"
+              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
               Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
             </h2>
           </Reveal>
