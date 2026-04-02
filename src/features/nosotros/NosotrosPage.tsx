@@ -101,7 +101,7 @@ function HeroSection() {
 
 function MisionSection() {
   return (
-    <section className="bg-white border-t border-[#efefef] py-24 md:py-32">
+    <section className="bg-white border-t border-[#efefef] py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -145,7 +145,7 @@ function MisionCollage() {
   ]
 
   return (
-    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3" style={{ height: '520px' }}>
+    <div ref={ref} className="mc-wrap grid grid-cols-3 grid-rows-3 gap-3" style={{ height: '380px' }}>
       <style>{`
         .mc-wrap .mc-photo {
           overflow: hidden; border-radius: 16px;
