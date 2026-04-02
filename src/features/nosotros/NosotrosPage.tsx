@@ -118,11 +118,6 @@ function MisionSection() {
 }
 // ─── Visión ───────────────────────────────────────────────────────────────────
 
-const VISION_PILLARS = [
-  { label: 'Referente en Latinoamérica', desc: 'La plataforma que toda empresa de la región elige para crecer.' },
-  { label: 'Accesible para todas', desc: 'Sin importar tamaño, industria ni punto de partida.' },
-  { label: 'Mejora continua real', desc: 'No solo conformidad — sistemas que evolucionan con el negocio.' },
-]
 
 function VisionSection() {
   return (
@@ -160,19 +155,8 @@ function VisionSection() {
           </p>
         </Reveal>
 
-        {/* Pilares */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-          {VISION_PILLARS.map((p, i) => (
-            <Reveal key={i} delay={i * 100}>
-              <div className="pt-8 pr-6">
-                <p className="text-sm font-medium text-white/80 mb-2">{p.label}</p>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.38)' }}>{p.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
 
-      </div>
+</div>
     </section>
   )
 }
