@@ -241,11 +241,11 @@ function MejoraContinuaScreen() {
 
 const screens = [
   { id: 'dashboard', label: 'Dashboard', content: DashboardScreen },
-  { id: 'agente-ia', label: 'Agente IA', content: AgenteIAScreen },
-  { id: 'auditorias', label: 'Auditorías', content: AuditoriasScreen },
   { id: 'documentacion', label: 'Documentación', content: DocumentacionScreen },
+  { id: 'auditorias', label: 'Auditorías', content: AuditoriasScreen },
   { id: 'capa', label: 'No conformidades', content: CAPAScreen },
   { id: 'mejora-continua', label: 'Mejora Continua', content: MejoraContinuaScreen },
+  { id: 'agente-ia', label: 'Agente IA', content: AgenteIAScreen },
 ]
 
 const sidebarItems = ['Dashboard', 'Documentación', 'Auditorías', 'No conformidades', 'Mejora Continua', 'Agente IA']
