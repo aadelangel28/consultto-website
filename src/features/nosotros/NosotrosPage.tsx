@@ -106,7 +106,7 @@ function MisionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch">
 
           {/* ── Izquierda: texto ── */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', minHeight: '520px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', minHeight: '520px' }}>
             <Reveal>
               <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
                 Nuestra visión
