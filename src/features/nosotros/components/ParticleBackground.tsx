@@ -76,7 +76,7 @@ export function ParticleBackground() {
         ox: 0,
         oy: 0,
         r: kind === 'hub' ? 5 + Math.random() * 3 : kind === 'mid' ? 3 + Math.random() * 1.5 : 1.5 + Math.random(),
-        alphaDim:  kind === 'hub' ? 0.08 + Math.random() * 0.05 : kind === 'mid' ? 0.05 + Math.random() * 0.04 : 0.03 + Math.random() * 0.03,
+        alphaDim:  kind === 'hub' ? 0.04 + Math.random() * 0.02 : kind === 'mid' ? 0.02 + Math.random() * 0.02 : 0.01 + Math.random() * 0.015,
         alphaHigh: kind === 'hub' ? 0.65 + Math.random() * 0.2  : kind === 'mid' ? 0.45 + Math.random() * 0.2  : 0.3  + Math.random() * 0.2,
         kind,
         pulseT: Math.random() * Math.PI * 2,
@@ -137,7 +137,7 @@ export function ParticleBackground() {
           if (d < CONNECT_DIST) {
             const proximity = 1 - d / CONNECT_DIST
             const spot = Math.max(spotFactor(ax, ay), spotFactor(bx, by))
-            const dimMax  = (a.kind === 'hub' && b.kind === 'hub') ? 0.05 : 0.025
+            const dimMax  = (a.kind === 'hub' && b.kind === 'hub') ? 0.02 : 0.01
             const highMax = (a.kind === 'hub' && b.kind === 'hub') ? 0.45  : 0.25
             const maxAlpha = dimMax + (highMax - dimMax) * spot
             ctx.beginPath()
