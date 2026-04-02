@@ -491,8 +491,8 @@ export function NosotrosPage() {
   return (
     <>
       <HeroSection />
-      <MisionSection />
       <VisionSection />
+      <MisionSection />
       <ProblemaSection />
       <PrincipiosSection />
       <CTASection />
