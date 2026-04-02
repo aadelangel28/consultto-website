@@ -190,6 +190,53 @@ function CAPAScreen() {
   )
 }
 
+function MejoraContinuaScreen() {
+  const objetivos = [
+    { title: 'Reducir no conformidades en planta', progress: 72, meta: '< 5 / mes', actual: '3 este mes', color: 'bg-green-400' },
+    { title: 'Tiempo de cierre de hallazgos', progress: 55, meta: '< 15 días', actual: '18 días prom.', color: 'bg-amber-400' },
+    { title: 'Documentos vigentes al 100%', progress: 88, meta: '100%', actual: '88% vigentes', color: 'bg-[#763d50]' },
+  ]
+  return (
+    <div className="flex-1 p-5 flex flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-[#1f2020] font-bold text-base">Mejora Continua</h3>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Objetivo</button>
+      </div>
+      {/* KPI cards */}
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { label: 'Objetivos activos', value: '4', color: 'text-[#763d50]' },
+          { label: 'En seguimiento', value: '2', color: 'text-amber-500' },
+          { label: 'Completados', value: '7', color: 'text-green-500' },
+        ].map((k) => (
+          <div key={k.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3 text-center">
+            <div className={`font-black text-xl ${k.color}`}>{k.value}</div>
+            <div className="text-[#3a3a3a]/50 text-xs leading-tight mt-0.5">{k.label}</div>
+          </div>
+        ))}
+      </div>
+      {/* Objetivos con barra de progreso */}
+      <div className="flex flex-col gap-3">
+        {objetivos.map((o) => (
+          <div key={o.title} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-3">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[#1f2020] text-xs font-semibold truncate pr-2">{o.title}</span>
+              <span className="text-[#3a3a3a]/40 text-xs shrink-0">{o.actual}</span>
+            </div>
+            <div className="w-full bg-[#e8e8e8] rounded-full h-1.5">
+              <div className={`h-1.5 rounded-full ${o.color}`} style={{ width: `${o.progress}%` }} />
+            </div>
+            <div className="flex justify-between mt-1">
+              <span className="text-[#3a3a3a]/30 text-xs">{o.progress}%</span>
+              <span className="text-[#3a3a3a]/30 text-xs">Meta: {o.meta}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ─── Screens config ──────────────────────────────────────────────────────────
 
 const screens = [
@@ -198,6 +245,7 @@ const screens = [
   { id: 'auditorias', label: 'Auditorías', content: AuditoriasScreen },
   { id: 'documentacion', label: 'Documentación', content: DocumentacionScreen },
   { id: 'capa', label: 'No conformidades', content: CAPAScreen },
+  { id: 'mejora-continua', label: 'Mejora Continua', content: MejoraContinuaScreen },
 ]
 
 const sidebarItems = ['Dashboard', 'Documentación', 'Auditorías', 'No conformidades', 'Mejora Continua', 'Agente IA']
@@ -260,6 +308,7 @@ function ProductMockup() {
                 (item === 'Auditorías' && s.id === 'auditorias') ||
                 (item === 'Documentación' && s.id === 'documentacion') ||
                 (item === 'No conformidades' && s.id === 'capa') ||
+                (item === 'Mejora Continua' && s.id === 'mejora-continua') ||
                 (item === 'Agente IA' && s.id === 'agente-ia')
               )
               const isActive = screenIndex === activeIndex
