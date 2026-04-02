@@ -165,14 +165,14 @@ const FEATURES = [
             key={i}
             className={`rounded-xl px-4 py-2.5 text-xs leading-relaxed max-w-[85%] ${
               msg.from === 'user'
-                ? 'bg-[#f0f0f0] text-[#3a3a3a] self-start'
-                : 'bg-[#763d50] text-white self-end'
+                ? 'bg-[#f0f0f0] text-[#3a3a3a] self-end'
+                : 'bg-[#763d50] text-white self-start'
             }`}
           >
             {msg.text}
           </div>
         ))}
-        <div className="flex items-center gap-2 self-end mt-1">
+        <div className="flex items-center gap-2 self-start mt-1">
           <div className="flex gap-1">
             {[0, 1, 2].map(i => (
               <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#763d50]/50 animate-bounce" style={{ animationDelay: `${i * 150}ms` }} />
