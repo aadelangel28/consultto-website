@@ -37,16 +37,18 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
-const LOGO_LETTERS = [
-  { char: 'c', delay: 0,   dur: 0.9, anim: 'lc' },
-  { char: 'o', delay: 95,  dur: 0.85,anim: 'lo1' },
-  { char: 'n', delay: 180, dur: 0.95,anim: 'ln' },
-  { char: 's', delay: 260, dur: 0.75,anim: 'ls' },
-  { char: 'u', delay: 335, dur: 0.9, anim: 'lu' },
-  { char: 'l', delay: 415, dur: 0.8, anim: 'll' },
-  { char: 't', delay: 490, dur: 0.85,anim: 'lt1' },
-  { char: 't', delay: 578, dur: 0.95,anim: 'lt2' },
-  { char: 'o', delay: 668, dur: 1.0, anim: 'lo2' },
+// Cada entrada es una letra del logo real recortada con clip-path
+// left/right = límites en % del ancho total de la imagen
+const LETTER_CLIPS = [
+  { left:'0%',  right:'89%', origin:'5.5% 50%',  delay:0,   dur:0.9,  anim:'lc'  }, // c
+  { left:'11%', right:'77%', origin:'17% 50%',   delay:95,  dur:0.85, anim:'lo1' }, // o
+  { left:'23%', right:'65%', origin:'29% 50%',   delay:180, dur:0.95, anim:'ln'  }, // n
+  { left:'35%', right:'55%', origin:'40% 50%',   delay:260, dur:0.75, anim:'ls'  }, // s
+  { left:'45%', right:'43%', origin:'51% 50%',   delay:335, dur:0.9,  anim:'lu'  }, // u
+  { left:'57%', right:'36%', origin:'60.5% 100%',delay:415, dur:0.8,  anim:'ll'  }, // l
+  { left:'64%', right:'26%', origin:'69% 50%',   delay:490, dur:0.85, anim:'lt1' }, // t
+  { left:'74%', right:'16%', origin:'79% 50%',   delay:578, dur:0.95, anim:'lt2' }, // t
+  { left:'84%', right:'0%',  origin:'92% 50%',   delay:668, dur:1.0,  anim:'lo2' }, // o
 ]
 
 function HeroSection() {
@@ -118,11 +120,11 @@ function HeroSection() {
           from { opacity:0; transform: translateY(14px); }
           to   { opacity:1; transform: translateY(0); }
         }
-        @keyframes letters-out {
+        @keyframes clip-fadeout {
           from { opacity:1; }
-          to   { opacity:0; pointer-events:none; }
+          to   { opacity:0; }
         }
-        @keyframes logo-reveal {
+        @keyframes spacer-reveal {
           from { opacity:0; }
           to   { opacity:1; }
         }
@@ -142,38 +144,34 @@ function HeroSection() {
       {/* Logo animado + tagline */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
 
-        {/* Logo container: letras animadas → crossfade → logo real */}
-        <div className="relative mb-7 flex items-center justify-center"
-          style={{ height: 'clamp(70px, 11vw, 118px)' }}>
+        {/* Logo: 9 copias del PNG real recortadas letra por letra → crossfade al logo completo */}
+        <div className="relative inline-flex mb-7">
 
-          {/* Letras — se desvanecen al terminar */}
-          <div className="absolute inset-0 flex items-baseline justify-center"
-            style={{
-              fontSize: 'clamp(52px, 10vw, 108px)', fontWeight: 300,
-              color: '#1f2020', letterSpacing: '-0.02em',
-              animation: 'letters-out 0.55s ease 1.75s forwards',
-            }}>
-            {LOGO_LETTERS.map((l, i) => (
-              <span
-                key={i}
-                className={l.char === 'l' ? 'll-span' : 'inline-block'}
-                style={{ animation: `${l.anim} ${l.dur}s cubic-bezier(0.16,1,0.3,1) ${l.delay}ms both` }}
-              >
-                {l.char}
-              </span>
-            ))}
-          </div>
-
-          {/* Logo real — aparece al terminar las letras */}
+          {/* Spacer + logo final: define el tamaño y aparece al final */}
           <img
             src="/logo.png"
             alt="Consultto"
             style={{
-              height: '100%', width: 'auto', position: 'absolute',
-              opacity: 0,
-              animation: 'logo-reveal 0.55s ease 1.75s forwards',
+              height: 'clamp(70px, 11vw, 118px)',
+              width: 'auto',
+              animation: 'spacer-reveal 0.3s ease 1.9s both',
             }}
           />
+
+          {/* 9 clips del logo real, uno por letra */}
+          {LETTER_CLIPS.map((c, i) => (
+            <div
+              key={i}
+              style={{
+                position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                clipPath: `inset(0 ${c.right} 0 ${c.left})`,
+                transformOrigin: c.origin,
+                animation: `${c.anim} ${c.dur}s cubic-bezier(0.16,1,0.3,1) ${c.delay}ms both, clip-fadeout 0.3s ease 1.9s both`,
+              }}
+            >
+              <img src="/logo.png" style={{ height: '100%', width: 'auto' }} />
+            </div>
+          ))}
         </div>
 
         {/* Tagline */}
