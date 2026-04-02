@@ -109,11 +109,11 @@ function MisionSection() {
           <div style={{ display: 'flex', alignItems: 'center', minHeight: '520px' }}>
             <Reveal>
               <p className="text-xs font-medium uppercase tracking-[0.2em] mb-8" style={{ color: '#c47a8f' }}>
-                Nuestra misión
+                Nuestra visión
               </p>
               <h2 className="text-[#1f2020] leading-[1.4]"
                 style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-                Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
+                Ser la plataforma de referencia en Latinoamérica para la gestión de sistemas de calidad, donde cualquier empresa — sin importar su tamaño — pueda certificarse, mantenerse certificada y mejorar continuamente con el apoyo de tecnología inteligente y expertos que entienden su industria.
               </h2>
             </Reveal>
           </div>
@@ -202,7 +202,7 @@ function VisionSection() {
         <Reveal>
           <div className="flex items-center gap-4 mb-12">
             <p className="text-xs font-medium uppercase tracking-[0.2em] shrink-0" style={{ color: '#c47a8f' }}>
-              Nuestra visión
+              Nuestra misión
             </p>
             <div className="vis-line h-px flex-1" style={{ background: 'rgba(196,122,143,0.25)' }} />
           </div>
@@ -214,7 +214,7 @@ function VisionSection() {
             className="leading-[1.45] text-white/90 mb-16"
             style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
           >
-            Ser la plataforma de referencia en Latinoamérica para la gestión de sistemas de calidad, donde cualquier empresa — sin importar su tamaño — pueda certificarse, mantenerse certificada y mejorar continuamente con el apoyo de tecnología inteligente y expertos que entienden su industria.
+            Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental.
           </p>
         </Reveal>
 
