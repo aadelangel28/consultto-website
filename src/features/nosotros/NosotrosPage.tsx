@@ -37,74 +37,131 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
+const LOGO_LETTERS = [
+  { char: 'c', delay: 0,   dur: 0.9, anim: 'lc' },
+  { char: 'o', delay: 95,  dur: 0.85,anim: 'lo1' },
+  { char: 'n', delay: 180, dur: 0.95,anim: 'ln' },
+  { char: 's', delay: 260, dur: 0.75,anim: 'ls' },
+  { char: 'u', delay: 335, dur: 0.9, anim: 'lu' },
+  { char: 'l', delay: 415, dur: 0.8, anim: 'll' },
+  { char: 't', delay: 490, dur: 0.85,anim: 'lt1' },
+  { char: 't', delay: 578, dur: 0.95,anim: 'lt2' },
+  { char: 'o', delay: 668, dur: 1.0, anim: 'lo2' },
+]
+
 function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col justify-center" style={{ background: '#fafafa' }}>
       <style>{`
-        @keyframes h-fade-up {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
+        /* ── letter animations ── */
+        @keyframes lc  {
+          0%   { opacity:0; transform: translateX(-55px) rotate(-28deg); }
+          60%  { transform: translateX(7px) rotate(4deg); }
+          100% { opacity:1; transform: translateX(0) rotate(0deg); }
         }
-        @keyframes h-line-x {
-          from { transform: scaleX(0); }
-          to   { transform: scaleX(1); }
+        @keyframes lo1 {
+          0%   { opacity:0; transform: scale(0.04) rotate(200deg); }
+          55%  { transform: scale(1.22) rotate(-12deg); }
+          78%  { transform: scale(0.93) rotate(3deg); }
+          100% { opacity:1; transform: scale(1) rotate(0deg); }
         }
-        @keyframes h-fade {
-          from { opacity: 0; }
-          to   { opacity: 1; }
+        @keyframes ln  {
+          0%   { opacity:0; transform: translateY(-75px) skewX(-12deg); }
+          58%  { transform: translateY(11px) skewX(4deg); }
+          78%  { transform: translateY(-5px) skewX(-1deg); }
+          100% { opacity:1; transform: translateY(0) skewX(0deg); }
         }
+        @keyframes ls  {
+          0%   { opacity:0; transform: perspective(500px) rotateY(-95deg) scaleX(0.4); }
+          65%  { transform: perspective(500px) rotateY(12deg) scaleX(1.04); }
+          100% { opacity:1; transform: perspective(500px) rotateY(0deg) scaleX(1); }
+        }
+        @keyframes lu  {
+          0%   { opacity:0; transform: translateY(65px) rotate(22deg) scale(0.55); }
+          62%  { transform: translateY(-9px) rotate(-4deg) scale(1.06); }
+          82%  { transform: translateY(3px) rotate(1deg) scale(0.98); }
+          100% { opacity:1; transform: translateY(0) rotate(0deg) scale(1); }
+        }
+        @keyframes ll  {
+          0%   { opacity:0; transform: scaleY(0); }
+          65%  { transform: scaleY(1.14); }
+          85%  { transform: scaleY(0.96); }
+          100% { opacity:1; transform: scaleY(1); }
+        }
+        @keyframes lt1 {
+          0%   { opacity:0; transform: translateX(60px) skewX(-22deg) scale(0.65); }
+          58%  { transform: translateX(-7px) skewX(6deg) scale(1.04); }
+          80%  { transform: translateX(2px) skewX(-1deg) scale(0.99); }
+          100% { opacity:1; transform: translateX(0) skewX(0deg) scale(1); }
+        }
+        @keyframes lt2 {
+          0%   { opacity:0; transform: scale(3.8) rotate(-50deg); }
+          50%  { transform: scale(0.85) rotate(10deg); }
+          75%  { transform: scale(1.07) rotate(-3deg); }
+          100% { opacity:1; transform: scale(1) rotate(0deg); }
+        }
+        @keyframes lo2 {
+          0%   { opacity:0; filter:blur(16px); transform:scale(1.5); }
+          60%  { filter:blur(3px); transform:scale(0.94); }
+          100% { opacity:1; filter:blur(0px); transform:scale(1); }
+        }
+        /* ── hero support ── */
         @keyframes h-scroll-bounce {
-          0%, 100% { transform: translateY(0); opacity: 0.4; }
-          50%       { transform: translateY(6px); opacity: 0.8; }
+          0%, 100% { transform: translateY(0); opacity:0.4; }
+          50%       { transform: translateY(7px); opacity:0.85; }
         }
-        .hn-pre  { animation: h-fade-up 0.5s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
-        .hn-l1   { animation: h-fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
-        .hn-l2   { animation: h-fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.42s both; }
-        .hn-l3   { animation: h-fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.56s both; }
-        .hn-line { animation: h-line-x  1s  cubic-bezier(0.16,1,0.3,1) 0.6s  both; transform-origin: center; }
-        .hn-sub  { animation: h-fade-up 0.65s cubic-bezier(0.16,1,0.3,1) 0.72s both; }
-        .hn-cta  { animation: h-fade-up 0.65s cubic-bezier(0.16,1,0.3,1) 0.88s both; }
-        .hn-scroll { animation: h-scroll-bounce 2s ease-in-out 1.5s infinite; }
+        .ll-span { display:inline-block; transform-origin: bottom center; }
+        .hn-tagline { animation: h-tagline 0.8s cubic-bezier(0.16,1,0.3,1) 1.35s both; }
+        .hn-scroll-ind { animation: h-tagline 0.7s cubic-bezier(0.16,1,0.3,1) 1.65s both; }
+        .hn-arrow { animation: h-scroll-bounce 2.2s ease-in-out 2.4s infinite; }
+        @keyframes h-tagline {
+          from { opacity:0; transform: translateY(14px); }
+          to   { opacity:1; transform: translateY(0); }
+        }
       `}</style>
 
-      {/* ── Particle background ── */}
       <ParticleBackground />
 
-      {/* ── Glow centrado ── */}
+      {/* Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div style={{
           width: 800, height: 500,
           background: 'radial-gradient(ellipse, rgba(118,61,80,0.08) 0%, rgba(118,61,80,0.03) 50%, transparent 72%)',
-          filter: 'blur(50px)',
-          flexShrink: 0,
+          filter: 'blur(50px)', flexShrink: 0,
         }} />
       </div>
 
-      {/* ── Logo + tagline ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
-        <img
-          src="/logo.png"
-          alt="Consultto"
-          className="hn-l1 w-auto mx-auto mb-7"
-          style={{ height: 'clamp(80px, 13vw, 130px)' }}
-        />
-        <p
-          className="hn-sub text-[#3a3a3a]/50 font-light tracking-wide"
-          style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)', maxWidth: 460 }}
-        >
+      {/* Logo animado + tagline */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
+
+        {/* Letras */}
+        <div className="flex items-baseline justify-center mb-7"
+          style={{ fontSize: 'clamp(52px, 10vw, 108px)', fontWeight: 300, color: '#1f2020', letterSpacing: '-0.02em' }}>
+          {LOGO_LETTERS.map((l, i) => (
+            <span
+              key={i}
+              className={l.char === 'l' ? 'll-span' : 'inline-block'}
+              style={{ animation: `${l.anim} ${l.dur}s cubic-bezier(0.16,1,0.3,1) ${l.delay}ms both` }}
+            >
+              {l.char}
+            </span>
+          ))}
+        </div>
+
+        {/* Tagline */}
+        <p className="hn-tagline text-[#3a3a3a]/50 font-light tracking-wide"
+          style={{ fontSize: 'clamp(0.82rem, 1.3vw, 1rem)', maxWidth: 440 }}>
           Plataforma de certificación y cumplimiento normativo, respaldada por IA.
         </p>
       </div>
 
-      {/* ── Scroll indicator ── */}
-      <div className="hn-cta absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
+      {/* Scroll indicator */}
+      <div className="hn-scroll-ind absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
         <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/35 font-medium">
           Descubre nuestra historia
         </p>
-        <svg
-          className="hn-scroll w-4 h-4 text-[#763d50]/40"
-          fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}
-        >
+        <svg className="hn-arrow w-4 h-4" style={{ color: 'rgba(118,61,80,0.4)' }}
+          fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v10M4 9l4 4 4-4" />
         </svg>
       </div>
