@@ -80,40 +80,46 @@ function HeroSection() {
         }} />
       </div>
 
-      {/* ── Contenido centrado ── */}
+      {/* ── Logo centrado ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
-
-        {/* Eyebrow */}
-        <div className="hn-pre flex items-center gap-2 mb-10">
-          <span className="h-px w-8" style={{ background: '#763d50' }} />
-          <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>
-            Nuestra misión
-          </span>
-          <span className="h-px w-8" style={{ background: '#763d50' }} />
-        </div>
-
-        {/* Misión — frase principal */}
-        <h1 className="font-bold max-w-4xl" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)', lineHeight: 1.1, color: '#1f2020' }}>
-          <span className="hn-l1 block">Que cualquier empresa</span>
-          <span className="hn-l2 block">
-            pueda{' '}
-            <span style={{ color: '#763d50' }}>certificarse</span>
-            {' '}y mantener
-          </span>
-          <span className="hn-l3 block" style={{ color: '#1f2020' }}>
-            su certificación sin estrés
-          </span>
-        </h1>
-
-        {/* Separador */}
-        <div className="hn-line my-10 w-16 h-px mx-auto"
-          style={{ background: 'linear-gradient(90deg, transparent, #763d50, transparent)' }} />
-
+        <img
+          src="/logo.png"
+          alt="Consultto"
+          className="hn-l1 w-auto mx-auto"
+          style={{ height: 'clamp(60px, 10vw, 100px)' }}
+        />
       </div>
 
 {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, transparent, rgba(250,250,250,0.9))' }} />
+    </section>
+  )
+}
+
+// ─── Misión ───────────────────────────────────────────────────────────────────
+
+function MisionSection() {
+  return (
+    <section className="py-28 bg-white border-t border-[#efefef]">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <Reveal>
+          <div className="flex items-center gap-3 justify-center mb-8">
+            <span className="h-px w-8" style={{ background: '#763d50' }} />
+            <p className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: '#c47a8f' }}>Nuestra misión</p>
+            <span className="h-px w-8" style={{ background: '#763d50' }} />
+          </div>
+          <h2 className="font-bold max-w-4xl mx-auto" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)', lineHeight: 1.1, color: '#1f2020' }}>
+            Que cualquier empresa pueda{' '}
+            <span style={{ color: '#763d50' }}>certificarse</span>
+            {' '}y mantener su certificación sin estrés
+          </h2>
+          <div className="my-10 w-16 h-px mx-auto" style={{ background: 'linear-gradient(90deg, transparent, #763d50, transparent)' }} />
+          <p className="text-[#3a3a3a]/55 text-lg leading-relaxed max-w-2xl mx-auto">
+            Combinamos software inteligente con un agente de IA y consultoría presencial para que cualquier empresa — sin importar su tamaño — pueda gestionar su sistema de calidad de forma real y sostenible.
+          </p>
+        </Reveal>
+      </div>
     </section>
   )
 }
@@ -439,6 +445,7 @@ export function NosotrosPage() {
   return (
     <>
       <HeroSection />
+      <MisionSection />
       <OrigenSection />
       <ProblemaSection />
       <VisionSection />
