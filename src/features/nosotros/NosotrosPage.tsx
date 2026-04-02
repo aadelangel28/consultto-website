@@ -37,18 +37,19 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
-// Cada entrada es una letra del logo real recortada con clip-path
-// left/right = límites en % del ancho total de la imagen
-const LETTER_CLIPS = [
-  { left:'0%',  right:'89%', origin:'5.5% 50%',  delay:0,   dur:0.9,  anim:'lc'  }, // c
-  { left:'11%', right:'77%', origin:'17% 50%',   delay:95,  dur:0.85, anim:'lo1' }, // o
-  { left:'23%', right:'65%', origin:'29% 50%',   delay:180, dur:0.95, anim:'ln'  }, // n
-  { left:'35%', right:'55%', origin:'40% 50%',   delay:260, dur:0.75, anim:'ls'  }, // s
-  { left:'45%', right:'43%', origin:'51% 50%',   delay:335, dur:0.9,  anim:'lu'  }, // u
-  { left:'57%', right:'36%', origin:'60.5% 100%',delay:415, dur:0.8,  anim:'ll'  }, // l
-  { left:'64%', right:'26%', origin:'69% 50%',   delay:490, dur:0.85, anim:'lt1' }, // t
-  { left:'74%', right:'16%', origin:'79% 50%',   delay:578, dur:0.95, anim:'lt2' }, // t
-  { left:'84%', right:'0%',  origin:'92% 50%',   delay:668, dur:1.0,  anim:'lo2' }, // o
+// Posiciones X exactas extraídas del SVG del logo (font: Futura Medium 149.09px)
+// "consul" empieza en x=0, "tt" en x=403.38, "o" en x=490.88 (coordenadas relativas al grupo)
+// Las letras intermedias se calculan proporcionalmente al ancho total de "consul"=403.38px
+const ANIM_LETTERS = [
+  { char:'c', x:0,      ls:'-0.02em', delay:0,   dur:0.9,  anim:'lc',  bottom:false },
+  { char:'o', x:66.2,   ls:'-0.02em', delay:95,  dur:0.85, anim:'lo1', bottom:false },
+  { char:'n', x:144.8,  ls:'-0.02em', delay:180, dur:0.95, anim:'ln',  bottom:false },
+  { char:'s', x:223.4,  ls:'-0.02em', delay:260, dur:0.75, anim:'ls',  bottom:false },
+  { char:'u', x:289.6,  ls:'-0.02em', delay:335, dur:0.9,  anim:'lu',  bottom:false },
+  { char:'l', x:368.2,  ls:'-0.02em', delay:415, dur:0.8,  anim:'ll',  bottom:true  },
+  { char:'t', x:403.38, ls:'0.02em',  delay:490, dur:0.85, anim:'lt1', bottom:false },
+  { char:'t', x:447.13, ls:'0.02em',  delay:578, dur:0.95, anim:'lt2', bottom:false },
+  { char:'o', x:490.88, ls:'-0.02em', delay:668, dur:1.0,  anim:'lo2', bottom:false },
 ]
 
 function HeroSection() {
@@ -144,34 +145,56 @@ function HeroSection() {
       {/* Logo animado + tagline */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
 
-        {/* Logo: 9 copias del PNG real recortadas letra por letra → crossfade al logo completo */}
-        <div className="relative inline-flex mb-7">
+        {/* SVG inline con cada letra animada individualmente → crossfade al PNG real */}
+        <div style={{ position: 'relative', display: 'inline-block', marginBottom: '1.75rem' }}>
 
-          {/* Spacer + logo final: define el tamaño y aparece al final */}
+          {/* SVG con las letras exactas del logo (Futura Medium, mismas coords que el original) */}
+          <svg
+            viewBox="0 340 595.28 165"
+            style={{ height: 'clamp(70px, 11vw, 118px)', width: 'auto', display: 'block', overflow: 'visible', animation: 'clip-fadeout 0.35s ease 1.9s both' }}
+            aria-hidden="true"
+          >
+            <defs>
+              <style>{`
+                .svgl {
+                  fill: #3a3a3a;
+                  font-family: 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+                  font-size: 149.09px;
+                  font-weight: 500;
+                  transform-box: fill-box;
+                  transform-origin: center center;
+                }
+                .svgl-b { transform-origin: center bottom; }
+              `}</style>
+            </defs>
+            <g transform="translate(6.88 465.08)">
+              {ANIM_LETTERS.map((l, i) => (
+                <text
+                  key={i}
+                  className={`svgl${l.bottom ? ' svgl-b' : ''}`}
+                  x={l.x}
+                  y={0}
+                  style={{
+                    letterSpacing: l.ls,
+                    animation: `${l.anim} ${l.dur}s cubic-bezier(0.16,1,0.3,1) ${l.delay}ms both`,
+                  }}
+                >
+                  {l.char}
+                </text>
+              ))}
+            </g>
+          </svg>
+
+          {/* PNG real — aparece al terminar la animación */}
           <img
             src="/logo.png"
             alt="Consultto"
             style={{
-              height: 'clamp(70px, 11vw, 118px)',
-              width: 'auto',
-              animation: 'spacer-reveal 0.3s ease 1.9s both',
+              position: 'absolute', top: 0, left: 0,
+              height: '100%', width: '100%', objectFit: 'contain',
+              animation: 'spacer-reveal 0.35s ease 1.9s both',
             }}
           />
-
-          {/* 9 clips del logo real, uno por letra */}
-          {LETTER_CLIPS.map((c, i) => (
-            <div
-              key={i}
-              style={{
-                position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                clipPath: `inset(0 ${c.right} 0 ${c.left})`,
-                transformOrigin: c.origin,
-                animation: `${c.anim} ${c.dur}s cubic-bezier(0.16,1,0.3,1) ${c.delay}ms both, clip-fadeout 0.3s ease 1.9s both`,
-              }}
-            >
-              <img src="/logo.png" style={{ height: '100%', width: 'auto' }} />
-            </div>
-          ))}
         </div>
 
         {/* Tagline */}
