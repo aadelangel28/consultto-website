@@ -1257,10 +1257,10 @@ export function AgenteIAPage() {
   ]
 
   return (
-    <main className="bg-white pt-24">
+    <main className="bg-white pt-20 md:pt-24">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-white px-6 pt-20 pb-28">
+      <section className="relative overflow-hidden bg-white px-6 pt-14 pb-16 md:pt-20 md:pb-28">
         <div
           className="absolute inset-0 opacity-[0.35]"
           style={{
@@ -1317,7 +1317,7 @@ export function AgenteIAPage() {
       {ai.features.items.map((feature, i) => {
         const isEven = i % 2 === 0
         return (
-          <section key={feature.tag} className="py-24 px-6 overflow-hidden" style={{ backgroundColor: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+          <section key={feature.tag} className="py-14 md:py-24 px-6 overflow-hidden" style={{ backgroundColor: i % 2 === 0 ? '#fff' : '#fafafa' }}>
             <div className="max-w-6xl mx-auto">
               <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}>
 
@@ -1360,9 +1360,9 @@ export function AgenteIAPage() {
       })}
 
       {/* ── Use cases grid ────────────────────────────────────────────────── */}
-      <section className="bg-white py-24 px-6">
+      <section className="bg-white py-14 md:py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <Reveal className="text-center mb-16">
+          <Reveal className="text-center mb-10 md:mb-16">
             <p className="text-[#763d50] text-xs font-bold uppercase tracking-widest mb-4">{ai.useCases.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-4">
               {ai.useCases.title}
@@ -1387,7 +1387,7 @@ export function AgenteIAPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <section className="bg-[#faf5f6] py-24 px-6">
+      <section className="bg-[#faf5f6] py-14 md:py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <p className="text-[#763d50] text-xs font-bold uppercase tracking-widest mb-6">{ai.cta.eyebrow}</p>

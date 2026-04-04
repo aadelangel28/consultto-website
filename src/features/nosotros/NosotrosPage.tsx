@@ -290,8 +290,10 @@ function MisionSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* ── Izquierda: collage ── */}
-          <VisionCollage />
+          {/* ── Izquierda: collage — sólo en pantallas grandes ── */}
+          <div className="hidden lg:block">
+            <VisionCollage />
+          </div>
 
           {/* ── Derecha: texto ── */}
           <Reveal>
@@ -466,9 +468,9 @@ function PrincipiosSection() {
   }))
 
   return (
-    <section className="py-28 bg-white border-t border-[#efefef]">
+    <section className="py-16 md:py-28 bg-white border-t border-[#efefef]">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12 md:mb-16">
           <Reveal className="flex-1">
             <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{t.nosotros.principios.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight max-w-sm">
@@ -497,7 +499,7 @@ function PrincipiosSection() {
 function CTASection() {
   const { t } = useLanguage()
   return (
-    <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
+    <section className="py-14 md:py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{t.nosotros.cta.eyebrow}</p>

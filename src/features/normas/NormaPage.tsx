@@ -69,18 +69,18 @@ function HeroSection({ norma }: { norma: NormaData }) {
       `}</style>
 
       {/* Top section — code as centrepiece */}
-      <div className="relative pt-40 pb-16 text-center">
+      <div className="relative pt-28 md:pt-40 pb-12 md:pb-16 text-center">
         {/* Category badge */}
-        <span className="nh-badge inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#763d50] mb-10 block">
+        <span className="nh-badge inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#763d50] mb-8 block">
           <span className="w-1.5 h-1.5 rounded-full bg-[#763d50] inline-block" />
           {norma.categoria}
         </span>
 
         {/* Norm code — each character drops in */}
-        <div className="perspective-[600px] mb-6" style={{ perspective: '600px' }}>
+        <div className="perspective-[600px] mb-6 overflow-hidden" style={{ perspective: '600px' }}>
           <p
-            className="font-black text-[#1f2020] leading-none tracking-tight"
-            style={{ fontSize: 'clamp(4rem, 13vw, 11rem)', letterSpacing: '-0.03em' }}
+            className="font-black text-[#1f2020] leading-none tracking-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(2.5rem, 10vw, 11rem)', letterSpacing: '-0.03em' }}
             aria-label={norma.code + norma.version}
           >
             {chars.map((ch, i) => (
@@ -157,7 +157,7 @@ function RequisitosSection({ norma }: { norma: NormaData }) {
   const { t } = useLanguage()
   const np = t.normaPage
   return (
-    <section className="py-24 bg-white">
+    <section className="py-14 md:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.requisitos.eyebrow}</p>
@@ -332,7 +332,7 @@ function AplicaSection({ norma }: { norma: NormaData }) {
   const { t } = useLanguage()
   const np = t.normaPage
   return (
-    <section className="py-20 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
+    <section className="py-14 md:py-20 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <Reveal>
@@ -345,7 +345,7 @@ function AplicaSection({ norma }: { norma: NormaData }) {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
             {norma.industrias.map((ind, i) => (
               <Reveal key={ind} delay={i * 60}>
                 <div
@@ -506,7 +506,7 @@ function ComoGestionaSection({ norma }: { norma: NormaData }) {
   const np = t.normaPage
   return (
     <section className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 pt-24 pb-0">
+      <div className="max-w-6xl mx-auto px-6 pt-14 md:pt-24 pb-0">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.gestiona.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-16 max-w-2xl">
@@ -530,7 +530,7 @@ function CTASection({ norma }: { norma: NormaData }) {
   const { t } = useLanguage()
   const np = t.normaPage
   return (
-    <section className="py-24 bg-white border-t border-[#efefef]">
+    <section className="py-14 md:py-24 bg-white border-t border-[#efefef]">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.cta.eyebrow}</p>

@@ -258,9 +258,9 @@ function ProductMockup() {
           <div className="w-2.5 h-2.5 rounded-full bg-[#d9d9d9]/40" />
         </div>
 
-        <div className="flex bg-[#f8f8f8]" style={{ height: '360px', overflow: 'hidden' }}>
-          {/* Sidebar */}
-          <div className="w-40 bg-white border-r border-[#d9d9d9] p-3 flex flex-col gap-1 shrink-0">
+        <div className="flex bg-[#f8f8f8]" style={{ height: '320px', overflow: 'hidden' }}>
+          {/* Sidebar — hidden on very small screens */}
+          <div className="hidden sm:flex w-36 bg-white border-r border-[#d9d9d9] p-3 flex-col gap-1 shrink-0">
             <div className="mb-2 px-2">
               <img src="/logo.png" alt="Consultto" className="h-5 w-auto" />
             </div>
@@ -303,8 +303,8 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#f4f4f4] via-white to-white" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-24 pt-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 py-20 pt-28 sm:pt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
 
           {/* Left: text content */}
           <div className="flex flex-col items-start">
@@ -317,7 +317,7 @@ export function HeroSection() {
             </p>
 
             {/* H1 — each line animates individually */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-[1.05] mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-[1.05] mb-8 md:mb-10">
               <span
                 className="block"
                 style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both' }}

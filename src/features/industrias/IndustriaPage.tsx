@@ -75,7 +75,7 @@ function HeroSection({ industria }: { industria: IndustriaData }) {
   const { t } = useLanguage()
   const ip = t.industriaPage
   return (
-    <section className="relative pt-32 pb-28 overflow-hidden" style={{ background: '#fafafa' }}>
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-28 overflow-hidden" style={{ background: '#fafafa' }}>
       <style>{`
         @keyframes hero-in {
           from { opacity: 0; transform: translateY(22px); }
@@ -100,7 +100,7 @@ function HeroSection({ industria }: { industria: IndustriaData }) {
         </span>
 
         <h1
-          className="hi text-4xl sm:text-5xl md:text-6xl font-bold text-[#1f2020] leading-tight mb-6 mt-3 block"
+          className="hi text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2020] leading-tight mb-6 mt-3 block"
           style={{ animationDelay: '110ms' }}
         >
           {industria.heroTitle}
@@ -141,7 +141,7 @@ function RetosSection({ industria }: { industria: IndustriaData }) {
   const image = INDUSTRIA_IMAGES[industria.slug]
 
   return (
-    <section className="py-24 border-t border-[#efefef] relative overflow-hidden" style={{ background: '#f8f8f8' }}>
+    <section className="py-14 md:py-24 border-t border-[#efefef] relative overflow-hidden" style={{ background: '#f8f8f8' }}>
       {/* Background image with overlay */}
       {image && (
         <>
@@ -190,7 +190,7 @@ function SolucionesSection({ industria }: { industria: IndustriaData }) {
   const { t } = useLanguage()
   const ip = t.industriaPage
   return (
-    <section className="py-24 bg-white">
+    <section className="py-14 md:py-24 bg-white">
       <style>{`
         /* Separator line draws left → right */
         .sol-row .sol-sep {
@@ -430,7 +430,7 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
   const { t } = useLanguage()
   const ip = t.industriaPage
   return (
-    <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
+    <section className="py-14 md:py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <style>{`
         .norm-card .norm-bar {
           transform: scaleX(0);
@@ -554,7 +554,7 @@ function AgenteIASection({ industria }: { industria: IndustriaData }) {
   const ip = t.industriaPage
 
   return (
-    <section className="py-24" style={{ background: '#1f2020' }}>
+    <section className="py-14 md:py-24" style={{ background: '#1f2020' }}>
       <style>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
@@ -693,7 +693,7 @@ function CTASection({ industria }: { industria: IndustriaData }) {
   const { t } = useLanguage()
   const ip = t.industriaPage
   return (
-    <section className="py-24 bg-white border-t border-[#efefef]">
+    <section className="py-14 md:py-24 bg-white border-t border-[#efefef]">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{ip.cta.eyebrow}</p>
