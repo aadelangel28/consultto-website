@@ -79,8 +79,8 @@ function ArticleCard({ article, readTime, readArticle }: { article: typeof artic
       <h3 className="text-[#1f2020] text-base font-medium leading-snug group-hover:text-[#763d50] transition-colors mb-3">
         {article.title}
       </h3>
-      <p className="text-[#3a3a3a]/55 text-sm leading-relaxed line-clamp-2 mb-4">
-        {article.excerpt}
+      <p className="text-[#3a3a3a]/55 text-sm leading-relaxed mb-4">
+        {article.excerpt.length > 110 ? article.excerpt.slice(0, 110).trimEnd() + '…' : article.excerpt}
       </p>
       <div className="flex items-center justify-start mt-auto pt-4 border-t border-[#f0f0f0]">
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#1f2020] group-hover:text-[#763d50] transition-colors">
