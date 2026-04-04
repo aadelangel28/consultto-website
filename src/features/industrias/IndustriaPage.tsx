@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef, type ReactNode } from 'react'
 import type { IndustriaData } from './data'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
+import { INDUSTRIAS_EN, INDUSTRIAS_PT } from './data.translations'
 
 const INDUSTRIA_IMAGES: Record<string, string> = {
   'manufactura':                  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80',
@@ -70,6 +72,8 @@ function IconCheck() {
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
 function HeroSection({ industria }: { industria: IndustriaData }) {
+  const { t } = useLanguage()
+  const ip = t.industriaPage
   return (
     <section className="relative pt-32 pb-28 overflow-hidden" style={{ background: '#fafafa' }}>
       <style>{`
@@ -117,13 +121,13 @@ function HeroSection({ industria }: { industria: IndustriaData }) {
             href="/signup"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
           >
-            Agendar demo gratuita
+            {ip.cta.cta1}
           </Link>
           <Link
             href="/contacto"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
           >
-            Hablar con un consultor
+            {ip.cta.cta2}
           </Link>
         </div>
       </div>
@@ -132,6 +136,8 @@ function HeroSection({ industria }: { industria: IndustriaData }) {
 }
 
 function RetosSection({ industria }: { industria: IndustriaData }) {
+  const { t } = useLanguage()
+  const ip = t.industriaPage
   const image = INDUSTRIA_IMAGES[industria.slug]
 
   return (
@@ -152,9 +158,9 @@ function RetosSection({ industria }: { industria: IndustriaData }) {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Los retos del sector</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{ip.retos.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-16 max-w-2xl">
-            Lo que frena a las empresas de {industria.name.toLowerCase()}
+            {ip.retos.title.replace('{name}', industria.name.toLowerCase())}
           </h2>
         </Reveal>
 
@@ -181,6 +187,8 @@ function RetosSection({ industria }: { industria: IndustriaData }) {
 }
 
 function SolucionesSection({ industria }: { industria: IndustriaData }) {
+  const { t } = useLanguage()
+  const ip = t.industriaPage
   return (
     <section className="py-24 bg-white">
       <style>{`
@@ -225,9 +233,9 @@ function SolucionesSection({ industria }: { industria: IndustriaData }) {
 
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Cómo Consultto ayuda</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{ip.soluciones.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-14 max-w-2xl">
-            Todo lo que necesitas para gestionar {industria.name.toLowerCase()}, en un solo sistema
+            {ip.soluciones.title.replace('{name}', industria.name.toLowerCase())}
           </h2>
         </Reveal>
 
@@ -419,6 +427,8 @@ const NORM_INDUSTRY_SUMMARY: Record<string, Record<string, string>> = {
 }
 
 function NormasSection({ industria }: { industria: IndustriaData }) {
+  const { t } = useLanguage()
+  const ip = t.industriaPage
   return (
     <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <style>{`
@@ -461,9 +471,9 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
 
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Normas aplicables</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{ip.normas.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-14 max-w-2xl">
-            Certificaciones que gestionamos para {industria.name.toLowerCase()}
+            {ip.normas.title.replace('{name}', industria.name.toLowerCase())}
           </h2>
         </Reveal>
 
@@ -540,12 +550,8 @@ function NormaCard({ norma, meta, index }: {
 }
 
 function AgenteIASection({ industria }: { industria: IndustriaData }) {
-  const capabilities = [
-    'Analiza no conformidades y sugiere causas raíz en segundos',
-    'Redacta acciones correctivas basadas en el historial de tu operación',
-    'Detecta patrones de riesgo antes de que llegue la auditoría',
-    'Resume hallazgos y genera reportes ejecutivos automáticamente',
-  ]
+  const { t } = useLanguage()
+  const ip = t.industriaPage
 
   return (
     <section className="py-24" style={{ background: '#1f2020' }}>
@@ -581,18 +587,18 @@ function AgenteIASection({ industria }: { industria: IndustriaData }) {
             <Reveal>
               <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-5" style={{ color: '#c47a8f' }}>
                 <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#c47a8f' }} />
-                Agente IA
+                {ip.agenteIA.tag}
               </span>
               <h2 className="text-3xl md:text-4xl font-light text-white leading-tight mb-5">
-                Un agente que entiende {industria.name.toLowerCase()} y trabaja contigo 24/7
+                {ip.agenteIA.title.replace('{name}', industria.name.toLowerCase())}
               </h2>
               <p className="text-white/45 text-base leading-relaxed mb-10">
-                No es un chatbot genérico. El agente IA de Consultto conoce tus procesos, tu historial de no conformidades y los requisitos de tu industria para darte respuestas concretas, no genéricas.
+                {ip.agenteIA.description}
               </p>
             </Reveal>
 
             <div className="space-y-3">
-              {capabilities.map((cap, i) => (
+              {ip.agenteIA.capabilities.map((cap, i) => (
                 <Reveal key={cap} delay={i * 70}>
                   <div className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(118,61,80,0.4)' }}>
@@ -612,7 +618,7 @@ function AgenteIASection({ industria }: { industria: IndustriaData }) {
                 className="inline-flex items-center gap-2 mt-10 text-sm font-semibold transition-all"
                 style={{ color: '#c47a8f' }}
               >
-                Conoce el agente IA
+                {ip.agenteIA.link}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -629,11 +635,11 @@ function AgenteIASection({ industria }: { industria: IndustriaData }) {
                 <div className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(255,255,255,0.1)' }} />
                 <div className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(255,255,255,0.1)' }} />
                 <span className="text-xs ml-2" style={{ color: 'rgba(255,255,255,0.2)' }}>
-                  Agente Consultto · {industria.name}
+                  {ip.agenteIA.tag} · {industria.name}
                 </span>
                 <span className="ml-auto flex items-center gap-1.5 text-xs" style={{ color: '#4ade80' }}>
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-                  En línea
+                  Online
                 </span>
               </div>
 
@@ -684,11 +690,13 @@ function AgenteIASection({ industria }: { industria: IndustriaData }) {
 }
 
 function CTASection({ industria }: { industria: IndustriaData }) {
+  const { t } = useLanguage()
+  const ip = t.industriaPage
   return (
     <section className="py-24 bg-white border-t border-[#efefef]">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Empieza hoy</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{ip.cta.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-5">
             {industria.ctaTitle}
           </h2>
@@ -700,13 +708,13 @@ function CTASection({ industria }: { industria: IndustriaData }) {
               href="/signup"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
             >
-              Agendar demo gratuita
+              {ip.cta.cta1}
             </Link>
             <Link
               href="/contacto"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
             >
-              Hablar con un consultor
+              {ip.cta.cta2}
             </Link>
           </div>
         </Reveal>
@@ -718,14 +726,18 @@ function CTASection({ industria }: { industria: IndustriaData }) {
 // ─── Main export ──────────────────────────────────────────────────────────────
 
 export function IndustriaPage({ industria }: { industria: IndustriaData }) {
+  const { lang } = useLanguage()
+  const overrides = lang === 'en' ? INDUSTRIAS_EN[industria.slug] : lang === 'pt' ? INDUSTRIAS_PT[industria.slug] : undefined
+  const i = overrides ? { ...industria, ...overrides } : industria
+
   return (
     <>
-      <HeroSection industria={industria} />
-      <NormasSection industria={industria} />
-      <SolucionesSection industria={industria} />
-      <RetosSection industria={industria} />
-      <AgenteIASection industria={industria} />
-      <CTASection industria={industria} />
+      <HeroSection industria={i} />
+      <NormasSection industria={i} />
+      <SolucionesSection industria={i} />
+      <RetosSection industria={i} />
+      <AgenteIASection industria={i} />
+      <CTASection industria={i} />
     </>
   )
 }

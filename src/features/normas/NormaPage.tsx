@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { NormaData } from './data'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
+import { NORMAS_EN, NORMAS_PT } from './data.translations'
 
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 
@@ -38,6 +40,8 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function HeroSection({ norma }: { norma: NormaData }) {
+  const { t } = useLanguage()
+  const normaPageT = t.normaPage
   const chars = (norma.code + norma.version).split('')
 
   return (
@@ -130,13 +134,13 @@ function HeroSection({ norma }: { norma: NormaData }) {
             href="/signup"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
           >
-            Agendar demo gratuita
+            {normaPageT.cta.cta1}
           </Link>
           <Link
             href="/contacto"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
           >
-            Hablar con un consultor
+            {normaPageT.cta.cta2}
           </Link>
         </div>
       </div>
@@ -150,13 +154,15 @@ function HeroSection({ norma }: { norma: NormaData }) {
 // ─── Requisitos — split layout ─────────────────────────────────────────────────
 
 function RequisitosSection({ norma }: { norma: NormaData }) {
+  const { t } = useLanguage()
+  const np = t.normaPage
   return (
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Requisitos clave</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.requisitos.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-16 max-w-2xl">
-            Lo que {norma.code} exige de tu organización
+            {np.requisitos.title.replace('{code}', norma.code)}
           </h2>
         </Reveal>
 
@@ -323,14 +329,16 @@ function StatItem({ stat, index }: { stat: { value: string; label: string }; ind
 // ─── A quién aplica ───────────────────────────────────────────────────────────
 
 function AplicaSection({ norma }: { norma: NormaData }) {
+  const { t } = useLanguage()
+  const np = t.normaPage
   return (
     <section className="py-20 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">A quién aplica</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.aplica.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-5">
-              Industrias donde implementamos {norma.code}
+              {np.aplica.title.replace('{code}', norma.code)}
             </h2>
             <p className="text-[#3a3a3a]/55 text-base leading-relaxed">
               {norma.scope}
@@ -494,13 +502,15 @@ function GestionaItem({
 }
 
 function ComoGestionaSection({ norma }: { norma: NormaData }) {
+  const { t } = useLanguage()
+  const np = t.normaPage
   return (
     <section className="bg-white">
       <div className="max-w-6xl mx-auto px-6 pt-24 pb-0">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Cómo Consultto lo gestiona</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.gestiona.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-16 max-w-2xl">
-            Todo lo que necesitas para cumplir {norma.code}, en un solo sistema
+            {np.gestiona.title.replace('{code}', norma.code)}
           </h2>
         </Reveal>
       </div>
@@ -517,11 +527,13 @@ function ComoGestionaSection({ norma }: { norma: NormaData }) {
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 
 function CTASection({ norma }: { norma: NormaData }) {
+  const { t } = useLanguage()
+  const np = t.normaPage
   return (
     <section className="py-24 bg-white border-t border-[#efefef]">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Empieza hoy</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{np.cta.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-5">
             {norma.ctaTitle}
           </h2>
@@ -533,13 +545,13 @@ function CTASection({ norma }: { norma: NormaData }) {
               href="/signup"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
             >
-              Agendar demo gratuita
+              {np.cta.cta1}
             </Link>
             <Link
               href="/contacto"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
             >
-              Hablar con un consultor
+              {np.cta.cta2}
             </Link>
           </div>
         </Reveal>
@@ -551,14 +563,17 @@ function CTASection({ norma }: { norma: NormaData }) {
 // ─── Main export ──────────────────────────────────────────────────────────────
 
 export function NormaPage({ norma }: { norma: NormaData }) {
+  const { lang } = useLanguage()
+  const overrides = lang === 'en' ? NORMAS_EN[norma.slug] : lang === 'pt' ? NORMAS_PT[norma.slug] : undefined
+  const n = overrides ? { ...norma, ...overrides } : norma
   return (
     <>
-      <HeroSection norma={norma} />
-      <StatsBand norma={norma} />
-      <RequisitosSection norma={norma} />
-      <AplicaSection norma={norma} />
-      <ComoGestionaSection norma={norma} />
-      <CTASection norma={norma} />
+      <HeroSection norma={n} />
+      <StatsBand norma={n} />
+      <RequisitosSection norma={n} />
+      <AplicaSection norma={n} />
+      <ComoGestionaSection norma={n} />
+      <CTASection norma={n} />
     </>
   )
 }
