@@ -21,14 +21,17 @@ const STAT_IMAGES = [
   },
 ]
 
+const NAV_ICONS = [
+  'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+  'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2',
+  'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+  'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z',
+]
+
 function PlatformMockup() {
-  const navItems = [
-    { label: 'Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-    { label: 'Agente IA', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2' },
-    { label: 'Auditorías', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
-    { label: 'Documentación', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
-    { label: 'No conformidades', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
-  ]
+  const { t } = useLanguage()
+  const m = t.mockup
 
   return (
     <div className="w-full h-full flex flex-col bg-white rounded-xl overflow-hidden border border-[#e8e8e8] shadow-xl shadow-black/10">
@@ -46,17 +49,17 @@ function PlatformMockup() {
           <div className="px-4 mb-3">
             <span className="text-[#1f2020] font-bold text-sm">consultto</span>
           </div>
-          {navItems.map((item, i) => (
+          {m.sidebar.slice(0, 5).map((label, i) => (
             <div
-              key={item.label}
+              key={i}
               className={`flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-xs font-medium transition-colors ${
                 i === 0 ? 'bg-[#763d50] text-white' : 'text-[#3a3a3a]/50 hover:bg-[#f0f0f0]'
               }`}
             >
               <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+                <path strokeLinecap="round" strokeLinejoin="round" d={NAV_ICONS[i]} />
               </svg>
-              {item.label}
+              {label}
             </div>
           ))}
         </div>
@@ -64,17 +67,13 @@ function PlatformMockup() {
         <div className="flex-1 flex flex-col p-4 gap-3 overflow-hidden">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-[#1f2020] font-bold text-sm">Bienvenida, María</h3>
-              <p className="text-[#3a3a3a]/50 text-xs">Manufactura del Norte S.A. de C.V.</p>
+              <h3 className="text-[#1f2020] font-bold text-sm">{m.dashboard.welcome}</h3>
+              <p className="text-[#3a3a3a]/50 text-xs">{m.dashboard.company}</p>
             </div>
-            <div className="bg-[#763d50] text-white text-xs px-2.5 py-1 rounded-full font-medium">ISO 9001:2015</div>
+            <div className="bg-[#763d50] text-white text-xs px-2.5 py-1 rounded-full font-medium">{m.dashboard.badge}</div>
           </div>
           <div className="grid grid-cols-3 gap-2">
-            {[
-              { value: '24', label: 'Documentos activos' },
-              { value: '12 días', label: 'Auditoría próxima' },
-              { value: '3', label: 'No conformidades abiertas' },
-            ].map((s) => (
+            {m.dashboard.stats.map((s) => (
               <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-lg p-2.5">
                 <div className="text-[#1f2020] font-black text-base">{s.value}</div>
                 <div className="text-[#3a3a3a]/50 text-xs mt-0.5">{s.label}</div>
@@ -84,14 +83,14 @@ function PlatformMockup() {
           <div className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-lg p-3 flex-1">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-pulse" />
-              <span className="text-[#763d50] text-xs font-semibold uppercase tracking-widest">Agente IA</span>
+              <span className="text-[#763d50] text-xs font-semibold uppercase tracking-widest">{m.dashboard.agentLabel}</span>
             </div>
             <p className="text-[#3a3a3a]/70 text-xs leading-relaxed">
-              Tu auditoría interna está en 12 días. Identifiqué 4 procedimientos que requieren actualización. ¿Revisamos el plan?
+              {m.dashboard.agentMessage}
             </p>
             <div className="flex gap-2 mt-2.5">
-              <div className="bg-[#763d50]/10 border border-[#763d50]/30 text-[#763d50] text-xs px-2.5 py-1 rounded-full">Ver plan</div>
-              <div className="bg-white border border-[#e8e8e8] text-[#3a3a3a]/50 text-xs px-2.5 py-1 rounded-full">Después</div>
+              <div className="bg-[#763d50]/10 border border-[#763d50]/30 text-[#763d50] text-xs px-2.5 py-1 rounded-full">{m.dashboard.viewPlan}</div>
+              <div className="bg-white border border-[#e8e8e8] text-[#3a3a3a]/50 text-xs px-2.5 py-1 rounded-full">{m.dashboard.later}</div>
             </div>
           </div>
         </div>
@@ -308,8 +307,8 @@ export function StatsSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[#1f2020] text-sm font-semibold">Soporte para más de 16 normas internacionales</p>
-                  <p className="text-[#3a3a3a]/50 text-xs mt-0.5">ISO 9001, IATF, FSSC 22000, AS9100 y más — en un solo sistema</p>
+                  <p className="text-[#1f2020] text-sm font-semibold">{t.stats.badge.title}</p>
+                  <p className="text-[#3a3a3a]/50 text-xs mt-0.5">{t.stats.badge.subtitle}</p>
                 </div>
               </div>
             </div>

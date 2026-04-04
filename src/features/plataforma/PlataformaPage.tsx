@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 // ---------------------------------------------------------------------------
 // SVG icon paths (Heroicons outline style)
@@ -74,6 +75,7 @@ function Icon({
 // Section 1 — Hero
 // ---------------------------------------------------------------------------
 function HeroSection() {
+  const { t } = useLanguage()
   const COLS = 7
   const ROWS = 12          // 2× rows for seamless loop
   const TOTAL = COLS * ROWS // 84 tiles
@@ -82,26 +84,7 @@ function HeroSection() {
   const shimmerDurations = [3.2, 4.1, 3.7, 5.0, 4.5, 3.9, 4.8, 3.4, 5.2]
   const shimmerDelays = [0, 0.8, 1.6, 0.4, 1.2, 2.0, 0.6, 1.4, 2.4]
 
-  const AGENT_ACTIONS = [
-    'Analiza cláusulas ISO',
-    'Genera plan de auditoría',
-    'Detecta brechas',
-    'Redacta procedimientos',
-    'Cierra No conformidades',
-    'Revisa evidencias',
-    'Prepara auditoría',
-    'Actualiza documentos',
-    'Evalúa riesgos',
-    'Verifica cumplimiento',
-    'Genera registros',
-    'Notifica vencimientos',
-    'Analiza no conformidades',
-    'Sugiere mejoras',
-    'Revisa cláusula 7.2',
-    'Monitorea indicadores',
-    'Crea matriz de riesgos',
-    'Valida evidencias',
-  ]
+  const AGENT_ACTIONS = t.plataforma.hero.agentActions
 
   return (
     <section
@@ -168,16 +151,12 @@ function HeroSection() {
 
       {/* Hero content — anchored to bottom */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        {/* Badge pill */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1f2020] leading-tight mb-6">
-          El sistema de gestión que{' '}
-          <span className="text-[#763d50]">tu organización necesita</span>
+          {t.plataforma.hero.h1}<span className="text-[#763d50]">{t.plataforma.hero.h1Highlight}</span>
         </h1>
 
         <p className="text-[#3a3a3a]/60 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Documentos, auditorías, riesgos, No conformidades e indicadores en una sola
-          plataforma — respaldada por un Agente IA que entiende tu norma y
-          acompaña a tu equipo en cada etapa.
+          {t.plataforma.hero.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -185,13 +164,13 @@ function HeroSection() {
             href="/signup"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap"
           >
-            Agendar demo gratuita
+            {t.plataforma.hero.cta1}
           </Link>
           <Link
             href="#como-funciona"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm whitespace-nowrap"
           >
-            Hablar con un consultor
+            {t.plataforma.hero.cta2}
           </Link>
         </div>
       </div>
@@ -204,17 +183,14 @@ function HeroSection() {
 // ---------------------------------------------------------------------------
 
 function ProductShowcaseSection() {
+  const { t } = useLanguage()
+  const SHOWCASE_ICONS: IconKey[] = ['document', 'shieldCheck', 'arrowCycle', 'users']
   return (
     <section className="py-16 border-t border-b border-[#efefef]" style={{ background: '#f8f8f8' }}>
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e8e8e8]">
-          {[
-            { icon: 'document' as IconKey, title: 'Un solo sistema', desc: 'Documentos, auditorías, No conformidades e indicadores conectados. Sin módulos aislados.' },
-            { icon: 'shieldCheck' as IconKey, title: 'IA integrada de fábrica', desc: 'El Agente IA conoce tu norma y tu sistema desde el primer día. No es un chatbot genérico.' },
-            { icon: 'arrowCycle' as IconKey, title: 'Implementación en días', desc: 'Sin proyectos de meses. Tu SGC operativo en menos de una semana.' },
-            { icon: 'users' as IconKey, title: 'Consultores incluidos', desc: 'Acceso a expertos certificados que complementan el software cuando los necesitas.' },
-          ].map((item, i) => (
+          {t.plataforma.showcase.items.map((item, i) => ({...item, icon: SHOWCASE_ICONS[i]})).map((item, i) => (
             <div key={i} className="px-8 py-2 first:pl-0 last:pr-0">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-4" style={{ background: 'rgba(118,61,80,0.08)' }}>
                 <Icon name={item.icon} className="w-4 h-4 text-[#763d50]" />
@@ -233,34 +209,14 @@ function ProductShowcaseSection() {
 // Section 3 — Built Different (Rippling style)
 // ---------------------------------------------------------------------------
 
-const NORM_ROWS = [
-  {
-    items: ['ISO 9001:2015', 'ISO 14001:2015', 'ISO 45001:2018', 'ISO 22000:2018', 'ISO 13485:2016', 'IATF 16949:2016', 'ISO 50001:2018', 'ISO 27001:2022', 'ISO 17025:2017', 'ISO 15189:2022'],
-    direction: 'left' as const,
-    speed: 42,
-    accent: false,
-  },
-  {
-    items: ['FSSC 22000 v6', 'BRC Food Issue 9', 'IFS Food v8', 'SQF Edition 9', 'HACCP', 'GMP Farmacéutica', 'AS9100 Rev D', 'NADCAP', 'OHSAS 18001', 'GMP Cosméticos'],
-    direction: 'right' as const,
-    speed: 36,
-    accent: true,
-  },
+const PILL_ROW_CONFIG = [
+  { direction: 'left' as const, speed: 42, accent: false },
+  { direction: 'right' as const, speed: 36, accent: true },
 ]
 
-const INDUSTRY_ROWS = [
-  {
-    items: ['Industria Alimentaria', 'Manufactura', 'Farmacéutico', 'Automotriz', 'Aeroespacial', 'Construcción', 'Salud y Hospitales', 'Logística', 'Tecnología', 'Energía y Gas'],
-    direction: 'left' as const,
-    speed: 38,
-    accent: false,
-  },
-  {
-    items: ['Minería', 'Petroquímica', 'Textil', 'Electrónica', 'Agroindustria', 'Servicios Financieros', 'Retail', 'Plásticos', 'Papel y Cartón', 'Bebidas'],
-    direction: 'right' as const,
-    speed: 44,
-    accent: true,
-  },
+const INDUSTRY_ROW_CONFIG = [
+  { direction: 'left' as const, speed: 38, accent: false },
+  { direction: 'right' as const, speed: 44, accent: true },
 ]
 
 function PillRow({ items, direction, speed, accent }: { items: string[]; direction: 'left' | 'right'; speed: number; accent: boolean }) {
@@ -290,6 +246,11 @@ function PillRow({ items, direction, speed, accent }: { items: string[]; directi
 }
 
 function BuiltDifferentSection() {
+  const { t } = useLanguage()
+  const cov = t.plataforma.coverage
+  const normRows = cov.normRows.map((items, i) => ({ items: [...items], ...PILL_ROW_CONFIG[i] }))
+  const industryRows = cov.industryRows.map((items, i) => ({ items: [...items], ...INDUSTRY_ROW_CONFIG[i] }))
+
   return (
     <section className="py-28 bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
@@ -298,27 +259,25 @@ function BuiltDifferentSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-20">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[#763d50] mb-4">
-              Cobertura total
+              {cov.eyebrow}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1f2020] leading-tight">
-              Tu norma.<br />Tu industria.<br />Tu Consultto.
+              {cov.h2[0]}<br />{cov.h2[1]}<br />{cov.h2[2]}
             </h2>
           </div>
           <div>
             <p className="text-[#3a3a3a]/60 text-lg leading-relaxed mb-10">
-              Más de 20 normas internacionales, cualquier sector. Consultto se adapta
-              a los requisitos de tu certificación desde el día uno — sin configuraciones
-              complicadas ni implementaciones largas.
+              {cov.description}
             </p>
             <div className="flex gap-10">
               <div>
                 <div className="text-4xl font-bold text-[#1f2020]">20<span className="text-[#763d50]">+</span></div>
-                <div className="text-sm text-[#3a3a3a]/50 mt-1 font-medium">Normas soportadas</div>
+                <div className="text-sm text-[#3a3a3a]/50 mt-1 font-medium">{cov.normsCount}</div>
               </div>
               <div className="w-px bg-[#e8e8e8]" />
               <div>
                 <div className="text-4xl font-bold text-[#1f2020]">30<span className="text-[#763d50]">+</span></div>
-                <div className="text-sm text-[#3a3a3a]/50 mt-1 font-medium">Industrias cubiertas</div>
+                <div className="text-sm text-[#3a3a3a]/50 mt-1 font-medium">{cov.industriesCount}</div>
               </div>
             </div>
           </div>
@@ -332,15 +291,14 @@ function BuiltDifferentSection() {
             <div className="px-6 mb-5">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#763d50]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#763d50] inline-block" />
-                Normas internacionales
+                {cov.normsLabel}
               </span>
             </div>
             <div className="flex flex-col gap-2">
-              {NORM_ROWS.map((row, i) => (
+              {normRows.map((row, i) => (
                 <PillRow key={i} {...row} />
               ))}
             </div>
-            {/* Edge fades */}
             <div className="absolute inset-y-0 left-0 w-10 pointer-events-none bg-gradient-to-r from-[#f8f8f8] to-transparent" />
             <div className="absolute inset-y-0 right-0 w-10 pointer-events-none bg-gradient-to-l from-[#f8f8f8] to-transparent" />
           </div>
@@ -350,15 +308,14 @@ function BuiltDifferentSection() {
             <div className="px-6 mb-5">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#3a3a3a]/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3a3a3a]/40 inline-block" />
-                Industrias
+                {cov.industriesLabel}
               </span>
             </div>
             <div className="flex flex-col gap-2">
-              {INDUSTRY_ROWS.map((row, i) => (
+              {industryRows.map((row, i) => (
                 <PillRow key={i} {...row} />
               ))}
             </div>
-            {/* Edge fades */}
             <div className="absolute inset-y-0 left-0 w-10 pointer-events-none bg-gradient-to-r from-[#f8f8f8] to-transparent" />
             <div className="absolute inset-y-0 right-0 w-10 pointer-events-none bg-gradient-to-l from-[#f8f8f8] to-transparent" />
           </div>
@@ -376,22 +333,19 @@ function BuiltDifferentSection() {
 // --- Close-up mockups ---
 
 function MockupAgenteIA() {
+  const { t } = useLanguage()
+  const m = t.plataforma.mockup.agente
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[#f0f0f0]">
         <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0" style={{ background: '#763d50' }}>IA</div>
         <div>
-          <div className="text-[#1f2020] text-sm font-semibold">Agente IA · ISO 9001:2015</div>
-          <div className="text-[#27c93f] text-[10px] font-medium">● En línea</div>
+          <div className="text-[#1f2020] text-sm font-semibold">{m.title}</div>
+          <div className="text-[#27c93f] text-[10px] font-medium">{m.status}</div>
         </div>
       </div>
       <div className="flex-1 p-5 flex flex-col gap-3 overflow-hidden">
-        {[
-          { from: 'user', text: '¿Cuáles son las brechas más críticas en nuestro SGC?' },
-          { from: 'ai', text: 'Analicé tu sistema. Encontré 3 brechas críticas: (1) Cláusula 7.2 — 4 puestos sin evaluación de competencia documentada. (2) Cláusula 9.1 — sin indicadores definidos para proceso de producción. (3) Cláusula 10.2 — NC-047 lleva 45 días sin cierre.' },
-          { from: 'user', text: '¿Puedes generarme el plan de acción para la cláusula 7.2?' },
-          { from: 'ai', text: 'Claro. Generé el plan: 1) Matriz de competencias por puesto (plazo: 7 días), 2) Evaluaciones pendientes — 4 personas (plazo: 15 días), 3) Evidencia documental en sistema (plazo: 20 días). ¿Lo asigno al responsable de RRHH?' },
-        ].map((msg, i) => (
+        {m.messages.map((msg, i) => (
           <div key={i} className={`flex gap-2.5 ${msg.from === 'user' ? 'flex-row-reverse' : ''}`}>
             {msg.from === 'ai' && <div className="w-6 h-6 rounded-full shrink-0 mt-0.5" style={{ background: '#763d50' }} />}
             <div
@@ -406,7 +360,7 @@ function MockupAgenteIA() {
         ))}
       </div>
       <div className="px-5 py-4 border-t border-[#f0f0f0] flex items-center gap-3">
-        <div className="flex-1 bg-[#f5f5f7] rounded-xl px-4 py-2.5 text-[11px] text-[#bbb]">Pregunta sobre tu norma o sistema…</div>
+        <div className="flex-1 bg-[#f5f5f7] rounded-xl px-4 py-2.5 text-[11px] text-[#bbb]">{m.placeholder}</div>
         <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: '#763d50' }}>
           <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
         </div>
@@ -416,25 +370,20 @@ function MockupAgenteIA() {
 }
 
 function MockupDocumentos() {
-  const docs = [
-    { name: 'Manual de Calidad', code: 'MC-001', ver: 'v12', vigencia: '15 dic 2025', status: 'Vigente', color: '#27c93f' },
-    { name: 'Política de Calidad', code: 'PO-001', ver: 'v3', vigencia: '30 jun 2025', status: 'En revisión', color: '#ffbd2e' },
-    { name: 'Proc. Control Documentos', code: 'PR-001', ver: 'v8', vigencia: '01 mar 2026', status: 'Vigente', color: '#27c93f' },
-    { name: 'Proc. Auditorías Internas', code: 'PR-004', ver: 'v5', vigencia: '15 sep 2025', status: 'Aprobado', color: '#27c93f' },
-    { name: 'Matriz de Riesgos', code: 'RE-007', ver: 'v6', vigencia: '10 abr 2025', status: 'Por vencer', color: '#ff5f56' },
-    { name: 'Instructivo Calibración', code: 'IT-012', ver: 'v4', vigencia: '01 ene 2026', status: 'Vigente', color: '#27c93f' },
-  ]
+  const { t } = useLanguage()
+  const m = t.plataforma.mockup.documentos
+  const docs = m.docs
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0f0f0]">
-        <span className="text-[#1f2020] font-semibold text-sm">Gestión Documental</span>
+        <span className="text-[#1f2020] font-semibold text-sm">{m.title}</span>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] bg-[#ff5f56]/10 text-[#ff5f56] font-semibold px-2.5 py-1 rounded-full">1 por vencer</span>
+          <span className="text-[10px] bg-[#ff5f56]/10 text-[#ff5f56] font-semibold px-2.5 py-1 rounded-full">{m.expiring}</span>
           <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#763d50] text-white text-[11px] font-bold cursor-default">+</div>
         </div>
       </div>
       <div className="flex items-center gap-3 px-5 py-3 border-b border-[#fafafa] bg-[#fafafa]">
-        {['Código', 'Nombre', 'Versión', 'Vigencia', 'Estado'].map(h => (
+        {m.headers.map(h => (
           <div key={h} className={`text-[9px] font-bold uppercase tracking-wider text-[#bbb] ${h === 'Nombre' ? 'flex-1' : 'w-20 shrink-0'}`}>{h}</div>
         ))}
       </div>
@@ -456,27 +405,21 @@ function MockupDocumentos() {
 }
 
 function MockupAuditorias() {
-  const clausulas = [
-    { num: '4.1', name: 'Contexto de la organización', ok: true, findings: 0 },
-    { num: '4.2', name: 'Partes interesadas', ok: true, findings: 0 },
-    { num: '6.1', name: 'Riesgos y oportunidades', ok: true, findings: 1 },
-    { num: '7.2', name: 'Competencia del personal', ok: false, findings: 2 },
-    { num: '8.1', name: 'Planificación y control operacional', ok: false, findings: 0 },
-    { num: '9.1', name: 'Seguimiento y medición', ok: false, findings: 0 },
-    { num: '10.2', name: 'No conformidades', ok: false, findings: 0 },
-  ]
+  const { t } = useLanguage()
+  const m = t.plataforma.mockup.auditorias
+  const clausulas = m.clauses
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0f0f0]">
         <div>
-          <div className="text-[#1f2020] font-semibold text-sm">Auditoría Interna Q2 · 2025</div>
-          <div className="text-[#999] text-[10px] mt-0.5">ISO 9001:2015 · Auditor: M. García</div>
+          <div className="text-[#1f2020] font-semibold text-sm">{m.title}</div>
+          <div className="text-[#999] text-[10px] mt-0.5">{m.subtitle}</div>
         </div>
-        <span className="text-[10px] bg-[#ffbd2e]/15 text-[#b8860b] font-semibold px-2.5 py-1 rounded-full">En progreso</span>
+        <span className="text-[10px] bg-[#ffbd2e]/15 text-[#b8860b] font-semibold px-2.5 py-1 rounded-full">{m.statusBadge}</span>
       </div>
       <div className="px-5 py-3 border-b border-[#f5f5f5]">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[10px] text-[#999]">Progreso general</span>
+          <span className="text-[10px] text-[#999]">{m.progressLabel}</span>
           <span className="text-[10px] font-bold text-[#763d50]">43%</span>
         </div>
         <div className="h-2 rounded-full bg-[#f0f0f0] overflow-hidden">
@@ -504,25 +447,22 @@ function MockupAuditorias() {
 }
 
 function MockupCAPA() {
+  const { t } = useLanguage()
+  const m = t.plataforma.mockup.capa
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0f0f0]">
         <div>
-          <div className="text-[#1f2020] font-semibold text-sm">NC-047 · Desviación en sellado</div>
-          <div className="text-[#999] text-[10px] mt-0.5">Abierta: 12 feb 2025 · Vence: 28 abr 2025</div>
+          <div className="text-[#1f2020] font-semibold text-sm">{m.title}</div>
+          <div className="text-[#999] text-[10px] mt-0.5">{m.subtitle}</div>
         </div>
-        <span className="text-[10px] bg-[#ffbd2e]/15 text-[#b8860b] font-semibold px-2.5 py-1 rounded-full">En progreso</span>
+        <span className="text-[10px] bg-[#ffbd2e]/15 text-[#b8860b] font-semibold px-2.5 py-1 rounded-full">{m.statusBadge}</span>
       </div>
       <div className="flex-1 overflow-hidden p-5 flex flex-col gap-4">
-        {[
-          { step: '1', label: 'Descripción del problema', done: true, content: 'Sellado deficiente en línea 3 detectado en auditoría de proceso. Afecta lotes del 10–14 feb.' },
-          { step: '2', label: 'Análisis de causa raíz (5 Porqués)', done: true, content: 'Causa raíz: temperatura de selladora fuera de rango por sensor descalibrado. Calibración EQ-07 vencida.' },
-          { step: '3', label: 'Plan de acción correctiva', done: true, content: '1) Recalibrar EQ-07 (hecho). 2) Revisar lotes afectados. 3) Actualizar frecuencia de calibración en procedimiento.' },
-          { step: '4', label: 'Verificación de eficacia', done: false, content: 'Pendiente — Próxima auditoría: 28 abr 2025' },
-        ].map(item => (
-          <div key={item.step} className="flex gap-3">
+        {m.steps.map((item, idx) => (
+          <div key={idx} className="flex gap-3">
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 ${item.done ? 'bg-[#763d50] text-white' : 'border-2 border-[#e0e0e0] text-[#bbb]'}`}>
-              {item.done ? '✓' : item.step}
+              {item.done ? '✓' : idx + 1}
             </div>
             <div className="flex-1">
               <div className={`text-[11px] font-semibold mb-1 ${item.done ? 'text-[#1f2020]' : 'text-[#ccc]'}`}>{item.label}</div>
@@ -536,17 +476,15 @@ function MockupCAPA() {
 }
 
 function MockupIndicadores() {
-  const kpis = [
-    { label: 'Índice CMS', value: '94%', change: '+3%', bars: [72, 78, 80, 85, 88, 91, 94] },
-    { label: 'No conformidades cerradas / mes', value: '8', change: '+2', bars: [4, 5, 6, 5, 7, 6, 8] },
-    { label: 'Documentos vigentes', value: '97%', change: '+1%', bars: [90, 91, 93, 93, 95, 96, 97] },
-  ]
+  const { t } = useLanguage()
+  const m = t.plataforma.mockup.indicadores
+  const kpis = m.kpis
   const maxBar = 100
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-[#e8e8e8]">
       <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0f0f0]">
-        <span className="text-[#1f2020] font-semibold text-sm">Indicadores del SGC</span>
-        <span className="text-[10px] text-[#999]">Últimos 7 meses</span>
+        <span className="text-[#1f2020] font-semibold text-sm">{m.title}</span>
+        <span className="text-[10px] text-[#999]">{m.period}</span>
       </div>
       <div className="flex-1 overflow-hidden p-5 flex flex-col gap-5">
         {kpis.map(kpi => (
@@ -573,48 +511,13 @@ function MockupIndicadores() {
   )
 }
 
-// --- Feature tabs ---
-
-const FEATURES = [
-  {
-    id: 'agente',
-    label: 'Agente IA',
-    icon: 'shieldCheck' as IconKey,
-    description: 'Tu experto 24/7 que conoce tu norma, detecta brechas y genera planes de acción.',
-    mockup: <MockupAgenteIA />,
-  },
-  {
-    id: 'documentos',
-    label: 'Gestión documental',
-    icon: 'document' as IconKey,
-    description: 'Documentos versionados, aprobaciones digitales y alertas de vencimiento automáticas.',
-    mockup: <MockupDocumentos />,
-  },
-  {
-    id: 'auditorias',
-    label: 'Auditorías',
-    icon: 'magnifier' as IconKey,
-    description: 'Planifica, ejecuta y da seguimiento a auditorías internas y externas por cláusula.',
-    mockup: <MockupAuditorias />,
-  },
-  {
-    id: 'capa',
-    label: 'No conformidades',
-    icon: 'arrowCycle' as IconKey,
-    description: 'Acciones correctivas con análisis de causa raíz, seguimiento y cierre verificado.',
-    mockup: <MockupCAPA />,
-  },
-  {
-    id: 'indicadores',
-    label: 'Indicadores',
-    icon: 'chartBar' as IconKey,
-    description: 'KPIs y dashboards en tiempo real para decisiones basadas en datos reales.',
-    mockup: <MockupIndicadores />,
-  },
-]
+const FEATURE_ICONS: IconKey[] = ['shieldCheck', 'document', 'magnifier', 'arrowCycle', 'chartBar']
+const FEATURE_MOCKUPS = [<MockupAgenteIA key="a" />, <MockupDocumentos key="d" />, <MockupAuditorias key="au" />, <MockupCAPA key="c" />, <MockupIndicadores key="i" />]
 
 function CapabilitiesSection() {
+  const { t } = useLanguage()
   const [active, setActive] = useState(0)
+  const cap = t.plataforma.capabilities
 
   return (
     <section id="funcionalidades" className="py-28 bg-white">
@@ -622,9 +525,9 @@ function CapabilitiesSection() {
 
         {/* Header */}
         <div className="mb-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#763d50] mb-4">Funcionalidades</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#763d50] mb-4">{cap.eyebrow}</p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#1f2020] leading-tight">
-            Cada módulo,<br />diseñado para certificar.
+            {cap.titleLine1}<br />{cap.titleLine2}
           </h2>
         </div>
 
@@ -633,9 +536,9 @@ function CapabilitiesSection() {
 
           {/* Left: feature list */}
           <div className="lg:col-span-2 flex flex-col gap-1">
-            {FEATURES.map((f, i) => (
+            {cap.features.map((f, i) => (
               <button
-                key={f.id}
+                key={i}
                 onClick={() => setActive(i)}
                 className={`text-left rounded-2xl px-5 py-4 transition-all duration-200 group ${
                   active === i ? 'bg-[#f8f4f5] border border-[#e8d8dc]' : 'hover:bg-[#fafafa] border border-transparent'
@@ -643,7 +546,7 @@ function CapabilitiesSection() {
               >
                 <div className="flex items-center gap-3 mb-1.5">
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${active === i ? 'bg-[#763d50]' : 'bg-[#f0f0f0] group-hover:bg-[#ebebeb]'}`}>
-                    <Icon name={f.icon} className={`w-3.5 h-3.5 ${active === i ? 'text-white' : 'text-[#999]'}`} />
+                    <Icon name={FEATURE_ICONS[i]} className={`w-3.5 h-3.5 ${active === i ? 'text-white' : 'text-[#999]'}`} />
                   </div>
                   <span className={`text-sm font-semibold transition-colors ${active === i ? 'text-[#763d50]' : 'text-[#1f2020]'}`}>{f.label}</span>
                 </div>
@@ -656,7 +559,7 @@ function CapabilitiesSection() {
 
           {/* Right: close-up mockup */}
           <div className="lg:col-span-3" style={{ height: '480px' }}>
-            {FEATURES[active].mockup}
+            {FEATURE_MOCKUPS[active]}
           </div>
 
         </div>
@@ -669,31 +572,32 @@ function CapabilitiesSection() {
 // Section 4 — CTA
 // ---------------------------------------------------------------------------
 function CTASection() {
+  const { t } = useLanguage()
+  const cta = t.plataforma.cta
   return (
     <section className="py-24 bg-white border-t border-[#efefef]">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-[#763d50] mb-4">
-          Empieza hoy
+          {cta.eyebrow}
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[#1f2020] leading-tight mb-6">
-          Tu primera auditoría aprobada te espera.
+          {cta.title}
         </h2>
         <p className="text-[#3a3a3a]/55 text-lg mb-10 leading-relaxed">
-          Únete a las empresas que ya gestionan su calidad con inteligencia. Sin
-          implementaciones largas, sin curva de aprendizaje interminable.
+          {cta.subtitle}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/contacto"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap"
           >
-            Agendar demo gratuita
+            {cta.cta1}
           </Link>
           <Link
             href="#funcionalidades"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap"
           >
-            Hablar con un consultor
+            {cta.cta2}
           </Link>
         </div>
       </div>

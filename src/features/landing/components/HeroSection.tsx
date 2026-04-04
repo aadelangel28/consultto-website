@@ -6,22 +6,18 @@ import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 // ─── Screen contents ────────────────────────────────────────────────────────
 
-function DashboardScreen() {
+function DashboardScreen({ m }: { m: { welcome: string; company: string; badge: string; stats: readonly { value: string; label: string }[]; agentLabel: string; agentMessage: string; viewPlan: string; later: string } }) {
   return (
     <div className="flex-1 p-6 flex flex-col gap-4">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-[#1f2020] font-bold text-base">Bienvenida, María</h3>
-          <p className="text-[#3a3a3a]/50 text-xs">Manufactura del Norte S.A. de C.V.</p>
+          <h3 className="text-[#1f2020] font-bold text-base">{m.welcome}</h3>
+          <p className="text-[#3a3a3a]/50 text-xs">{m.company}</p>
         </div>
-        <div className="bg-[#763d50] text-white text-xs px-3 py-1 rounded-full font-medium">ISO 9001:2015</div>
+        <div className="bg-[#763d50] text-white text-xs px-3 py-1 rounded-full font-medium">{m.badge}</div>
       </div>
       <div className="grid grid-cols-3 gap-3">
-        {[
-          { value: '24', label: 'Documentos activos' },
-          { value: '12 días', label: 'Auditoría próxima' },
-          { value: '3', label: 'No conformidades abiertas' },
-        ].map((s) => (
+        {m.stats.map((s) => (
           <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3">
             <div className="text-[#1f2020] font-black text-xl">{s.value}</div>
             <div className="text-[#3a3a3a]/50 text-xs mt-0.5">{s.label}</div>
@@ -31,108 +27,91 @@ function DashboardScreen() {
       <div className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-4 flex-1">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-pulse" />
-          <span className="text-[#763d50] text-xs font-semibold uppercase tracking-widest">Agente IA</span>
+          <span className="text-[#763d50] text-xs font-semibold uppercase tracking-widest">{m.agentLabel}</span>
         </div>
         <p className="text-[#3a3a3a]/70 text-xs leading-relaxed">
-          Tu auditoría interna está en 12 días. Identifiqué 4 procedimientos que requieren actualización. ¿Revisamos el plan?
+          {m.agentMessage}
         </p>
         <div className="flex gap-2 mt-3">
-          <div className="bg-[#763d50]/10 border border-[#763d50]/30 text-[#763d50] text-xs px-3 py-1 rounded-full cursor-pointer">Ver plan</div>
-          <div className="bg-white border border-[#e8e8e8] text-[#3a3a3a]/50 text-xs px-3 py-1 rounded-full cursor-pointer">Después</div>
+          <div className="bg-[#763d50]/10 border border-[#763d50]/30 text-[#763d50] text-xs px-3 py-1 rounded-full cursor-pointer">{m.viewPlan}</div>
+          <div className="bg-white border border-[#e8e8e8] text-[#3a3a3a]/50 text-xs px-3 py-1 rounded-full cursor-pointer">{m.later}</div>
         </div>
       </div>
     </div>
   )
 }
 
-function AgenteIAScreen() {
+function AgenteIAScreen({ m }: { m: { title: string; subtitle: string; generating: string; messages: readonly { from: string; text: string }[] } }) {
   return (
     <div className="flex-1 p-5 flex flex-col gap-3">
       <div className="flex items-center justify-between mb-1">
         <div>
-          <h3 className="text-[#1f2020] font-bold text-base">Agente IA</h3>
-          <p className="text-[#3a3a3a]/50 text-xs">Especialista en ISO 9001</p>
+          <h3 className="text-[#1f2020] font-bold text-base">{m.title}</h3>
+          <p className="text-[#3a3a3a]/50 text-xs">{m.subtitle}</p>
         </div>
         <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
       </div>
       <div className="flex-1 flex flex-col gap-2.5 overflow-hidden">
-        {/* Cliente — derecha */}
-        <div className="bg-[#f8f8f8] rounded-xl rounded-tr-sm px-4 py-3 max-w-[85%] self-end">
-          <p className="text-xs text-[#3a3a3a]/80 leading-relaxed">¿Qué documentos necesito actualizar antes de la auditoría de ISO 9001?</p>
-        </div>
-        {/* Agente — izquierda */}
-        <div className="bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl rounded-tl-sm px-4 py-3 max-w-[90%]">
-          <p className="text-xs text-[#1f2020] leading-relaxed">Basado en tu sistema actual, tienes 4 documentos críticos: Manual de Calidad (v2.1 → v2.2), Procedimiento de Auditorías Internas, Registro de No Conformidades y la Política de Calidad. ¿Quieres que prepare un checklist?</p>
-        </div>
-        {/* Cliente — derecha */}
-        <div className="bg-[#f8f8f8] rounded-xl rounded-tr-sm px-4 py-3 max-w-[75%] self-end">
-          <p className="text-xs text-[#3a3a3a]/80 leading-relaxed">Sí, genera el checklist por favor.</p>
-        </div>
-        {/* Agente — izquierda */}
+        {m.messages.map((msg, i) => (
+          <div key={i} className={`bg-${msg.from === 'user' ? '[#f8f8f8] rounded-xl rounded-tr-sm px-4 py-3 max-w-[85%] self-end' : '[#763d50]/8 border border-[#763d50]/15 rounded-xl rounded-tl-sm px-4 py-3 max-w-[90%]'}`}>
+            <p className={`text-xs leading-relaxed ${msg.from === 'user' ? 'text-[#3a3a3a]/80' : 'text-[#1f2020]'}`}>{msg.text}</p>
+          </div>
+        ))}
+        {/* Typing indicator */}
         <div className="flex items-center gap-2 bg-[#763d50]/8 border border-[#763d50]/15 rounded-xl px-4 py-2.5 max-w-[70%]">
           <div className="flex gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-bounce" style={{ animationDelay: '0ms' }} />
             <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-bounce" style={{ animationDelay: '150ms' }} />
             <div className="w-1.5 h-1.5 rounded-full bg-[#763d50] animate-bounce" style={{ animationDelay: '300ms' }} />
           </div>
-          <span className="text-xs text-[#763d50]/70">Generando...</span>
+          <span className="text-xs text-[#763d50]/70">{m.generating}</span>
         </div>
       </div>
     </div>
   )
 }
 
-function AuditoriasScreen() {
-  const audits = [
-    { name: 'Auditoría Interna Q1', date: '06 Abr', status: 'Programada', color: 'bg-blue-50 text-blue-600 border-blue-200' },
-    { name: 'Revisión por la Dirección', date: '15 Abr', status: 'En preparación', color: 'bg-amber-50 text-amber-600 border-amber-200' },
-    { name: 'Auditoría de Certificación', date: '28 Abr', status: 'Pendiente', color: 'bg-[#f8f8f8] text-[#3a3a3a]/50 border-[#e8e8e8]' },
-    { name: 'Auditoría Interna Q4 2024', date: '12 Dic', status: 'Completada', color: 'bg-green-50 text-green-600 border-green-200' },
-  ]
+const AUDIT_COLORS = ['bg-blue-50 text-blue-600 border-blue-200', 'bg-amber-50 text-amber-600 border-amber-200', 'bg-[#f8f8f8] text-[#3a3a3a]/50 border-[#e8e8e8]', 'bg-green-50 text-green-600 border-green-200']
+
+function AuditoriasScreen({ m }: { m: { title: string; newBtn: string; items: readonly { name: string; date: string; status: string }[]; upcomingLabel: string; completedLabel: string } }) {
   return (
     <div className="flex-1 p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-[#1f2020] font-bold text-base">Auditorías</h3>
-        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Nueva</button>
+        <h3 className="text-[#1f2020] font-bold text-base">{m.title}</h3>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">{m.newBtn}</button>
       </div>
       <div className="flex flex-col gap-2">
-        {audits.map((a) => (
-          <div key={a.name} className="flex items-center justify-between bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-2.5">
+        {m.items.map((a, i) => (
+          <div key={i} className="flex items-center justify-between bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-2.5">
             <div>
               <div className="text-[#1f2020] text-xs font-semibold">{a.name}</div>
               <div className="text-[#3a3a3a]/40 text-xs">{a.date}</div>
             </div>
-            <span className={`text-xs px-2.5 py-1 rounded-full border font-medium ${a.color}`}>{a.status}</span>
+            <span className={`text-xs px-2.5 py-1 rounded-full border font-medium ${AUDIT_COLORS[i]}`}>{a.status}</span>
           </div>
         ))}
       </div>
       <div className="mt-auto flex items-center gap-4 pt-2 border-t border-[#e8e8e8]">
-        <div className="text-xs text-[#3a3a3a]/50"><span className="font-bold text-[#763d50]">3</span> próximas</div>
-        <div className="text-xs text-[#3a3a3a]/50"><span className="font-bold text-green-500">1</span> completada</div>
+        <div className="text-xs text-[#3a3a3a]/50"><span className="font-bold text-[#763d50]">3</span> {m.upcomingLabel}</div>
+        <div className="text-xs text-[#3a3a3a]/50"><span className="font-bold text-green-500">1</span> {m.completedLabel}</div>
       </div>
     </div>
   )
 }
 
-function DocumentacionScreen() {
-  const docs = [
-    { name: 'Manual de Calidad', type: 'Manual', version: 'v2.1', status: 'Vigente', statusColor: 'text-green-600' },
-    { name: 'Proc. Auditorías Internas', type: 'Procedimiento', version: 'v1.3', status: 'En revisión', statusColor: 'text-amber-600' },
-    { name: 'Política de Calidad', type: 'Política', version: 'v1.0', status: 'Vigente', statusColor: 'text-green-600' },
-    { name: 'Reg. No Conformidades', type: 'Registro', version: 'v2.0', status: 'Vigente', statusColor: 'text-green-600' },
-  ]
+function DocumentacionScreen({ m }: { m: { title: string; newBtn: string; searchPlaceholder: string; docs: readonly { name: string; type: string; version: string; status: string; statusColor: string }[] } }) {
   return (
     <div className="flex-1 p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-[#1f2020] font-bold text-base">Documentación</h3>
-        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Nuevo</button>
+        <h3 className="text-[#1f2020] font-bold text-base">{m.title}</h3>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">{m.newBtn}</button>
       </div>
       <div className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-3 py-2 flex items-center gap-2">
         <svg className="w-3.5 h-3.5 text-[#3a3a3a]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" /></svg>
-        <span className="text-xs text-[#3a3a3a]/30">Buscar documentos...</span>
+        <span className="text-xs text-[#3a3a3a]/30">{m.searchPlaceholder}</span>
       </div>
       <div className="flex flex-col gap-1.5">
-        {docs.map((d) => (
+        {m.docs.map((d) => (
           <div key={d.name} className="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors">
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 bg-[#763d50]/10 rounded-lg flex items-center justify-center">
@@ -151,38 +130,32 @@ function DocumentacionScreen() {
   )
 }
 
-function CAPAScreen() {
-  const capas = [
-    { id: 'NC-024', desc: 'Producto no conforme en línea 3', priority: 'Alta', priorityColor: 'bg-red-50 text-red-600 border-red-200', status: 'Abierta' },
-    { id: 'NC-023', desc: 'Procedimiento desactualizado', priority: 'Media', priorityColor: 'bg-amber-50 text-amber-600 border-amber-200', status: 'En proceso' },
-    { id: 'NC-022', desc: 'Falta de calibración en equipo', priority: 'Baja', priorityColor: 'bg-blue-50 text-blue-600 border-blue-200', status: 'Cerrada' },
-  ]
+const CAPA_COLORS = ['bg-red-50 text-red-600 border-red-200', 'bg-amber-50 text-amber-600 border-amber-200', 'bg-blue-50 text-blue-600 border-blue-200']
+const CAPA_STAT_COLORS = ['text-red-500', 'text-amber-500', 'text-green-500']
+
+function CAPAScreen({ m }: { m: { title: string; newBtn: string; stats: readonly { label: string; value: string }[]; items: readonly { id: string; desc: string; priority: string }[] } }) {
   return (
     <div className="flex-1 p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-[#1f2020] font-bold text-base">Acciones Correctivas</h3>
-        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Nueva No conformidad</button>
+        <h3 className="text-[#1f2020] font-bold text-base">{m.title}</h3>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">{m.newBtn}</button>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {[
-          { label: 'Abiertas', value: '3', color: 'text-red-500' },
-          { label: 'En proceso', value: '5', color: 'text-amber-500' },
-          { label: 'Cerradas', value: '18', color: 'text-green-500' },
-        ].map((s) => (
-          <div key={s.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3 text-center">
-            <div className={`font-black text-xl ${s.color}`}>{s.value}</div>
+        {m.stats.map((s, i) => (
+          <div key={i} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3 text-center">
+            <div className={`font-black text-xl ${CAPA_STAT_COLORS[i]}`}>{s.value}</div>
             <div className="text-[#3a3a3a]/50 text-xs">{s.label}</div>
           </div>
         ))}
       </div>
       <div className="flex flex-col gap-2">
-        {capas.map((c) => (
+        {m.items.map((c, i) => (
           <div key={c.id} className="flex items-center justify-between bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-2.5 gap-3">
             <div className="flex-1 min-w-0">
               <div className="text-[#3a3a3a]/40 text-xs font-mono">{c.id}</div>
               <div className="text-[#1f2020] text-xs font-semibold truncate">{c.desc}</div>
             </div>
-            <span className={`text-xs px-2 py-0.5 rounded-full border font-medium shrink-0 ${c.priorityColor}`}>{c.priority}</span>
+            <span className={`text-xs px-2 py-0.5 rounded-full border font-medium shrink-0 ${CAPA_COLORS[i]}`}>{c.priority}</span>
           </div>
         ))}
       </div>
@@ -190,45 +163,37 @@ function CAPAScreen() {
   )
 }
 
-function MejoraContinuaScreen() {
-  const objetivos = [
-    { title: 'Reducir no conformidades en planta', progress: 72, meta: '< 5 / mes', actual: '3 este mes', color: 'bg-green-400' },
-    { title: 'Tiempo de cierre de hallazgos', progress: 55, meta: '< 15 días', actual: '18 días prom.', color: 'bg-amber-400' },
-    { title: 'Documentos vigentes al 100%', progress: 88, meta: '100%', actual: '88% vigentes', color: 'bg-[#763d50]' },
-  ]
+const MC_STAT_COLORS = ['text-[#763d50]', 'text-amber-500', 'text-green-500']
+const MC_OBJ_COLORS = ['bg-green-400', 'bg-amber-400', 'bg-[#763d50]']
+
+function MejoraContinuaScreen({ m }: { m: { title: string; newBtn: string; stats: readonly { label: string; value: string }[]; metaLabel: string; objectives: readonly { title: string; progress: number; meta: string; actual: string }[] } }) {
   return (
     <div className="flex-1 p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-[#1f2020] font-bold text-base">Mejora Continua</h3>
-        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">+ Objetivo</button>
+        <h3 className="text-[#1f2020] font-bold text-base">{m.title}</h3>
+        <button className="bg-[#763d50] text-white text-xs px-3 py-1.5 rounded-lg font-medium">{m.newBtn}</button>
       </div>
-      {/* KPI cards */}
       <div className="grid grid-cols-3 gap-2">
-        {[
-          { label: 'Objetivos activos', value: '4', color: 'text-[#763d50]' },
-          { label: 'En seguimiento', value: '2', color: 'text-amber-500' },
-          { label: 'Completados', value: '7', color: 'text-green-500' },
-        ].map((k) => (
-          <div key={k.label} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3 text-center">
-            <div className={`font-black text-xl ${k.color}`}>{k.value}</div>
+        {m.stats.map((k, i) => (
+          <div key={i} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl p-3 text-center">
+            <div className={`font-black text-xl ${MC_STAT_COLORS[i]}`}>{k.value}</div>
             <div className="text-[#3a3a3a]/50 text-xs leading-tight mt-0.5">{k.label}</div>
           </div>
         ))}
       </div>
-      {/* Objetivos con barra de progreso */}
       <div className="flex flex-col gap-3">
-        {objetivos.map((o) => (
-          <div key={o.title} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-3">
+        {m.objectives.map((o, i) => (
+          <div key={i} className="bg-[#f8f8f8] border border-[#e8e8e8] rounded-xl px-4 py-3">
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-[#1f2020] text-xs font-semibold truncate pr-2">{o.title}</span>
               <span className="text-[#3a3a3a]/40 text-xs shrink-0">{o.actual}</span>
             </div>
             <div className="w-full bg-[#e8e8e8] rounded-full h-1.5">
-              <div className={`h-1.5 rounded-full ${o.color}`} style={{ width: `${o.progress}%` }} />
+              <div className={`h-1.5 rounded-full ${MC_OBJ_COLORS[i]}`} style={{ width: `${o.progress}%` }} />
             </div>
             <div className="flex justify-between mt-1">
               <span className="text-[#3a3a3a]/30 text-xs">{o.progress}%</span>
-              <span className="text-[#3a3a3a]/30 text-xs">Meta: {o.meta}</span>
+              <span className="text-[#3a3a3a]/30 text-xs">{m.metaLabel} {o.meta}</span>
             </div>
           </div>
         ))}
@@ -237,22 +202,13 @@ function MejoraContinuaScreen() {
   )
 }
 
-// ─── Screens config ──────────────────────────────────────────────────────────
-
-const screens = [
-  { id: 'dashboard', label: 'Dashboard', content: DashboardScreen },
-  { id: 'documentacion', label: 'Documentación', content: DocumentacionScreen },
-  { id: 'auditorias', label: 'Auditorías', content: AuditoriasScreen },
-  { id: 'capa', label: 'No conformidades', content: CAPAScreen },
-  { id: 'mejora-continua', label: 'Mejora Continua', content: MejoraContinuaScreen },
-  { id: 'agente-ia', label: 'Agente IA', content: AgenteIAScreen },
-]
-
-const sidebarItems = ['Dashboard', 'Documentación', 'Auditorías', 'No conformidades', 'Mejora Continua', 'Agente IA']
+const SCREEN_COUNT = 6
 
 // ─── Animated Mockup ─────────────────────────────────────────────────────────
 
 function ProductMockup() {
+  const { t } = useLanguage()
+  const m = t.mockup
   const [activeIndex, setActiveIndex] = useState(0)
   const [fading, setFading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -271,14 +227,21 @@ function ProductMockup() {
     const interval = setInterval(() => {
       setFading(true)
       setTimeout(() => {
-        setActiveIndex((prev) => (prev + 1) % screens.length)
+        setActiveIndex((prev) => (prev + 1) % SCREEN_COUNT)
         setFading(false)
       }, 200)
     }, 3000)
     return () => clearInterval(interval)
   }, [isHovered])
 
-  const ActiveScreen = screens[activeIndex].content
+  const screens = [
+    <DashboardScreen key="d" m={m.dashboard} />,
+    <DocumentacionScreen key="doc" m={m.documentacion} />,
+    <AuditoriasScreen key="au" m={m.auditorias} />,
+    <CAPAScreen key="c" m={m.capa} />,
+    <MejoraContinuaScreen key="mc" m={m.mejoraContinua} />,
+    <AgenteIAScreen key="ia" m={m.agenteIA} />,
+  ]
 
   return (
     <div
@@ -301,33 +264,19 @@ function ProductMockup() {
             <div className="mb-2 px-2">
               <img src="/logo.png" alt="Consultto" className="h-5 w-auto" />
             </div>
-            {sidebarItems.map((item) => {
-              const screenIndex = screens.findIndex((s) =>
-                (item === 'Dashboard' && s.id === 'dashboard') ||
-                (item === 'Auditorías' && s.id === 'auditorias') ||
-                (item === 'Documentación' && s.id === 'documentacion') ||
-                (item === 'No conformidades' && s.id === 'capa') ||
-                (item === 'Mejora Continua' && s.id === 'mejora-continua') ||
-                (item === 'Agente IA' && s.id === 'agente-ia')
-              )
-              const isActive = screenIndex === activeIndex
-              const isClickable = screenIndex !== -1
-              return (
-                <div
-                  key={item}
-                  onClick={() => isClickable && goTo(screenIndex)}
-                  className={`px-3 py-2 rounded-lg text-xs transition-all duration-300 ${
-                    isActive
-                      ? 'bg-[#763d50]/10 text-[#763d50] font-semibold'
-                      : isClickable
-                        ? 'text-[#3a3a3a]/50 hover:bg-[#f5f5f5] hover:text-[#1f2020] cursor-pointer'
-                        : 'text-[#3a3a3a]/30 cursor-default'
-                  }`}
-                >
-                  {item}
-                </div>
-              )
-            })}
+            {m.sidebar.map((item, i) => (
+              <div
+                key={i}
+                onClick={() => goTo(i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all duration-300 cursor-pointer ${
+                  i === activeIndex
+                    ? 'bg-[#763d50]/10 text-[#763d50] font-semibold'
+                    : 'text-[#3a3a3a]/50 hover:bg-[#f5f5f5] hover:text-[#1f2020]'
+                }`}
+              >
+                {item}
+              </div>
+            ))}
           </div>
 
           {/* Content area with fade animation */}
@@ -336,7 +285,7 @@ function ProductMockup() {
               fading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'
             }`}
           >
-            <ActiveScreen />
+            {screens[activeIndex]}
           </div>
         </div>
       </div>

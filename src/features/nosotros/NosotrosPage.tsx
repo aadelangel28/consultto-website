@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, type ReactNode } from 'react'
+import React, { useEffect, useRef, type ReactNode } from 'react'
 import { ParticleBackground } from './components/ParticleBackground'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 
@@ -53,6 +54,7 @@ const ANIM_LETTERS = [
 ]
 
 function HeroSection() {
+  const { t } = useLanguage()
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col justify-center" style={{ background: '#fafafa' }}>
       <style>{`
@@ -200,14 +202,14 @@ function HeroSection() {
         {/* Tagline */}
         <p className="hn-tagline text-[#3a3a3a]/50 font-light tracking-wide"
           style={{ fontSize: 'clamp(0.82rem, 1.3vw, 1rem)', maxWidth: 440 }}>
-          Plataforma de certificación y cumplimiento normativo, respaldada por IA.
+          {t.nosotros.hero.tagline}
         </p>
       </div>
 
       {/* Scroll indicator */}
       <div className="hn-scroll-ind absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
         <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/35 font-medium">
-          Descubre nuestra historia
+          {t.nosotros.hero.scrollLabel}
         </p>
         <svg className="hn-arrow w-4 h-4" style={{ color: 'rgba(118,61,80,0.4)' }}
           fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
@@ -282,6 +284,7 @@ function VisionCollage() {
 }
 
 function MisionSection() {
+  const { t } = useLanguage()
   return (
     <section className="bg-white border-t border-[#efefef] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -293,11 +296,11 @@ function MisionSection() {
           {/* ── Derecha: texto ── */}
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
-              Nuestra visión
+              {t.nosotros.vision.eyebrow}
             </p>
             <h2 className="text-[#1f2020] leading-[1.4]"
               style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
-              Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.
+              {t.nosotros.vision.text}
             </h2>
           </Reveal>
 
@@ -341,6 +344,7 @@ function WordReveal({ text, className = '', style = {} }: { text: string; classN
 }
 
 function VisionSection() {
+  const { t } = useLanguage()
   return (
     <section style={{ background: '#1f2020' }} className="py-16 md:py-20">
       <style>{`
@@ -356,7 +360,7 @@ function VisionSection() {
         <Reveal>
           <div className="flex items-center gap-4 mb-10">
             <p className="text-xs font-medium uppercase tracking-[0.2em] shrink-0" style={{ color: '#c47a8f' }}>
-              Nuestra misión
+              {t.nosotros.mision.eyebrow}
             </p>
             <div className="vis-line h-px flex-1" style={{ background: 'rgba(196,122,143,0.25)' }} />
           </div>
@@ -364,7 +368,7 @@ function VisionSection() {
 
         {/* Texto con animación palabra por palabra */}
         <WordReveal
-          text="Que cualquier empresa tenga las herramientas para certificarse sin estrés y mantener un sistema de gestión que genere valor real — no solo conformidad documental."
+          text={t.nosotros.mision.text}
           className="text-white/90"
           style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
         />
@@ -376,50 +380,24 @@ function VisionSection() {
 
 // ─── Principios ───────────────────────────────────────────────────────────────
 
-const PRINCIPIOS = [
-  {
-    number: '01',
-    title: 'Honestidad',
-    description: 'Las normas ISO son exigentes por una razón. Nuestro trabajo es hacerlas accesibles sin restarles seriedad.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-      </svg>
-    ),
-  },
-  {
-    number: '02',
-    title: 'Pragmatismo',
-    description: 'El objetivo es que tu sistema funcione y que la auditoría sea una confirmación, no una sorpresa.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-  {
-    number: '03',
-    title: 'Criterio',
-    description: 'No pusimos IA en Consultto porque es tendencia. La pusimos porque es lo único que puede estar disponible 24/7 y darte una respuesta concreta en segundos.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-      </svg>
-    ),
-  },
-  {
-    number: '04',
-    title: 'Acompañamiento',
-    description: 'Si tu sistema tiene brechas, te lo decimos. Preferimos una conversación difícil hoy a una auditoría fallida mañana.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-      </svg>
-    ),
-  },
+const PRINCIPIO_ICONS = [
+  <svg key="0" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+  </svg>,
+  <svg key="1" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>,
+  <svg key="2" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+  </svg>,
+  <svg key="3" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+  </svg>,
 ]
 
-function PrincipioCard({ p, index }: { p: typeof PRINCIPIOS[number]; index: number }) {
+type PrincipioItem = { title: string; description: string; number: string; icon: React.ReactNode }
+
+function PrincipioCard({ p, index }: { p: PrincipioItem; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current
@@ -479,25 +457,33 @@ function PrincipioCard({ p, index }: { p: typeof PRINCIPIOS[number]; index: numb
 }
 
 function PrincipiosSection() {
+  const { t } = useLanguage()
+  const numbers = ['01', '02', '03', '04']
+  const principios: PrincipioItem[] = t.nosotros.principios.items.map((item, i) => ({
+    ...item,
+    number: numbers[i],
+    icon: PRINCIPIO_ICONS[i],
+  }))
+
   return (
     <section className="py-28 bg-white border-t border-[#efefef]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end gap-6 mb-16">
           <Reveal className="flex-1">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Principios</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{t.nosotros.principios.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight max-w-sm">
-              Lo que guía cada decisión que tomamos
+              {t.nosotros.principios.title}
             </h2>
           </Reveal>
           <Reveal delay={100} className="md:max-w-xs">
             <p className="text-[#3a3a3a]/45 text-sm leading-relaxed">
-              Cuatro ideas simples que definen cómo construimos Consultto y cómo trabajamos con cada cliente.
+              {t.nosotros.principios.subtitle}
             </p>
           </Reveal>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-stretch">
-          {PRINCIPIOS.map((p, i) => (
+          {principios.map((p, i) => (
             <PrincipioCard key={p.number} p={p} index={i} />
           ))}
         </div>
@@ -509,29 +495,30 @@ function PrincipiosSection() {
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 
 function CTASection() {
+  const { t } = useLanguage()
   return (
     <section className="py-24 border-t border-[#efefef]" style={{ background: '#f8f8f8' }}>
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Empieza hoy</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{t.nosotros.cta.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-5">
-            ¿Lista tu empresa para certificarse sin el caos de siempre?
+            {t.nosotros.cta.title}
           </h2>
           <p className="text-[#3a3a3a]/55 text-lg mb-10 leading-relaxed">
-            Agenda una demo y te mostramos cómo Consultto se adapta a tu industria, tu norma y tu momento actual.
+            {t.nosotros.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/signup"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
             >
-              Agendar demo gratuita
+              {t.nosotros.cta.cta1}
             </Link>
             <Link
               href="/contacto"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm"
             >
-              Hablar con un consultor
+              {t.nosotros.cta.cta2}
             </Link>
           </div>
         </Reveal>
