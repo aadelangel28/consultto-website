@@ -7,6 +7,7 @@ import { pdf } from '@react-pdf/renderer'
 import { Article } from './data'
 import { ArticleContent, Section } from './content'
 import { ArticlePDF } from './ArticlePDF'
+import { CTASection } from '@/features/landing/components/CTASection'
 
 function RenderSection({ section }: { section: Section }) {
   if (section.type === 'paragraph') {
@@ -166,25 +167,9 @@ export function ArticleDetailPage({ article, content }: ArticleDetailPageProps) 
           ))}
         </div>
 
-        {/* Footer CTA */}
-        <div className="mt-16 p-8 rounded-2xl bg-[#1f2020] text-center">
-          <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-3">
-            Consultto
-          </p>
-          <p className="text-white text-xl font-light mb-6 max-w-md mx-auto leading-relaxed">
-            ¿Listo para certificarte con el respaldo de expertos y tecnología?
-          </p>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-[#763d50] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#8a4a5e] transition-colors"
-          >
-            Conocer la plataforma
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
       </div>
+
+      <CTASection />
     </div>
   )
 }
