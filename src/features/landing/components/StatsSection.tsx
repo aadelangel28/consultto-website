@@ -174,30 +174,22 @@ function StatCard({
       onMouseLeave={() => onHover(null)}
       className="relative flex flex-col gap-3 p-7 cursor-default rounded-2xl transition-all duration-300 overflow-hidden h-full"
       style={{
-        background: isActive
-          ? 'linear-gradient(135deg, #1f2020 0%, #2d1f24 100%)'
-          : '#f9f9f9',
+        background: 'white',
         boxShadow: isActive
-          ? '0 0 0 1px rgba(118,61,80,0.5), 0 8px 32px rgba(118,61,80,0.15)'
+          ? '0 0 0 1.5px #763d50, 0 8px 32px rgba(118,61,80,0.10)'
           : '0 0 0 1px rgba(0,0,0,0.06)',
+        transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
       }}
     >
-      {/* Subtle glow top-right */}
-      {isActive && (
-        <div
-          className="absolute -top-8 -right-8 w-24 h-24 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(118,61,80,0.4) 0%, transparent 70%)' }}
-        />
-      )}
 
       {/* Icon */}
       <div
         className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-300"
-        style={{ background: isActive ? 'rgba(201,122,143,0.15)' : 'rgba(118,61,80,0.08)' }}
+        style={{ background: 'rgba(118,61,80,0.08)' }}
       >
         <svg
-          className="w-4 h-4 transition-colors duration-300"
-          style={{ color: isActive ? '#c97a8f' : '#763d50' }}
+          className="w-4 h-4"
+          style={{ color: '#763d50' }}
           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d={STAT_ICONS[index]} />
@@ -206,33 +198,22 @@ function StatCard({
 
       {/* Number */}
       <div
-        className="text-5xl font-semibold leading-none tabular-nums transition-colors duration-300"
-        style={{ color: isActive ? '#c97a8f' : '#763d50' }}
+        className="text-5xl font-semibold leading-none tabular-nums"
+        style={{ color: '#763d50' }}
       >
         {triggered ? count : 0}
         <span>{suffix}</span>
       </div>
 
       {/* Label */}
-      <div
-        className="font-semibold text-sm leading-snug transition-colors duration-300"
-        style={{ color: isActive ? '#ffffff' : '#1f2020' }}
-      >
+      <div className="font-semibold text-sm leading-snug text-[#1f2020]">
         {stat.label}
       </div>
 
       {/* Description */}
-      <div
-        className="text-xs leading-relaxed transition-colors duration-300"
-        style={{ color: isActive ? 'rgba(255,255,255,0.45)' : 'rgba(58,58,58,0.5)' }}
-      >
+      <div className="text-xs leading-relaxed text-[#3a3a3a]/50">
         {stat.description}
       </div>
-
-      {/* Active indicator dot */}
-      {isActive && (
-        <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-[#c97a8f] animate-pulse" />
-      )}
     </div>
   )
 }
