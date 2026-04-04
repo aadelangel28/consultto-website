@@ -6,8 +6,10 @@ import { useState } from 'react'
 import { articles, categories } from './data'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
+const PAGE_SIZE = 12
+
 function FeaturedArticle({ readTime, readArticle }: { readTime: string; readArticle: string }) {
-  const featured = articles.find((a) => a.featured)
+  const featured = articles[0]
   if (!featured) return null
 
   return (
@@ -100,10 +102,21 @@ function ArticleCard({ article, readTime, read }: { article: typeof articles[0];
 export function BlogPage() {
   const { t } = useLanguage()
   const [activeCategory, setActiveCategory] = useState('Todos')
+  const [page, setPage] = useState(1)
+
+  const rest = articles.slice(1)
 
   const filtered = activeCategory === 'Todos'
-    ? articles.filter((a) => !a.featured)
-    : articles.filter((a) => a.category === activeCategory && !a.featured)
+    ? rest
+    : rest.filter((a) => a.category === activeCategory)
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
+  function handleCategory(cat: string) {
+    setActiveCategory(cat)
+    setPage(1)
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -126,7 +139,7 @@ export function BlogPage() {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => handleCategory(cat)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 activeCategory === cat
                   ? 'bg-[#1f2020] text-white'
@@ -140,10 +153,49 @@ export function BlogPage() {
 
         {/* Articles grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-          {filtered.map((article) => (
+          {paginated.map((article) => (
             <ArticleCard key={article.slug} article={article} readTime={t.blog.readTime} read={t.blog.read} />
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-16">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#e0e0e0] text-[#3a3a3a]/50 hover:border-[#1f2020]/40 hover:text-[#1f2020] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+              <button
+                key={n}
+                onClick={() => setPage(n)}
+                className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-semibold transition-all ${
+                  n === page
+                    ? 'bg-[#1f2020] text-white'
+                    : 'border border-[#e0e0e0] text-[#3a3a3a]/60 hover:border-[#1f2020]/40 hover:text-[#1f2020]'
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#e0e0e0] text-[#3a3a3a]/50 hover:border-[#1f2020]/40 hover:text-[#1f2020] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
