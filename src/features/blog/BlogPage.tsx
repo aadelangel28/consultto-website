@@ -40,10 +40,7 @@ function FeaturedArticle({ readTime, readArticle }: { readTime: string; readArti
             {featured.excerpt}
           </p>
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#1f2020] text-sm font-semibold">{featured.author}</p>
-              <p className="text-[#3a3a3a]/40 text-xs mt-0.5">{featured.date}</p>
-            </div>
+            <div />
             <Link
               href={`/blog/${featured.slug}`}
               className="inline-flex items-center gap-2 text-sm font-semibold text-[#1f2020] hover:text-[#763d50] transition-colors group"
@@ -86,8 +83,7 @@ function ArticleCard({ article, readTime, read }: { article: typeof articles[0];
       <p className="text-[#3a3a3a]/55 text-sm leading-relaxed line-clamp-2 mb-4">
         {article.excerpt}
       </p>
-      <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#f0f0f0]">
-        <span className="text-[#3a3a3a]/40 text-xs">{article.date}</span>
+      <div className="flex items-center justify-end mt-auto pt-4 border-t border-[#f0f0f0]">
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#1f2020] group-hover:text-[#763d50] transition-colors">
           {read}
           <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
