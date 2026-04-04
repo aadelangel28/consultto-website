@@ -39,8 +39,7 @@ function FeaturedArticle({ readTime, readArticle }: { readTime: string; readArti
           <p className="text-[#3a3a3a]/60 text-sm leading-relaxed mb-8">
             {featured.excerpt}
           </p>
-          <div className="flex items-center justify-between">
-            <div />
+          <div className="flex items-center justify-start">
             <Link
               href={`/blog/${featured.slug}`}
               className="inline-flex items-center gap-2 text-sm font-semibold text-[#1f2020] hover:text-[#763d50] transition-colors group"
@@ -57,7 +56,7 @@ function FeaturedArticle({ readTime, readArticle }: { readTime: string; readArti
   )
 }
 
-function ArticleCard({ article, readTime, read }: { article: typeof articles[0]; readTime: string; read: string }) {
+function ArticleCard({ article, readTime, readArticle }: { article: typeof articles[0]; readTime: string; readArticle: string }) {
   return (
     <Link href={`/blog/${article.slug}`} className="group flex flex-col">
       {/* Image */}
@@ -83,9 +82,9 @@ function ArticleCard({ article, readTime, read }: { article: typeof articles[0];
       <p className="text-[#3a3a3a]/55 text-sm leading-relaxed line-clamp-2 mb-4">
         {article.excerpt}
       </p>
-      <div className="flex items-center justify-end mt-auto pt-4 border-t border-[#f0f0f0]">
+      <div className="flex items-center justify-start mt-auto pt-4 border-t border-[#f0f0f0]">
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#1f2020] group-hover:text-[#763d50] transition-colors">
-          {read}
+          {readArticle}
           <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -150,7 +149,7 @@ export function BlogPage() {
         {/* Articles grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
           {paginated.map((article) => (
-            <ArticleCard key={article.slug} article={article} readTime={t.blog.readTime} read={t.blog.read} />
+            <ArticleCard key={article.slug} article={article} readTime={t.blog.readTime} readArticle={t.blog.readArticle} />
           ))}
         </div>
 
