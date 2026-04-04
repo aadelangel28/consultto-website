@@ -4,6 +4,7 @@ type NormaTranslation = {
   tagline: string
   description: string
   scope: string
+  industrias: string[]
   stats: { value: string; label: string }[]
   requisitos: { clause: string; title: string; description: string }[]
   comoGestiona: { title: string; description: string }[]
@@ -23,6 +24,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 9001:2015 establishes the requirements for a quality management system focused on customer satisfaction and continual improvement. It is the benchmark standard for any organization seeking to demonstrate the ability to consistently deliver conforming products and services.',
     scope: 'Any organization, regardless of size, sector, or type of product or service.',
+    industrias: ['Manufacturing', 'Professional Services', 'Construction', 'Technology', 'Logistics'],
     stats: [
       { value: '1.1M+', label: 'companies certified worldwide' },
       { value: '170+', label: 'countries with certified organizations' },
@@ -88,6 +90,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 14001:2015 sets the criteria for an environmental management system that enables organizations to improve their environmental performance through more efficient use of resources. It helps companies identify, manage, monitor and control their environmental impacts in a comprehensive way.',
     scope: 'Organizations of any type seeking to manage their environmental responsibilities.',
+    industrias: ['Manufacturing', 'Construction', 'Mining', 'Energy', 'Logistics'],
     stats: [
       { value: '420K+', label: 'active ISO 14001 certificates globally' },
       { value: '60%', label: 'waste reduction reported by certified organizations' },
@@ -153,6 +156,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 45001:2018 specifies requirements for an occupational health and safety management system, with the purpose of preventing work-related injuries and ill health. It is the international standard that replaced OHSAS 18001 and adopts a leadership and worker participation approach.',
     scope: 'All types of organizations, regardless of size, industry or nature of activities.',
+    industrias: ['Manufacturing', 'Construction', 'Mining', 'Logistics', 'Chemical Industry'],
     stats: [
       { value: '2.78M', label: 'workers die annually from occupational accidents worldwide' },
       { value: '85%', label: 'of accidents preventable with an effective OH&S system' },
@@ -218,6 +222,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 22000:2018 defines the requirements for a food safety management system that integrates HACCP principles with prerequisite programs. It applies to any organization in the food chain that needs to demonstrate its ability to control hazards and ensure that food is safe for consumption.',
     scope: 'Any organization in the food chain: producers, processors, distributors, transporters and retailers.',
+    industrias: ['Food & Beverage', 'Agriculture', 'Food Logistics', 'Catering', 'Food Retail'],
     stats: [
       { value: '42K+', label: 'ISO 22000 certificates in more than 140 countries' },
       { value: '600M', label: 'people affected by foodborne illnesses every year' },
@@ -283,6 +288,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 13485:2016 specifies the requirements for a quality management system applied to the manufacture and commercialization of medical devices. It is an essential requirement for accessing European Union markets (CE marking) and largely satisfies the requirements of the FDA QSR in the United States.',
     scope: 'Manufacturers, distributors, importers and service providers in the medical device value chain.',
+    industrias: ['Medical Devices', 'Pharmaceuticals', 'In Vitro Diagnostics', 'Digital Health', 'Medical Manufacturing'],
     stats: [
       { value: '28K+', label: 'ISO 13485 certified organizations globally' },
       { value: '€115B', label: 'value of the European medical device market' },
@@ -348,6 +354,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'IATF 16949:2016 is the quality management standard specific to the automotive industry, developed by the International Automotive Task Force. It incorporates the requirements of ISO 9001:2015 and adds automotive supply chain-specific requirements including core quality tools such as APQP, PPAP, FMEA, MSA and SPC.',
     scope: 'Manufacturers of components, systems and materials for the automotive supply chain (OEM and Tier 1/2).',
+    industrias: ['Automotive', 'Component Manufacturing', 'Metal Stamping', 'Automotive Plastics', 'Automotive Electronics'],
     stats: [
       { value: '69K+', label: 'IATF 16949 certified sites worldwide' },
       { value: '4M+', label: 'employees in certified organizations' },
@@ -413,6 +420,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 50001:2018 establishes the requirements for establishing, implementing, maintaining and improving an energy management system. It helps organizations create energy efficiency policies, set measurable targets and make data-driven decisions to reduce consumption and energy costs.',
     scope: 'Organizations of any sector that use energy and seek to continuously improve their energy performance.',
+    industrias: ['Energy-Intensive Manufacturing', 'Hospitals', 'Data Centers', 'Hotels', 'Commercial Buildings'],
     stats: [
       { value: '18K+', label: 'ISO 50001 certified organizations' },
       { value: '30%', label: 'average energy consumption reduction reported' },
@@ -478,6 +486,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'ISO 27001:2022 specifies the requirements for establishing, implementing, maintaining and improving an information security management system (ISMS). It includes 93 controls organized in four categories that protect the confidentiality, integrity and availability of information.',
     scope: 'Organizations of any sector managing sensitive information: customers, employees, intellectual property or financial data.',
+    industrias: ['Technology & Software', 'Financial Services', 'Digital Health', 'Government', 'Consulting'],
     stats: [
       { value: '70K+', label: 'active ISO 27001 certificates worldwide' },
       { value: '$4.45M', label: 'average global cost of a data breach in 2023' },
@@ -543,6 +552,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'FSSC 22000 v6 is a GFSI-recognized food safety certification scheme that combines ISO 22000, sector-specific requirements (ISO/TS) and additional FSSC requirements. It is required by leading global retailers such as Walmart, Carrefour and Tesco from their suppliers.',
     scope: 'Organizations in the food supply chain: manufacturers, packers, transporters and food service providers.',
+    industrias: ['Food & Beverage', 'Food Packaging', 'Ingredients & Additives', 'Food Logistics', 'Agriculture'],
     stats: [
       { value: '37K+', label: 'FSSC 22000 certified sites worldwide' },
       { value: '180+', label: 'countries where the certification is present' },
@@ -608,6 +618,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'BRC Food Issue 9 is the British Retail Consortium food safety standard, GFSI-recognized and required by the major UK and European retailers. It defines rigorous requirements for food safety, quality, legality and integrity of the production process for food suppliers.',
     scope: 'Food manufacturers and processors supplying retailers, especially in UK, European and English-speaking markets.',
+    industrias: ['Food Processing', 'Bakery Products', 'Meat & Dairy', 'Beverages', 'Frozen Foods'],
     stats: [
       { value: '30K+', label: 'BRC Food certified sites worldwide' },
       { value: '130+', label: 'countries with BRC certified companies' },
@@ -673,6 +684,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'IFS Food v8 is a GFSI-recognized audit standard developed to assess the quality management and food safety system of private-label product manufacturers. It is an entry requirement for the major retailers in Germany, France and the rest of continental Europe.',
     scope: 'Food manufacturers producing own-label products for European retailers, especially in DACH and French-speaking markets.',
+    industrias: ['Private Label Products', 'Snacks & Cookies', 'Sauces & Condiments', 'Dairy', 'Frozen Products'],
     stats: [
       { value: '14K+', label: 'IFS Food certified sites worldwide' },
       { value: '90+', label: 'countries with IFS Food presence' },
@@ -738,6 +750,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'SQF Edition 9 is a GFSI-recognized food quality and safety management certification program administered by the Food Marketing Institute (FMI) in the US. It covers the entire food supply chain with specific certification levels: SQF Fundamentals, SQF Quality and SQF Food Safety.',
     scope: 'The entire North American food supply chain: primary production, manufacturing, distribution and retail.',
+    industrias: ['Processed Foods', 'Food Distribution', 'Fresh Produce', 'Seafood', 'Grains & Cereals'],
     stats: [
       { value: '5K+', label: 'SQF certified sites in North America' },
       { value: '35+', label: 'years of SQF program history' },
@@ -803,6 +816,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'HACCP (Hazard Analysis and Critical Control Points) is the internationally recognized preventive food safety system endorsed by the Codex Alimentarius and required by regulations worldwide. The 7 HACCP principles are the foundation of all food safety certifications: FSSC 22000, BRC, IFS, SQF and ISO 22000.',
     scope: 'Any company that processes, transforms, transports or serves food to the final consumer or as an ingredient.',
+    industrias: ['Food & Beverage', 'Food Service', 'Meat Processing', 'Dairy', 'Catering & Food Service'],
     stats: [
       { value: '50+', label: 'years of HACCP history since NASA' },
       { value: '7', label: 'principles that structure the complete system' },
@@ -868,6 +882,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'Pharmaceutical GMPs (Good Manufacturing Practices) are the quality standards required by global regulatory authorities (FDA, EMA, COFEPRIS) to ensure that medicines are consistently produced and controlled according to quality standards. They apply throughout the entire product lifecycle.',
     scope: 'Manufacturers, packagers and distributors of medicines, active pharmaceutical ingredients (API) and biological products.',
+    industrias: ['Pharmaceuticals', 'Biotechnology', 'Active Pharmaceutical Ingredients (API)', 'Quality Control Lab', 'Contract Manufacturing'],
     stats: [
       { value: '3K+', label: 'pharmaceutical plants inspected by the FDA annually' },
       { value: '483', label: 'average observations per plant in FDA inspections' },
@@ -933,6 +948,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'AS9100 Rev D is the quality management standard developed by the International Aerospace Quality Group (IAQG) for the aerospace, space and defense industries. It is based on ISO 9001:2015 and adds more than 100 sector-specific additional requirements, including risk management, configuration control and product safety management.',
     scope: 'Manufacturers of components, systems and services for the aerospace, space and defense industries, including Tier 1, 2 and 3.',
+    industrias: ['Aerospace', 'Defense', 'Engines & Turbines', 'Avionics', 'Aerospace MRO'],
     stats: [
       { value: '22K+', label: 'AS9100 certified organizations worldwide' },
       { value: '$838B', label: 'global aerospace market value in 2023' },
@@ -998,6 +1014,7 @@ export const NORMAS_EN: Record<string, NormaTranslation> = {
     description:
       'CTPAT is a voluntary program of the US Customs and Border Protection (CBP) that establishes minimum security criteria for the entire international supply chain. Certified companies obtain benefits such as fewer border inspections, priority processing and access to the FAST lane.',
     scope: 'Importers, exporters, carriers, logistics operators and manufacturers operating in the Mexico–US or Canada–US supply chain.',
+    industrias: ['Logistics & Transportation', 'Manufacturing', 'International Trade', 'Maquiladora', 'Distribution'],
     stats: [
       { value: '11K+', label: 'active CTPAT partner companies at the border' },
       { value: '50%', label: 'fewer physical border inspections for certified partners' },
@@ -1069,6 +1086,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 9001:2015 estabelece os requisitos para um sistema de gestão da qualidade orientado à satisfação do cliente e à melhoria contínua. É a norma de referência para qualquer organização que busca demonstrar capacidade de entregar produtos e serviços conformes de forma consistente.',
     scope: 'Qualquer organização, independentemente do tamanho, setor ou tipo de produto ou serviço.',
+    industrias: ['Manufatura', 'Serviços Profissionais', 'Construção', 'Tecnologia', 'Logística'],
     stats: [
       { value: '1.1M+', label: 'empresas certificadas no mundo' },
       { value: '170+', label: 'países com organizações certificadas' },
@@ -1134,6 +1152,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 14001:2015 estabelece os critérios para um sistema de gestão ambiental que permite às organizações melhorar seu desempenho ambiental por meio do uso mais eficiente dos recursos. Ajuda as empresas a identificar, gerenciar, monitorar e controlar seus impactos ambientais de forma abrangente.',
     scope: 'Organizações de qualquer tipo que buscam gerenciar suas responsabilidades ambientais.',
+    industrias: ['Manufatura', 'Construção', 'Mineração', 'Energia', 'Logística'],
     stats: [
       { value: '420K+', label: 'certificados ISO 14001 ativos globalmente' },
       { value: '60%', label: 'de redução de resíduos reportada por certificados' },
@@ -1199,6 +1218,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 45001:2018 especifica os requisitos para um sistema de gestão de segurança e saúde no trabalho, com o objetivo de prevenir lesões e doenças relacionadas ao trabalho. É o padrão internacional que substituiu a OHSAS 18001 e adota uma abordagem de liderança e participação dos trabalhadores.',
     scope: 'Todo tipo de organização, independentemente do tamanho, setor ou natureza das atividades.',
+    industrias: ['Manufatura', 'Construção', 'Mineração', 'Logística', 'Indústria Química'],
     stats: [
       { value: '2.78M', label: 'trabalhadores morrem anualmente por acidentes de trabalho no mundo' },
       { value: '85%', label: 'dos acidentes são evitáveis com um sistema de SST eficaz' },
@@ -1264,6 +1284,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 22000:2018 define os requisitos para um sistema de gestão da segurança de alimentos que integra os princípios HACCP com os programas de pré-requisitos. Aplica-se a qualquer organização na cadeia alimentar que precise demonstrar sua capacidade de controlar perigos e garantir que os alimentos são seguros para consumo.',
     scope: 'Toda organização na cadeia alimentar: produtores, processadores, distribuidores, transportadores e varejistas.',
+    industrias: ['Alimentos e Bebidas', 'Agricultura', 'Logística Alimentar', 'Restauração', 'Varejo Alimentar'],
     stats: [
       { value: '42K+', label: 'certificados ISO 22000 em mais de 140 países' },
       { value: '600M', label: 'pessoas afetadas por doenças transmitidas por alimentos a cada ano' },
@@ -1329,6 +1350,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 13485:2016 especifica os requisitos para um sistema de gestão da qualidade aplicado à fabricação e comercialização de dispositivos médicos. É um requisito essencial para acessar os mercados da União Europeia (marcação CE) e atende em grande parte aos requisitos do FDA QSR dos EUA.',
     scope: 'Fabricantes, distribuidores, importadores e prestadores de serviços na cadeia de valor de dispositivos médicos.',
+    industrias: ['Dispositivos Médicos', 'Farmacêutica', 'Diagnóstico In Vitro', 'Saúde Digital', 'Manufatura Médica'],
     stats: [
       { value: '28K+', label: 'organizações certificadas ISO 13485 globalmente' },
       { value: '€115B', label: 'valor do mercado europeu de dispositivos médicos' },
@@ -1394,6 +1416,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A IATF 16949:2016 é o padrão de gestão da qualidade específico para a indústria automotiva, desenvolvido pelo International Automotive Task Force. Incorpora os requisitos da ISO 9001:2015 e acrescenta requisitos específicos da cadeia de fornecimento automotivo, incluindo ferramentas de qualidade como APQP, PPAP, FMEA, MSA e CEP.',
     scope: 'Fabricantes de componentes, sistemas e materiais para a cadeia de fornecimento automotivo (OEM e Tier 1/2).',
+    industrias: ['Automotivo', 'Fabricação de Componentes', 'Estampagem Metálica', 'Plásticos Automotivos', 'Eletrônica Automotiva'],
     stats: [
       { value: '69K+', label: 'sites certificados IATF 16949 no mundo' },
       { value: '4M+', label: 'funcionários em organizações certificadas' },
@@ -1459,6 +1482,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 50001:2018 estabelece os requisitos para estabelecer, implementar, manter e melhorar um sistema de gestão de energia. Ajuda as organizações a criar políticas de eficiência energética, definir metas e objetivos mensuráveis e tomar decisões baseadas em dados para reduzir o consumo e os custos de energia.',
     scope: 'Organizações de qualquer setor que utilizam energia e buscam melhorar continuamente seu desempenho energético.',
+    industrias: ['Manufatura Intensiva', 'Hospitais', 'Data Centers', 'Hotéis', 'Edifícios Comerciais'],
     stats: [
       { value: '18K+', label: 'organizações certificadas ISO 50001' },
       { value: '30%', label: 'de redução no consumo energético médio reportada' },
@@ -1524,6 +1548,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A ISO 27001:2022 especifica os requisitos para estabelecer, implementar, manter e melhorar um sistema de gestão da segurança da informação (SGSI). Inclui 93 controles organizados em quatro categorias que protegem a confidencialidade, integridade e disponibilidade da informação.',
     scope: 'Organizações de qualquer setor que gerenciam informações sensíveis: clientes, funcionários, propriedade intelectual ou dados financeiros.',
+    industrias: ['Tecnologia e Software', 'Serviços Financeiros', 'Saúde Digital', 'Governo', 'Consultoria'],
     stats: [
       { value: '70K+', label: 'certificados ISO 27001 ativos no mundo' },
       { value: '$4.45M', label: 'custo médio global de uma violação de dados em 2023' },
@@ -1589,6 +1614,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A FSSC 22000 v6 é um esquema de certificação de segurança alimentar reconhecido pelo GFSI que combina a ISO 22000, requisitos específicos do setor (ISO/TS) e requisitos adicionais FSSC. É exigida por varejistas líderes mundiais como Walmart, Carrefour e Tesco de seus fornecedores.',
     scope: 'Organizações na cadeia de suprimentos alimentar: fabricantes, embaladores, transportadores e prestadores de serviços alimentares.',
+    industrias: ['Alimentos e Bebidas', 'Embalagens Alimentares', 'Ingredientes e Aditivos', 'Logística Alimentar', 'Agricultura'],
     stats: [
       { value: '37K+', label: 'sites certificados FSSC 22000 no mundo' },
       { value: '180+', label: 'países onde a certificação está presente' },
@@ -1654,6 +1680,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'O BRC Food Issue 9 é o padrão de segurança alimentar do British Retail Consortium, reconhecido pelo GFSI e exigido pelos principais varejistas do Reino Unido e Europa. Define requisitos rigorosos de segurança alimentar, qualidade, legalidade e integridade do processo produtivo para fornecedores de alimentos.',
     scope: 'Fabricantes e processadores de alimentos que fornecem para varejistas, especialmente em mercados do Reino Unido, Europa e países anglófonos.',
+    industrias: ['Processamento de Alimentos', 'Produtos de Padaria', 'Carnes e Laticínios', 'Bebidas', 'Congelados'],
     stats: [
       { value: '30K+', label: 'sites certificados BRC Food no mundo' },
       { value: '130+', label: 'países com empresas certificadas BRC' },
@@ -1719,6 +1746,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A IFS Food v8 é um padrão de auditoria reconhecido pelo GFSI desenvolvido para avaliar o sistema de gestão da qualidade e segurança alimentar de fabricantes de produtos de marca própria. É um requisito de entrada para os principais varejistas da Alemanha, França e demais países da Europa continental.',
     scope: 'Fabricantes de alimentos que produzem produtos de marca própria para varejistas europeus, especialmente nos mercados DACH e francófonos.',
+    industrias: ['Produtos de Marca Própria', 'Salgadinhos e Biscoitos', 'Molhos e Condimentos', 'Laticínios', 'Produtos Congelados'],
     stats: [
       { value: '14K+', label: 'sites certificados IFS Food no mundo' },
       { value: '90+', label: 'países com presença IFS Food' },
@@ -1784,6 +1812,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'O SQF Edition 9 é um programa de certificação de gestão da qualidade e segurança alimentar reconhecido pelo GFSI e administrado pela Food Marketing Institute (FMI) dos EUA. Cobre toda a cadeia de suprimentos alimentar com níveis de certificação específicos: SQF Fundamentos, Qualidade SQF e Segurança Alimentar SQF.',
     scope: 'Toda a cadeia de suprimentos alimentar na América do Norte: produção primária, fabricação, distribuição e varejo.',
+    industrias: ['Alimentos Processados', 'Distribuição Alimentar', 'Frutas e Verduras Frescas', 'Frutos do Mar', 'Grãos e Cereais'],
     stats: [
       { value: '5K+', label: 'sites certificados SQF na América do Norte' },
       { value: '35+', label: 'anos de história do programa SQF' },
@@ -1849,6 +1878,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'O HACCP (Hazard Analysis and Critical Control Points) é o sistema preventivo de segurança alimentar reconhecido internacionalmente pelo Codex Alimentarius e exigido por regulamentações em todo o mundo. Os 7 princípios HACCP são a base de todas as certificações de segurança alimentar: FSSC 22000, BRC, IFS, SQF e ISO 22000.',
     scope: 'Toda empresa que processa, transforma, transporta ou serve alimentos ao consumidor final ou como ingrediente.',
+    industrias: ['Alimentos e Bebidas', 'Restauração Coletiva', 'Processamento de Carnes', 'Laticínios', 'Catering e Serviço de Alimentos'],
     stats: [
       { value: '50+', label: 'anos de história do sistema HACCP desde a NASA' },
       { value: '7', label: 'princípios que estruturam o sistema completo' },
@@ -1914,6 +1944,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'As BPF Farmacêuticas (Boas Práticas de Fabricação) são os padrões de qualidade exigidos pelas autoridades regulatórias mundiais (FDA, EMA, ANVISA) para garantir que os medicamentos sejam produzidos e controlados de forma consistente, de acordo com os padrões de qualidade. Aplicam-se durante todo o ciclo de vida do produto.',
     scope: 'Fabricantes, acondicionadores e distribuidores de medicamentos, insumos farmacêuticos ativos (IFA) e produtos biológicos.',
+    industrias: ['Farmacêutica', 'Biotecnologia', 'Ingredientes Farmacêuticos Ativos (IFA)', 'Laboratório de Controle de Qualidade', 'Contract Manufacturing'],
     stats: [
       { value: '3K+', label: 'plantas farmacêuticas inspecionadas pela FDA anualmente' },
       { value: '483', label: 'observações médias por planta em inspeções da FDA' },
@@ -1979,6 +2010,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'A AS9100 Rev D é o padrão de gestão da qualidade desenvolvido pelo International Aerospace Quality Group (IAQG) para as indústrias aeroespacial, espacial e de defesa. Baseia-se na ISO 9001:2015 e acrescenta mais de 100 requisitos adicionais específicos do setor, incluindo gestão de riscos, controle de configuração e gestão da segurança do produto.',
     scope: 'Fabricantes de componentes, sistemas e serviços para as indústrias aeroespacial, espacial e de defesa, incluindo Tier 1, 2 e 3.',
+    industrias: ['Aeroespacial', 'Defesa', 'Motores e Turbinas', 'Aviônica', 'MRO Aeroespacial'],
     stats: [
       { value: '22K+', label: 'organizações certificadas AS9100 no mundo' },
       { value: '$838B', label: 'valor do mercado aeroespacial global em 2023' },
@@ -2044,6 +2076,7 @@ export const NORMAS_PT: Record<string, NormaTranslation> = {
     description:
       'O CTPAT é um programa voluntário da Alfândega e Proteção de Fronteiras dos EUA (CBP) que estabelece critérios mínimos de segurança para toda a cadeia de suprimentos internacional. As empresas certificadas obtêm benefícios como menor inspeção na fronteira, tramitação prioritária e acesso à faixa FAST.',
     scope: 'Importadores, exportadores, transportadores, operadores logísticos e fabricantes que operam na cadeia de suprimentos México–EUA ou Canadá–EUA.',
+    industrias: ['Logística e Transporte', 'Manufatura', 'Comércio Internacional', 'Maquiladora', 'Distribuição'],
     stats: [
       { value: '11K+', label: 'empresas parceiras CTPAT ativas na fronteira' },
       { value: '50%', label: 'menos inspeções físicas na fronteira para parceiros certificados' },
