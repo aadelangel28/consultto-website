@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Consultto',
-  description: 'Certifícate en cualquier norma y mantén tu sistema operando. Software inteligente y expertos humanos para ISO 9001, ISO 14001, IATF 16949 y más.',
+  title: 'Consultto | Certifícate en cualquier norma con IA',
+  description: 'Software de cumplimiento normativo con Agente IA. Gestiona tu sistema, prepara auditorías y mantén tu certificación activa — sin depender de consultores externos.',
 }
 
 export default function RootLayout({
