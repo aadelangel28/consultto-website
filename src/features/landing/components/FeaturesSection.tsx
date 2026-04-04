@@ -54,13 +54,13 @@ export function FeaturesSection() {
         </div>
 
         {/* Tab nav */}
-        <div className="flex justify-center mb-8">
-          <div className="flex flex-wrap justify-center gap-1 bg-[#f0f0f0] rounded-full p-1.5">
+        <div className="mb-8 overflow-x-auto scrollbar-hide -mx-6 px-6">
+          <div className="flex gap-1 bg-[#f0f0f0] rounded-full p-1.5 w-max mx-auto">
             {cards.map((card, i) => (
               <button
                 key={card.tag}
                 onClick={() => goTo(i)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   i === activeIndex
                     ? 'bg-[#763d50] text-white font-semibold shadow-sm'
                     : 'text-[#3a3a3a]/55 hover:text-[#1f2020]'
@@ -73,7 +73,7 @@ export function FeaturesSection() {
         </div>
 
         {/* Content card */}
-        <div className="bg-[#f7f7f7] rounded-3xl px-10 py-12 md:px-16 md:py-14">
+        <div className="bg-[#f7f7f7] rounded-3xl px-6 py-8 sm:px-10 sm:py-12 md:px-16 md:py-14">
 
           {/* Description */}
           <p
