@@ -125,17 +125,7 @@ export function ArticleDetailPage({ article, content }: ArticleDetailPageProps) 
       {/* Article body */}
       <div className="max-w-3xl mx-auto px-6 py-14">
         {/* Meta + Download */}
-        <div className="flex items-center justify-between pb-8 mb-10 border-b border-[#e8e8e8]">
-          <div className="flex items-center gap-4">
-            <div className="w-9 h-9 rounded-full bg-[#1f2020] flex items-center justify-center shrink-0">
-              <span className="text-white text-xs font-bold">C</span>
-            </div>
-            <div>
-              <p className="text-[#1f2020] text-sm font-semibold">{article.author}</p>
-              <p className="text-[#3a3a3a]/40 text-xs">{article.date}</p>
-            </div>
-          </div>
-
+        <div className="flex items-center justify-end pb-8 mb-10 border-b border-[#e8e8e8]">
           <button
             onClick={handleDownloadPDF}
             disabled={downloading}
