@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
   Font,
+  Image,
 } from '@react-pdf/renderer'
 import { Article } from './data'
 import { ArticleContent, Section } from './content'
@@ -119,11 +120,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  footerBrand: {
-    color: '#1f2020',
-    fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
-    letterSpacing: 1,
+  footerLogo: {
+    width: 80,
+    height: 18,
+    objectFit: 'contain',
   },
   footerTagline: {
     color: 'rgba(58,58,58,0.4)',
@@ -192,9 +192,9 @@ export function ArticlePDF({ article, content }: ArticlePDFProps) {
 
         {/* Footer */}
         <View style={styles.footerDivider}>
-          <Text style={styles.footerBrand}>CONSULTTO</Text>
+          <Image src="/logo.png" style={styles.footerLogo} />
           <Text style={styles.footerTagline}>
-            Plataforma de certificación y cumplimiento normativo
+            Plataforma de certificación y cumplimiento normativo, respaldada por IA.
           </Text>
         </View>
       </Page>
