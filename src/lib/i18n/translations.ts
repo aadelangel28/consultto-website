@@ -10,6 +10,8 @@ export const translations = {
       demo: 'Agendar demo',
       agentIA: 'Agente IA',
       norms: 'Normas',
+      resources: 'Recursos',
+      blog: 'Blog',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },
@@ -631,6 +633,8 @@ export const translations = {
       demo: 'Schedule demo',
       agentIA: 'AI Agent',
       norms: 'Standards',
+      resources: 'Resources',
+      blog: 'Blog',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },
@@ -1252,6 +1256,8 @@ export const translations = {
       demo: 'Agendar demo',
       agentIA: 'Agente de IA',
       norms: 'Normas',
+      resources: 'Recursos',
+      blog: 'Blog',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },

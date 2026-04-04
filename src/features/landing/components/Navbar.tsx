@@ -14,9 +14,11 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [industriasOpen, setIndustriasOpen] = useState(false)
   const [normasOpen, setNormasOpen] = useState(false)
+  const [recursosOpen, setRecursosOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const normasRef = useRef<HTMLDivElement>(null)
+  const recursosRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -32,6 +34,9 @@ export function Navbar() {
       }
       if (normasRef.current && !normasRef.current.contains(e.target as Node)) {
         setNormasOpen(false)
+      }
+      if (recursosRef.current && !recursosRef.current.contains(e.target as Node)) {
+        setRecursosOpen(false)
       }
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false)
@@ -71,7 +76,7 @@ export function Navbar() {
           {/* Industrias dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
-              onClick={() => { setIndustriasOpen(!industriasOpen); setNormasOpen(false) }}
+              onClick={() => { setIndustriasOpen(!industriasOpen); setNormasOpen(false); setRecursosOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.industries}
@@ -106,7 +111,7 @@ export function Navbar() {
           {/* Normas dropdown */}
           <div className="relative" ref={normasRef}>
             <button
-              onClick={() => { setNormasOpen(!normasOpen); setIndustriasOpen(false) }}
+              onClick={() => { setNormasOpen(!normasOpen); setIndustriasOpen(false); setRecursosOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.norms}
@@ -138,9 +143,42 @@ export function Navbar() {
             )}
           </div>
 
-          <Link href="/nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
-            {t.nav.about}
-          </Link>
+          {/* Recursos dropdown */}
+          <div className="relative" ref={recursosRef}>
+            <button
+              onClick={() => { setRecursosOpen(!recursosOpen); setIndustriasOpen(false); setNormasOpen(false) }}
+              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
+            >
+              {t.nav.resources}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${recursosOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {recursosOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 bg-white border border-[#d9d9d9] rounded-2xl shadow-xl shadow-black/8 overflow-hidden animate-fade-in">
+                <div className="p-2">
+                  <Link
+                    href="/blog"
+                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                    onClick={() => setRecursosOpen(false)}
+                  >
+                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.blog}</div>
+                  </Link>
+                  <Link
+                    href="/nosotros"
+                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                    onClick={() => setRecursosOpen(false)}
+                  >
+                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.about}</div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -277,9 +315,38 @@ export function Navbar() {
             )}
           </div>
 
-          <Link href="/nosotros" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
-            {t.nav.about}
-          </Link>
+          <div>
+            <button
+              className="flex items-center gap-1.5 text-[#3a3a3a] font-medium w-full"
+              onClick={() => setRecursosOpen(!recursosOpen)}
+            >
+              {t.nav.resources}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${recursosOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {recursosOpen && (
+              <div className="mt-2 pl-3 flex flex-col gap-1 border-l-2 border-[#d9d9d9]">
+                <Link
+                  href="/blog"
+                  className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                  onClick={() => { setRecursosOpen(false); setMobileOpen(false) }}
+                >
+                  {t.nav.blog}
+                </Link>
+                <Link
+                  href="/nosotros"
+                  className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                  onClick={() => { setRecursosOpen(false); setMobileOpen(false) }}
+                >
+                  {t.nav.about}
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* Language switcher mobile */}
           <div className="flex items-center gap-2 pt-1">
