@@ -94,19 +94,6 @@ export function ArticleDetailPage({ article, content }: ArticleDetailPageProps) 
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/90 via-[#1f2020]/40 to-transparent" />
 
-        {/* Back link */}
-        <div className="absolute top-8 left-0 right-0 max-w-3xl mx-auto px-6">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-white/70 text-sm hover:text-white transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-            </svg>
-            Volver al blog
-          </Link>
-        </div>
-
         {/* Title content */}
         <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-6 pb-12">
           <div className="flex items-center gap-3 mb-4">
