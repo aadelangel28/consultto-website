@@ -382,9 +382,6 @@ export function Navbar() {
           </div>
 
           <div className="pt-2 border-t border-[#d9d9d9] flex flex-col gap-3">
-            <a href="https://app.consultto.com" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium text-center" onClick={() => setMobileOpen(false)}>
-              {t.nav.login}
-            </a>
             <Link
               href="/signup"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-5 py-3 rounded-full transition-colors font-semibold text-center"

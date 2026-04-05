@@ -541,7 +541,7 @@ function NormasSection({ industria }: { industria: IndustriaData }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {industria.normas.map((norma, i) => {
             const meta = NORM_META[norma] ?? { description: 'Norma internacional', scope: 'Certificación', summary: '' }
-            const industrySummary = NORM_INDUSTRY_SUMMARY[industria.slug]?.[norma]
+            const industrySummary = lang === 'es' ? NORM_INDUSTRY_SUMMARY[industria.slug]?.[norma] : undefined
             return <NormaCard key={norma} norma={norma} meta={{ ...meta, summary: industrySummary ?? meta.summary }} index={i} />
           })}
         </div>
