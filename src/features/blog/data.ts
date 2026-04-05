@@ -66,7 +66,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '31 mar 2025',
     readTime: '7 min',
-    image: 'https://images.unsplash.com/photo-1568667256549-094dcc00a0f3?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80',
   },
   {
     slug: 'kpis-sistema-de-gestion',

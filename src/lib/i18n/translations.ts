@@ -729,7 +729,7 @@ export const translations = {
           ],
         },
         {
-          tag: 'No conformidades',
+          tag: 'Non-conformities',
           title: 'Resolve problems before they escalate',
           description: 'From any device, any team member can log a finding with photographic evidence.',
           bullets: [
@@ -1348,11 +1348,11 @@ export const translations = {
             'Planeje auditorias internas e externas',
             'Listas de verificação inteligentes por norma',
             'Registre achados com evidência fotográfica',
-            'Vincule automaticamente achados a No conformidades',
+            'Vincule automaticamente achados a Não conformidades',
           ],
         },
         {
-          tag: 'No conformidades',
+          tag: 'Não conformidades',
           title: 'Resolva problemas antes que escalem',
           description: 'De qualquer dispositivo, qualquer membro da equipe pode registrar um achado com evidência fotográfica.',
           bullets: [
