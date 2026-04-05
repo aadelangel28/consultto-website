@@ -339,13 +339,13 @@ export function HeroSection() {
             >
               <Link
                 href="/signup"
-                className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm"
+                className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm text-center"
               >
                 {t.hero.cta1}
               </Link>
               <Link
                 href="#como-funciona"
-                className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-6 py-3 rounded-full font-semibold transition-all text-sm bg-white hover:bg-[#f8f8f8]"
+                className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-6 py-3 rounded-full font-semibold transition-all text-sm bg-white hover:bg-[#f8f8f8] text-center"
               >
                 {t.hero.cta2}
               </Link>

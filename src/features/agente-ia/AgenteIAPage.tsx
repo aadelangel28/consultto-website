@@ -1296,7 +1296,7 @@ export function AgenteIAPage() {
           >
             <Link
               href="/signup"
-              className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base"
+              className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base text-center"
             >
               {ai.hero.cta1}
             </Link>
@@ -1401,7 +1401,7 @@ export function AgenteIAPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/signup"
-                className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base"
+                className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base text-center"
               >
                 {ai.cta.cta1}
               </Link>

@@ -162,7 +162,7 @@ function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/signup"
-            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap"
+            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap text-center"
           >
             {t.plataforma.hero.cta1}
           </Link>
@@ -589,7 +589,7 @@ function CTASection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/contacto"
-            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap"
+            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
           >
             {cta.cta1}
           </Link>
