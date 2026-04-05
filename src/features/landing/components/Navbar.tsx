@@ -11,6 +11,7 @@ const langLabels: Record<Lang, string> = { es: 'ES', en: 'EN', pt: 'PT' }
 export function Navbar() {
   const { lang, setLang, t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
+  const [mobileHidden, setMobileHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [industriasOpen, setIndustriasOpen] = useState(false)
   const [normasOpen, setNormasOpen] = useState(false)
@@ -20,10 +21,22 @@ export function Navbar() {
   const normasRef = useRef<HTMLDivElement>(null)
   const recursosRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handler)
+    const handler = () => {
+      const y = window.scrollY
+      setScrolled(y > 40)
+
+      // Mobile only: hide on scroll down, show on scroll up
+      if (window.innerWidth < 768 && y > 40) {
+        setMobileHidden(y > lastScrollY.current)
+      } else {
+        setMobileHidden(false)
+      }
+      lastScrollY.current = y
+    }
+    window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
@@ -51,7 +64,7 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? '' : ''
+        mobileHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       {/* Main bar */}
