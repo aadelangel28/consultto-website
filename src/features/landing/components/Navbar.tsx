@@ -245,6 +245,7 @@ export function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div
+          onMouseDown={e => e.stopPropagation()}
           className={`md:hidden bg-white border border-[#d9d9d9] px-6 py-6 flex flex-col gap-4 ${
             scrolled ? 'max-w-5xl mx-auto mt-2 rounded-2xl shadow-lg' : 'border-t border-x-0 border-b-0'
           }`}
@@ -366,7 +367,7 @@ export function Navbar() {
           </div>
 
           <div className="pt-2 border-t border-[#d9d9d9] flex flex-col gap-3">
-            <a href="https://app.consultto.com" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium" onClick={() => setMobileOpen(false)}>
+            <a href="https://app.consultto.com" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors font-medium text-center" onClick={() => setMobileOpen(false)}>
               {t.nav.login}
             </a>
             <Link

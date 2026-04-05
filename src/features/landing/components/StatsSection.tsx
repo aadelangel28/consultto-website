@@ -253,7 +253,7 @@ export function StatsSection() {
           </div>
 
           {/* Right: image or mockup (changes on hover) */}
-          <div className="relative w-full h-64 sm:h-96 lg:h-[580px] rounded-2xl overflow-hidden">
+          <div className="relative w-full h-64 sm:h-96 lg:h-[580px] rounded-2xl overflow-hidden hidden lg:block">
 
             {/* Images for stats 0-2 */}
             {STAT_IMAGES.map((img, i) => (

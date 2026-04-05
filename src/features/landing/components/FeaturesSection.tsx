@@ -54,13 +54,33 @@ export function FeaturesSection() {
         </div>
 
         {/* Tab nav */}
-        <div className="mb-8 overflow-x-auto scrollbar-hide -mx-6 px-6">
-          <div className="flex gap-1 bg-[#f0f0f0] rounded-full p-1.5 w-max mx-auto">
+        {/* Mobile: grid 2 cols */}
+        <div className="mb-8 md:hidden">
+          <div className="grid grid-cols-2 gap-2">
             {cards.map((card, i) => (
               <button
                 key={card.tag}
                 onClick={() => goTo(i)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  i === activeIndex
+                    ? 'bg-[#763d50] text-white font-semibold shadow-sm'
+                    : 'bg-[#f0f0f0] text-[#3a3a3a]/55'
+                }`}
+              >
+                {card.tag}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: single row pill */}
+        <div className="hidden md:flex mb-8 justify-center">
+          <div className="flex gap-1 bg-[#f0f0f0] rounded-full p-1.5">
+            {cards.map((card, i) => (
+              <button
+                key={card.tag}
+                onClick={() => goTo(i)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   i === activeIndex
                     ? 'bg-[#763d50] text-white font-semibold shadow-sm'
                     : 'text-[#3a3a3a]/55 hover:text-[#1f2020]'
