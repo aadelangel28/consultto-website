@@ -3,50 +3,59 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export function ComparisonSection() {
   const { t } = useLanguage()
   const c = t.comparison
   const stages = c.stages as unknown as { label: string; consultto: string; traditional: string }[]
 
-  const nodeRefs   = useRef<(HTMLDivElement | null)[]>([])
-  const trackRef   = useRef<HTMLDivElement>(null)
-  const fillRef    = useRef<HTMLDivElement>(null)
+  // Desktop refs
+  const nodeRefs    = useRef<(HTMLDivElement | null)[]>([])
+  const trackRef    = useRef<HTMLDivElement>(null)
+  const fillRef     = useRef<HTMLDivElement>(null)
+
+  // Mobile refs
+  const mobileNodeRefs  = useRef<(HTMLDivElement | null)[]>([])
+  const mobileTrackRef  = useRef<HTMLDivElement>(null)
+  const mobileFillRef   = useRef<HTMLDivElement>(null)
+
   const [activeCount, setActiveCount] = useState(0)
 
   useEffect(() => {
-    // Trigger point: 65% down the viewport
     const TRIGGER = 0.65
 
     function update() {
       const triggerY = window.innerHeight * TRIGGER
-      let lastActive = -1
+      const isMobile = window.innerWidth < 768
 
-      nodeRefs.current.forEach((node, i) => {
+      const refs = isMobile ? mobileNodeRefs.current : nodeRefs.current
+      const track = isMobile ? mobileTrackRef.current : trackRef.current
+      const fill  = isMobile ? mobileFillRef.current  : fillRef.current
+
+      let lastActive = -1
+      refs.forEach((node) => {
         if (!node) return
         const rect = node.getBoundingClientRect()
-        if (rect.top + rect.height / 2 < triggerY) lastActive = i
+        if (rect.top + rect.height / 2 < triggerY) lastActive++
       })
 
       setActiveCount(lastActive + 1)
 
-      // Grow / shrink the fill to exactly reach the last active node center
-      if (!trackRef.current || !fillRef.current) return
-      if (lastActive === -1) {
-        fillRef.current.style.height = '0px'
-        return
-      }
-      const activeNode = nodeRefs.current[lastActive]
+      if (!track || !fill) return
+      if (lastActive === -1) { fill.style.height = '0px'; return }
+      const activeNode = refs[lastActive]
       if (!activeNode) return
-      const trackTop  = trackRef.current.getBoundingClientRect().top
-      const nodeMid   = activeNode.getBoundingClientRect().top + activeNode.getBoundingClientRect().height / 2
-      fillRef.current.style.height = `${nodeMid - trackTop}px`
+      const trackTop = track.getBoundingClientRect().top
+      const nodeMid  = activeNode.getBoundingClientRect().top + activeNode.getBoundingClientRect().height / 2
+      fill.style.height = `${nodeMid - trackTop}px`
     }
 
     window.addEventListener('scroll', update, { passive: true })
-    update() // set initial state on mount
-    return () => window.removeEventListener('scroll', update)
+    window.addEventListener('resize', update, { passive: true })
+    update()
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
   }, [])
 
   return (
@@ -66,8 +75,8 @@ export function ComparisonSection() {
           </p>
         </div>
 
-        {/* Column labels */}
-        <div className="grid grid-cols-[1fr_200px_1fr] gap-8 mb-14 items-center max-w-4xl mx-auto">
+        {/* Column labels — desktop only */}
+        <div className="hidden md:grid grid-cols-[1fr_200px_1fr] gap-8 mb-14 items-center max-w-4xl mx-auto">
           <div className="flex justify-end">
             <div className="flex items-center gap-2 bg-[#763d50]/8 border border-[#763d50]/20 rounded-xl py-2.5 px-5">
               <div className="w-2 h-2 rounded-full bg-[#763d50]" />
@@ -137,18 +146,27 @@ export function ComparisonSection() {
 
         {/* Timeline — mobile */}
         <div className="md:hidden relative">
-          {/* Track line centered at left-8 (32px) */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#e8e8e8]" />
+          {/* Track line */}
+          <div ref={mobileTrackRef} className="absolute left-[31px] top-0 bottom-0 w-0.5 bg-[#e8e8e8]">
+            <div
+              ref={mobileFillRef}
+              className="absolute top-0 left-0 right-0"
+              style={{ height: '0px', backgroundColor: '#763d50', transition: 'height 80ms linear' }}
+            />
+          </div>
 
           <div className="flex flex-col gap-10">
             {stages.map((stage, i) => {
               const isActive = i < activeCount
               return (
-                <div key={stage.label} className="relative pl-20">
-                  {/* Node centered on the line */}
-                  <div className={`absolute left-[26px] top-0 w-5 h-5 rounded-full border-2 bg-white transition-all duration-300 ${
-                    isActive ? 'border-[#763d50] bg-[#763d50] shadow-lg shadow-[#763d50]/40' : 'border-[#dddddd]'
-                  }`} />
+                <div key={stage.label} className="relative pl-16">
+                  {/* Node — centered on the line (left-[31px] - w-5/2 = 21px) */}
+                  <div
+                    ref={el => { mobileNodeRefs.current[i] = el }}
+                    className={`absolute left-[22px] top-0.5 w-5 h-5 rounded-full border-2 bg-white transition-all duration-300 ${
+                      isActive ? 'border-[#763d50] bg-[#763d50] shadow-lg shadow-[#763d50]/40' : 'border-[#dddddd]'
+                    }`}
+                  />
 
                   {/* Label */}
                   <p className={`text-xs font-bold uppercase tracking-widest mb-2 transition-colors duration-300 ${

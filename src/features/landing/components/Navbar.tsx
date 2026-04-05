@@ -29,6 +29,8 @@ export function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
+      // Skip when mobile menu is open — links need their click to fire first
+      if (mobileOpen) return
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIndustriasOpen(false)
       }
@@ -44,7 +46,7 @@ export function Navbar() {
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  }, [mobileOpen])
 
   return (
     <nav
@@ -56,7 +58,7 @@ export function Navbar() {
       <div
         className={`transition-all duration-500 flex items-center justify-between ${
           scrolled
-            ? 'max-w-6xl mx-auto mt-3 px-10 py-2.5 bg-white/95 backdrop-blur-md border border-[#d9d9d9] shadow-lg rounded-full'
+            ? 'max-w-6xl mx-auto mt-2 px-5 py-1.5 md:px-10 md:py-2.5 md:mt-3 bg-white/95 backdrop-blur-md border border-[#d9d9d9] shadow-lg rounded-full'
             : 'max-w-7xl mx-auto px-6 py-4'
         }`}
       >
