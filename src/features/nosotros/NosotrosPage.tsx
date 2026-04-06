@@ -285,10 +285,10 @@ function MisionSection() {
             <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
               {t.nosotros.vision.eyebrow}
             </p>
-            <h2 className="text-[#1f2020] leading-[1.4]"
-              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 400 }}>
+            <p className="text-[#1f2020] leading-[1.4]"
+              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 300 }}>
               {t.nosotros.vision.text}
-            </h2>
+            </p>
           </Reveal>
 
         </div>
