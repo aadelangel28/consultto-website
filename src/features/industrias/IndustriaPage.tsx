@@ -323,7 +323,7 @@ const NORM_IMAGES: Record<string, string> = {
   'ISO 21001:2018':       'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
   'GMP Farmacéutica':     'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
   'ICH Q10':              'https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=800&q=80',
-  'ICH Q9':               'https://images.unsplash.com/photo-1532094349884-543559c5b656?w=800&q=80',
+  'ICH Q9':               'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80',
   'NOM-059-SSA1':         'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&q=80',
   'AIAG FMEA':            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
 }
