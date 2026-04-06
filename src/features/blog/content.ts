@@ -10,6 +10,667 @@ export interface Section {
 
 export const articleContent: ArticleContent[] = [
   {
+    slug: 'gestion-riesgos-iso-31000',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Cuando la mayoría de las organizaciones escucha "gestión de riesgos", piensa en matrices de colores, registros de riesgos que nadie actualiza y talleres anuales que producen documentos que viven en una carpeta compartida. ISO 31000 propone algo radicalmente diferente: un marco de pensamiento que integra la gestión de riesgos en cada decisión, en cada proceso y en cada nivel de la organización.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A diferencia de ISO 9001, ISO 14001 o ISO 45001, la norma 31000 no es certificable. Eso la hace libre de la presión del cumplimiento formal y, paradójicamente, más difícil de implementar bien. No hay un auditor externo que valide si el sistema funciona. La única validación real es si la dirección usa la gestión de riesgos para tomar mejores decisiones.',
+      },
+      {
+        type: 'quote',
+        content: 'La gestión de riesgos no sirve para eliminar la incertidumbre. Sirve para tomar decisiones mejores a pesar de ella.',
+      },
+      {
+        type: 'heading',
+        content: 'Qué propone realmente ISO 31000',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 31000:2018 define el riesgo como el "efecto de la incertidumbre sobre los objetivos". Esa definición es más amplia de lo que parece. No habla solo de eventos negativos —accidentes, fallas, pérdidas— sino de cualquier desviación posible respecto a lo esperado, incluyendo oportunidades. Una organización que solo gestiona amenazas está usando la mitad del marco.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El modelo de ISO 31000 se articula en tres niveles: los principios que guían la filosofía de gestión de riesgos, el marco que establece cómo se integra en la organización, y el proceso que describe cómo se identifican, evalúan y tratan los riesgos concretos. La mayoría de las organizaciones implementa solo el proceso —la parte más visible— y olvida los principios y el marco, que son los que hacen que el proceso funcione de forma sostenible.',
+      },
+      {
+        type: 'heading',
+        content: 'Por qué la alta dirección no usa los registros de riesgos',
+      },
+      {
+        type: 'paragraph',
+        content: 'En nuestra experiencia trabajando con organizaciones de distintos sectores, el patrón se repite: el área de calidad o el responsable del SGC produce y mantiene el registro de riesgos, lo presenta en la revisión por la dirección, y los directivos lo miran sin que genere ninguna decisión concreta. Al año siguiente, el ejercicio se repite.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El problema no es de formato ni de herramienta. Es de relevancia. Cuando los riesgos documentados no están conectados con los objetivos estratégicos de la organización, la dirección no los percibe como información útil para su trabajo. Los ve como un requisito de la norma, no como inteligencia de negocio.',
+      },
+      {
+        type: 'subheading',
+        content: 'Cómo conectar los riesgos con los objetivos estratégicos',
+      },
+      {
+        type: 'paragraph',
+        content: 'El punto de partida no es identificar riesgos. Es partir de los objetivos de la organización para el período y preguntarse: ¿qué podría impedir que los alcancemos? ¿Qué podría acelerarnos? Esa inversión del proceso —de objetivos a riesgos, no de riesgos a objetivos— cambia completamente el tipo de conversación que se tiene en la sala de dirección.',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Definir primero los 3-5 objetivos críticos del año antes de identificar ningún riesgo',
+          'Para cada objetivo, identificar los factores internos y externos que lo amenazan o lo potencian',
+          'Priorizar solo los riesgos que tienen impacto real sobre esos objetivos, no todos los posibles',
+          'Asignar un responsable de alto nivel para cada riesgo prioritario, no solo al área de calidad',
+          'Incluir el estado de los riesgos en los reportes regulares de gestión, no solo en revisiones anuales',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'El proceso de gestión de riesgos en la práctica',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 31000 describe un proceso iterativo de siete pasos: comunicación y consulta, alcance, contexto y criterios, evaluación del riesgo (identificación, análisis y valoración), tratamiento, monitoreo y revisión, y registro e informe. En la práctica, las organizaciones tienden a ejecutar bien la evaluación y a descuidar el monitoreo, que es donde el sistema se vuelve dinámico y útil.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Un riesgo identificado en enero que no se revisa hasta diciembre no es gestión de riesgos. Es un ejercicio de documentación. El monitoreo regular —mensual para riesgos críticos, trimestral para el resto— es lo que convierte el registro en una herramienta viva. Y eso requiere que los responsables de los riesgos sean personas con poder real para tomar acciones, no solo para reportar.',
+      },
+      {
+        type: 'quote',
+        content: 'El mejor registro de riesgos es el que se actualiza cuando cambia la realidad, no cuando se acerca la auditoría.',
+      },
+      {
+        type: 'heading',
+        content: 'Integración con otros sistemas de gestión',
+      },
+      {
+        type: 'paragraph',
+        content: 'Uno de los beneficios más prácticos de ISO 31000 es que proporciona el lenguaje y la metodología que pueden usarse para articular el pensamiento basado en riesgos exigido por ISO 9001, la identificación de aspectos e impactos de ISO 14001, y la identificación de peligros de ISO 45001. En lugar de tener tres registros de riesgos paralelos, una organización bien diseñada tiene un marco único que alimenta los tres sistemas.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Las organizaciones que implementan ISO 31000 como marco transversal antes de certificarse en normas sectoriales suelen llegar a las auditorías con una ventaja notable: sus equipos entienden el "por qué" detrás de los requisitos, no solo el "qué". Y eso se nota en cada entrevista que el auditor externo realiza.',
+      },
+    ],
+  },
+  {
+    slug: 'revision-por-la-direccion',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'ISO 9001 dedica apenas una cláusula —la 9.3— a la revisión por la dirección. Pero lo que exige en esa cláusula es, en teoría, suficiente para que cualquier organización tome las mejores decisiones estratégicas de su año. En la práctica, la revisión por la dirección es una de las actividades más subutilizadas de todos los sistemas de gestión.',
+      },
+      {
+        type: 'paragraph',
+        content: 'La escena típica: el responsable de calidad prepara una presentación de 40 diapositivas con indicadores, no conformidades y resultados de auditorías. La dirección la mira durante 90 minutos. Se aprueban algunas acciones. Se programa la próxima revisión para doce meses después. El acta queda archivada. El sistema sigue igual.',
+      },
+      {
+        type: 'quote',
+        content: 'Si la revisión por la dirección no genera decisiones que cambien algo, no es una revisión estratégica. Es una reunión de cumplimiento.',
+      },
+      {
+        type: 'heading',
+        content: 'Qué exige realmente la norma',
+      },
+      {
+        type: 'paragraph',
+        content: 'La cláusula 9.3 de ISO 9001:2015 requiere que la revisión por la dirección analice información sobre el desempeño del SGC y tome decisiones relacionadas con oportunidades de mejora, cambios necesarios en el sistema y recursos requeridos. No especifica formato, frecuencia mínima (solo que sea planificada) ni duración. Lo que sí requiere es que las salidas —las decisiones— queden documentadas.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Ese margen de flexibilidad es una oportunidad que pocas organizaciones aprovechan. ISO 9001 no te obliga a hacer una reunión anual de 40 diapositivas. Te obliga a que la dirección revise el sistema y tome decisiones. Cómo lo haces es tu decisión.',
+      },
+      {
+        type: 'heading',
+        content: 'El problema con el formato estándar',
+      },
+      {
+        type: 'paragraph',
+        content: 'El formato de presentación masiva tiene un problema estructural: pone a la dirección en modo pasivo. Reciben información, hacen algunas preguntas y aprueban lo que les presentan. Ese no es el rol que ISO 9001 espera de ellos. La norma espera liderazgo, no validación.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Cuando la dirección entiende que la revisión del SGC es, en el fondo, una revisión del desempeño del negocio —porque un sistema de gestión eficaz mejora los resultados del negocio— la conversación cambia completamente. Dejan de preguntar "¿cuántas no conformidades tuvimos?" y empiezan a preguntar "¿qué nos está diciendo esto sobre nuestra capacidad para cumplir con los clientes el próximo trimestre?".',
+      },
+      {
+        type: 'heading',
+        content: 'Un modelo alternativo: la revisión distribuida',
+      },
+      {
+        type: 'subheading',
+        content: 'Revisiones operativas mensuales',
+      },
+      {
+        type: 'paragraph',
+        content: 'En lugar de concentrar toda la información en una reunión anual, algunas organizaciones distribuyen la revisión del SGC en ciclos más cortos. Los indicadores de proceso se revisan mensualmente en las reuniones de gestión ordinarias. Los responsables de proceso presentan sus métricas, las no conformidades abiertas y las acciones en curso como parte del reporte regular.',
+      },
+      {
+        type: 'subheading',
+        content: 'Revisión estratégica semestral o anual',
+      },
+      {
+        type: 'paragraph',
+        content: 'La revisión formal por la dirección, en este modelo, se convierte en una sesión estratégica donde se consolida la información de los últimos meses, se evalúa la pertinencia de los objetivos del SGC respecto a la dirección del negocio, y se toman decisiones de largo plazo sobre recursos, cambios en el sistema o nuevas metas de desempeño.',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Preparar un documento ejecutivo de una página con los tres indicadores más críticos y su tendencia',
+          'Incluir solo las no conformidades sistémicas, no el detalle operativo',
+          'Presentar una propuesta concreta de decisión para cada punto, no solo datos',
+          'Limitar la reunión a 60 minutos con agenda previa enviada con 72 horas de anticipación',
+          'Documentar cada decisión con responsable, recurso asignado y fecha de seguimiento',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'Las preguntas que debería responder toda revisión por la dirección',
+      },
+      {
+        type: 'paragraph',
+        content: 'Si pudiéramos resumir el propósito de la revisión por la dirección en cinco preguntas, serían estas: ¿El sistema de gestión está contribuyendo a los resultados del negocio? ¿Los objetivos del SGC siguen siendo relevantes para la estrategia actual? ¿Hay riesgos emergentes que el sistema no está gestionando? ¿Los recursos asignados son suficientes para lo que queremos lograr? ¿Qué vamos a hacer diferente el próximo período?',
+      },
+      {
+        type: 'paragraph',
+        content: 'Una revisión que responde esas cinco preguntas con evidencia y genera decisiones concretas cumple con creces los requisitos de ISO 9001 y, más importante, añade valor real a la organización. Una revisión que solo registra lo ocurrido sin generar cambios es un trámite costoso que desgasta a los equipos y no mejora nada.',
+      },
+    ],
+  },
+  {
+    slug: 'iso-27001-seguridad-informacion',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Cuando se habla de ISO 27001, la mayoría de las personas piensa inmediatamente en empresas de tecnología, centros de datos y software. Es un error de percepción que lleva a muchas organizaciones a no considerar una norma que podría protegerlas de sus riesgos más costosos. Si tu organización procesa datos de clientes, emite facturas electrónicas, gestiona información de empleados o depende de sistemas digitales para operar, ISO 27001 te aplica.',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 27001 es la norma internacional para los Sistemas de Gestión de Seguridad de la Información (SGSI). Su propósito es ayudar a las organizaciones a proteger la confidencialidad, integridad y disponibilidad de su información. No define qué tecnología usar. Define cómo gestionar los riesgos asociados a la información, independientemente de la industria o el tamaño de la empresa.',
+      },
+      {
+        type: 'quote',
+        content: 'La pregunta no es si tu organización tiene información valiosa que proteger. La pregunta es si ya sabe qué tan expuesta está.',
+      },
+      {
+        type: 'heading',
+        content: 'Por qué ISO 27001 dejó de ser solo para empresas de tecnología',
+      },
+      {
+        type: 'paragraph',
+        content: 'En los últimos cinco años, el panorama de ciberseguridad cambió radicalmente para las empresas medianas. Los ataques de ransomware, el phishing dirigido y las filtraciones de datos dejaron de ser problemas exclusivos de grandes corporaciones. Una empresa manufacturera con 80 empleados puede perder semanas de operación si sus sistemas son comprometidos. Un despacho contable puede enfrentar consecuencias legales si la información de sus clientes queda expuesta.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A esto se suma la presión regulatoria. Las leyes de protección de datos —como la Ley Federal de Protección de Datos en México, la LGPD en Brasil o el GDPR europeo para empresas que operan con clientes de la UE— exigen que las organizaciones demuestren que gestionan adecuadamente la información personal. ISO 27001 proporciona el marco más reconocido internacionalmente para demostrarlo.',
+      },
+      {
+        type: 'heading',
+        content: 'Los componentes clave de un SGSI bajo ISO 27001',
+      },
+      {
+        type: 'subheading',
+        content: 'Alcance y contexto',
+      },
+      {
+        type: 'paragraph',
+        content: 'El primer paso en la implementación de ISO 27001 es definir el alcance del SGSI: qué información, qué procesos y qué áreas de la organización estarán bajo el sistema. Una empresa puede certificar solo parte de su operación —por ejemplo, el área de desarrollo de software o el proceso de facturación— sin necesidad de incluir toda la organización desde el inicio.',
+      },
+      {
+        type: 'subheading',
+        content: 'Evaluación y tratamiento de riesgos',
+      },
+      {
+        type: 'paragraph',
+        content: 'El núcleo de ISO 27001 es la gestión de riesgos de seguridad de la información. La organización debe identificar sus activos de información, evaluar las amenazas y vulnerabilidades a las que están expuestos, y decidir cómo tratar cada riesgo: aceptarlo, reducirlo, transferirlo o evitarlo. Este proceso no es un ejercicio técnico —es una decisión de negocio sobre cuánto riesgo la organización está dispuesta a asumir.',
+      },
+      {
+        type: 'subheading',
+        content: 'Los 93 controles del Anexo A',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 27001:2022 incluye un Anexo A con 93 controles organizados en cuatro categorías: controles organizacionales, controles de personas, controles físicos y controles tecnológicos. La organización no tiene que implementarlos todos. Debe evaluar cuáles aplican a sus riesgos y justificar por qué excluye los que no aplica. Este documento de justificación se llama Declaración de Aplicabilidad y es uno de los documentos más importantes del SGSI.',
+      },
+      {
+        type: 'heading',
+        content: 'Qué implica certificarse en ISO 27001',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Compromiso explícito de la alta dirección con la seguridad de la información',
+          'Política de seguridad de la información aprobada y comunicada a toda la organización',
+          'Proceso formal de evaluación y tratamiento de riesgos documentado y ejecutado',
+          'Programa de concientización en seguridad para todos los empleados',
+          'Procedimientos para gestionar incidentes de seguridad cuando ocurran',
+          'Auditorías internas del SGSI y revisión periódica por la dirección',
+          'Auditoría de certificación por organismo acreditado (fase 1 documental + fase 2 en sitio)',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'El retorno de inversión de ISO 27001',
+      },
+      {
+        type: 'paragraph',
+        content: 'Las organizaciones que se certifican en ISO 27001 reportan tres tipos de beneficios concretos. El primero es comercial: muchos clientes corporativos y entidades públicas exigen ISO 27001 como condición de contratación, especialmente cuando el proveedor tendrá acceso a sus sistemas o datos. El segundo es operativo: el proceso de implementación fuerza a la organización a ordenar su infraestructura de información, reducir redundancias y establecer controles que previenen errores costosos. El tercero es de resiliencia: las organizaciones con un SGSI activo detectan y responden a incidentes de seguridad significativamente más rápido que aquellas sin él.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El costo de implementar ISO 27001 varía según el tamaño y complejidad de la organización, pero en la mayoría de los casos es una fracción del costo de un incidente de seguridad no gestionado. Un ataque de ransomware que paraliza operaciones durante una semana puede costar más que tres años de mantenimiento de un SGSI certificado.',
+      },
+    ],
+  },
+  {
+    slug: 'pensamiento-basado-en-riesgos',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Cuando ISO 9001:2015 eliminó el requisito de tener un procedimiento de acciones preventivas y lo reemplazó con el concepto de "pensamiento basado en riesgos", generó una ola de confusión en el mundo de los sistemas de gestión. Muchas organizaciones respondieron creando un nuevo procedimiento —ahora llamado "gestión de riesgos y oportunidades"— con un registro, un responsable y una frecuencia de revisión. Es decir, hicieron exactamente lo contrario de lo que la norma proponía.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El pensamiento basado en riesgos no es un procedimiento. Es una forma de operar. ISO 9001:2015 lo define en la cláusula 6.1 con una sola exigencia central: que la organización considere los riesgos y oportunidades al planificar el SGC y al planificar cómo alcanzar sus objetivos. Eso es todo. La norma no dice cómo documentarlo ni con qué frecuencia revisarlo.',
+      },
+      {
+        type: 'quote',
+        content: 'El pensamiento basado en riesgos no es una herramienta que se aplica una vez al año. Es la pregunta que debería hacerse antes de tomar cualquier decisión relevante.',
+      },
+      {
+        type: 'heading',
+        content: 'La diferencia entre gestión de riesgos y pensamiento basado en riesgos',
+      },
+      {
+        type: 'paragraph',
+        content: 'La gestión de riesgos —tal como la describe ISO 31000, por ejemplo— es un proceso estructurado: identificación, análisis, valoración, tratamiento, monitoreo. Es sistemática, documentada y repetible. El pensamiento basado en riesgos, en cambio, es una disposición mental: la tendencia a considerar qué podría salir mal (y qué podría salir extraordinariamente bien) antes de actuar.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Una organización puede tener un proceso robusto de gestión de riesgos y, al mismo tiempo, no tener pensamiento basado en riesgos si ese proceso está desconectado de la toma de decisiones cotidiana. Y puede tener pensamiento basado en riesgos sin un proceso formal si sus líderes naturalmente anticipan consecuencias antes de actuar. ISO 9001:2015 quiere lo segundo; lo primero es una herramienta que puede ayudar a lograrlo, pero no lo garantiza.',
+      },
+      {
+        type: 'heading',
+        content: 'Cómo se ve el pensamiento basado en riesgos en la práctica',
+      },
+      {
+        type: 'paragraph',
+        content: 'En una organización donde el pensamiento basado en riesgos está integrado, las conversaciones sobre decisiones incluyen naturalmente preguntas como: ¿qué supuestos estamos haciendo aquí que podrían estar equivocados? ¿Qué tendría que ocurrir para que este plan no funcione? ¿Hay señales tempranas que podríamos monitorear para detectar problemas antes de que se conviertan en crisis? ¿Existe alguna condición actual que nos da una ventaja que deberíamos aprovechar ahora?',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esas preguntas no requieren un formato de registro. Requieren que los líderes las hagan parte de su rutina de gestión. Y eso es, precisamente, lo que ISO 9001:2015 espera cuando habla de liderazgo y compromiso en la cláusula 5.',
+      },
+      {
+        type: 'heading',
+        content: 'Los tres errores más comunes al implementar este requisito',
+      },
+      {
+        type: 'subheading',
+        content: 'Error 1: Crear un registro de riesgos desconectado de los procesos',
+      },
+      {
+        type: 'paragraph',
+        content: 'El error más frecuente es crear un registro centralizado de riesgos que "pertenece" al área de calidad. Los dueños de proceso no lo conocen, no lo actualizan y no lo usan para tomar decisiones. El auditor lo ve; la organización no lo vive.',
+      },
+      {
+        type: 'subheading',
+        content: 'Error 2: Documentar solo amenazas y olvidar las oportunidades',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 9001:2015 habla explícitamente de "riesgos y oportunidades". La mayoría de los registros solo documentan amenazas. Las oportunidades —cambios en el mercado, nuevas tecnologías, debilidades de la competencia— son igualmente parte del pensamiento basado en riesgos y, a menudo, las más valiosas para el negocio.',
+      },
+      {
+        type: 'subheading',
+        content: 'Error 3: Revisar los riesgos solo en la revisión por la dirección',
+      },
+      {
+        type: 'paragraph',
+        content: 'Si los riesgos solo se revisan una vez al año, el sistema responde a la realidad de hace doce meses, no a la actual. El pensamiento basado en riesgos implica que cuando algo cambia en el contexto de la organización —un nuevo cliente, un cambio regulatorio, la salida de un proveedor clave— alguien en la organización se pregunta qué implica ese cambio para los objetivos del SGC.',
+      },
+      {
+        type: 'heading',
+        content: 'Lo mínimo que necesitas para cumplir el requisito',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Identificar los riesgos y oportunidades relevantes para los objetivos del SGC, no para todos los objetivos del negocio',
+          'Decidir cómo abordarlos —no es obligatorio tratarlos todos, solo considerarlos',
+          'Planificar acciones para los riesgos que decidas tratar y verificar su eficacia',
+          'Documentar lo suficiente para demostrarle al auditor que el proceso existe y funciona',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content: 'La palabra clave es "considerar". ISO 9001 no exige que elimines todos los riesgos. Exige que los tengas en cuenta al planificar. Un sistema de gestión que toma decisiones sin preguntarse qué podría salir mal es un sistema frágil. Uno que se paraliza intentando eliminar toda incertidumbre es un sistema ineficiente. El equilibrio entre ambos extremos es lo que la norma llama pensamiento basado en riesgos.',
+      },
+    ],
+  },
+  {
+    slug: 'gestion-proveedores-iso-9001',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'La cláusula 8.4 de ISO 9001:2015 se titula "Control de los procesos, productos y servicios suministrados externamente". Es una de las cláusulas más extensas de la norma y, en muchas organizaciones, una de las más mal implementadas. La razón es simple: gestionar proveedores exige trabajo real de campo, no solo documentación. Requiere saber qué compras, a quién se lo compras y qué impacto tiene eso en tu capacidad de entregar valor al cliente.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Muchas organizaciones responden a este requisito creando una lista de proveedores aprobados con una calificación genérica y un procedimiento que dice que los proveedores deben cumplir con ciertos criterios. El auditor revisa el documento, hace una pregunta sobre cómo se evaluó al proveedor X y el responsable de compras no sabe qué responder porque la evaluación la hizo el área de calidad hace dos años. Eso no es gestión de proveedores.',
+      },
+      {
+        type: 'quote',
+        content: 'Tu sistema de gestión es tan sólido como el proveedor más débil que alimenta tu proceso crítico.',
+      },
+      {
+        type: 'heading',
+        content: 'Qué exige ISO 9001 en materia de proveedores',
+      },
+      {
+        type: 'paragraph',
+        content: 'La norma establece tres grandes requisitos en esta área. Primero, que la organización determine los controles adecuados para cada tipo de suministro externo, proporcionales al impacto que ese suministro tiene sobre los productos o servicios finales. Segundo, que comunique a los proveedores sus requisitos de manera clara. Tercero, que verifique que lo que recibe cumple con esos requisitos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'No todos los proveedores requieren el mismo nivel de gestión. Un proveedor de material de oficina y un proveedor de componentes críticos para tu producto principal no pueden tratarse de la misma manera. Parte del trabajo de diseñar el sistema de gestión de proveedores es segmentarlos según su impacto y criticidad.',
+      },
+      {
+        type: 'heading',
+        content: 'Cómo segmentar tu base de proveedores',
+      },
+      {
+        type: 'paragraph',
+        content: 'Un modelo sencillo y efectivo es clasificar a los proveedores en tres categorías. Los proveedores estratégicos son aquellos cuyo suministro impacta directamente en la calidad del producto o servicio final o en la continuidad de la operación. Requieren evaluación inicial rigurosa, seguimiento continuo y visitas periódicas. Los proveedores relevantes son importantes pero no críticos; requieren evaluación y seguimiento pero con menor intensidad. Los proveedores de bajo impacto —papelería, servicios generales, etc.— solo necesitan cumplir requisitos básicos de entrada.',
+      },
+      {
+        type: 'heading',
+        content: 'El proceso de evaluación inicial: qué funciona y qué no',
+      },
+      {
+        type: 'subheading',
+        content: 'Lo que no funciona',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Enviar un cuestionario de 30 preguntas que el proveedor responde sin verificación',
+          'Aprobar proveedores solo con base en el precio más bajo',
+          'Hacer una visita inicial sin criterios claros de evaluación',
+          'Pedir certificaciones ISO sin verificar que sean vigentes y aplicables',
+        ],
+      },
+      {
+        type: 'subheading',
+        content: 'Lo que sí funciona',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Definir criterios de evaluación específicos para cada categoría de suministro',
+          'Incluir al área técnica o de operaciones en la evaluación, no solo a compras y calidad',
+          'Solicitar muestras o pruebas de servicio antes de aprobar para suministros críticos',
+          'Verificar referencias con otros clientes del proveedor',
+          'Establecer indicadores de desempeño concretos desde el inicio de la relación',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'Seguimiento y reevaluación: mantener el sistema vivo',
+      },
+      {
+        type: 'paragraph',
+        content: 'La aprobación inicial de un proveedor no es suficiente. ISO 9001 espera que la organización monitoree el desempeño de sus proveedores a lo largo del tiempo. Los indicadores más útiles suelen ser: tasa de entregas a tiempo, tasa de productos o servicios conformes a la primera, número de reclamos o no conformidades atribuibles al proveedor, y tiempo de respuesta ante problemas.',
+      },
+      {
+        type: 'paragraph',
+        content: 'La reevaluación periódica —anual para proveedores estratégicos— debería considerar estos indicadores y determinar si el proveedor continúa aprobado, si requiere un plan de acción para mejorar o si debe salir del listado de proveedores calificados. Este último paso, retirar a un proveedor del listado, es el que más resistencia genera en las organizaciones, especialmente cuando hay relaciones comerciales de largo plazo. Pero un sistema de gestión que no toma esa decisión cuando los datos lo justifican tiene un problema de integridad.',
+      },
+    ],
+  },
+  {
+    slug: 'digitalizacion-sgc-por-donde-empezar',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Cada semana recibimos consultas de organizaciones que quieren "digitalizar su sistema de gestión". Cuando preguntamos qué significa eso para ellos, las respuestas son variadas: algunos quieren dejar de usar papel, otros quieren tener todo en la nube, otros quieren automatizar reportes, y algunos simplemente quieren "hacer las cosas más modernas". Rara vez tienen claridad sobre qué problema concreto quieren resolver.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esa falta de claridad es el primer error de la digitalización de un SGC. Digitalizar sin saber qué queremos mejorar produce sistemas digitales que replican exactamente los mismos problemas del sistema en papel, con el costo adicional de la tecnología. Carpetas físicas que se convierten en carpetas en Google Drive. Formatos en papel que se convierten en formularios de Google Forms que nadie revisa. El caos, ahora en la nube.',
+      },
+      {
+        type: 'quote',
+        content: 'Un proceso desorganizado digitalizado sigue siendo un proceso desorganizado. Solo es más caro.',
+      },
+      {
+        type: 'heading',
+        content: 'El diagnóstico antes de la tecnología',
+      },
+      {
+        type: 'paragraph',
+        content: 'Antes de elegir una plataforma o una herramienta, la pregunta correcta es: ¿qué parte de nuestro sistema de gestión consume más tiempo, genera más errores o produce menos valor? La respuesta a esa pregunta señala el primer proceso que vale la pena digitalizar.',
+      },
+      {
+        type: 'paragraph',
+        content: 'En nuestra experiencia, los tres procesos que más se benefician de la digitalización temprana son la gestión documental, el registro y seguimiento de no conformidades, y la planificación y ejecución de auditorías internas. No es casualidad: son los procesos que más dependen de la trazabilidad, que más sufren cuando la información está dispersa y que más valor generan cuando están bien organizados.',
+      },
+      {
+        type: 'heading',
+        content: 'Por qué empezar con la gestión documental',
+      },
+      {
+        type: 'paragraph',
+        content: 'La gestión documental es el corazón del SGC. Si los documentos están desactualizados, dispersos o son difíciles de encontrar, todo lo demás falla. Digitalizar la gestión documental significa tener un repositorio único donde cada documento tiene una versión vigente, un responsable, una fecha de revisión y un control de distribución claro.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El error más común al digitalizar la gestión documental es migrar todos los documentos existentes sin revisarlos primero. Muchas organizaciones tienen docenas de procedimientos obsoletos, formatos sin uso y políticas contradictorias. Digitalizarlos sin depurarlos primero es trasladar el desorden a un nuevo entorno. La digitalización es una oportunidad de hacer esa limpieza.',
+      },
+      {
+        type: 'heading',
+        content: 'El seguimiento de no conformidades: donde más se nota la diferencia',
+      },
+      {
+        type: 'paragraph',
+        content: 'El proceso de no conformidades es donde el impacto de la digitalización se percibe más rápido. En el sistema en papel, las no conformidades viven en carpetas, las fechas de cierre se incumplen porque nadie las monitorea, y los análisis de causa raíz son superficiales porque no hay tiempo de revisar el histórico. Con una herramienta digital adecuada, el responsable recibe alertas automáticas cuando se acerca la fecha límite, el área de calidad puede ver en tiempo real cuántas no conformidades están abiertas y en qué estado, y los patrones se vuelven visibles.',
+      },
+      {
+        type: 'heading',
+        content: 'Criterios para elegir una plataforma de SGC',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Facilidad de uso para personas sin formación técnica — si el equipo no la usa, no sirve',
+          'Control de versiones de documentos integrado, no dependiente de carpetas manuales',
+          'Flujos de trabajo configurables para no conformidades, auditorías y acciones correctivas',
+          'Notificaciones automáticas y tableros de seguimiento por responsable',
+          'Capacidad de generar reportes para la revisión por la dirección sin trabajo manual adicional',
+          'Soporte en español y adaptado a las normas ISO que utilizas',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'La trampa de las plataformas genéricas',
+      },
+      {
+        type: 'paragraph',
+        content: 'Una de las decisiones más frecuentes —y costosas— es intentar gestionar el SGC con herramientas genéricas: SharePoint para documentos, Excel para no conformidades, Google Calendar para auditorías. El resultado es un sistema fragmentado donde la información está en tres lugares distintos, nadie tiene una visión completa y el área de calidad pasa más tiempo consolidando datos que analizándolos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Las plataformas diseñadas específicamente para sistemas de gestión resuelven ese problema de integración desde el inicio. El costo adicional respecto a las herramientas genéricas suele recuperarse rápidamente en tiempo del equipo de calidad y en la calidad de la información disponible para tomar decisiones.',
+      },
+    ],
+  },
+  {
+    slug: 'indicadores-programa-auditorias',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Muchas organizaciones certificadas en ISO 9001 realizan sus auditorías internas, cierran los hallazgos y archivan los informes. Un año después, hacen lo mismo. En la siguiente revisión por la dirección presentan el número de auditorías realizadas y el porcentaje de hallazgos cerrados. Esos datos son necesarios, pero no responden la pregunta que realmente importa: ¿el programa de auditorías está mejorando el sistema de gestión?',
+      },
+      {
+        type: 'paragraph',
+        content: 'Un programa de auditorías internas es, en sí mismo, un proceso del SGC. Y como todo proceso, debería tener objetivos medibles, indicadores de desempeño y un ciclo de mejora. La cláusula 9.2 de ISO 9001 lo pide implícitamente cuando dice que el programa debe "considerar la importancia de los procesos involucrados, los cambios que afectan a la organización y los resultados de auditorías previas". Sin indicadores, esa consideración es arbitraria.',
+      },
+      {
+        type: 'quote',
+        content: 'Si tu única métrica de auditorías es "cuántas hicimos", estás midiendo esfuerzo, no impacto.',
+      },
+      {
+        type: 'heading',
+        content: 'Los indicadores que más organizaciones miden (y sus limitaciones)',
+      },
+      {
+        type: 'paragraph',
+        content: 'El indicador más común es el porcentaje de cumplimiento del programa planificado: cuántas auditorías se realizaron de las programadas. Es útil para evaluar la ejecución, pero dice poco sobre la efectividad. Una organización puede ejecutar el 100% de las auditorías planificadas con auditores poco capacitados, procesos poco relevantes auditados y hallazgos superficiales, y ese indicador seguirá verde.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El segundo más común es el porcentaje de hallazgos cerrados en tiempo. También es necesario, pero tiene el problema de incentivar el cierre rápido de acciones sin verificar su eficacia real. Un hallazgo cerrado con una acción que no resuelve la causa raíz seguirá generando problemas.',
+      },
+      {
+        type: 'heading',
+        content: 'Indicadores que sí miden la efectividad del programa',
+      },
+      {
+        type: 'subheading',
+        content: 'Tasa de hallazgos recurrentes',
+      },
+      {
+        type: 'paragraph',
+        content: 'Mide qué porcentaje de los hallazgos de auditorías actuales corresponden a problemas ya detectados en auditorías anteriores. Una tasa alta de recurrencia indica que las acciones correctivas no están siendo efectivas o que hay problemas sistémicos que el programa de auditorías no está abordando con suficiente profundidad.',
+      },
+      {
+        type: 'subheading',
+        content: 'Ratio de no conformidades mayores vs. observaciones',
+      },
+      {
+        type: 'paragraph',
+        content: 'Un programa maduro de auditorías internas debería, con el tiempo, detectar principalmente observaciones y oportunidades de mejora, no no conformidades mayores. Si después de varios ciclos de auditoría siguen apareciendo no conformidades mayores, el sistema tiene problemas reales o el programa de auditorías no está siendo suficientemente crítico.',
+      },
+      {
+        type: 'subheading',
+        content: 'Cobertura de procesos críticos',
+      },
+      {
+        type: 'paragraph',
+        content: 'Mide si el programa está auditando con mayor frecuencia los procesos que tienen mayor impacto sobre la calidad del producto o servicio. Si el proceso de diseño y desarrollo —uno de los más críticos— se audita con la misma frecuencia que el proceso de compras de materiales de bajo impacto, el programa no está siendo inteligente en la asignación de recursos.',
+      },
+      {
+        type: 'heading',
+        content: 'Cómo usar los datos para mejorar el programa',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Revisar los indicadores del programa trimestralmente, no solo en la revisión por la dirección',
+          'Ajustar la frecuencia de auditoría de procesos en función de los resultados previos y los cambios en el contexto',
+          'Evaluar anualmente la competencia de los auditores internos y su imparcialidad respecto a los procesos que auditan',
+          'Comparar los hallazgos de auditorías internas con los de la auditoría externa para identificar brechas de percepción',
+          'Usar los hallazgos recurrentes como entrada prioritaria para los proyectos de mejora del período',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content: 'Un programa de auditorías que genera aprendizaje —que cambia la forma en que la organización opera porque detecta patrones y los corrige— es radicalmente diferente a uno que genera informes. Los indicadores correctos son los que te dicen en cuál de los dos estás.',
+      },
+    ],
+  },
+  {
+    slug: 'iso-14001-vs-iso-50001',
+    body: [
+      {
+        type: 'paragraph',
+        content: 'Cuando una organización decide tomar en serio su gestión ambiental y energética, tarde o temprano se enfrenta a la misma pregunta: ¿ISO 14001, ISO 50001 o las dos? La respuesta depende de factores concretos de negocio —no de modas ni de lo que hace la competencia— y tiene implicaciones significativas en términos de recursos, beneficios y plazos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Aunque ambas normas abordan el impacto que las organizaciones tienen sobre su entorno, sus focos son distintos. ISO 14001 gestiona el conjunto de aspectos ambientales de la organización: emisiones, residuos, consumo de recursos naturales, contaminación del suelo y del agua. ISO 50001 se concentra exclusivamente en el desempeño energético: cuánta energía consumes, cómo la usas y cómo puedes usar menos para los mismos resultados.',
+      },
+      {
+        type: 'quote',
+        content: 'ISO 14001 te pregunta qué impacto tienes en el medio ambiente. ISO 50001 te pregunta cuánto te cuesta ese impacto en tu factura de energía.',
+      },
+      {
+        type: 'heading',
+        content: 'ISO 14001: el marco ambiental integral',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 14001 es la norma más adoptada de gestión ambiental en el mundo, con más de 300.000 organizaciones certificadas. Su versión de 2015 sigue la estructura de alto nivel común a todas las normas de sistemas de gestión ISO, lo que facilita su integración con ISO 9001 e ISO 45001.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El corazón de ISO 14001 es la identificación de los aspectos ambientales de la organización —los elementos de sus actividades que pueden interactuar con el medio ambiente— y la evaluación de los impactos ambientales significativos asociados a esos aspectos. A partir de esa evaluación, la organización define sus objetivos ambientales y diseña controles para gestionar los impactos más relevantes.',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 14001 es especialmente relevante para organizaciones que enfrentan presión regulatoria ambiental, que tienen cadenas de suministro con clientes que exigen compromisos ambientales verificados, o que operan en sectores con impacto ambiental visible —manufactura, construcción, agroindustria, minería, logística.',
+      },
+      {
+        type: 'heading',
+        content: 'ISO 50001: el caso financiero de la eficiencia energética',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 50001 es menos conocida que ISO 14001, pero su propuesta de valor es más fácil de cuantificar: organizaciones que la implementan correctamente reducen su consumo de energía en un promedio del 10% en el primer año y continúan mejorando en ciclos sucesivos. En un contexto de costos de energía crecientes, ese ahorro se convierte directamente en mejora del margen operativo.',
+      },
+      {
+        type: 'paragraph',
+        content: 'El sistema de gestión de energía bajo ISO 50001 gira en torno a tres conceptos clave. El primero es la línea base energética: el consumo de referencia contra el cual se medirán las mejoras. El segundo son los indicadores de desempeño energético (IDEn): métricas que relacionan el consumo de energía con las variables de producción o servicio. El tercero son los usos significativos de energía: los procesos o equipos que consumen la mayor proporción de energía y que, por tanto, ofrecen el mayor potencial de mejora.',
+      },
+      {
+        type: 'heading',
+        content: 'Cuándo implementar cada una',
+      },
+      {
+        type: 'subheading',
+        content: 'Implementa ISO 14001 si...',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'Tus clientes o contratos exigen compromisos ambientales verificados',
+          'Operas en un sector con regulación ambiental estricta o en expansión',
+          'Quieres gestionar de forma integral todos tus impactos ambientales, no solo energía',
+          'Ya tienes ISO 9001 y quieres construir un sistema integrado de gestión',
+          'Tu estrategia de marca o reputación está vinculada a la sostenibilidad',
+        ],
+      },
+      {
+        type: 'subheading',
+        content: 'Implementa ISO 50001 si...',
+      },
+      {
+        type: 'bullets',
+        content: [
+          'La energía representa un porcentaje relevante de tus costos operativos',
+          'Quieres reducir tu huella de carbono con impacto financiero directo medible',
+          'Tienes procesos industriales intensivos en energía: hornos, compresores, sistemas de refrigeración',
+          'Participas en esquemas de eficiencia energética o certificaciones de edificios',
+          'Buscas acceder a incentivos fiscales o financiamiento verde vinculado al desempeño energético',
+        ],
+      },
+      {
+        type: 'heading',
+        content: 'La opción de implementar ambas',
+      },
+      {
+        type: 'paragraph',
+        content: 'ISO 14001 e ISO 50001 son altamente complementarias. Ambas siguen la misma estructura de alto nivel, comparten muchos requisitos de contexto, liderazgo, planificación y evaluación del desempeño, y pueden integrar sus auditorías internas y revisiones por la dirección. Una organización que ya tiene ISO 14001 puede añadir ISO 50001 con un esfuerzo incremental relativamente bajo, especialmente si la energía es uno de sus aspectos ambientales significativos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'La decisión de cuándo implementar cada una debería estar guiada por una pregunta simple: ¿cuál de los dos sistemas le genera más valor a la organización en los próximos dos años? Si la presión viene de tus clientes y la regulación, empieza por ISO 14001. Si la presión viene de tus costos y tu margen, empieza por ISO 50001. Si ambas presiones son reales, planifica un sistema integrado desde el principio y ahorra esfuerzo en el largo plazo.',
+      },
+    ],
+  },
+  {
     slug: 'como-preparar-auditoria-iso-9001',
     body: [
       {
