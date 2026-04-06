@@ -148,10 +148,10 @@ export function Footer() {
             {f.copyright}
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="text-[#3a3a3a]/40 hover:text-[#3a3a3a] transition-colors text-sm">
+            <Link href="/terminos" className="text-[#3a3a3a]/40 hover:text-[#3a3a3a] transition-colors text-sm">
               {f.terms}
             </Link>
-            <Link href="#" className="text-[#3a3a3a]/40 hover:text-[#3a3a3a] transition-colors text-sm">
+            <Link href="/privacidad" className="text-[#3a3a3a]/40 hover:text-[#3a3a3a] transition-colors text-sm">
               {f.privacy}
             </Link>
           </div>
