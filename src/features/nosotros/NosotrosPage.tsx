@@ -227,10 +227,10 @@ function HeroSection() {
 // ─── Misión ───────────────────────────────────────────────────────────────────
 
 const VC_STRIPS = [
-  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80', name: 'Ana García',    role: 'Directora de Calidad'   },
-  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80', name: 'Carlos Méndez',  role: 'Consultor Senior ISO'   },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80', name: 'Laura Torres',  role: 'Auditora Certificada'   },
-  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80', name: 'Miguel Ruiz',   role: 'Especialista en SGC'    },
+  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80'    },
 ]
 
 function VisionCollage() {
@@ -240,8 +240,7 @@ function VisionCollage() {
     <div style={{ display: 'flex', gap: 10, height: 420 }}>
       {VC_STRIPS.map((p, i) => {
         const isActive = hovered === i
-        const isIdle   = hovered === null
-        const flex     = isIdle ? 1 : isActive ? 4 : 0.55
+        const flex     = hovered === null ? 1 : isActive ? 4 : 0.55
         return (
           <div
             key={i}
@@ -259,48 +258,9 @@ function VisionCollage() {
           >
             <img
               src={p.src}
-              alt={p.name}
+              alt=""
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-            {/* gradient overlay */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%)',
-              pointerEvents: 'none',
-            }} />
-            {/* collapsed label — vertical text */}
-            <div style={{
-              position: 'absolute', bottom: 16, left: 0, right: 0,
-              display: 'flex', justifyContent: 'center',
-              opacity: isActive ? 0 : 1,
-              transition: 'opacity 0.25s ease',
-              pointerEvents: 'none',
-            }}>
-              <span style={{
-                writingMode: 'vertical-rl',
-                transform: 'rotate(180deg)',
-                color: 'white',
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                whiteSpace: 'nowrap',
-                textShadow: '0 1px 4px rgba(0,0,0,0.4)',
-              }}>
-                {p.name}
-              </span>
-            </div>
-            {/* expanded label */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              padding: '14px 16px',
-              opacity: isActive ? 1 : 0,
-              transform: isActive ? 'translateY(0)' : 'translateY(6px)',
-              transition: 'opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s',
-              pointerEvents: 'none',
-            }}>
-              <div style={{ color: 'white', fontWeight: 700, fontSize: 15, lineHeight: 1.3 }}>{p.name}</div>
-              <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 2 }}>{p.role}</div>
-            </div>
           </div>
         )
       })}
