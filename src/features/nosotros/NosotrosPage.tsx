@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useRef, type ReactNode } from 'react'
+import React, { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ParticleBackground } from './components/ParticleBackground'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
@@ -226,59 +226,84 @@ function HeroSection() {
 
 // ─── Misión ───────────────────────────────────────────────────────────────────
 
-const VC_PHOTOS = [
-  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80', w: 250, h: 300, top: 80,  left: 20,  rotate: '-8deg',  from: 'translate(-40px,30px) rotate(-18deg)',  delay: 0   },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80', w: 190, h: 235, top: 10,  left: 215, rotate: '6deg',   from: 'translate(30px,-40px) rotate(14deg)',  delay: 110 },
-  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', w: 220, h: 265, top: 210, left: 140, rotate: '-4deg',  from: 'translate(-25px,35px) rotate(-11deg)', delay: 180 },
-  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', w: 180, h: 220, top: 270, left: 330, rotate: '10deg',  from: 'translate(35px,35px) rotate(20deg)',   delay: 250 },
+const VC_STRIPS = [
+  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80', name: 'Ana García',    role: 'Directora de Calidad'   },
+  { src: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80', name: 'Carlos Méndez',  role: 'Consultor Senior ISO'   },
+  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80', name: 'Laura Torres',  role: 'Auditora Certificada'   },
+  { src: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80', name: 'Miguel Ruiz',   role: 'Especialista en SGC'    },
 ]
 
 function VisionCollage() {
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const photoRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const wrap = wrapRef.current; if (!wrap) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      photoRefs.current.forEach((el, i) => {
-        if (!el) return
-        const p = VC_PHOTOS[i]
-        setTimeout(() => {
-          el.style.opacity = '1'
-          el.style.transform = `rotate(${p.rotate})`
-        }, p.delay)
-      })
-      obs.disconnect()
-    }, { threshold: 0.1 })
-    obs.observe(wrap)
-    return () => obs.disconnect()
-  }, [])
+  const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <div ref={wrapRef} style={{ position: 'relative', height: '520px', width: '100%' }}>
-      <style>{`
-        .vc-photo {
-          position: absolute; background: white; padding: 10px; border-radius: 2px;
-          box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 24px 60px rgba(0,0,0,0.09);
-          opacity: 0; cursor: pointer; will-change: transform, opacity;
-          transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
-        }
-        .vc-photo img { width:100%; height:100%; object-fit:cover; display:block; }
-        .vc-photo:hover { z-index:10 !important; box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10) !important; }
-      `}</style>
-      {VC_PHOTOS.map((p, i) => (
-        <div
-          key={i}
-          className="vc-photo"
-          ref={el => { photoRefs.current[i] = el }}
-          style={{ top: p.top, left: p.left, width: p.w, height: p.h, zIndex: i + 1, transform: p.from }}
-          onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'rotate(0deg) scale(1.06)' }}
-          onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = `rotate(${p.rotate})` }}
-        >
-          <img src={p.src} alt="" />
-        </div>
-      ))}
+    <div style={{ display: 'flex', gap: 10, height: 420 }}>
+      {VC_STRIPS.map((p, i) => {
+        const isActive = hovered === i
+        const isIdle   = hovered === null
+        const flex     = isIdle ? 1 : isActive ? 4 : 0.55
+        return (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            style={{
+              flex,
+              transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1)',
+              borderRadius: 14,
+              overflow: 'hidden',
+              position: 'relative',
+              cursor: 'pointer',
+              minWidth: 0,
+            }}
+          >
+            <img
+              src={p.src}
+              alt={p.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+            {/* gradient overlay */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%)',
+              pointerEvents: 'none',
+            }} />
+            {/* collapsed label — vertical text */}
+            <div style={{
+              position: 'absolute', bottom: 16, left: 0, right: 0,
+              display: 'flex', justifyContent: 'center',
+              opacity: isActive ? 0 : 1,
+              transition: 'opacity 0.25s ease',
+              pointerEvents: 'none',
+            }}>
+              <span style={{
+                writingMode: 'vertical-rl',
+                transform: 'rotate(180deg)',
+                color: 'white',
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                whiteSpace: 'nowrap',
+                textShadow: '0 1px 4px rgba(0,0,0,0.4)',
+              }}>
+                {p.name}
+              </span>
+            </div>
+            {/* expanded label */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              padding: '14px 16px',
+              opacity: isActive ? 1 : 0,
+              transform: isActive ? 'translateY(0)' : 'translateY(6px)',
+              transition: 'opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s',
+              pointerEvents: 'none',
+            }}>
+              <div style={{ color: 'white', fontWeight: 700, fontSize: 15, lineHeight: 1.3 }}>{p.name}</div>
+              <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 2 }}>{p.role}</div>
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }
