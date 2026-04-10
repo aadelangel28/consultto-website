@@ -107,7 +107,6 @@ export default function DemoPage() {
           </p>
           <a
             href="https://calendly.com/alan-consultto/30min"
-            target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3 rounded-full font-semibold transition-all hover:scale-105 text-sm"
           >
             Elegir fecha y hora →
