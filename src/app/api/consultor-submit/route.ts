@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { nombre, empresa, email, telefono, motivo, canal, horario } = body
+    const { nombre, empresa, email, telefono, motivo, canal } = body
 
     const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -15,10 +15,9 @@ export async function POST(req: NextRequest) {
         </div>
         <div style="border: 1px solid #efefef; border-top: none; border-radius: 0 0 12px 12px; padding: 28px;">
 
-          <div style="background: #f8f8f8; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;">
-            <p style="margin: 0 0 4px 0; font-size: 12px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Horario solicitado</p>
-            <p style="margin: 0; font-size: 17px; font-weight: 600; color: #1f2020;">${horario ?? '—'}</p>
-            <p style="margin: 6px 0 0 0; font-size: 13px; color: #763d50; font-weight: 500;">Contactar por: ${canal ?? '—'}</p>
+          <div style="background: #f8f8f8; border-radius: 10px; padding: 14px 20px; margin-bottom: 24px;">
+            <p style="margin: 0 0 2px 0; font-size: 12px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Contactar por</p>
+            <p style="margin: 0; font-size: 17px; font-weight: 600; color: #763d50;">${canal ?? '—'}</p>
           </div>
 
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
