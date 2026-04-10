@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const MOTIVOS = [
-  'Tengo dudas sobre qué norma me aplica',
-  'Quiero cotizar una implementación o certificación',
+  'Me interesa conocer los servicios de Consultto',
+  'Quiero cotizar una implementación para lograr una certificación',
   'Necesito ayuda urgente con una auditoría',
   'Quiero saber si Consultto es para mi empresa',
   'Otro motivo',
@@ -22,23 +22,22 @@ const CANALES = [
   { id: 'email', label: 'Correo', icon: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
   )},
-  { id: 'videollamada', label: 'Videollamada', icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
-  )},
 ]
 
-const HORARIOS = [
-  'Ahora mismo',
-  'Hoy en la mañana',
-  'Hoy en la tarde',
-  'Mañana',
-  'Esta semana',
+const HORAS_HOY = [
+  '9:00 am', '10:00 am', '11:00 am', '12:00 pm',
+  '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm',
+]
+
+const HORAS_MANANA = [
+  '9:00 am', '10:00 am', '11:00 am', '12:00 pm',
+  '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm',
 ]
 
 export default function ConsultorPage() {
   const [form, setForm] = useState({
     nombre: '', empresa: '', email: '', telefono: '',
-    motivo: '', canal: '', horario: '',
+    motivo: '', otroMotivo: '', canal: '', horario: '', horaEspecifica: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [sending, setSending] = useState(false)
@@ -49,6 +48,11 @@ export default function ConsultorPage() {
     setErrors(e => { const n = { ...e }; delete n[field]; return n })
   }
 
+  function selectHorario(h: string) {
+    setForm(f => ({ ...f, horario: h, horaEspecifica: '' }))
+    setErrors(e => { const n = { ...e }; delete n.horario; return n })
+  }
+
   async function submit() {
     const e: Record<string, string> = {}
     if (!form.nombre.trim()) e.nombre = 'Requerido'
@@ -56,16 +60,23 @@ export default function ConsultorPage() {
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Correo válido requerido'
     if (!form.telefono.trim()) e.telefono = 'Requerido'
     if (!form.motivo) e.motivo = 'Selecciona una opción'
+    if (form.motivo === 'Otro motivo' && !form.otroMotivo.trim()) e.otroMotivo = 'Cuéntanos más'
     if (!form.canal) e.canal = 'Selecciona una opción'
     if (!form.horario) e.horario = 'Selecciona una opción'
+    if ((form.horario === 'Hoy' || form.horario === 'Mañana') && !form.horaEspecifica) e.horaEspecifica = 'Selecciona un horario'
 
     if (Object.keys(e).length > 0) { setErrors(e); return }
+
+    const motivoFinal = form.motivo === 'Otro motivo' ? form.otroMotivo : form.motivo
+    const horarioFinal = form.horario === 'Lo antes posible'
+      ? 'Lo antes posible'
+      : `${form.horario} a las ${form.horaEspecifica}`
 
     setSending(true)
     await fetch('/api/consultor-submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, motivo: motivoFinal, horario: horarioFinal }),
     }).catch(() => {})
     setSending(false)
     setDone(true)
@@ -87,9 +98,8 @@ export default function ConsultorPage() {
           </div>
           <h1 className="text-2xl font-light text-[#1f2020] mb-3">Recibido, {form.nombre.split(' ')[0]}.</h1>
           <p className="text-[#3a3a3a]/55 text-sm leading-relaxed mb-8">
-            Un consultor de Consultto te contactará{' '}
-            <span className="text-[#763d50] font-medium">{form.horario.toLowerCase()}</span>{' '}
-            por <span className="text-[#763d50] font-medium">{form.canal}</span>.
+            Un consultor de Consultto te contactará pronto por{' '}
+            <span className="text-[#763d50] font-medium">{form.canal}</span>.
           </p>
           <Link href="/" className="inline-block border border-[#e0e0e0] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] px-7 py-2.5 rounded-full text-sm font-medium transition-all">
             ← Volver al inicio
@@ -116,7 +126,7 @@ export default function ConsultorPage() {
             Un consultor real<br />te responde.
           </h1>
           <p className="text-[#3a3a3a]/50 text-sm leading-relaxed max-w-sm">
-            Cuéntanos quién eres y qué necesitas. Nosotros nos comunicamos contigo — sin bots, sin formularios que nadie lee.
+            Cuéntanos quién eres y qué necesitas. Nos comprometemos a darte una respuesta en menos de 30 minutos.
           </p>
         </div>
 
@@ -151,7 +161,7 @@ export default function ConsultorPage() {
           {/* Motivo */}
           <div className="p-8 border-b border-[#f5f5f5]">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#999] mb-5">¿En qué te podemos ayudar?</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-3">
               {MOTIVOS.map(m => (
                 <button key={m} type="button" onClick={() => set('motivo', m)}
                   className={`px-4 py-2 rounded-full text-sm border transition-all ${
@@ -163,7 +173,21 @@ export default function ConsultorPage() {
                 </button>
               ))}
             </div>
-            {errors.motivo && <p className="text-xs text-red-500 mt-3">{errors.motivo}</p>}
+            {form.motivo === 'Otro motivo' && (
+              <div className="mt-4">
+                <Field label="Cuéntanos más" error={errors.otroMotivo}>
+                  <textarea
+                    value={form.otroMotivo} onChange={e => set('otroMotivo', e.target.value)}
+                    placeholder="Describe brevemente tu situación..."
+                    rows={3}
+                    className={`w-full px-4 py-2.5 rounded-xl border text-sm bg-white text-[#1f2020] outline-none transition-colors focus:border-[#763d50] resize-none ${
+                      errors.otroMotivo ? 'border-red-400' : 'border-[#d9d9d9] hover:border-[#b0b0b0]'
+                    }`}
+                  />
+                </Field>
+              </div>
+            )}
+            {errors.motivo && <p className="text-xs text-red-500 mt-2">{errors.motivo}</p>}
           </div>
 
           {/* Canal + Horario */}
@@ -173,7 +197,7 @@ export default function ConsultorPage() {
               {/* Canal */}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#999] mb-5">¿Cómo te contactamos?</p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {CANALES.map(c => (
                     <button key={c.id} type="button" onClick={() => set('canal', c.label)}
                       className={`flex flex-col items-center gap-2 py-4 px-2 rounded-xl border text-xs font-medium transition-all ${
@@ -191,25 +215,81 @@ export default function ConsultorPage() {
 
               {/* Horario */}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#999] mb-5">¿Cuándo te viene bien?</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#999] mb-5">¿Cuándo quieres que te contactemos?</p>
                 <div className="space-y-2">
-                  {HORARIOS.map(h => (
-                    <button key={h} type="button" onClick={() => set('horario', h)}
+                  {/* Lo antes posible */}
+                  <button type="button" onClick={() => selectHorario('Lo antes posible')}
+                    className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm transition-all ${
+                      form.horario === 'Lo antes posible'
+                        ? 'border-[#763d50] bg-[#763d50]/5 text-[#763d50] font-medium'
+                        : 'border-[#e8e8e8] text-[#3a3a3a] hover:border-[#763d50]/30 hover:bg-[#faf9f8] bg-white'
+                    }`}>
+                    <span className="flex items-center justify-between">
+                      Lo antes posible
+                      {form.horario === 'Lo antes posible' && <Check />}
+                    </span>
+                  </button>
+
+                  {/* Hoy */}
+                  <div>
+                    <button type="button" onClick={() => selectHorario('Hoy')}
                       className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm transition-all ${
-                        form.horario === h
+                        form.horario === 'Hoy'
                           ? 'border-[#763d50] bg-[#763d50]/5 text-[#763d50] font-medium'
                           : 'border-[#e8e8e8] text-[#3a3a3a] hover:border-[#763d50]/30 hover:bg-[#faf9f8] bg-white'
                       }`}>
                       <span className="flex items-center justify-between">
-                        {h}
-                        {form.horario === h && (
-                          <svg className="w-3.5 h-3.5 text-[#763d50] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
+                        En algún momento de hoy
+                        {form.horario === 'Hoy' && <Check />}
                       </span>
                     </button>
-                  ))}
+                    {form.horario === 'Hoy' && (
+                      <div className="mt-2 flex flex-wrap gap-1.5 pl-1">
+                        {HORAS_HOY.map(h => (
+                          <button key={h} type="button" onClick={() => set('horaEspecifica', h)}
+                            className={`px-3 py-1 rounded-full text-xs border transition-all ${
+                              form.horaEspecifica === h
+                                ? 'bg-[#763d50] border-[#763d50] text-white font-medium'
+                                : 'border-[#e8e8e8] text-[#3a3a3a]/60 hover:border-[#763d50]/40 bg-white'
+                            }`}>
+                            {h}
+                          </button>
+                        ))}
+                        {errors.horaEspecifica && <p className="text-xs text-red-500 w-full mt-1">{errors.horaEspecifica}</p>}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mañana */}
+                  <div>
+                    <button type="button" onClick={() => selectHorario('Mañana')}
+                      className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm transition-all ${
+                        form.horario === 'Mañana'
+                          ? 'border-[#763d50] bg-[#763d50]/5 text-[#763d50] font-medium'
+                          : 'border-[#e8e8e8] text-[#3a3a3a] hover:border-[#763d50]/30 hover:bg-[#faf9f8] bg-white'
+                      }`}>
+                      <span className="flex items-center justify-between">
+                        Mañana
+                        {form.horario === 'Mañana' && <Check />}
+                      </span>
+                    </button>
+                    {form.horario === 'Mañana' && (
+                      <div className="mt-2 flex flex-wrap gap-1.5 pl-1">
+                        {HORAS_MANANA.map(h => (
+                          <button key={h} type="button" onClick={() => set('horaEspecifica', h)}
+                            className={`px-3 py-1 rounded-full text-xs border transition-all ${
+                              form.horaEspecifica === h
+                                ? 'bg-[#763d50] border-[#763d50] text-white font-medium'
+                                : 'border-[#e8e8e8] text-[#3a3a3a]/60 hover:border-[#763d50]/40 bg-white'
+                            }`}>
+                            {h}
+                          </button>
+                        ))}
+                        {errors.horaEspecifica && <p className="text-xs text-red-500 w-full mt-1">{errors.horaEspecifica}</p>}
+                      </div>
+                    )}
+                  </div>
+
                 </div>
                 {errors.horario && <p className="text-xs text-red-500 mt-3">{errors.horario}</p>}
               </div>
@@ -231,6 +311,14 @@ export default function ConsultorPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+function Check() {
+  return (
+    <svg className="w-3.5 h-3.5 text-[#763d50] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
   )
 }
 
