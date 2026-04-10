@@ -4,6 +4,22 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const OBJETIVOS = [
+  'Certificarme por primera vez',
+  'Mantener o renovar una certificación existente',
+  'Implementar gestión documental',
+  'Mejorar mi sistema de gestión actual',
+  'Cumplir requisito de cliente o licitación',
+]
+
+const EMPLEADOS = [
+  '1 – 10',
+  '11 – 50',
+  '51 – 200',
+  '201 – 500',
+  'Más de 500',
+]
+
 const CHECKS = [
   'Tengo intención real de certificarme o mejorar mi sistema de gestión en el corto plazo.',
   'Estaré presente en la reunión con capacidad de tomar decisiones.',
@@ -20,7 +36,6 @@ export default function DemoPage() {
     objetivo: '',
     norma: '',
     empleados: '',
-    cuando: '',
   })
   const [checks, setChecks] = useState([false, false, false, false])
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -34,7 +49,6 @@ export default function DemoPage() {
     if (!form.objetivo.trim()) e.objetivo = 'Requerido'
     if (!form.norma.trim()) e.norma = 'Requerido'
     if (!form.empleados.trim()) e.empleados = 'Requerido'
-    if (!form.cuando.trim()) e.cuando = 'Requerido'
     return e
   }
 
@@ -135,27 +149,49 @@ export default function DemoPage() {
               </Field>
 
               <Field label="¿Qué necesitas resolver?" error={errors.objetivo}>
-                <input
-                  type="text"
-                  placeholder="Ej. certificarme en ISO 9001, gestión documental, mantener certificación…"
-                  value={form.objetivo}
-                  onChange={e => set('objetivo', e.target.value)}
-                  className={inputCls(errors.objetivo)}
-                />
+                <div className="flex flex-wrap gap-2">
+                  {OBJETIVOS.map(o => (
+                    <button
+                      key={o}
+                      type="button"
+                      onClick={() => set('objetivo', o)}
+                      className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                        form.objetivo === o
+                          ? 'bg-[#763d50] border-[#763d50] text-white'
+                          : 'border-[#d9d9d9] text-[#3a3a3a] hover:border-[#763d50] hover:text-[#763d50]'
+                      }`}
+                    >
+                      {o}
+                    </button>
+                  ))}
+                </div>
+                {errors.objetivo && <p className="text-xs text-red-500 mt-1">{errors.objetivo}</p>}
               </Field>
 
               <div className="grid grid-cols-2 gap-4">
                 <Field label="¿En qué norma?" error={errors.norma}>
                   <input type="text" value={form.norma} onChange={e => set('norma', e.target.value)} className={inputCls(errors.norma)} />
                 </Field>
-                <Field label="¿Cuántos empleados?" error={errors.empleados}>
-                  <input type="text" value={form.empleados} onChange={e => set('empleados', e.target.value)} className={inputCls(errors.empleados)} />
+                <Field label="¿Cuántos empleados tiene tu empresa?" error={errors.empleados}>
+                  <div className="flex flex-wrap gap-2">
+                    {EMPLEADOS.map(e => (
+                      <button
+                        key={e}
+                        type="button"
+                        onClick={() => set('empleados', e)}
+                        className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                          form.empleados === e
+                            ? 'bg-[#763d50] border-[#763d50] text-white'
+                            : 'border-[#d9d9d9] text-[#3a3a3a] hover:border-[#763d50] hover:text-[#763d50]'
+                        }`}
+                      >
+                        {e}
+                      </button>
+                    ))}
+                  </div>
+                  {errors.empleados && <p className="text-xs text-red-500 mt-1">{errors.empleados}</p>}
                 </Field>
               </div>
-
-              <Field label="¿Cuándo quieres lograrlo?" error={errors.cuando}>
-                <input type="text" value={form.cuando} onChange={e => set('cuando', e.target.value)} className={inputCls(errors.cuando)} />
-              </Field>
             </div>
 
             {/* Right — checkboxes + botón */}
