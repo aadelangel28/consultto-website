@@ -214,8 +214,8 @@ export const translations = {
         { label: 'Blog', href: '/blog' },
       ],
       contactLinks: [
-        { label: 'Agendar demo', href: '/signup' },
-        { label: 'Hablar con un consultor', href: '/contacto' },
+        { label: 'Agendar demo', href: '/demo' },
+        { label: 'Hablar con un consultor', href: '/consultor' },
       ],
       copyright: '© 2025 Consultto. Todos los derechos reservados.',
       terms: 'Términos y condiciones',
@@ -837,8 +837,8 @@ export const translations = {
         { label: 'Blog', href: '/blog' },
       ],
       contactLinks: [
-        { label: 'Schedule demo', href: '/signup' },
-        { label: 'Talk to a consultant', href: '/contacto' },
+        { label: 'Schedule demo', href: '/demo' },
+        { label: 'Talk to a consultant', href: '/consultor' },
       ],
       copyright: '© 2025 Consultto. All rights reserved.',
       terms: 'Terms and conditions',
@@ -1460,8 +1460,8 @@ export const translations = {
         { label: 'Blog', href: '/blog' },
       ],
       contactLinks: [
-        { label: 'Agendar demo', href: '/signup' },
-        { label: 'Falar com um consultor', href: '/contacto' },
+        { label: 'Agendar demo', href: '/demo' },
+        { label: 'Falar com um consultor', href: '/consultor' },
       ],
       copyright: '© 2025 Consultto. Todos os direitos reservados.',
       terms: 'Termos e condições',
