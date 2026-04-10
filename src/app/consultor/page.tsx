@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const MOTIVOS = [
   'Me interesa conocer los servicios de Consultto',
@@ -42,6 +43,7 @@ export default function ConsultorPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
+  const router = useRouter()
 
   function set(field: string, value: string) {
     setForm(f => ({ ...f, [field]: value }))
@@ -76,12 +78,27 @@ export default function ConsultorPage() {
   if (done) {
     return (
       <main className="min-h-screen bg-[#faf9f8] flex flex-col items-center justify-center px-6">
+        <style>{`
+          @keyframes pulseRing {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            60%  { transform: scale(2.2); opacity: 0; }
+            100% { transform: scale(2.2); opacity: 0; }
+          }
+          @keyframes pulseRing2 {
+            0%   { transform: scale(1);   opacity: 0.4; }
+            60%  { transform: scale(1.7); opacity: 0; }
+            100% { transform: scale(1.7); opacity: 0; }
+          }
+          .ring1 { animation: pulseRing  1.8s ease-out infinite; }
+          .ring2 { animation: pulseRing2 1.8s ease-out 0.3s infinite; }
+        `}</style>
         <div className="max-w-md w-full text-center">
           <Link href="/"><Image src="/logo.png" alt="Consultto" width={120} height={28} className="mx-auto mb-12" /></Link>
-          <div className="relative w-16 h-16 mx-auto mb-8">
-            <div className="absolute inset-0 rounded-full bg-[#763d50]/10 animate-ping opacity-30" />
-            <div className="relative w-16 h-16 rounded-full bg-[#763d50]/10 flex items-center justify-center">
-              <svg className="w-8 h-8 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center">
+            <div className="ring1 absolute inset-0 rounded-full bg-[#763d50]/30" />
+            <div className="ring2 absolute inset-0 rounded-full bg-[#763d50]/20" />
+            <div className="relative w-20 h-20 rounded-full bg-[#763d50]/15 flex items-center justify-center">
+              <svg className="w-9 h-9 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -91,9 +108,12 @@ export default function ConsultorPage() {
             Hemos recibido tu información. Uno de nuestros consultores se pondrá en contacto contigo a la brevedad por{' '}
             <span className="text-[#763d50] font-medium">{form.canal}</span>.
           </p>
-          <Link href="/" className="inline-block border border-[#e0e0e0] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] px-7 py-2.5 rounded-full text-sm font-medium transition-all">
+          <button
+            onClick={() => router.push('/')}
+            className="inline-block border border-[#e0e0e0] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] px-7 py-2.5 rounded-full text-sm font-medium transition-all"
+          >
             ← Volver al inicio
-          </Link>
+          </button>
         </div>
       </main>
     )
