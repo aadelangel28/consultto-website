@@ -1295,13 +1295,13 @@ export function AgenteIAPage() {
             style={{ animation: 'fadeInUp 600ms cubic-bezier(0.16,1,0.3,1) 350ms both' }}
           >
             <Link
-              href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
+              href="/demo"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base text-center"
             >
               {ai.hero.cta1}
             </Link>
             <Link
-              href="#como-funciona"
+              href="/consultor"
               className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-8 py-4 rounded-full font-semibold transition-all text-base bg-white hover:bg-[#f8f8f8]"
             >
               {ai.hero.cta2}
@@ -1400,7 +1400,7 @@ export function AgenteIAPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
+                href="/demo"
                 className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-base text-center"
               >
                 {ai.cta.cta1}
