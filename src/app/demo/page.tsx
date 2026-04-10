@@ -124,12 +124,6 @@ export default function DemoPage() {
       {/* Top bar */}
       <div className="flex items-center justify-between px-8 py-5 border-b border-[#f0f0f0]">
         <Link href="/"><Image src="/logo.png" alt="Consultto" width={110} height={26} /></Link>
-        <div className="flex items-center gap-3">
-          <div className="w-40 h-1 rounded-full bg-[#f0f0f0] overflow-hidden">
-            <div className="h-full bg-[#763d50] rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
-          </div>
-          <span className="text-xs text-[#3a3a3a]/40 w-8">{progress}%</span>
-        </div>
       </div>
 
       {/* Content */}
@@ -296,7 +290,18 @@ export default function DemoPage() {
             </button>
           </div>
 
-          <p className="text-xs text-center text-[#3a3a3a]/30 mt-6">No compartimos tu información con terceros.</p>
+          {/* Progress bar */}
+          <div className="mt-8">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-[#3a3a3a]/40">Paso {stepIndex + 1} de {STEPS.length}</span>
+              <span className="text-xs text-[#3a3a3a]/40">{progress}%</span>
+            </div>
+            <div className="w-full h-1 rounded-full bg-[#f0f0f0] overflow-hidden">
+              <div className="h-full bg-[#763d50] rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+            </div>
+          </div>
+
+          <p className="text-xs text-center text-[#3a3a3a]/30 mt-4">No compartimos tu información con terceros.</p>
         </div>
       </div>
     </main>
