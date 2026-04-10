@@ -301,7 +301,7 @@ export default function DemoPage() {
             </div>
           </div>
 
-          <p className="text-xs text-center text-[#3a3a3a]/30 mt-4">No compartimos tu información con terceros.</p>
+          <p className="text-xs text-center text-[#3a3a3a]/30 mt-8">No compartimos tu información con terceros.</p>
         </div>
       </div>
     </main>
