@@ -101,16 +101,17 @@ export default function ConsultorPage() {
 
   return (
     <main className="min-h-screen bg-[#faf9f8]">
+      <style>{pageStyles}</style>
 
       {/* Top bar */}
-      <div className="flex items-center px-8 py-5 border-b border-[#efefef] bg-white">
+      <div className="flex items-center px-8 py-5 border-b border-[#efefef] bg-white" style={{ animation: 'fadeDown 400ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <Link href="/"><Image src="/logo.png" alt="Consultto" width={110} height={26} /></Link>
       </div>
 
       <div className="max-w-2xl mx-auto px-6 py-14">
 
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-10" style={{ animation: 'fadeUp 500ms cubic-bezier(0.16,1,0.3,1) 80ms both' }}>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-3">Habla con nosotros</p>
           <h1 className="text-3xl font-light text-[#1f2020] mb-3 leading-snug">
             Un consultor real<br />te responde.
@@ -121,7 +122,7 @@ export default function ConsultorPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-[#efefef] shadow-sm overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#efefef] shadow-sm overflow-hidden" style={{ animation: 'fadeUp 550ms cubic-bezier(0.16,1,0.3,1) 160ms both' }}>
 
           {/* Datos personales */}
           <div className="p-8 border-b border-[#f5f5f5]">
@@ -215,6 +216,17 @@ export default function ConsultorPage() {
     </main>
   )
 }
+
+const pageStyles = `
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+`
 
 function Check() {
   return (
