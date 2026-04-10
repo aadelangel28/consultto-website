@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 
 const MOTIVOS = [
   'Me interesa conocer los servicios de Consultto',
@@ -43,7 +42,6 @@ export default function ConsultorPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
-  const router = useRouter()
 
   function set(field: string, value: string) {
     setForm(f => ({ ...f, [field]: value }))
@@ -109,7 +107,7 @@ export default function ConsultorPage() {
             <span className="text-[#763d50] font-medium">{form.canal}</span>.
           </p>
           <button
-            onClick={() => router.push('/')}
+            onClick={() => { window.location.href = '/' }}
             className="inline-block border border-[#e0e0e0] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] px-7 py-2.5 rounded-full text-sm font-medium transition-all"
           >
             ← Volver al inicio
