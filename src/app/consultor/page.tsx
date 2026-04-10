@@ -134,7 +134,7 @@ export default function ConsultorPage() {
           <h1 className="text-3xl font-light text-[#1f2020] mb-3 leading-snug">
             Un consultor real<br />te responde.
           </h1>
-          <p className="text-[#3a3a3a]/50 text-sm leading-relaxed max-w-sm">
+          <p className="text-[#3a3a3a]/50 text-sm leading-relaxed">
             Cuéntanos quién eres y qué necesitas. Nos comprometemos a darte una respuesta en menos de 30 minutos.
           </p>
         </div>
