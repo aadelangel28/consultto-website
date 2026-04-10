@@ -129,21 +129,21 @@ export default function ConsultorPage() {
             <div className="grid grid-cols-2 gap-4 mb-4">
               <Field label="Nombre completo" error={errors.nombre}>
                 <input autoFocus type="text" value={form.nombre} onChange={e => set('nombre', e.target.value)}
-                  placeholder="Ana García" className={inputCls(errors.nombre)} />
+                  className={inputCls(errors.nombre)} />
               </Field>
               <Field label="Empresa" error={errors.empresa}>
                 <input type="text" value={form.empresa} onChange={e => set('empresa', e.target.value)}
-                  placeholder="Mi Empresa S.A." className={inputCls(errors.empresa)} />
+                  className={inputCls(errors.empresa)} />
               </Field>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <Field label="Correo electrónico" error={errors.email}>
+              <Field label="Correo corporativo" error={errors.email}>
                 <input type="email" value={form.email} onChange={e => set('email', e.target.value)}
-                  placeholder="ana@empresa.com" className={inputCls(errors.email)} />
+                  className={inputCls(errors.email)} />
               </Field>
               <Field label="Teléfono" error={errors.telefono}>
                 <input type="tel" value={form.telefono} onChange={e => set('telefono', e.target.value)}
-                  placeholder="+52 55 0000 0000" className={inputCls(errors.telefono)} />
+                  className={inputCls(errors.telefono)} />
               </Field>
             </div>
           </div>
