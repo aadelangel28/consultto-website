@@ -95,12 +95,30 @@ export default function DemoPage() {
   if (step === 'done') {
     return (
       <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
+        <style>{`
+          @keyframes pulseRing {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            60%  { transform: scale(2.2); opacity: 0; }
+            100% { transform: scale(2.2); opacity: 0; }
+          }
+          @keyframes pulseRing2 {
+            0%   { transform: scale(1);   opacity: 0.4; }
+            60%  { transform: scale(1.7); opacity: 0; }
+            100% { transform: scale(1.7); opacity: 0; }
+          }
+          .ring1 { animation: pulseRing  1.8s ease-out infinite; }
+          .ring2 { animation: pulseRing2 1.8s ease-out 0.3s infinite; }
+        `}</style>
         <div className="max-w-md w-full text-center">
           <Link href="/"><Image src="/logo.png" alt="Consultto" width={120} height={28} className="mx-auto mb-12" /></Link>
-          <div className="w-12 h-12 rounded-full bg-[#763d50]/10 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-6 h-6 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
+          <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center">
+            <div className="ring1 absolute inset-0 rounded-full bg-[#763d50]/30" />
+            <div className="ring2 absolute inset-0 rounded-full bg-[#763d50]/20" />
+            <div className="relative w-20 h-20 rounded-full bg-[#763d50]/15 flex items-center justify-center">
+              <svg className="w-9 h-9 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
           </div>
           <h1 className="text-2xl font-light text-[#1f2020] mb-3">Listo, {form.nombre.split(' ')[0]}.</h1>
           <p className="text-[#3a3a3a]/55 text-sm leading-relaxed mb-8">
@@ -123,15 +141,25 @@ export default function DemoPage() {
 
   return (
     <main className="min-h-screen bg-white flex flex-col">
+      <style>{`
+        @keyframes fadeDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
       {/* Top bar */}
-      <div className="flex items-center justify-between px-8 py-5 border-b border-[#f0f0f0]">
+      <div className="flex items-center justify-between px-8 py-5 border-b border-[#f0f0f0]" style={{ animation: 'fadeDown 800ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <Link href="/"><Image src="/logo.png" alt="Consultto" width={110} height={26} /></Link>
       </div>
 
       {/* Content */}
       <div className="flex-1 flex items-center justify-center px-6 py-12">
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-lg" style={{ animation: 'fadeUp 900ms cubic-bezier(0.16,1,0.3,1) 200ms both' }}>
 
           {/* STEP: datos */}
           {step === 'datos' && (
