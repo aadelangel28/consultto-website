@@ -344,7 +344,7 @@ export function HeroSection() {
                 {t.hero.cta1}
               </Link>
               <Link
-                href="#como-funciona"
+                href="/consultor"
                 className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] px-6 py-3 rounded-full font-semibold transition-all text-sm bg-white hover:bg-[#f8f8f8] text-center"
               >
                 {t.hero.cta2}
