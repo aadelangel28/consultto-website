@@ -4,6 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const CHECKS = [
+  'Tengo intención real de certificarme o mejorar mi sistema de gestión en el corto plazo.',
+  'Estaré presente en la reunión con capacidad de tomar decisiones.',
+  'Entiendo que esta es una demo de la plataforma, no una cotización.',
+  'Me comprometo a asistir puntual o a cancelar con al menos 24 horas de anticipación.',
+]
 
 export default function DemoPage() {
   const [step, setStep] = useState<'form' | 'calendly'>('form')
@@ -11,38 +17,41 @@ export default function DemoPage() {
     nombre: '',
     empresa: '',
     email: '',
+    objetivo: '',
     norma: '',
     empleados: '',
     cuando: '',
-    situacion: '',
   })
+  const [checks, setChecks] = useState([false, false, false, false])
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [checksError, setChecksError] = useState(false)
 
   function validate() {
     const e: Record<string, string> = {}
     if (!form.nombre.trim()) e.nombre = 'Requerido'
     if (!form.empresa.trim()) e.empresa = 'Requerido'
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Email válido requerido'
-    if (!form.norma) e.norma = 'Requerido'
-    if (!form.empleados) e.empleados = 'Requerido'
-    if (!form.cuando) e.cuando = 'Requerido'
+    if (!form.objetivo.trim()) e.objetivo = 'Requerido'
+    if (!form.norma.trim()) e.norma = 'Requerido'
+    if (!form.empleados.trim()) e.empleados = 'Requerido'
+    if (!form.cuando.trim()) e.cuando = 'Requerido'
     return e
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const errs = validate()
-    if (Object.keys(errs).length > 0) {
+    const allChecked = checks.every(Boolean)
+    if (!allChecked) setChecksError(true)
+    if (Object.keys(errs).length > 0 || !allChecked) {
       setErrors(errs)
       return
     }
-    // Guardar datos del lead (no bloqueante — si falla igual pasa)
     fetch('/api/demo-submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
     }).catch(() => {})
-
     setStep('calendly')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -50,6 +59,15 @@ export default function DemoPage() {
   function set(field: string, value: string) {
     setForm(f => ({ ...f, [field]: value }))
     setErrors(e => { const n = { ...e }; delete n[field]; return n })
+  }
+
+  function toggleCheck(i: number) {
+    setChecks(c => {
+      const next = [...c]
+      next[i] = !next[i]
+      return next
+    })
+    setChecksError(false)
   }
 
   if (step === 'calendly') {
@@ -86,66 +104,21 @@ export default function DemoPage() {
     <main className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-6 py-14 md:py-20">
 
-        {/* Logo */}
         <Link href="/" className="inline-block mb-12">
           <Image src="/logo.png" alt="Consultto" width={130} height={30} />
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
-          {/* Left — copy */}
+          {/* Left */}
           <div className="lg:sticky lg:top-20">
             <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">Demo gratuita · 30 minutos</p>
             <h1 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-6">
               Antes de agendar,<br />cuéntanos un poco.
             </h1>
-            <p className="text-[#3a3a3a]/60 leading-relaxed mb-10">
+            <p className="text-[#3a3a3a]/60 leading-relaxed">
               Necesitamos 2 minutos de tu tiempo para entender tu situación. Así la demo será específica para tu industria y norma — no una presentación genérica.
             </p>
-
-            <div className="space-y-5">
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#3a3a3a]/70">Te mostramos la plataforma configurada para tu norma específica, no una demo de ventas.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#3a3a3a]/70">Respondemos tus preguntas con alguien que conoce tu sector — no un SDR leyendo un script.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#3a3a3a]/70">30 minutos exactos. Respetamos tu tiempo.</p>
-              </div>
-            </div>
-
-            {/* Warning */}
-            <div className="mt-10 p-4 rounded-2xl border border-[#efefef] bg-[#f8f8f8]">
-              <p className="text-xs font-semibold text-[#1f2020] mb-2">Esta demo no es para ti si…</p>
-              <ul className="space-y-1.5">
-                {[
-                  'Solo estás explorando sin intención de avanzar pronto',
-                  'Esperas que alguien más tome la decisión sin estar presente',
-                  'Buscas una cotización sin ver la plataforma',
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-xs text-[#3a3a3a]/55">
-                    <span className="shrink-0 mt-0.5">✕</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           {/* Right — form */}
@@ -153,65 +126,67 @@ export default function DemoPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <Field label="Nombre completo" error={errors.nombre}>
-                <input
-                  type="text"
-                  placeholder=""
-                  value={form.nombre}
-                  onChange={e => set('nombre', e.target.value)}
-                  className={inputCls(errors.nombre)}
-                />
+                <input type="text" value={form.nombre} onChange={e => set('nombre', e.target.value)} className={inputCls(errors.nombre)} />
               </Field>
               <Field label="Empresa" error={errors.empresa}>
-                <input
-                  type="text"
-                  placeholder=""
-                  value={form.empresa}
-                  onChange={e => set('empresa', e.target.value)}
-                  className={inputCls(errors.empresa)}
-                />
+                <input type="text" value={form.empresa} onChange={e => set('empresa', e.target.value)} className={inputCls(errors.empresa)} />
               </Field>
             </div>
 
             <Field label="Correo corporativo" error={errors.email}>
+              <input type="email" value={form.email} onChange={e => set('email', e.target.value)} className={inputCls(errors.email)} />
+            </Field>
+
+            <Field label="¿Qué necesitas resolver?" error={errors.objetivo}>
               <input
-                type="email"
-                placeholder=""
-                value={form.email}
-                onChange={e => set('email', e.target.value)}
-                className={inputCls(errors.email)}
+                type="text"
+                placeholder="Ej. certificarme en ISO 9001, gestión documental, mantener certificación…"
+                value={form.objetivo}
+                onChange={e => set('objetivo', e.target.value)}
+                className={inputCls(errors.objetivo)}
               />
             </Field>
 
-            <Field label="¿En qué norma quieres certificarte o mantener?" error={errors.norma}>
-              <input
-                type="text"
-                value={form.norma}
-                onChange={e => set('norma', e.target.value)}
-                className={inputCls(errors.norma)}
-              />
+            <Field label="¿En qué norma?" error={errors.norma}>
+              <input type="text" value={form.norma} onChange={e => set('norma', e.target.value)} className={inputCls(errors.norma)} />
             </Field>
 
             <Field label="¿Cuántos empleados tiene tu empresa?" error={errors.empleados}>
-              <input
-                type="text"
-                value={form.empleados}
-                onChange={e => set('empleados', e.target.value)}
-                className={inputCls(errors.empleados)}
-              />
+              <input type="text" value={form.empleados} onChange={e => set('empleados', e.target.value)} className={inputCls(errors.empleados)} />
             </Field>
 
-            <Field label="¿Cuándo quieres certificarte?" error={errors.cuando}>
-              <input
-                type="text"
-                value={form.cuando}
-                onChange={e => set('cuando', e.target.value)}
-                className={inputCls(errors.cuando)}
-              />
+            <Field label="¿Cuándo quieres lograrlo?" error={errors.cuando}>
+              <input type="text" value={form.cuando} onChange={e => set('cuando', e.target.value)} className={inputCls(errors.cuando)} />
             </Field>
+
+            {/* Checkboxes */}
+            <div className={`rounded-2xl border p-5 space-y-3 ${checksError ? 'border-red-400 bg-red-50' : 'border-[#efefef] bg-[#f8f8f8]'}`}>
+              <p className="text-xs font-semibold text-[#1f2020] mb-1">Antes de continuar, confirma:</p>
+              {CHECKS.map((text, i) => (
+                <label key={i} className="flex items-start gap-3 cursor-pointer group">
+                  <div
+                    onClick={() => toggleCheck(i)}
+                    className={`mt-0.5 w-4 h-4 rounded shrink-0 border-2 flex items-center justify-center transition-colors ${
+                      checks[i] ? 'bg-[#763d50] border-[#763d50]' : 'border-[#c0c0c0] bg-white'
+                    }`}
+                  >
+                    {checks[i] && (
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  <span className="text-xs text-[#3a3a3a]/70 leading-relaxed group-hover:text-[#3a3a3a] transition-colors" onClick={() => toggleCheck(i)}>
+                    {text}
+                  </span>
+                </label>
+              ))}
+              {checksError && <p className="text-xs text-red-500 pt-1">Debes confirmar todos los puntos para continuar.</p>}
+            </div>
 
             <button
               type="submit"
-              className="w-full bg-[#763d50] hover:bg-[#8a4a5e] text-white py-3.5 rounded-full font-semibold transition-all hover:scale-[1.02] text-sm mt-2"
+              className="w-full bg-[#763d50] hover:bg-[#8a4a5e] text-white py-3.5 rounded-full font-semibold transition-all hover:scale-[1.02] text-sm"
             >
               Continuar y elegir horario →
             </button>
