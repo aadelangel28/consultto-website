@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,7 +14,7 @@ export async function POST(req: NextRequest) {
     const { nombre, empresa, email, norma, empleados, situacion, cuando } = body
 
     // Guardar en Supabase para cruzar con el webhook de Calendly
-    const { error } = await supabase.from('demo_leads').upsert({
+    const { error } = await getSupabase().from('demo_leads').upsert({
       nombre,
       empresa,
       email,
