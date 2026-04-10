@@ -4,41 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const NORMAS = [
-  'ISO 9001 — Calidad',
-  'ISO 14001 — Medio ambiente',
-  'ISO 45001 — Seguridad laboral',
-  'ISO 13485 — Dispositivos médicos',
-  'IATF 16949 — Automotriz',
-  'ISO 22000 / FSSC 22000 — Alimentos',
-  'ISO 27001 — Seguridad de la información',
-  'ISO 50001 — Energía',
-  'GMP Farmacéutica',
-  'Otra / No sé todavía',
-]
-
-const EMPLEADOS = [
-  '1 – 10 empleados',
-  '11 – 50 empleados',
-  '51 – 200 empleados',
-  '201 – 500 empleados',
-  'Más de 500 empleados',
-]
-
-const CUANDO = [
-  'En los próximos 3 meses',
-  'En los próximos 6 meses',
-  'Este año',
-  'Estoy explorando opciones',
-]
-
-const SITUACION = [
-  'Nunca hemos tenido certificación ISO',
-  'Intentamos certificarnos pero no lo logramos',
-  'Ya tenemos certificación pero queremos mejorar el sistema',
-  'Perdimos la certificación y queremos recuperarla',
-  'Un cliente o licitación nos lo está exigiendo',
-]
 
 export default function DemoPage() {
   const [step, setStep] = useState<'form' | 'calendly'>('form')
@@ -191,7 +156,7 @@ export default function DemoPage() {
               <Field label="Nombre completo" error={errors.nombre}>
                 <input
                   type="text"
-                  placeholder="Alan Del Ángel"
+                  placeholder=""
                   value={form.nombre}
                   onChange={e => set('nombre', e.target.value)}
                   className={inputCls(errors.nombre)}
@@ -200,7 +165,7 @@ export default function DemoPage() {
               <Field label="Empresa" error={errors.empresa}>
                 <input
                   type="text"
-                  placeholder="Industrias Ejemplo S.A."
+                  placeholder=""
                   value={form.empresa}
                   onChange={e => set('empresa', e.target.value)}
                   className={inputCls(errors.empresa)}
@@ -211,7 +176,7 @@ export default function DemoPage() {
             <Field label="Correo corporativo" error={errors.email}>
               <input
                 type="email"
-                placeholder="alan@tuempresa.com"
+                placeholder=""
                 value={form.email}
                 onChange={e => set('email', e.target.value)}
                 className={inputCls(errors.email)}
@@ -219,31 +184,39 @@ export default function DemoPage() {
             </Field>
 
             <Field label="¿En qué norma quieres certificarte?" error={errors.norma}>
-              <select value={form.norma} onChange={e => set('norma', e.target.value)} className={inputCls(errors.norma)}>
-                <option value="">Selecciona una opción</option>
-                {NORMAS.map(n => <option key={n} value={n}>{n}</option>)}
-              </select>
+              <textarea
+                rows={2}
+                value={form.norma}
+                onChange={e => set('norma', e.target.value)}
+                className={inputCls(errors.norma)}
+              />
             </Field>
 
             <Field label="¿Cuántos empleados tiene tu empresa?" error={errors.empleados}>
-              <select value={form.empleados} onChange={e => set('empleados', e.target.value)} className={inputCls(errors.empleados)}>
-                <option value="">Selecciona una opción</option>
-                {EMPLEADOS.map(n => <option key={n} value={n}>{n}</option>)}
-              </select>
+              <input
+                type="text"
+                value={form.empleados}
+                onChange={e => set('empleados', e.target.value)}
+                className={inputCls(errors.empleados)}
+              />
             </Field>
 
-            <Field label="¿Cuál es tu situación actual?" error={errors.situacion}>
-              <select value={form.situacion} onChange={e => set('situacion', e.target.value)} className={inputCls(errors.situacion)}>
-                <option value="">Selecciona una opción</option>
-                {SITUACION.map(n => <option key={n} value={n}>{n}</option>)}
-              </select>
+            <Field label="¿Cuál es tu situación actual con las certificaciones ISO?" error={errors.situacion}>
+              <textarea
+                rows={3}
+                value={form.situacion}
+                onChange={e => set('situacion', e.target.value)}
+                className={inputCls(errors.situacion)}
+              />
             </Field>
 
             <Field label="¿Cuándo quieres certificarte?" error={errors.cuando}>
-              <select value={form.cuando} onChange={e => set('cuando', e.target.value)} className={inputCls(errors.cuando)}>
-                <option value="">Selecciona una opción</option>
-                {CUANDO.map(n => <option key={n} value={n}>{n}</option>)}
-              </select>
+              <input
+                type="text"
+                value={form.cuando}
+                onChange={e => set('cuando', e.target.value)}
+                className={inputCls(errors.cuando)}
+              />
             </Field>
 
             <button
