@@ -65,13 +65,20 @@ export default function DemoPage() {
     return e
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
       return
     }
+    // Guardar datos del lead (no bloqueante — si falla igual pasa)
+    fetch('/api/demo-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    }).catch(() => {})
+
     setStep('calendly')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
