@@ -338,7 +338,7 @@ export function HeroSection() {
               style={{ animation: 'fadeInUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both' }}
             >
               <Link
-                href="/signup"
+                href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
                 className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm text-center"
               >
                 {t.hero.cta1}

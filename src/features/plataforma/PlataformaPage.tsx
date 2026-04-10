@@ -161,7 +161,7 @@ function HeroSection() {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
-            href="/signup"
+            href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap text-center"
           >
             {t.plataforma.hero.cta1}

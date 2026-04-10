@@ -239,7 +239,7 @@ export function Navbar() {
             {t.nav.login}
           </a>
           <Link
-            href="/signup"
+            href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white text-sm px-5 py-2.5 rounded-full transition-all font-semibold hover:scale-105"
           >
             {t.nav.demo}
@@ -383,7 +383,7 @@ export function Navbar() {
 
           <div className="pt-2 border-t border-[#d9d9d9] flex flex-col gap-3">
             <Link
-              href="/signup"
+              href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-5 py-3 rounded-full transition-colors font-semibold text-center"
               onClick={() => setMobileOpen(false)}
             >

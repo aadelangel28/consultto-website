@@ -131,7 +131,7 @@ function HeroSection({ norma }: { norma: NormaData }) {
           style={{ animationDelay: `${chars.length * 45 + 430}ms` }}
         >
           <Link
-            href="/signup"
+            href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm text-center"
           >
             {normaPageT.cta.cta1}
@@ -542,7 +542,7 @@ function CTASection({ norma }: { norma: NormaData }) {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/signup"
+              href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
               className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm text-center"
             >
               {np.cta.cta1}
