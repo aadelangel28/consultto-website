@@ -12,13 +12,14 @@ function getSupabase() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { nombre, empresa, email, norma, empleados, situacion, cuando, objetivo } = body
+    const { nombre, empresa, email, telefono, norma, empleados, situacion, cuando, objetivo } = body
 
     // Guardar en Supabase
     const { error } = await getSupabase().from('demo_leads').upsert({
       nombre,
       empresa,
       email,
+      telefono,
       norma,
       empleados,
       situacion,
@@ -54,6 +55,10 @@ export async function POST(req: NextRequest) {
             <tr style="border-top: 1px solid #f0f0f0;">
               <td style="padding: 8px 0; color: #999; vertical-align: top;">Correo</td>
               <td style="padding: 8px 0;">${email ?? '—'}</td>
+            </tr>
+            <tr style="border-top: 1px solid #f0f0f0;">
+              <td style="padding: 8px 0; color: #999; vertical-align: top;">Teléfono</td>
+              <td style="padding: 8px 0;">${telefono ?? '—'}</td>
             </tr>
             <tr style="border-top: 1px solid #f0f0f0;">
               <td style="padding: 8px 0; color: #999; vertical-align: top;">Objetivo</td>

@@ -33,7 +33,7 @@ const STEPS: Step[] = ['datos', 'objetivo', 'norma', 'empleados', 'confirma']
 export default function DemoPage() {
   const [step, setStep] = useState<Step>('datos')
   const [form, setForm] = useState({
-    nombre: '', empresa: '', email: '',
+    nombre: '', empresa: '', email: '', telefono: '',
     objetivo: '', norma: '', normaOtra: '', empleados: '',
   })
   const [checks, setChecks] = useState([false, false, false, false])
@@ -59,6 +59,7 @@ export default function DemoPage() {
       if (!form.nombre.trim()) e.nombre = 'Requerido'
       if (!form.empresa.trim()) e.empresa = 'Requerido'
       if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Correo válido requerido'
+      if (!form.telefono.trim()) e.telefono = 'Requerido'
     }
     if (step === 'objetivo' && !form.objetivo) e.objetivo = 'Selecciona una opción'
     if (step === 'norma') {
@@ -146,9 +147,14 @@ export default function DemoPage() {
                     <input type="text" value={form.empresa} onChange={e => set('empresa', e.target.value)} className={inputCls(errors.empresa)} />
                   </Field>
                 </div>
-                <Field label="Correo corporativo" error={errors.email}>
-                  <input type="email" value={form.email} onChange={e => set('email', e.target.value)} className={inputCls(errors.email)} />
-                </Field>
+                <div className="grid grid-cols-2 gap-4">
+                  <Field label="Correo corporativo" error={errors.email}>
+                    <input type="email" value={form.email} onChange={e => set('email', e.target.value)} className={inputCls(errors.email)} />
+                  </Field>
+                  <Field label="Teléfono" error={errors.telefono}>
+                    <input type="tel" value={form.telefono} onChange={e => set('telefono', e.target.value)} className={inputCls(errors.telefono)} />
+                  </Field>
+                </div>
               </div>
             </div>
           )}
