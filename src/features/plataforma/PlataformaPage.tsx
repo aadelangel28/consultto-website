@@ -161,13 +161,13 @@ function HeroSection() {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
-            href="https://calendly.com/alan-consultto/30min" target="_blank" rel="noopener noreferrer"
+            href="/demo"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#763d50]/25 text-sm whitespace-nowrap text-center"
           >
             {t.plataforma.hero.cta1}
           </Link>
           <Link
-            href="#como-funciona"
+            href="/consultor"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] hover:text-[#1f2020] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm whitespace-nowrap"
           >
             {t.plataforma.hero.cta2}
@@ -588,13 +588,13 @@ function CTASection() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/contacto"
+            href="/demo"
             className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
           >
             {cta.cta1}
           </Link>
           <Link
-            href="#funcionalidades"
+            href="/consultor"
             className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap"
           >
             {cta.cta2}
