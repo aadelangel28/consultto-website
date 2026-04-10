@@ -104,14 +104,14 @@ export default function ConsultorPage() {
       <style>{pageStyles}</style>
 
       {/* Top bar */}
-      <div className="flex items-center px-8 py-5 border-b border-[#efefef] bg-white" style={{ animation: 'fadeDown 400ms cubic-bezier(0.16,1,0.3,1) both' }}>
+      <div className="flex items-center px-8 py-5 border-b border-[#efefef] bg-white" style={{ animation: 'fadeDown 800ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <Link href="/"><Image src="/logo.png" alt="Consultto" width={110} height={26} /></Link>
       </div>
 
       <div className="max-w-2xl mx-auto px-6 py-14">
 
         {/* Header */}
-        <div className="mb-10" style={{ animation: 'fadeUp 500ms cubic-bezier(0.16,1,0.3,1) 80ms both' }}>
+        <div className="mb-10" style={{ animation: 'fadeUp 900ms cubic-bezier(0.16,1,0.3,1) 200ms both' }}>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-3">Habla con nosotros</p>
           <h1 className="text-3xl font-light text-[#1f2020] mb-3 leading-snug">
             Un consultor real<br />te responde.
@@ -122,7 +122,7 @@ export default function ConsultorPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-[#efefef] shadow-sm overflow-hidden" style={{ animation: 'fadeUp 550ms cubic-bezier(0.16,1,0.3,1) 160ms both' }}>
+        <div className="bg-white rounded-2xl border border-[#efefef] shadow-sm overflow-hidden" style={{ animation: 'fadeUp 900ms cubic-bezier(0.16,1,0.3,1) 380ms both' }}>
 
           {/* Datos personales */}
           <div className="p-8 border-b border-[#f5f5f5]">
