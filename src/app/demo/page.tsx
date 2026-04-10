@@ -105,12 +105,15 @@ export default function DemoPage() {
           <p className="text-[#3a3a3a]/55 text-sm leading-relaxed mb-8">
             Ahora elige el día y hora que mejor te funcione. La sesión dura 30 minutos — llega puntual y con tu equipo si es posible.
           </p>
-          <a
-            href="https://calendly.com/alan-consultto/30min"
+          <button
+            onClick={() => {
+              window.open('https://calendly.com/alan-consultto/30min', '_blank')
+              window.location.href = '/'
+            }}
             className="inline-block bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3 rounded-full font-semibold transition-all hover:scale-105 text-sm"
           >
             Elegir fecha y hora →
-          </a>
+          </button>
           <p className="text-xs text-[#3a3a3a]/35 mt-5">Recibirás confirmación por correo.</p>
         </div>
       </main>
