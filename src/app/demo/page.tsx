@@ -26,7 +26,6 @@ export default function DemoPage() {
     if (!form.norma) e.norma = 'Requerido'
     if (!form.empleados) e.empleados = 'Requerido'
     if (!form.cuando) e.cuando = 'Requerido'
-    if (!form.situacion) e.situacion = 'Requerido'
     return e
   }
 
@@ -183,9 +182,9 @@ export default function DemoPage() {
               />
             </Field>
 
-            <Field label="¿En qué norma quieres certificarte?" error={errors.norma}>
-              <textarea
-                rows={2}
+            <Field label="¿En qué norma quieres certificarte o mantener?" error={errors.norma}>
+              <input
+                type="text"
                 value={form.norma}
                 onChange={e => set('norma', e.target.value)}
                 className={inputCls(errors.norma)}
@@ -198,15 +197,6 @@ export default function DemoPage() {
                 value={form.empleados}
                 onChange={e => set('empleados', e.target.value)}
                 className={inputCls(errors.empleados)}
-              />
-            </Field>
-
-            <Field label="¿Cuál es tu situación actual con las certificaciones ISO?" error={errors.situacion}>
-              <textarea
-                rows={3}
-                value={form.situacion}
-                onChange={e => set('situacion', e.target.value)}
-                className={inputCls(errors.situacion)}
               />
             </Field>
 
