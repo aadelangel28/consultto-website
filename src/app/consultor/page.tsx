@@ -132,7 +132,7 @@ export default function ConsultorPage() {
         <div className="mb-10" style={{ animation: 'fadeUp 900ms cubic-bezier(0.16,1,0.3,1) 200ms both' }}>
           <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-3">Habla con nosotros</p>
           <h1 className="text-3xl font-light text-[#1f2020] mb-3 leading-snug">
-            Un consultor real<br />te responde.
+            Un consultor real te responde.
           </h1>
           <p className="text-[#3a3a3a]/50 text-sm leading-relaxed">
             Cuéntanos quién eres y qué necesitas. Nos comprometemos a darte una respuesta en menos de 30 minutos.
