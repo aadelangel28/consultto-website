@@ -224,94 +224,82 @@ function HeroSection() {
   )
 }
 
-// ─── Misión ───────────────────────────────────────────────────────────────────
+// ─── Misión + Visión (sección unificada) ──────────────────────────────────────
 
 function MisionSection() {
   const { t } = useLanguage()
   return (
-    <section className="bg-white border-t border-[#efefef] py-16 md:py-24">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
-        <Reveal>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
-            {t.nosotros.vision.eyebrow}
-          </p>
-          <p className="text-[#1f2020] leading-[1.4]"
-            style={{ fontSize: 'clamp(1.4rem, 2.6vw, 2rem)', fontWeight: 300 }}>
-            {t.nosotros.vision.text}
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-// ─── Visión ───────────────────────────────────────────────────────────────────
+    <section className="bg-white border-t border-[#efefef]">
 
+      {/* ── Misión ── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
 
-function WordReveal({ text, className = '', style = {} }: { text: string; className?: string; style?: React.CSSProperties }) {
-  const ref = useRef<HTMLParagraphElement>(null)
-  useEffect(() => {
-    const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      el.querySelectorAll<HTMLSpanElement>('.wr-word').forEach((span, i) => {
-        setTimeout(() => {
-          span.style.opacity = '1'
-          span.style.transform = 'translateY(0)'
-        }, i * 55)
-      })
-      obs.disconnect()
-    }, { threshold: 0.2 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  const words = text.split(' ')
-  return (
-    <p ref={ref} className={className} style={{ ...style, lineHeight: 1.45 }}>
-      {words.map((word, i) => (
-        <span key={i} className="wr-word inline-block"
-          style={{ opacity: 0, transform: 'translateY(18px)', transition: `opacity 0.5s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1)`, marginRight: '0.28em' }}>
-          {word}
-        </span>
-      ))}
-    </p>
-  )
-}
-
-function VisionSection() {
-  const { t } = useLanguage()
-  return (
-    <section style={{ background: '#1f2020' }} className="py-16 md:py-20">
-      <style>{`
-        @keyframes vis-line {
-          from { transform: scaleX(0); opacity: 0; }
-          to   { transform: scaleX(1); opacity: 1; }
-        }
-        .vis-line { transform-origin: left; animation: vis-line 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-      `}</style>
-      <div className="max-w-5xl mx-auto px-6 md:px-12">
-
-        {/* Eyebrow + línea */}
-        <Reveal>
-          <div className="flex items-center gap-4 mb-10">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] shrink-0" style={{ color: '#c47a8f' }}>
+          {/* Eyebrow + decoración */}
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50] mb-5">
               {t.nosotros.mision.eyebrow}
             </p>
-            <div className="vis-line h-px flex-1" style={{ background: 'rgba(196,122,143,0.25)' }} />
-          </div>
-        </Reveal>
+            {/* Sello SVG minimalista */}
+            <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style={{ width: 80, height: 80, opacity: 0.12 }}>
+              <circle cx="48" cy="48" r="44" stroke="#763d50" strokeWidth="1.5" />
+              <circle cx="48" cy="48" r="34" stroke="#763d50" strokeWidth="1" strokeDasharray="3 3" />
+              <path d="M32 48 L43 59 L65 37" stroke="#763d50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Reveal>
 
-        {/* Texto con animación palabra por palabra */}
-        <WordReveal
-          text={t.nosotros.mision.text}
-          className="text-white/90"
-          style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.6rem)', fontWeight: 300 }}
-        />
+          {/* Texto grande */}
+          <Reveal delay={80}>
+            <p className="text-[#1f2020] leading-[1.35]"
+              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 300 }}>
+              {t.nosotros.mision.text}
+            </p>
+          </Reveal>
 
+        </div>
       </div>
+
+      {/* Divisor vino */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="h-px bg-[#efefef]" />
+      </div>
+
+      {/* ── Visión ── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
+
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50]">
+              {t.nosotros.vision.eyebrow}
+            </p>
+          </Reveal>
+
+          <Reveal delay={80}>
+            {/* Comilla decorativa */}
+            <div className="mb-6" style={{ color: '#763d50', fontSize: 64, lineHeight: 1, fontWeight: 300, opacity: 0.25, fontFamily: 'Georgia, serif' }}>
+              &ldquo;
+            </div>
+            <p className="text-[#3a3a3a] leading-[1.5] italic"
+              style={{ fontSize: 'clamp(1.15rem, 2vw, 1.55rem)', fontWeight: 300 }}>
+              {t.nosotros.vision.text}
+            </p>
+            {/* Línea vino bajo la cita */}
+            <div className="mt-8 flex items-center gap-4">
+              <div style={{ width: 32, height: 2, background: '#763d50', borderRadius: 2 }} />
+              <span className="text-xs uppercase tracking-widest text-[#763d50]/60 font-medium">Consultto</span>
+            </div>
+          </Reveal>
+
+        </div>
+      </div>
+
     </section>
   )
 }
+
+// VisionSection vacío — la visión está unificada en MisionSection
+function VisionSection() { return null }
 
 // ─── Principios ───────────────────────────────────────────────────────────────
 
@@ -321,126 +309,94 @@ function PrincipiosSection() {
   const numbers = ['01', '02', '03', '04']
 
   return (
-    <section className="py-16 md:py-28 bg-white border-t border-[#efefef]">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12 md:mb-16">
-          <Reveal className="flex-1">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-4">{t.nosotros.principios.eyebrow}</p>
-            <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight max-w-sm">
+    <section className="bg-[#fafafa] border-t border-[#efefef] py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+        {/* Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 mb-16 md:mb-20">
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50] mb-4">
+              {t.nosotros.principios.eyebrow}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight">
               {t.nosotros.principios.title}
             </h2>
           </Reveal>
-          <Reveal delay={100} className="md:max-w-xs">
-            <p className="text-[#3a3a3a]/45 text-sm leading-relaxed">
+          <Reveal delay={80} className="lg:self-end">
+            <p className="text-[#3a3a3a]/45 text-sm leading-relaxed max-w-sm">
               {t.nosotros.principios.subtitle}
             </p>
           </Reveal>
         </div>
 
-        {/* Pill accordion */}
-        <div style={{ display: 'flex', gap: 12, height: 460 }}>
-          {t.nosotros.principios.items.map((item, i) => {
-            const isActive = hovered === i
-            const flex     = hovered === null ? 0.3 : isActive ? 5 : 0.18
-            return (
-              <div
-                key={i}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  flex,
-                  transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1), background 0.4s ease, border-color 0.4s ease',
-                  borderRadius: 24,
-                  overflow: 'hidden',
-                  position: 'relative',
-                  cursor: 'default',
-                  minWidth: 0,
-                  background: isActive ? '#faf8f8' : '#f5f2f3',
-                  border: `1px solid ${isActive ? '#d4b8c0' : '#ebebeb'}`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  padding: '32px 28px',
-                }}
-              >
-                {/* Number top-left */}
+        {/* Principios — filas tipo manifiesto */}
+        <div>
+          {t.nosotros.principios.items.map((item, i) => (
+            <div
+              key={i}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              className="group"
+              style={{
+                borderTop: '1px solid #e8e8e8',
+                padding: '28px 0',
+                display: 'grid',
+                gridTemplateColumns: '64px 1fr 2fr',
+                gap: '24px',
+                alignItems: 'start',
+                cursor: 'default',
+                transition: 'background 0.3s ease',
+              }}
+            >
+              {/* Número */}
+              <span style={{
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: '0.18em',
+                color: hovered === i ? '#763d50' : '#3a3a3a',
+                opacity: hovered === i ? 1 : 0.25,
+                transition: 'color 0.3s ease, opacity 0.3s ease',
+                paddingTop: 4,
+              }}>
+                {numbers[i]}
+              </span>
+
+              {/* Título */}
+              <h3 style={{
+                fontSize: 'clamp(1rem, 1.4vw, 1.2rem)',
+                fontWeight: 600,
+                color: '#1f2020',
+                lineHeight: 1.3,
+                transition: 'color 0.3s ease',
+              }}>
+                {item.title}
+                {/* Acento vino bajo el título al hover */}
                 <span style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.18em',
-                  color: '#763d50',
-                  opacity: 0.6,
-                }}>
-                  {numbers[i]}
-                </span>
-
-                {/* Wine accent bar — bottom left, always visible */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: isActive ? '100%' : 4,
-                  height: isActive ? 3 : '100%',
+                  display: 'block',
+                  width: hovered === i ? 24 : 0,
+                  height: 2,
                   background: '#763d50',
-                  opacity: isActive ? 0.15 : 0.18,
-                  borderRadius: isActive ? '0 0 24px 24px' : '24px 0 0 24px',
-                  transition: 'width 0.55s cubic-bezier(0.25,1,0.5,1), height 0.55s cubic-bezier(0.25,1,0.5,1), border-radius 0.55s ease',
+                  borderRadius: 2,
+                  marginTop: 10,
+                  transition: 'width 0.4s cubic-bezier(0.16,1,0.3,1)',
                 }} />
+              </h3>
 
-                {/* Content — fades in when expanded */}
-                <div style={{
-                  opacity: isActive ? 1 : 0,
-                  transition: 'opacity 0.25s ease 0.15s',
-                  minWidth: 200,
-                }}>
-                  <h3 style={{
-                    color: '#1f2020',
-                    fontSize: 22,
-                    fontWeight: 600,
-                    marginBottom: 12,
-                    lineHeight: 1.2,
-                  }}>
-                    {item.title}
-                  </h3>
-                  <p style={{
-                    color: 'rgba(58,58,58,0.6)',
-                    fontSize: 14,
-                    lineHeight: 1.65,
-                  }}>
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Title rotated when collapsed */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: 32,
-                  left: 0,
-                  right: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  opacity: isActive ? 0 : 1,
-                  transition: isActive ? 'opacity 0.1s ease' : 'opacity 0.2s ease 0.1s',
-                  pointerEvents: 'none',
-                }}>
-                  <span style={{
-                    color: '#3a3a3a',
-                    fontSize: 11,
-                    fontWeight: 600,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    writingMode: 'vertical-rl',
-                    transform: 'rotate(180deg)',
-                    whiteSpace: 'nowrap',
-                    opacity: 0.5,
-                  }}>
-                    {item.title}
-                  </span>
-                </div>
-              </div>
-            )
-          })}
+              {/* Descripción */}
+              <p style={{
+                fontSize: 14,
+                lineHeight: 1.7,
+                color: 'rgba(58,58,58,0.55)',
+                transition: 'color 0.3s ease',
+              }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+          {/* Borde inferior */}
+          <div style={{ borderTop: '1px solid #e8e8e8' }} />
         </div>
+
       </div>
     </section>
   )
