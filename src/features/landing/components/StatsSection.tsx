@@ -353,7 +353,7 @@ export function StatsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
           {/* Left: title + stats grid */}
-          <div className="flex flex-col lg:h-[420px]">
+          <div className="flex flex-col lg:h-[580px]">
             <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
               {t.stats.label}
             </p>
