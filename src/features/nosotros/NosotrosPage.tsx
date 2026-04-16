@@ -315,13 +315,6 @@ function VisionSection() {
 
 // ─── Principios ───────────────────────────────────────────────────────────────
 
-const PRINCIPIO_GRADIENTS = [
-  'linear-gradient(160deg, #5a1525 0%, #2d0a12 100%)',
-  'linear-gradient(160deg, #3d1020 0%, #1a0a0e 100%)',
-  'linear-gradient(160deg, #7a2035 0%, #4a1222 100%)',
-  'linear-gradient(160deg, #2d0a12 0%, #0e0608 100%)',
-]
-
 function PrincipiosSection() {
   const { t } = useLanguage()
   const [hovered, setHovered] = useState<number | null>(null)
@@ -345,10 +338,10 @@ function PrincipiosSection() {
         </div>
 
         {/* Pill accordion */}
-        <div style={{ display: 'flex', gap: 10, height: 420 }}>
+        <div style={{ display: 'flex', gap: 12, height: 460 }}>
           {t.nosotros.principios.items.map((item, i) => {
             const isActive = hovered === i
-            const flex     = hovered === null ? 1 : isActive ? 5 : 0.4
+            const flex     = hovered === null ? 1 : isActive ? 5 : 0.45
             return (
               <div
                 key={i}
@@ -356,53 +349,64 @@ function PrincipiosSection() {
                 onMouseLeave={() => setHovered(null)}
                 style={{
                   flex,
-                  transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1)',
-                  borderRadius: 20,
+                  transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1), background 0.4s ease, border-color 0.4s ease',
+                  borderRadius: 24,
                   overflow: 'hidden',
                   position: 'relative',
                   cursor: 'default',
                   minWidth: 0,
-                  background: PRINCIPIO_GRADIENTS[i],
+                  background: isActive ? '#faf8f8' : '#f5f2f3',
+                  border: `1px solid ${isActive ? '#d4b8c0' : '#ebebeb'}`,
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'flex-end',
-                  padding: '28px 28px',
+                  justifyContent: 'space-between',
+                  padding: '32px 28px',
                 }}
               >
-                {/* Number — always visible, rotated when collapsed */}
+                {/* Number top-left */}
                 <span style={{
-                  position: 'absolute',
-                  top: 24,
-                  left: 24,
                   fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: '0.15em',
-                  color: 'rgba(255,255,255,0.35)',
-                  transition: 'opacity 0.3s ease',
+                  fontWeight: 700,
+                  letterSpacing: '0.18em',
+                  color: '#763d50',
+                  opacity: 0.6,
                 }}>
                   {numbers[i]}
                 </span>
 
+                {/* Wine accent bar — bottom left, always visible */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: isActive ? '100%' : 4,
+                  height: isActive ? 3 : '100%',
+                  background: '#763d50',
+                  opacity: isActive ? 0.15 : 0.18,
+                  borderRadius: isActive ? '0 0 24px 24px' : '24px 0 0 24px',
+                  transition: 'width 0.55s cubic-bezier(0.25,1,0.5,1), height 0.55s cubic-bezier(0.25,1,0.5,1), border-radius 0.55s ease',
+                }} />
+
                 {/* Content — fades in when expanded */}
                 <div style={{
                   opacity: isActive ? 1 : 0,
-                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
-                  transition: 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
-                  minWidth: 180,
+                  transform: isActive ? 'translateY(0)' : 'translateY(10px)',
+                  transition: 'opacity 0.3s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
+                  minWidth: 200,
                 }}>
                   <h3 style={{
-                    color: '#ffffff',
-                    fontSize: 20,
+                    color: '#1f2020',
+                    fontSize: 22,
                     fontWeight: 600,
-                    marginBottom: 10,
+                    marginBottom: 12,
                     lineHeight: 1.2,
                   }}>
                     {item.title}
                   </h3>
                   <p style={{
-                    color: 'rgba(255,255,255,0.65)',
-                    fontSize: 13,
-                    lineHeight: 1.6,
+                    color: 'rgba(58,58,58,0.6)',
+                    fontSize: 14,
+                    lineHeight: 1.65,
                   }}>
                     {item.description}
                   </p>
@@ -411,7 +415,7 @@ function PrincipiosSection() {
                 {/* Title rotated when collapsed */}
                 <div style={{
                   position: 'absolute',
-                  bottom: 28,
+                  bottom: 32,
                   left: 0,
                   right: 0,
                   display: 'flex',
@@ -421,14 +425,15 @@ function PrincipiosSection() {
                   pointerEvents: 'none',
                 }}>
                   <span style={{
-                    color: 'rgba(255,255,255,0.7)',
-                    fontSize: 12,
+                    color: '#3a3a3a',
+                    fontSize: 11,
                     fontWeight: 600,
-                    letterSpacing: '0.1em',
+                    letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     writingMode: 'vertical-rl',
                     transform: 'rotate(180deg)',
                     whiteSpace: 'nowrap',
+                    opacity: 0.5,
                   }}>
                     {item.title}
                   </span>
