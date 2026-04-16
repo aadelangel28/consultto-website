@@ -1,25 +1,147 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 const DURATIONS = [2000, 2000, 2500, 2200]
 
-const STAT_IMAGES = [
-  {
-    src: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=80',
-    alt: 'Auditoría aprobada, apretón de manos entre cliente y auditor',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=80',
-    alt: 'Ahorro y reducción de costos en consultoría',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
-    alt: 'Equipo trabajando en implementación rápida',
-  },
-]
+// ── Handle-style illustrations ────────────────────────────────────────────────
+
+// Stat 0 — 98%: Certificado con sello de aprobación
+function Illus0() {
+  return (
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
+      {/* Document */}
+      <rect x="80" y="30" width="200" height="260" rx="6" stroke="#1f2020" strokeWidth="1.2" strokeDasharray="5 3" />
+      {/* Fold corner */}
+      <path d="M240 30 L280 70 L240 70 Z" stroke="#1f2020" strokeWidth="1.2" fill="white" />
+      <path d="M240 30 L280 70" stroke="#1f2020" strokeWidth="1.2" />
+      {/* Text lines */}
+      <line x1="108" y1="100" x2="232" y2="100" stroke="#1f2020" strokeWidth="1" opacity="0.3" />
+      <line x1="108" y1="118" x2="210" y2="118" stroke="#1f2020" strokeWidth="1" opacity="0.3" />
+      <line x1="108" y1="136" x2="220" y2="136" stroke="#1f2020" strokeWidth="1" opacity="0.3" />
+      {/* Seal circle */}
+      <circle cx="180" cy="220" r="44" stroke="#763d50" strokeWidth="1.2" />
+      <circle cx="180" cy="220" r="36" stroke="#763d50" strokeWidth="0.8" strokeDasharray="3 2" />
+      {/* Checkmark inside seal */}
+      <path d="M162 220 L174 232 L200 208" stroke="#763d50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Corner dots */}
+      <circle cx="80" cy="30" r="2.5" fill="#1f2020" opacity="0.4" />
+      <circle cx="280" cy="290" r="2.5" fill="#1f2020" opacity="0.4" />
+    </svg>
+  )
+}
+
+// Stat 1 — 60%: Antes vs Ahora (comparación de tiempo)
+function Illus1() {
+  return (
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
+      {/* Grid lines */}
+      {[60, 120, 180, 240, 300].map(y => (
+        <line key={y} x1="40" y1={y} x2="360" y2={y} stroke="#1f2020" strokeWidth="0.5" opacity="0.12" />
+      ))}
+      {/* Bar: Antes */}
+      <rect x="90" y="60" width="72" height="220" rx="4" stroke="#1f2020" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.5" />
+      <text x="126" y="52" textAnchor="middle" fontSize="11" fill="#1f2020" opacity="0.45" fontFamily="system-ui">Antes</text>
+      <text x="126" y="298" textAnchor="middle" fontSize="10" fill="#1f2020" opacity="0.35" fontFamily="system-ui">100%</text>
+      {/* Bar: Ahora */}
+      <rect x="238" y="148" width="72" height="132" rx="4" stroke="#763d50" strokeWidth="1.2" fill="rgba(118,61,80,0.04)" />
+      <text x="274" y="140" textAnchor="middle" fontSize="11" fill="#763d50" fontFamily="system-ui" fontWeight="500">Ahora</text>
+      <text x="274" y="298" textAnchor="middle" fontSize="10" fill="#763d50" fontFamily="system-ui">40%</text>
+      {/* Arrow between */}
+      <path d="M178 170 L222 170" stroke="#1f2020" strokeWidth="1" opacity="0.3" strokeDasharray="3 2" />
+      <path d="M214 165 L222 170 L214 175" stroke="#1f2020" strokeWidth="1" opacity="0.3" />
+      {/* Baseline */}
+      <line x1="60" y1="280" x2="340" y2="280" stroke="#1f2020" strokeWidth="1" opacity="0.15" />
+      {/* Dots */}
+      <circle cx="90" cy="60" r="2.5" fill="#1f2020" opacity="0.3" />
+      <circle cx="310" cy="148" r="2.5" fill="#763d50" opacity="0.6" />
+    </svg>
+  )
+}
+
+// Stat 2 — 5 días: Timeline de 5 días
+function Illus2() {
+  const days = [1, 2, 3, 4, 5]
+  const xs = [60, 120, 200, 280, 340]
+  return (
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
+      {/* Horizontal track */}
+      <line x1="60" y1="170" x2="340" y2="170" stroke="#1f2020" strokeWidth="1" opacity="0.15" />
+      {days.map((d, i) => {
+        const x = xs[i]
+        const done = i < 4
+        return (
+          <g key={d}>
+            {/* Connector line */}
+            {i < 4 && (
+              <line x1={x + 22} y1="170" x2={xs[i + 1] - 22} y2="170"
+                stroke={done ? '#763d50' : '#1f2020'}
+                strokeWidth="1"
+                opacity={done ? 0.4 : 0.15}
+                strokeDasharray={done ? undefined : '3 2'}
+              />
+            )}
+            {/* Circle */}
+            <circle cx={x} cy="170" r="22"
+              stroke={i === 4 ? '#763d50' : '#1f2020'}
+              strokeWidth={i === 4 ? '1.4' : '1'}
+              fill={i === 4 ? 'rgba(118,61,80,0.06)' : 'white'}
+              opacity={done ? 0.9 : 1}
+            />
+            {/* Checkmark for done, number for last */}
+            {done ? (
+              <path d={`M${x - 7} 170 L${x - 2} 176 L${x + 8} 164`}
+                stroke="#1f2020" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+            ) : (
+              <text x={x} y="175" textAnchor="middle" fontSize="13" fill="#763d50" fontFamily="system-ui" fontWeight="600">{d}</text>
+            )}
+            {/* Day label */}
+            <text x={x} y="210" textAnchor="middle" fontSize="10" fill="#1f2020" opacity="0.35" fontFamily="system-ui">
+              {`Día ${d}`}
+            </text>
+          </g>
+        )
+      })}
+      {/* Label top */}
+      <text x="200" y="120" textAnchor="middle" fontSize="11" fill="#763d50" fontFamily="system-ui" opacity="0.7">Primer entregable</text>
+      <line x1="140" y1="126" x2="200" y2="140" stroke="#763d50" strokeWidth="0.8" opacity="0.3" />
+    </svg>
+  )
+}
+
+// Stat 3 — 100%: Gráfica de visibilidad / trazabilidad
+function Illus3() {
+  const pts = [[40,260],[90,220],[140,190],[180,150],[230,120],[280,90],[340,60]]
+  const polyline = pts.map(p => p.join(',')).join(' ')
+  return (
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
+      {/* Grid */}
+      {[80,140,200,260].map(y => (
+        <line key={y} x1="40" y1={y} x2="360" y2={y} stroke="#1f2020" strokeWidth="0.5" opacity="0.12" />
+      ))}
+      <line x1="40" y1="40" x2="40" y2="280" stroke="#1f2020" strokeWidth="0.8" opacity="0.2" />
+      <line x1="40" y1="280" x2="360" y2="280" stroke="#1f2020" strokeWidth="0.8" opacity="0.2" />
+      {/* Area fill */}
+      <polygon
+        points={`${polyline} 340,280 40,280`}
+        fill="rgba(118,61,80,0.04)"
+      />
+      {/* Line */}
+      <polyline points={polyline} stroke="#763d50" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* Dots on line */}
+      {pts.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r="3.5" fill="white" stroke="#763d50" strokeWidth="1.2" />
+      ))}
+      {/* Vertical dashed to last point */}
+      <line x1="340" y1="60" x2="340" y2="280" stroke="#763d50" strokeWidth="0.8" strokeDasharray="3 2" opacity="0.3" />
+      {/* 100% label */}
+      <text x="350" y="57" fontSize="10" fill="#763d50" fontFamily="system-ui" opacity="0.8">100%</text>
+    </svg>
+  )
+}
+
+const STAT_ILLUSTRATIONS = [Illus0, Illus1, Illus2, Illus3]
 
 const NAV_ICONS = [
   'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
@@ -252,36 +374,24 @@ export function StatsSection() {
             </div>
           </div>
 
-          {/* Right: image or mockup (changes on hover) */}
-          <div className="relative w-full h-64 sm:h-96 lg:h-[580px] rounded-2xl overflow-hidden hidden lg:block">
+          {/* Right: Handle-style illustration (changes on hover) */}
+          <div className="relative w-full h-64 sm:h-96 lg:h-[580px] rounded-2xl overflow-hidden hidden lg:block"
+            style={{ background: '#f5f3f1', border: '1px solid #e8e4e1' }}>
 
-            {/* Images for stats 0-2 */}
-            {STAT_IMAGES.map((img, i) => (
-              <Image
+            {STAT_ILLUSTRATIONS.map((Illus, i) => (
+              <div
                 key={i}
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover transition-opacity duration-500"
+                className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
                 style={{ opacity: i === activeIndex ? 1 : 0 }}
-              />
+              >
+                <Illus />
+              </div>
             ))}
 
-            {/* Platform mockup for stat 3 */}
-            <div
-              className="absolute inset-0 p-6 bg-[#f5f5f5] transition-opacity duration-500"
-              style={{ opacity: activeIndex === 3 ? 1 : 0 }}
-            >
-              <PlatformMockup />
-            </div>
-
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/30 to-transparent transition-opacity duration-500"
-              style={{ opacity: activeIndex === 3 ? 0 : 1 }}
-            />
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center gap-4">
+              <div className="bg-white/95 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center gap-4"
+                style={{ boxShadow: '0 1px 12px rgba(0,0,0,0.06)' }}>
                 <div className="w-10 h-10 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
