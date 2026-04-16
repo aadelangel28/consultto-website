@@ -226,67 +226,20 @@ function HeroSection() {
 
 // ─── Misión ───────────────────────────────────────────────────────────────────
 
-const VC_STRIPS = [
-  { gradient: 'linear-gradient(160deg, #5a1525 0%, #2d0a12 100%)' },
-  { gradient: 'linear-gradient(160deg, #1a0a0e 0%, #3d1020 100%)' },
-  { gradient: 'linear-gradient(160deg, #7a2035 0%, #4a1222 100%)' },
-  { gradient: 'linear-gradient(160deg, #2d0a12 0%, #1a0a0e 100%)' },
-]
-
-function VisionCollage() {
-  const [hovered, setHovered] = useState<number | null>(null)
-
-  return (
-    <div style={{ display: 'flex', gap: 10, height: 420 }}>
-      {VC_STRIPS.map((p, i) => {
-        const isActive = hovered === i
-        const flex     = hovered === null ? 1 : isActive ? 4 : 0.55
-        return (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            style={{
-              flex,
-              transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1)',
-              borderRadius: 14,
-              overflow: 'hidden',
-              position: 'relative',
-              cursor: 'pointer',
-              minWidth: 0,
-              background: p.gradient,
-            }}
-          />
-        )
-      })}
-    </div>
-  )
-}
-
 function MisionSection() {
   const { t } = useLanguage()
   return (
     <section className="bg-white border-t border-[#efefef] py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-          {/* ── Izquierda: collage — sólo en pantallas grandes ── */}
-          <div className="hidden lg:block">
-            <VisionCollage />
-          </div>
-
-          {/* ── Derecha: texto ── */}
-          <Reveal>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
-              {t.nosotros.vision.eyebrow}
-            </p>
-            <p className="text-[#1f2020] leading-[1.4]"
-              style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)', fontWeight: 300 }}>
-              {t.nosotros.vision.text}
-            </p>
-          </Reveal>
-
-        </div>
+      <div className="max-w-4xl mx-auto px-6 md:px-12">
+        <Reveal>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#763d50] mb-6">
+            {t.nosotros.vision.eyebrow}
+          </p>
+          <p className="text-[#1f2020] leading-[1.4]"
+            style={{ fontSize: 'clamp(1.4rem, 2.6vw, 2rem)', fontWeight: 300 }}>
+            {t.nosotros.vision.text}
+          </p>
+        </Reveal>
       </div>
     </section>
   )
@@ -362,90 +315,17 @@ function VisionSection() {
 
 // ─── Principios ───────────────────────────────────────────────────────────────
 
-const PRINCIPIO_ICONS = [
-  <svg key="0" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-  </svg>,
-  <svg key="1" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>,
-  <svg key="2" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-  </svg>,
-  <svg key="3" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-  </svg>,
+const PRINCIPIO_GRADIENTS = [
+  'linear-gradient(160deg, #5a1525 0%, #2d0a12 100%)',
+  'linear-gradient(160deg, #3d1020 0%, #1a0a0e 100%)',
+  'linear-gradient(160deg, #7a2035 0%, #4a1222 100%)',
+  'linear-gradient(160deg, #2d0a12 0%, #0e0608 100%)',
 ]
-
-type PrincipioItem = { title: string; description: string; number: string; icon: React.ReactNode }
-
-function PrincipioCard({ p, index }: { p: PrincipioItem; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('revealed'); obs.disconnect() } },
-      { threshold: 0.2 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <div ref={ref} className="prn-card group">
-      <style>{`
-        .prn-card .prn-bg {
-          transform: scaleY(0); transform-origin: bottom;
-          transition: transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 80}ms;
-        }
-        .prn-card.revealed .prn-bg { transform: scaleY(1); }
-        .prn-card .prn-icon {
-          opacity: 0; transform: scale(0.5) rotate(-15deg);
-          transition: opacity 0.5s ease ${index * 80 + 200}ms, transform 0.6s cubic-bezier(0.34,1.5,0.64,1) ${index * 80 + 200}ms;
-        }
-        .prn-card.revealed .prn-icon { opacity: 1; transform: scale(1) rotate(0deg); }
-        .prn-card .prn-text {
-          opacity: 0; transform: translateY(14px);
-          transition: opacity 0.55s ease ${index * 80 + 320}ms, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${index * 80 + 320}ms;
-        }
-        .prn-card.revealed .prn-text { opacity: 1; transform: translateY(0); }
-      `}</style>
-
-      <div className="relative rounded-3xl p-8 border border-[#ebebeb] bg-white overflow-hidden transition-shadow duration-300 group-hover:shadow-md group-hover:shadow-[#763d50]/8 h-full">
-        {/* Animated bg fill on reveal */}
-        <div className="prn-bg absolute inset-0 rounded-3xl" style={{ background: 'rgba(118,61,80,0.025)' }} />
-
-        <div className="relative z-10">
-          {/* Number + icon row */}
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-xs font-black tracking-widest text-[#3a3a3a]/20">{p.number}</span>
-            <div
-              className="prn-icon w-11 h-11 rounded-2xl flex items-center justify-center"
-              style={{ background: 'rgba(118,61,80,0.08)', color: '#763d50' }}
-            >
-              {p.icon}
-            </div>
-          </div>
-
-          <div className="prn-text">
-            <h3 className="text-[#1f2020] font-semibold text-lg mb-3 leading-snug">{p.title}</h3>
-            <p className="text-[#3a3a3a]/55 text-sm leading-relaxed">{p.description}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function PrincipiosSection() {
   const { t } = useLanguage()
+  const [hovered, setHovered] = useState<number | null>(null)
   const numbers = ['01', '02', '03', '04']
-  const principios: PrincipioItem[] = t.nosotros.principios.items.map((item, i) => ({
-    ...item,
-    number: numbers[i],
-    icon: PRINCIPIO_ICONS[i],
-  }))
 
   return (
     <section className="py-16 md:py-28 bg-white border-t border-[#efefef]">
@@ -464,10 +344,98 @@ function PrincipiosSection() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-stretch">
-          {principios.map((p, i) => (
-            <PrincipioCard key={p.number} p={p} index={i} />
-          ))}
+        {/* Pill accordion */}
+        <div style={{ display: 'flex', gap: 10, height: 420 }}>
+          {t.nosotros.principios.items.map((item, i) => {
+            const isActive = hovered === i
+            const flex     = hovered === null ? 1 : isActive ? 5 : 0.4
+            return (
+              <div
+                key={i}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  flex,
+                  transition: 'flex 0.55s cubic-bezier(0.25,1,0.5,1)',
+                  borderRadius: 20,
+                  overflow: 'hidden',
+                  position: 'relative',
+                  cursor: 'default',
+                  minWidth: 0,
+                  background: PRINCIPIO_GRADIENTS[i],
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  padding: '28px 28px',
+                }}
+              >
+                {/* Number — always visible, rotated when collapsed */}
+                <span style={{
+                  position: 'absolute',
+                  top: 24,
+                  left: 24,
+                  fontSize: 11,
+                  fontWeight: 800,
+                  letterSpacing: '0.15em',
+                  color: 'rgba(255,255,255,0.35)',
+                  transition: 'opacity 0.3s ease',
+                }}>
+                  {numbers[i]}
+                </span>
+
+                {/* Content — fades in when expanded */}
+                <div style={{
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
+                  transition: 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
+                  minWidth: 180,
+                }}>
+                  <h3 style={{
+                    color: '#ffffff',
+                    fontSize: 20,
+                    fontWeight: 600,
+                    marginBottom: 10,
+                    lineHeight: 1.2,
+                  }}>
+                    {item.title}
+                  </h3>
+                  <p style={{
+                    color: 'rgba(255,255,255,0.65)',
+                    fontSize: 13,
+                    lineHeight: 1.6,
+                  }}>
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Title rotated when collapsed */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 28,
+                  left: 0,
+                  right: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  opacity: isActive ? 0 : 1,
+                  transition: 'opacity 0.2s ease',
+                  pointerEvents: 'none',
+                }}>
+                  <span style={{
+                    color: 'rgba(255,255,255,0.7)',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    writingMode: 'vertical-rl',
+                    transform: 'rotate(180deg)',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {item.title}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
