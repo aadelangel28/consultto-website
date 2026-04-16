@@ -10,7 +10,7 @@ const DURATIONS = [2000, 2000, 2500, 2200]
 // Stat 0 — 98%: Certificado con sello de aprobación
 function Illus0() {
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '48%', maxWidth: 210 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
       {/* Document */}
       <rect x="80" y="30" width="200" height="260" rx="6" stroke="#1f2020" strokeWidth="1.2" strokeDasharray="5 3" />
       {/* Fold corner */}
@@ -35,7 +35,7 @@ function Illus0() {
 // Stat 1 — 60%: Antes vs Ahora (comparación de tiempo)
 function Illus1() {
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '48%', maxWidth: 210 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
       {/* Grid lines */}
       {[60, 120, 180, 240, 300].map(y => (
         <line key={y} x1="40" y1={y} x2="360" y2={y} stroke="#1f2020" strokeWidth="0.5" opacity="0.12" />
@@ -65,7 +65,7 @@ function Illus2() {
   const days = [1, 2, 3, 4, 5]
   const xs = [60, 120, 200, 280, 340]
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '48%', maxWidth: 210 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
       {/* Horizontal track */}
       <line x1="60" y1="170" x2="340" y2="170" stroke="#1f2020" strokeWidth="1" opacity="0.15" />
       {days.map((d, i) => {
@@ -115,7 +115,7 @@ function Illus3() {
   const pts = [[40,260],[90,220],[140,190],[180,150],[230,120],[280,90],[340,60]]
   const polyline = pts.map(p => p.join(',')).join(' ')
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '48%', maxWidth: 210 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '72%', maxWidth: 320 }}>
       {/* Grid */}
       {[80,140,200,260].map(y => (
         <line key={y} x1="40" y1={y} x2="360" y2={y} stroke="#1f2020" strokeWidth="0.5" opacity="0.12" />
@@ -353,7 +353,7 @@ export function StatsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
           {/* Left: title + stats grid */}
-          <div className="flex flex-col lg:h-[580px]">
+          <div className="flex flex-col lg:h-[420px]">
             <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
               {t.stats.label}
             </p>
@@ -375,7 +375,7 @@ export function StatsSection() {
           </div>
 
           {/* Right: Handle-style illustration (changes on hover) */}
-          <div className="relative w-full h-64 sm:h-96 lg:h-[580px] rounded-2xl overflow-hidden hidden lg:block"
+          <div className="relative w-full h-64 sm:h-80 lg:h-[420px] rounded-2xl overflow-hidden hidden lg:block"
             style={{ background: '#f5f3f1', border: '1px solid #e8e4e1' }}>
 
             {STAT_ILLUSTRATIONS.map((Illus, i) => (
