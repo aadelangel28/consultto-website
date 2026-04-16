@@ -227,10 +227,10 @@ function HeroSection() {
 // ─── Misión ───────────────────────────────────────────────────────────────────
 
 const VC_STRIPS = [
-  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80' },
-  { src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80' },
-  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80' },
-  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80'    },
+  { gradient: 'linear-gradient(160deg, #5a1525 0%, #2d0a12 100%)' },
+  { gradient: 'linear-gradient(160deg, #1a0a0e 0%, #3d1020 100%)' },
+  { gradient: 'linear-gradient(160deg, #7a2035 0%, #4a1222 100%)' },
+  { gradient: 'linear-gradient(160deg, #2d0a12 0%, #1a0a0e 100%)' },
 ]
 
 function VisionCollage() {
@@ -254,14 +254,9 @@ function VisionCollage() {
               position: 'relative',
               cursor: 'pointer',
               minWidth: 0,
+              background: p.gradient,
             }}
-          >
-            <img
-              src={p.src}
-              alt=""
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          </div>
+          />
         )
       })}
     </div>
