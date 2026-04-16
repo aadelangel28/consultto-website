@@ -267,47 +267,44 @@ function MisionSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
 
-          {/* Izquierda: eyebrow + línea animada + check */}
+          {/* Izquierda: eyebrow + línea vertical + check */}
           <div ref={mision.ref}>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50] mb-5">
               {t.nosotros.mision.eyebrow}
             </p>
-            {/* Línea horizontal + ícono al final */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 0, height: 32 }}>
-              {/* Línea que crece */}
+            {/* Línea vertical + ícono abajo */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
               <div style={{
-                height: 1.5,
-                width: `${mision.progress * 100}%`,
-                maxWidth: 120,
+                width: 1.5,
+                height: `${mision.progress * 64}px`,
+                maxHeight: 64,
                 background: '#763d50',
                 borderRadius: 2,
-                transition: 'none',
-                flexShrink: 0,
               }} />
-              {/* Check icon — aparece y se rellena al llegar */}
               <svg
-                viewBox="0 0 32 32" fill="none"
+                viewBox="0 0 48 48" fill="none"
                 style={{
-                  width: 32, height: 32, flexShrink: 0,
+                  width: 48, height: 48,
                   opacity: mision.progress > 0.6 ? 1 : 0,
                   transition: 'opacity 0.3s ease',
+                  marginLeft: -23,
                 }}
               >
                 <circle
-                  cx="16" cy="16" r="13"
+                  cx="24" cy="24" r="20"
                   stroke="#763d50"
                   strokeWidth="1.5"
                   fill={mision.progress === 1 ? 'rgba(118,61,80,0.08)' : 'none'}
                   style={{ transition: 'fill 0.4s ease' }}
                 />
                 <path
-                  d="M10 16 L14 20 L22 12"
+                  d="M15 24 L21 30 L33 18"
                   stroke="#763d50"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeDasharray="16"
-                  strokeDashoffset={mision.progress === 1 ? 0 : 16}
+                  strokeDasharray="24"
+                  strokeDashoffset={mision.progress === 1 ? 0 : 24}
                   style={{ transition: 'stroke-dashoffset 0.4s ease 0.1s' }}
                 />
               </svg>
@@ -316,8 +313,8 @@ function MisionSection() {
 
           {/* Derecha: texto */}
           <Reveal delay={80}>
-            <p className="text-[#1f2020] leading-[1.35]"
-              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 300 }}>
+            <p className="text-[#1f2020] leading-[1.45]"
+              style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)', fontWeight: 300 }}>
               {t.nosotros.mision.text}
             </p>
           </Reveal>
@@ -334,31 +331,31 @@ function MisionSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
 
-          {/* Izquierda: eyebrow + línea animada + ojo */}
+          {/* Izquierda: eyebrow + línea vertical + ojo */}
           <div ref={vision.ref}>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50] mb-5">
               {t.nosotros.vision.eyebrow}
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 0, height: 32 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
               <div style={{
-                height: 1.5,
-                width: `${vision.progress * 100}%`,
-                maxWidth: 120,
+                width: 1.5,
+                height: `${vision.progress * 64}px`,
+                maxHeight: 64,
                 background: '#763d50',
                 borderRadius: 2,
-                flexShrink: 0,
               }} />
               <svg
-                viewBox="0 0 32 32" fill="none"
+                viewBox="0 0 48 48" fill="none"
                 style={{
-                  width: 32, height: 32, flexShrink: 0,
+                  width: 48, height: 48,
                   opacity: vision.progress > 0.6 ? 1 : 0,
                   transition: 'opacity 0.3s ease',
+                  marginLeft: -23,
                 }}
               >
                 {/* Ojo */}
                 <path
-                  d="M4 16 C8 9, 24 9, 28 16 C24 23, 8 23, 4 16 Z"
+                  d="M6 24 C12 13, 36 13, 42 24 C36 35, 12 35, 6 24 Z"
                   stroke="#763d50"
                   strokeWidth="1.5"
                   fill={vision.progress === 1 ? 'rgba(118,61,80,0.08)' : 'none'}
@@ -366,7 +363,7 @@ function MisionSection() {
                   style={{ transition: 'fill 0.4s ease' }}
                 />
                 <circle
-                  cx="16" cy="16" r="3.5"
+                  cx="24" cy="24" r="5"
                   stroke="#763d50"
                   strokeWidth="1.5"
                   fill={vision.progress === 1 ? '#763d50' : 'none'}
@@ -376,10 +373,10 @@ function MisionSection() {
             </div>
           </div>
 
-          {/* Derecha: texto — misma tipografía que Misión */}
+          {/* Derecha: texto */}
           <Reveal delay={80}>
-            <p className="text-[#1f2020] leading-[1.35]"
-              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 300 }}>
+            <p className="text-[#1f2020] leading-[1.45]"
+              style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)', fontWeight: 300 }}>
               {t.nosotros.vision.text}
             </p>
           </Reveal>
