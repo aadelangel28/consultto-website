@@ -341,7 +341,7 @@ function PrincipiosSection() {
         <div style={{ display: 'flex', gap: 12, height: 460 }}>
           {t.nosotros.principios.items.map((item, i) => {
             const isActive = hovered === i
-            const flex     = hovered === null ? 1 : isActive ? 5 : 0.45
+            const flex     = hovered === null ? 0.3 : isActive ? 5 : 0.18
             return (
               <div
                 key={i}
@@ -390,8 +390,7 @@ function PrincipiosSection() {
                 {/* Content — fades in when expanded */}
                 <div style={{
                   opacity: isActive ? 1 : 0,
-                  transform: isActive ? 'translateY(0)' : 'translateY(10px)',
-                  transition: 'opacity 0.3s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
+                  transition: 'opacity 0.25s ease 0.15s',
                   minWidth: 200,
                 }}>
                   <h3 style={{
@@ -421,7 +420,7 @@ function PrincipiosSection() {
                   display: 'flex',
                   justifyContent: 'center',
                   opacity: isActive ? 0 : 1,
-                  transition: 'opacity 0.2s ease',
+                  transition: isActive ? 'opacity 0.1s ease' : 'opacity 0.2s ease 0.1s',
                   pointerEvents: 'none',
                 }}>
                   <span style={{
