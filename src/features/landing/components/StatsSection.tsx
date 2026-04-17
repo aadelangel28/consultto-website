@@ -10,7 +10,7 @@ const DURATIONS = [2000, 2000, 2500, 2200]
 // Stat 0 — 98%: Certificado con sello de aprobación
 function Illus0() {
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '85%', maxWidth: 380 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '85%', maxWidth: 380, marginTop: 32 }}>
       {/* Document */}
       <rect x="80" y="30" width="200" height="260" rx="6" stroke="#1f2020" strokeWidth="1.2" strokeDasharray="5 3" />
       {/* Fold corner */}
