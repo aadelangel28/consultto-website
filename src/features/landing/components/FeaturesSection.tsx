@@ -60,7 +60,7 @@ export function FeaturesSection() {
             {cards.map((card, i) => (
               <button
                 key={card.tag}
-                onClick={() => goTo(i)}
+                onMouseEnter={() => goTo(i)} onClick={() => goTo(i)}
                 className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                   i === activeIndex
                     ? 'bg-[#763d50] text-white font-semibold shadow-sm'
@@ -79,7 +79,7 @@ export function FeaturesSection() {
             {cards.map((card, i) => (
               <button
                 key={card.tag}
-                onClick={() => goTo(i)}
+                onMouseEnter={() => goTo(i)} onClick={() => goTo(i)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   i === activeIndex
                     ? 'bg-[#763d50] text-white font-semibold shadow-sm'
