@@ -63,49 +63,46 @@ function Illus1() {
 // Stat 2 — 5 días: Timeline de 5 días
 function Illus2() {
   const days = [1, 2, 3, 4, 5]
-  const xs = [60, 120, 200, 280, 340]
+  const R = 28
+  const GAP = 70  // center-to-center
+  const total = (days.length - 1) * GAP
+  const startX = (400 - total) / 2
+  const xs = days.map((_, i) => startX + i * GAP)
+  const cy = 170
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '85%', maxWidth: 380 }}>
-      {/* Horizontal track */}
-      <line x1="60" y1="170" x2="340" y2="170" stroke="#1f2020" strokeWidth="1" opacity="0.15" />
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '90%', maxWidth: 420 }}>
       {days.map((d, i) => {
         const x = xs[i]
         const done = i < 4
         return (
           <g key={d}>
-            {/* Connector line */}
+            {/* Connector line between circles */}
             {i < 4 && (
-              <line x1={x + 22} y1="170" x2={xs[i + 1] - 22} y2="170"
-                stroke={done ? '#763d50' : '#1f2020'}
-                strokeWidth="1"
-                opacity={done ? 0.4 : 0.15}
-                strokeDasharray={done ? undefined : '3 2'}
+              <line
+                x1={x + R} y1={cy} x2={xs[i + 1] - R} y2={cy}
+                stroke="#763d50" strokeWidth="1" opacity="0.3"
               />
             )}
             {/* Circle */}
-            <circle cx={x} cy="170" r="22"
+            <circle cx={x} cy={cy} r={R}
               stroke={i === 4 ? '#763d50' : '#1f2020'}
-              strokeWidth={i === 4 ? '1.4' : '1'}
-              fill={i === 4 ? 'rgba(118,61,80,0.06)' : 'white'}
-              opacity={done ? 0.9 : 1}
+              strokeWidth={i === 4 ? '1.5' : '1'}
+              fill={i === 4 ? 'rgba(118,61,80,0.08)' : 'white'}
             />
-            {/* Checkmark for done, number for last */}
+            {/* Checkmark or number */}
             {done ? (
-              <path d={`M${x - 7} 170 L${x - 2} 176 L${x + 8} 164`}
-                stroke="#1f2020" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+              <path d={`M${x - 9} ${cy} L${x - 3} ${cy + 7} L${x + 10} ${cy - 8}`}
+                stroke="#1f2020" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.45" />
             ) : (
-              <text x={x} y="175" textAnchor="middle" fontSize="13" fill="#763d50" fontFamily="system-ui" fontWeight="600">{d}</text>
+              <text x={x} y={cy + 5} textAnchor="middle" fontSize="15" fill="#763d50" fontFamily="system-ui" fontWeight="700">{d}</text>
             )}
             {/* Day label */}
-            <text x={x} y="210" textAnchor="middle" fontSize="10" fill="#1f2020" opacity="0.35" fontFamily="system-ui">
+            <text x={x} y={cy + R + 22} textAnchor="middle" fontSize="11" fill="#1f2020" opacity="0.35" fontFamily="system-ui">
               {`Día ${d}`}
             </text>
           </g>
         )
       })}
-      {/* Label top */}
-      <text x="200" y="120" textAnchor="middle" fontSize="11" fill="#763d50" fontFamily="system-ui" opacity="0.7">Primer entregable</text>
-      <line x1="140" y1="126" x2="200" y2="140" stroke="#763d50" strokeWidth="0.8" opacity="0.3" />
     </svg>
   )
 }
