@@ -236,7 +236,7 @@ function useDrawLine() {
       ([e]) => {
         if (!e.isIntersecting) return
         let start: number | null = null
-        const dur = 900
+        const dur = 1600
         function tick(ts: number) {
           if (!start) start = ts
           const p = Math.min((ts - start) / dur, 1)
@@ -247,7 +247,7 @@ function useDrawLine() {
         requestAnimationFrame(tick)
         obs.disconnect()
       },
-      { threshold: 0.3 }
+      { threshold: 0.7 }
     )
     obs.observe(el)
     return () => obs.disconnect()
