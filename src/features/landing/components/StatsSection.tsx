@@ -112,7 +112,7 @@ function Illus3() {
   const pts = [[40,260],[90,220],[140,190],[180,150],[230,120],[280,90],[340,60]]
   const polyline = pts.map(p => p.join(',')).join(' ')
   return (
-    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '85%', maxWidth: 380 }}>
+    <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '85%', maxWidth: 380, marginTop: 32 }}>
       {/* Grid */}
       {[80,140,200,260].map(y => (
         <line key={y} x1="40" y1={y} x2="360" y2={y} stroke="#1f2020" strokeWidth="0.5" opacity="0.12" />
