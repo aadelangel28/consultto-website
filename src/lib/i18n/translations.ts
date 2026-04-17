@@ -232,7 +232,7 @@ export const translations = {
       },
       vision: {
         eyebrow: 'Nuestra visión',
-        text: 'Ser la plataforma de referencia para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.',
+        text: 'Desarrollar la inteligencia artificial más avanzada a nivel global para implementar sistemas de gestión que realmente funcionen — con tecnología, criterio y acompañamiento humano.',
       },
       principios: {
         eyebrow: 'Principios',
