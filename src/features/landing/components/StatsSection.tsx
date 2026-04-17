@@ -381,8 +381,8 @@ export function StatsSection() {
             {STAT_ILLUSTRATIONS.map((Illus, i) => (
               <div
                 key={i}
-                className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
-                style={{ opacity: i === activeIndex ? 1 : 0 }}
+                className="absolute top-0 left-0 right-0 flex items-center justify-center transition-opacity duration-500"
+                style={{ bottom: 96, opacity: i === activeIndex ? 1 : 0 }}
               >
                 <Illus />
               </div>
