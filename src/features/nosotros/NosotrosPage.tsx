@@ -403,17 +403,15 @@ function PrincipiosSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 mb-16 md:mb-20">
+        <div className="mb-16 md:mb-20">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#763d50] mb-4">
               {t.nosotros.principios.eyebrow}
             </p>
-            <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1f2020] leading-tight mb-4">
               {t.nosotros.principios.title}
             </h2>
-          </Reveal>
-          <Reveal delay={80} className="lg:self-end">
-            <p className="text-[#3a3a3a]/45 text-sm leading-relaxed max-w-sm">
+            <p className="text-[#3a3a3a]/45 text-sm leading-relaxed max-w-md">
               {t.nosotros.principios.subtitle}
             </p>
           </Reveal>
