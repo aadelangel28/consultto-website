@@ -350,28 +350,28 @@ export function StatsSection() {
   return (
     <section id="como-funciona" className="bg-white py-16 md:py-24 px-6">
       <div className="max-w-7xl mx-auto">
+
+        {/* Título fuera del grid */}
+        <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
+          {t.stats.label}
+        </p>
+        <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-8">
+          {t.stats.title}
+        </h2>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center">
 
-          {/* Left: title + stats grid */}
-          <div className="flex flex-col lg:h-[580px]">
-            <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
-              {t.stats.label}
-            </p>
-            <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-4">
-              {t.stats.title}
-            </h2>
-
-            <div className="grid grid-cols-2 gap-3 flex-1 min-h-0">
-              {t.stats.items.map((stat, index) => (
-                <StatCard
-                  key={index}
-                  stat={stat}
-                  index={index}
-                  isActive={hoveredIndex === index}
-                  onHover={setHoveredIndex}
-                />
-              ))}
-            </div>
+          {/* Left: stats grid only */}
+          <div className="grid grid-cols-2 gap-3 lg:h-[480px]">
+            {t.stats.items.map((stat, index) => (
+              <StatCard
+                key={index}
+                stat={stat}
+                index={index}
+                isActive={hoveredIndex === index}
+                onHover={setHoveredIndex}
+              />
+            ))}
           </div>
 
           {/* Right: Handle-style illustration (changes on hover) */}
