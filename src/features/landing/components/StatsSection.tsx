@@ -350,7 +350,7 @@ export function StatsSection() {
   return (
     <section id="como-funciona" className="bg-white py-16 md:py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center">
 
           {/* Left: title + stats grid */}
           <div className="flex flex-col lg:h-[580px]">
