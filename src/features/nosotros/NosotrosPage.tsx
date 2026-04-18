@@ -294,7 +294,7 @@ function MisionSection() {
                   cx="24" cy="24" r="20"
                   stroke="#763d50"
                   strokeWidth="1.5"
-                  fill={mision.progress === 1 ? 'rgba(118,61,80,0.08)' : 'none'}
+                  fill={mision.progress > 0.98 ? 'rgba(118,61,80,0.08)' : 'none'}
                   style={{ transition: 'fill 0.4s ease' }}
                 />
                 <path
@@ -304,7 +304,7 @@ function MisionSection() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeDasharray="24"
-                  strokeDashoffset={mision.progress === 1 ? 0 : 24}
+                  strokeDashoffset={mision.progress > 0.98 ? 0 : 24}
                   style={{ transition: 'stroke-dashoffset 0.4s ease 0.1s' }}
                 />
               </svg>
@@ -358,7 +358,7 @@ function MisionSection() {
                   d="M6 24 C12 13, 36 13, 42 24 C36 35, 12 35, 6 24 Z"
                   stroke="#763d50"
                   strokeWidth="1.5"
-                  fill={vision.progress === 1 ? 'rgba(118,61,80,0.08)' : 'none'}
+                  fill={vision.progress > 0.98 ? 'rgba(118,61,80,0.08)' : 'none'}
                   strokeLinecap="round"
                   style={{ transition: 'fill 0.4s ease' }}
                 />
@@ -366,7 +366,7 @@ function MisionSection() {
                   cx="24" cy="24" r="5"
                   stroke="#763d50"
                   strokeWidth="1.5"
-                  fill={vision.progress === 1 ? '#763d50' : 'none'}
+                  fill={vision.progress > 0.98 ? '#763d50' : 'none'}
                   style={{ transition: 'fill 0.4s ease 0.15s', opacity: vision.progress > 0.7 ? 1 : 0 }}
                 />
               </svg>
