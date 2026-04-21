@@ -1,4 +1,5 @@
 import { LanguageProvider } from '@/lib/i18n/LanguageContext'
+import { FaqJsonLd } from '@/components/JsonLd'
 import { Navbar } from '@/features/landing/components/Navbar'
 import { HeroSection } from '@/features/landing/components/HeroSection'
 import { WhatWeDoSection } from '@/features/landing/components/WhatWeDoSection'
@@ -12,6 +13,7 @@ import { Footer } from '@/features/landing/components/Footer'
 export default function Home() {
   return (
     <LanguageProvider>
+      <FaqJsonLd />
       <main>
         <Navbar />
         <HeroSection />
