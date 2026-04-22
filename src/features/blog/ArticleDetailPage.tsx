@@ -11,23 +11,23 @@ import { CTASection } from '@/features/landing/components/CTASection'
 
 function InlineCTA() {
   return (
-    <div className="my-12 bg-[#faf5f6] rounded-2xl px-8 py-8 border border-[#e8d8dd]">
-      <p className="text-[#763d50] text-[10px] font-bold uppercase tracking-widest mb-2">
+    <div className="my-12 bg-[#faf5f6] rounded-2xl px-10 py-12 border border-[#e8d8dd] text-center">
+      <p className="text-[#763d50] text-[10px] font-bold uppercase tracking-widest mb-4">
         ¿Quieres implementar tu sistema de gestión?
       </p>
-      <h3 className="text-[#1f2020] text-xl font-light leading-snug mb-2">
+      <h3 className="text-[#1f2020] text-2xl font-light leading-snug mb-8 max-w-lg mx-auto">
         Cuéntanos qué norma te interesa y te mostramos cómo funciona la plataforma para llevarte de cero a certificado.
       </h3>
-      <div className="flex flex-col sm:flex-row gap-2.5">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href="/demo"
-          className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
+          className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
         >
           Agendar demo gratuita
         </Link>
         <Link
           href="/consultor"
-          className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-6 py-2.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap text-center"
+          className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-8 py-3 rounded-full font-semibold transition-all text-sm whitespace-nowrap text-center"
         >
           Hablar con un consultor
         </Link>
