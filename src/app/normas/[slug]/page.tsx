@@ -93,9 +93,49 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const norma = getNorma(slug)
   if (!norma) notFound()
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `¿Qué es ${norma.code}?`,
+        acceptedAnswer: { '@type': 'Answer', text: norma.description },
+      },
+      {
+        '@type': 'Question',
+        name: `¿Quién necesita certificarse en ${norma.code}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${norma.scope} Entre las industrias más comunes: ${norma.industrias.join(', ')}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `¿Qué ventajas tiene implementar ${norma.code}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${norma.tagline} ${norma.stats.map((s) => `${s.value} ${s.label}`).join('. ')}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `¿Cómo ayuda Consultto a implementar ${norma.code}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: norma.ctaSubtitle,
+        },
+      },
+    ],
+  }
+
   return (
     <LanguageProvider>
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <NormaPage norma={norma} />
       <Footer />
     </LanguageProvider>
