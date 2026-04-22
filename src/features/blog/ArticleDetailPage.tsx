@@ -13,14 +13,11 @@ function InlineCTA() {
   return (
     <div className="my-12 bg-[#faf5f6] rounded-2xl px-8 py-8 border border-[#e8d8dd]">
       <p className="text-[#763d50] text-[10px] font-bold uppercase tracking-widest mb-2">
-        ¿Listo para certificarte?
+        ¿Quieres implementar tu sistema de gestión?
       </p>
       <h3 className="text-[#1f2020] text-xl font-light leading-snug mb-2">
-        Habla con un consultor de Consultto — sin compromisos.
+        Cuéntanos en qué norma estás interesado y te mostramos cómo funciona la plataforma para llevarte de cero a certificado.
       </h3>
-      <p className="text-[#3a3a3a]/55 text-sm leading-relaxed mb-5">
-        Te escuchamos, entendemos tu empresa y te decimos honestamente qué necesitas y cómo podemos ayudarte.
-      </p>
       <div className="flex flex-col sm:flex-row gap-2.5">
         <Link
           href="/demo"
