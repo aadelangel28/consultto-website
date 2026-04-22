@@ -3,9 +3,15 @@ export interface ArticleContent {
   body: Section[]
 }
 
+export interface RelatedLink {
+  label: string
+  href: string
+}
+
 export interface Section {
-  type: 'paragraph' | 'heading' | 'subheading' | 'bullets' | 'quote'
+  type: 'paragraph' | 'heading' | 'subheading' | 'bullets' | 'quote' | 'related'
   content: string | string[]
+  links?: RelatedLink[]
 }
 
 export const articleContent: ArticleContent[] = [
@@ -36,6 +42,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'quote', content: 'No todos los certificados ISO son iguales. Un certificado emitido por un organismo no acreditado puede no tener valor legal ni comercial.' },
       { type: 'heading', content: 'Cómo verificar si un organismo certificador está acreditado' },
       { type: 'paragraph', content: 'En México, puedes consultar el directorio de organismos acreditados en el sitio de la EMA (ema.org.mx). A nivel internacional, el IAF mantiene una base de datos de organismos de acreditación y certificación reconocidos mutuamente. Antes de contratar un organismo certificador, verifica que aparezca en alguno de estos registros con acreditación vigente para el esquema de norma que necesitas.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Cómo gestionarlo con Consultto', href: '/normas/iso-9001' },
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+        { label: 'ISO 45001:2018 — Seguridad y Salud en el Trabajo', href: '/normas/iso-45001' },
+        { label: 'ISO 27001 — Seguridad de la Información', href: '/normas/iso-27001' },
+      ]},
     ],
   },
   {
@@ -65,6 +77,10 @@ export const articleContent: ArticleContent[] = [
       { type: 'heading', content: 'El seguimiento: donde falla la mayoría' },
       { type: 'paragraph', content: 'El paso más descuidado en la gestión de no conformidades es la verificación de eficacia. Después de implementar la acción correctiva, alguien debe verificar que el problema efectivamente no se repitió. Esto puede hacerse revisando indicadores, analizando si vuelven a aparecer no conformidades similares o realizando una verificación directa del proceso corregido.' },
       { type: 'paragraph', content: 'Sin este paso, el ciclo está incompleto. Puedes haber tomado la acción correctiva equivocada, o haberla implementado incorrectamente, y no saberlo hasta que el auditor externo encuentre la misma no conformidad por segunda vez.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Gestión de no conformidades con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+      ]},
     ],
   },
   {
@@ -93,6 +109,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'Los factores que más influyen son la complejidad del proceso productivo, el número de peligros identificados en el análisis HACCP, la madurez de los programas de prerrequisitos existentes y la capacidad técnica del equipo de inocuidad alimentaria.' },
       { type: 'heading', content: 'Quién necesita ISO 22000' },
       { type: 'paragraph', content: 'Cualquier empresa de la cadena alimentaria que quiera demostrar a sus clientes, reguladores y consumidores que tiene un sistema sistemático para garantizar la inocuidad de sus productos. En muchos casos, la certificación es un requisito contractual impuesto por clientes corporativos o retailers. En otros, es una ventaja competitiva que diferencia a la empresa en un mercado donde la inocuidad es un criterio de compra cada vez más importante.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 22000 — Inocuidad Alimentaria con Consultto', href: '/normas/iso-22000' },
+        { label: 'FSSC 22000 — Certificación GFSI', href: '/normas/fssc-22000' },
+        { label: 'HACCP — Análisis de Peligros y Puntos Críticos', href: '/normas/haccp' },
+        { label: 'Gestión de calidad en alimentos y bebidas', href: '/industrias/alimentos-y-bebidas' },
+      ]},
     ],
   },
   {
@@ -134,6 +156,10 @@ export const articleContent: ArticleContent[] = [
       { type: 'quote', content: 'El mejor indicador no es el más sofisticado. Es el que el equipo entiende, puede influir y revisa con frecuencia suficiente para actuar.' },
       { type: 'heading', content: 'Con qué frecuencia medir y revisar los indicadores' },
       { type: 'paragraph', content: 'Los indicadores operativos (defectos, devoluciones, quejas) deben medirse con frecuencia alta: semanal o mensual. Los indicadores estratégicos (satisfacción del cliente, desempeño de proveedores) pueden medirse trimestralmente. Todos los indicadores deben revisarse en la revisión por la dirección al menos una vez al año, con análisis de tendencias y comparación contra las metas definidas.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -162,6 +188,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'Para una empresa de hasta 20 personas, el costo total de certificación en ISO 9001 puede estar entre $50,000 y $120,000 MXN, dependiendo del modelo de implementación elegido. La mayor variable es si contratas una consultora tradicional (costo por proyecto) o una plataforma de software con IA (costo mensual predecible). El organismo certificador cobra según el número de personas y días de auditoría, que para empresas pequeñas es generalmente uno o dos días.' },
       { type: 'heading', content: 'El modelo Consultto para PyMEs' },
       { type: 'paragraph', content: 'Consultto fue diseñado pensando en organizaciones que no tienen un equipo de calidad dedicado. El agente de IA guía al responsable del sistema en cada paso: desde el diagnóstico inicial hasta la preparación de la auditoría de certificación. La documentación se genera adaptada a tu empresa, el seguimiento de requisitos es automático y el costo es predecible mes a mes, sin sorpresas de honorarios.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'Cuánto cuesta la certificación ISO 9001', href: '/blog/cuanto-cuesta-certificacion-iso-9001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+        { label: 'ISO 9001:2015 — con Consultto', href: '/normas/iso-9001' },
+      ]},
     ],
   },
   {
@@ -190,6 +222,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'A cualquier organización, sin importar su tamaño, sector o naturaleza. Desde industrias de alta huella ambiental como manufactura, química, minería o logística, hasta empresas de servicios con impacto ambiental más limitado. La norma es flexible: el alcance del sistema de gestión lo define la propia organización.' },
       { type: 'heading', content: 'ISO 14001 e ISO 9001 juntas' },
       { type: 'paragraph', content: 'La combinación más común en el mercado es implementar ISO 9001 e ISO 14001 de forma integrada. Comparten la misma estructura, por lo que gran parte de la documentación, los procesos de auditoría y la revisión por la dirección pueden unificarse. El resultado es un sistema de gestión integrado más eficiente y menos costoso de mantener que dos sistemas separados.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental con Consultto', href: '/normas/iso-14001' },
+        { label: 'ISO 9001 vs ISO 14001: diferencias y cómo integrarlas', href: '/blog/iso-9001-vs-iso-14001' },
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Cuánto cuesta la certificación ISO', href: '/blog/cuanto-cuesta-certificacion-iso-9001' },
+      ]},
     ],
   },
   {
@@ -217,6 +255,11 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'En términos de tamaño, no hay mínimo. Las empresas pequeñas con pocos empleados pueden implementar ISO 45001 con un sistema proporcionalmente más simple. Lo que importa no es el tamaño del manual — es que el sistema funcione y que los riesgos estén realmente controlados.' },
       { type: 'heading', content: 'ISO 45001 integrada con ISO 9001 e ISO 14001' },
       { type: 'paragraph', content: 'Las tres normas comparten estructura y muchos elementos en común. Un sistema de gestión integrado que cubra calidad, medio ambiente y seguridad laboral (conocido como sistema QHSE o IMS) es más eficiente de implementar y mantener que tres sistemas separados. Una sola auditoría interna puede cubrir los tres estándares, y la revisión por la dirección puede abordar los tres en una sola sesión.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 45001:2018 — Seguridad y Salud en el Trabajo', href: '/normas/iso-45001' },
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+      ]},
     ],
   },
   {
@@ -289,6 +332,11 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'La auditoría no termina con el informe. Termina cuando las acciones correctivas derivadas de las no conformidades han sido implementadas y verificadas. Este seguimiento es el que cierra el ciclo de mejora y es, paradójicamente, el paso que más se descuida.' },
       { type: 'heading', content: 'Quién puede ser auditor interno' },
       { type: 'paragraph', content: 'ISO 9001 requiere que los auditores internos sean competentes e imparciales respecto al área que auditan. No exige una certificación específica, pero sí que tengan conocimiento de la norma, del proceso de auditoría y del proceso que van a auditar. Un curso de formación de auditor interno de 16 a 24 horas es suficiente para la mayoría de los casos.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Auditorías internas con Consultto', href: '/normas/iso-9001' },
+        { label: 'No conformidades y acciones correctivas', href: '/blog/no-conformidades-acciones-correctivas' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+      ]},
     ],
   },
   {
@@ -319,6 +367,11 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'ISO 27001 no reemplaza el cumplimiento regulatorio (como la Ley Federal de Protección de Datos Personales en México o el RGPD en la UE), pero sí lo facilita significativamente. Un SGSI bien implementado cubre gran parte de los controles que esas regulaciones exigen, y la certificación puede servir como evidencia de diligencia debida ante reguladores.' },
       { type: 'heading', content: 'Cuánto tiempo toma certificarse en ISO 27001' },
       { type: 'paragraph', content: 'Para una empresa mediana que parte desde cero, el proceso típico toma entre 9 y 18 meses. Los factores que más influyen en el tiempo son la madurez de los controles de seguridad existentes, el tamaño del alcance definido, la disponibilidad del equipo de TI y seguridad, y el nivel de sensibilidad de la información que maneja la organización. Con una plataforma de gestión con IA, los tiempos se pueden reducir considerablemente al automatizar la documentación y el seguimiento de controles.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 27001:2022 — Seguridad de la Información con Consultto', href: '/normas/iso-27001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+        { label: 'Plataforma de gestión con IA', href: '/plataforma' },
+      ]},
     ],
   },
   {
@@ -362,6 +415,12 @@ export const articleContent: ArticleContent[] = [
         'Con Consultto, los tiempos se reducen en promedio un 40% gracias al acompañamiento continuo y la IA',
       ]},
       { type: 'paragraph', content: 'La certificación tiene una vigencia de tres años, con auditorías de seguimiento anuales. Al tercer año se realiza una auditoría de recertificación. Mantener el sistema vivo entre auditorías es lo que determina si la certificación es un activo real o solo un papel en la pared.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cuánto cuesta la certificación ISO 9001', href: '/blog/cuanto-cuesta-certificacion-iso-9001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+      ]},
     ],
   },
   {
@@ -391,6 +450,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'Las industrias donde la certificación es más común incluyen manufactura, construcción, servicios profesionales, tecnología, logística, salud y educación. Pero no hay sector donde no aplique.' },
       { type: 'heading', content: 'ISO 9001 y la IA: la nueva frontera de la gestión de calidad' },
       { type: 'paragraph', content: 'Las plataformas de gestión de calidad con IA, como Consultto, están cambiando cómo las organizaciones implementan y mantienen su SGC. En lugar de depender de consultores externos que llegan, documentan y se van, las empresas pueden tener un agente de IA que conoce su norma, su industria y su sistema, disponible las 24 horas para preparar auditorías, redactar procedimientos y analizar no conformidades.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -429,6 +494,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'paragraph', content: 'La forma más efectiva de reducir el costo total es reducir el tiempo de implementación. Cada mes adicional tiene un costo: horas del equipo interno, honorarios de consultoría, retrasos en acceder a contratos que requieren la certificación.' },
       { type: 'paragraph', content: 'Las plataformas de software con IA como Consultto han cambiado el modelo de costos de la certificación. En lugar de pagar un proyecto grande de consultoría, las empresas pagan una suscripción mensual y acceden a un agente de IA que las acompaña en todo el proceso — desde la documentación hasta la preparación de auditorías. El resultado es un costo total significativamente menor y un tiempo de implementación más corto.' },
       { type: 'quote', content: 'El costo de no certificarse también existe: contratos perdidos, clientes que se van con un proveedor certificado, ineficiencias que nadie cuantifica.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+        { label: 'Certificación ISO para PyMEs', href: '/blog/certificacion-iso-pymes' },
+      ]},
     ],
   },
   {
@@ -464,6 +535,12 @@ export const articleContent: ArticleContent[] = [
         'Preparación y respuesta ante emergencias ambientales',
         'Seguimiento de indicadores ambientales: consumo de energía, agua, generación de residuos',
       ]},
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+        { label: 'ISO 9001 vs ISO 14001: diferencias y cómo integrarlas', href: '/blog/iso-9001-vs-iso-14001' },
+        { label: 'Cuánto cuesta la certificación ISO', href: '/blog/cuanto-cuesta-certificacion-iso-9001' },
+      ]},
     ],
   },
   {
@@ -495,6 +572,12 @@ export const articleContent: ArticleContent[] = [
       { type: 'heading', content: 'Cómo Consultto reduce el tiempo de implementación' },
       { type: 'paragraph', content: 'Con las herramientas y el acompañamiento correctos, los tiempos de implementación se pueden reducir significativamente. Consultto combina una plataforma de gestión con un agente de IA que conoce la norma, tu industria y el contexto de tu empresa. Esto permite automatizar la generación de documentación adaptada, hacer seguimiento continuo de los requisitos pendientes y preparar auditorías sin depender de la disponibilidad de un consultor externo.' },
       { type: 'paragraph', content: 'Nuestros clientes reducen en promedio un 40% el tiempo de implementación respecto a procesos tradicionales. No porque se salten pasos, sino porque los pasos se ejecutan de forma más eficiente y con menos tiempo muerto entre fases.' },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001 paso a paso', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'Cuánto cuesta la certificación ISO 9001', href: '/blog/cuanto-cuesta-certificacion-iso-9001' },
+        { label: 'Certificación ISO para PyMEs', href: '/blog/certificacion-iso-pymes' },
+      ]},
     ],
   },
   {
