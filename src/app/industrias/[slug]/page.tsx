@@ -61,6 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: seo?.title ?? `${industria.name} — Gestión de Calidad con IA | Consultto`,
     description: seo?.description ?? industria.heroSubtitle,
+    alternates: { canonical: `https://consultto.com/industrias/${slug}` },
   }
 }
 

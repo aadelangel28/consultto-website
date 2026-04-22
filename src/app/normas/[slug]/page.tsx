@@ -85,6 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: seo?.title ?? `${norma.code}${norma.version} — ${norma.fullName} | Consultto`,
     description: seo?.description ?? norma.tagline,
+    alternates: { canonical: `https://consultto.com/normas/${slug}` },
   }
 }
 

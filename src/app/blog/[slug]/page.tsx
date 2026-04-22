@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${article.title} | Consultto Blog`,
     description: article.excerpt,
+    alternates: { canonical: `https://consultto.com/blog/${slug}` },
   }
 }
 

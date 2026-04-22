@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { LanguageProvider } from '@/lib/i18n/LanguageContext'
+
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://consultto.com' },
+}
 import { FaqJsonLd } from '@/components/JsonLd'
 import { Navbar } from '@/features/landing/components/Navbar'
 import { HeroSection } from '@/features/landing/components/HeroSection'
