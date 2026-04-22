@@ -5,8 +5,8 @@ import { LanguageProvider } from '@/lib/i18n/LanguageContext'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Nosotros | Consultto',
-  description: 'Consultto nació para que las empresas puedan certificarse y mantener su certificación sin estrés ni complicaciones.',
+  title: 'Quiénes Somos — Consultto, Plataforma de Certificación ISO con IA',
+  description: 'Conoce al equipo detrás de Consultto. Ayudamos a empresas a certificarse en ISO 9001, ISO 14001, ISO 45001, ISO 27001 y más con una plataforma inteligente impulsada por IA.',
 }
 
 export default function Page() {

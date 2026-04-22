@@ -4,8 +4,8 @@ import { Footer } from '@/features/landing/components/Footer'
 import { BlogPage } from '@/features/blog/BlogPage'
 
 export const metadata = {
-  title: 'Blog | Consultto',
-  description: 'Perspectivas sobre certificación, cumplimiento normativo y gestión de calidad.',
+  title: 'Blog sobre Certificación ISO y Cumplimiento Normativo | Consultto',
+  description: 'Guías, estrategias y casos prácticos sobre ISO 9001, ISO 14001, ISO 45001, ISO 27001 y más. Aprende a implementar y mantener tu sistema de gestión con IA.',
 }
 
 export default function Blog() {
