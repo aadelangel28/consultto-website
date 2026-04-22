@@ -300,6 +300,12 @@ export const articleContent: ArticleContent[] = [
         '6. Revisión por la dirección: evaluar el desempeño y tomar decisiones de mejora',
         '7. Certificación: auditoría externa con un organismo acreditado',
       ]},
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad con Consultto', href: '/normas/iso-9001' },
+        { label: 'Qué es ISO 9001', href: '/blog/que-es-iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'No conformidades y acciones correctivas', href: '/blog/no-conformidades-acciones-correctivas' },
+      ]},
     ],
   },
   {
