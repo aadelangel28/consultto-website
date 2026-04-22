@@ -16,7 +16,7 @@ function InlineCTA() {
         ¿Quieres implementar tu sistema de gestión?
       </p>
       <h3 className="text-[#1f2020] text-xl font-light leading-snug mb-2">
-        Cuéntanos en qué norma estás interesado y te mostramos cómo funciona la plataforma para llevarte de cero a certificado.
+        Cuéntanos qué norma te interesa y te mostramos cómo funciona la plataforma para llevarte de cero a certificado.
       </h3>
       <div className="flex flex-col sm:flex-row gap-2.5">
         <Link
