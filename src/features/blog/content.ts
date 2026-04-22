@@ -671,6 +671,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las organizaciones que implementan ISO 31000 como marco transversal antes de certificarse en normas sectoriales suelen llegar a las auditorías con una ventaja notable: sus equipos entienden el "por qué" detrás de los requisitos, no solo el "qué". Y eso se nota en cada entrevista que el auditor externo realiza.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Pensamiento basado en riesgos', href: '/normas/iso-9001' },
+        { label: 'Pensamiento basado en riesgos en ISO 9001', href: '/blog/pensamiento-basado-en-riesgos' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+      ]},
     ],
   },
   {
@@ -754,6 +759,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Una revisión que responde esas cinco preguntas con evidencia y genera decisiones concretas cumple con creces los requisitos de ISO 9001 y, más importante, añade valor real a la organización. Una revisión que solo registra lo ocurrido sin generar cambios es un trámite costoso que desgasta a los equipos y no mejora nada.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Indicadores y KPIs del sistema de gestión', href: '/blog/kpis-sistema-de-gestion' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+      ]},
     ],
   },
   {
@@ -839,6 +849,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'El costo de implementar ISO 27001 varía según el tamaño y complejidad de la organización, pero en la mayoría de los casos es una fracción del costo de un incidente de seguridad no gestionado. Un ataque de ransomware que paraliza operaciones durante una semana puede costar más que tres años de mantenimiento de un SGSI certificado.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 27001:2022 — Seguridad de la Información con Consultto', href: '/normas/iso-27001' },
+        { label: 'Qué es ISO 27001', href: '/blog/que-es-iso-27001' },
+        { label: 'Plataforma de gestión con IA', href: '/plataforma' },
+      ]},
     ],
   },
   {
@@ -925,6 +940,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La palabra clave es "considerar". ISO 9001 no exige que elimines todos los riesgos. Exige que los tengas en cuenta al planificar. Un sistema de gestión que toma decisiones sin preguntarse qué podría salir mal es un sistema frágil. Uno que se paraliza intentando eliminar toda incertidumbre es un sistema ineficiente. El equilibrio entre ambos extremos es lo que la norma llama pensamiento basado en riesgos.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Gestión de riesgos con ISO 31000', href: '/blog/gestion-riesgos-iso-31000' },
+        { label: 'Qué es ISO 9001', href: '/blog/que-es-iso-9001' },
+      ]},
     ],
   },
   {
@@ -1005,6 +1025,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La reevaluación periódica —anual para proveedores estratégicos— debería considerar estos indicadores y determinar si el proveedor continúa aprobado, si requiere un plan de acción para mejorar o si debe salir del listado de proveedores calificados. Este último paso, retirar a un proveedor del listado, es el que más resistencia genera en las organizaciones, especialmente cuando hay relaciones comerciales de largo plazo. Pero un sistema de gestión que no toma esa decisión cuando los datos lo justifican tiene un problema de integridad.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'No conformidades y acciones correctivas', href: '/blog/no-conformidades-acciones-correctivas' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+      ]},
     ],
   },
   {
@@ -1081,6 +1106,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las plataformas diseñadas específicamente para sistemas de gestión resuelven ese problema de integración desde el inicio. El costo adicional respecto a las herramientas genéricas suele recuperarse rápidamente en tiempo del equipo de calidad y en la calidad de la información disponible para tomar decisiones.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'Plataforma de gestión con IA — Consultto', href: '/plataforma' },
+        { label: 'Software de gestión documental vs plataforma SGC', href: '/blog/software-gestion-documental-vs-sgc' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -1156,6 +1186,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Un programa de auditorías que genera aprendizaje —que cambia la forma en que la organización opera porque detecta patrones y los corrige— es radicalmente diferente a uno que genera informes. Los indicadores correctos son los que te dicen en cuál de los dos estás.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Auditorías con Consultto', href: '/normas/iso-9001' },
+        { label: 'Indicadores y KPIs del sistema de gestión', href: '/blog/kpis-sistema-de-gestion' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+      ]},
     ],
   },
   {
@@ -1245,6 +1280,12 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La decisión de cuándo implementar cada una debería estar guiada por una pregunta simple: ¿cuál de los dos sistemas le genera más valor a la organización en los próximos dos años? Si la presión viene de tus clientes y la regulación, empieza por ISO 14001. Si la presión viene de tus costos y tu margen, empieza por ISO 50001. Si ambas presiones son reales, planifica un sistema integrado desde el principio y ahorra esfuerzo en el largo plazo.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+        { label: 'ISO 50001 — Gestión de Energía', href: '/normas/iso-50001' },
+        { label: 'Qué es ISO 14001', href: '/blog/que-es-iso-14001' },
+        { label: 'ISO 50001: gestión de energía que reduce costos', href: '/blog/iso-50001-gestion-energia' },
+      ]},
     ],
   },
   {
@@ -1440,6 +1481,12 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La certificación ISO 9001 no es el destino final. Es el inicio de un ciclo de mejora continua. Las organizaciones que lo entienden así son las que, con el tiempo, no solo mantienen su certificación sino que la convierten en una ventaja competitiva real: mejor calidad, menos reprocesos, mayor confianza del cliente y una organización más ordenada y eficiente.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Preparación para auditorías con IA', href: '/normas/iso-9001' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+        { label: 'Cuánto tiempo toma implementar ISO 9001', href: '/blog/tiempo-implementar-iso-9001' },
+      ]},
     ],
   },
   {
@@ -1603,6 +1650,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las organizaciones que integren IA en su gestión de calidad con una estrategia clara no solo tendrán sistemas más eficientes. Tendrán equipos de calidad más capaces, con más tiempo para el trabajo que realmente importa, y sistemas de gestión que evolucionan más rápido que los de su competencia.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'Agente IA para certificación normativa — Consultto', href: '/agente-ia' },
+        { label: 'Plataforma de gestión con IA', href: '/plataforma' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -1766,6 +1818,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las organizaciones que ingresan a la cadena de suministro automotriz con una base sólida de ISO 9001 y una comprensión clara de lo que IATF añade tienen las mejores probabilidades de una certificación exitosa y, más importante, de un sistema de gestión que realmente les permite competir en uno de los mercados más exigentes del mundo.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'IATF 16949 — Calidad Automotriz con Consultto', href: '/normas/iatf-16949' },
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Qué es ISO 9001', href: '/blog/que-es-iso-9001' },
+      ]},
     ],
   },
   {
@@ -1906,6 +1963,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'El resultado es un sistema que el auditor aprueba fácilmente —porque es real— y que la organización mantiene con menos esfuerzo —porque agrega valor— y que sigue mejorando entre certificaciones, que es el único indicador que realmente importa.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+        { label: 'Qué es ISO 14001', href: '/blog/que-es-iso-14001' },
+        { label: 'ISO 14001 vs ISO 50001: cuál implementar primero', href: '/blog/iso-14001-vs-iso-50001' },
+      ]},
     ],
   },
   {
@@ -2061,6 +2123,11 @@ export const articleContent: ArticleContent[] = [
         type: 'quote',
         content: 'La mejora continua no es un eslogan. Es la capacidad de aprender sistemáticamente de lo que sale mal y actuar antes de que vuelva a salir mal.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Mejora continua con Consultto', href: '/normas/iso-9001' },
+        { label: 'No conformidades y acciones correctivas', href: '/blog/no-conformidades-acciones-correctivas' },
+        { label: 'Indicadores y KPIs del sistema de gestión', href: '/blog/kpis-sistema-de-gestion' },
+      ]},
     ],
   },
   {
@@ -2200,6 +2267,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La certificación ISO 45001 no es el objetivo final. Es la evidencia verificada de que la organización tiene un sistema que protege a sus trabajadores de manera sistemática y mejora continuamente. Eso, en última instancia, es lo que importa.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 45001:2018 — Seguridad y Salud Laboral con Consultto', href: '/normas/iso-45001' },
+        { label: 'Qué es ISO 45001', href: '/blog/que-es-iso-45001' },
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+      ]},
     ],
   },
   {
@@ -2259,6 +2331,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'El tercer paso es cerrar el ciclo. Una auditoría interna que no genera acciones, o cuyas acciones no se verifican, es puro teatro. El valor de la auditoría no está en el informe: está en los cambios que produce.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Auditorías internas con Consultto', href: '/normas/iso-9001' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+        { label: 'Indicadores del programa de auditorías', href: '/blog/indicadores-programa-auditorias' },
+      ]},
     ],
   },
   {
@@ -2314,6 +2391,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las no conformidades graves (major) requieren un plan de acción correctiva que el organismo de certificación debe revisar y aprobar antes de emitir el certificado. Las no conformidades menores (minor) y las observaciones suelen gestionarse en el ciclo de auditoría siguiente. En todos los casos, la respuesta más efectiva es la que demuestra comprensión real del problema y una acción que ataca la causa, no solo el síntoma.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Preparación para auditorías', href: '/normas/iso-9001' },
+        { label: 'Cómo preparar tu auditoría ISO 9001 en 90 días', href: '/blog/como-preparar-auditoria-iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+      ]},
     ],
   },
   {
@@ -2370,6 +2452,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las organizaciones líderes en inocuidad alimentaria tienen una característica en común: su sistema de gestión es operativo, no documental. Las personas en la línea de producción entienden los peligros, conocen los límites críticos y saben exactamente qué hacer cuando algo se sale de control. Eso no se logra con más documentos; se logra con formación continua, sistemas de monitoreo en tiempo real y una cultura donde la seguridad del consumidor es el primer criterio de decisión.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 22000 — Inocuidad Alimentaria con Consultto', href: '/normas/iso-22000' },
+        { label: 'ISO 22000 e inocuidad alimentaria: qué debes saber', href: '/blog/iso-22000-inocuidad-alimentaria' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -2420,6 +2507,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'El sector construcción tiene aún mucho camino por recorrer en madurez de sistemas de gestión. Pero la dirección es clara: las empresas que inviertan hoy en construir sistemas de calidad robustos tendrán una ventaja competitiva significativa en el mercado de los próximos años.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Calidad en construcción con Consultto', href: '/normas/iso-9001' },
+        { label: 'Qué es ISO 9001', href: '/blog/que-es-iso-9001' },
+        { label: 'Cómo certificarse en ISO 9001', href: '/blog/como-certificarse-iso-9001' },
+      ]},
     ],
   },
   {
@@ -2471,6 +2563,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La recertificación no debería ser un evento de estrés. Debería ser la confirmación natural de que el sistema ha estado funcionando durante tres años. Las organizaciones que lo viven como un evento de estrés tienen un problema de fondo que la auditoría solo hace visible.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Cómo hacer una auditoría interna ISO 9001', href: '/blog/auditoria-interna-iso-9001' },
+        { label: 'Indicadores y KPIs del sistema de gestión', href: '/blog/kpis-sistema-de-gestion' },
+      ]},
     ],
   },
   {
@@ -2530,6 +2627,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'El formato de revisión importa. Un dashboard visual que muestra tendencias de los últimos seis o doce meses comunica mucho más que una tabla de números. La dirección necesita ver si el sistema está mejorando, estancado o deteriorándose, no solo si el mes pasado cumplió la meta.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 9001:2015 — Sistema de Gestión de Calidad', href: '/normas/iso-9001' },
+        { label: 'Revisión por la dirección: cómo hacerla bien', href: '/blog/revision-por-la-direccion' },
+        { label: 'Indicadores de calidad: ejemplos reales', href: '/blog/indicadores-calidad-ejemplos' },
+      ]},
     ],
   },
   {
@@ -2580,6 +2682,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La integración energética más natural es con ISO 14001. Las organizaciones con un sistema de gestión ambiental ya están midiendo su consumo de recursos y sus emisiones. Agregar ISO 50001 profundiza ese análisis con un enfoque específico en el desempeño energético y los proyectos de mejora.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'ISO 50001 — Gestión de Energía con Consultto', href: '/normas/iso-50001' },
+        { label: 'ISO 14001 vs ISO 50001: cuál implementar primero', href: '/blog/iso-14001-vs-iso-50001' },
+        { label: 'ISO 14001:2015 — Sistema de Gestión Ambiental', href: '/normas/iso-14001' },
+      ]},
     ],
   },
   {
@@ -2629,6 +2736,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'La decisión no es solo técnica. Es estratégica. Una organización que trata su sistema de gestión como un archivo de documentos obtendrá los resultados de un archivo. Una organización que gestiona su sistema como un activo operativo obtendrá los resultados de un sistema.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'Plataforma de gestión con IA — Consultto', href: '/plataforma' },
+        { label: 'Digitalización del SGC: por dónde empezar', href: '/blog/digitalizacion-sgc-por-donde-empezar' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+      ]},
     ],
   },
   {
@@ -2683,6 +2795,11 @@ export const articleContent: ArticleContent[] = [
         type: 'paragraph',
         content: 'Las organizaciones que han logrado esa integración tienen una ventaja competitiva que no se puede copiar fácilmente. No porque sus procedimientos sean mejores, sino porque su gente toma mejores decisiones, más rápido, con más información y con un compromiso genuino con el resultado. Ese es el verdadero retorno de inversión de un sistema de gestión bien construido.',
       },
+      { type: 'related', content: 'Páginas relacionadas', links: [
+        { label: 'Plataforma de gestión con IA — Consultto', href: '/plataforma' },
+        { label: 'Qué es un sistema de gestión de calidad', href: '/blog/que-es-sistema-gestion-calidad' },
+        { label: 'Indicadores y KPIs del sistema de gestión', href: '/blog/kpis-sistema-de-gestion' },
+      ]},
     ],
   },
 ]
