@@ -3,8 +3,8 @@ import './globals.css'
 import { OrganizationJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Consultto | Certifícate en cualquier norma con IA',
-  description: 'Software de gestión de cumplimiento con Agente IA. Gestiona tu sistema, prepara auditorías y mantén tu certificación activa — sin depender de consultores externos.',
+  title: 'Software de Gestión ISO 9001, 14001, 45001 y más con IA | Consultto',
+  description: 'Implementa y mantén cualquier certificación con IA. Documentos, auditorías, no conformidades y mejora continua desde una sola plataforma. +17 normas soportadas.',
   metadataBase: new URL('https://www.consultto.com'),
   alternates: {
     canonical: '/',

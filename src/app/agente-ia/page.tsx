@@ -4,8 +4,8 @@ import { Footer } from '@/features/landing/components/Footer'
 import { AgenteIAPage } from '@/features/agente-ia/AgenteIAPage'
 
 export const metadata = {
-  title: 'Agente IA | Consultto',
-  description: 'Tu experto en sistemas de gestión de calidad, disponible 24/7. Responde preguntas, guía documentación y prepara tus auditorías.',
+  title: 'Agente IA para Certificación y Cumplimiento Normativo — Disponible 24/7 | Consultto',
+  description: 'Tu experto en normas ISO, FSSC, HACCP, IATF y más, disponible las 24 horas. Prepara auditorías, redacta procedimientos y analiza no conformidades con IA.',
 }
 
 export default function Page() {
