@@ -79,6 +79,29 @@ function RenderSection({ section }: { section: Section }) {
       </ul>
     )
   }
+  if (section.type === 'related' && section.links) {
+    return (
+      <div className="my-10 pt-8 border-t border-[#e8e8e8]">
+        <p className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
+          {section.content as string}
+        </p>
+        <div className="flex flex-col gap-2">
+          {section.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="inline-flex items-center gap-2 text-[#763d50] text-sm font-medium hover:underline"
+            >
+              <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    )
+  }
   return null
 }
 
