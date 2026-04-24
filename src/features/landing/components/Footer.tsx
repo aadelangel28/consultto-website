@@ -105,6 +105,28 @@ export function Footer() {
               </ul>
             </div>
 
+            {/* Regiones */}
+            <div className="min-w-[120px]">
+              <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
+                Regiones
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  { label: 'México', href: '/mexico' },
+                  { label: 'Colombia', href: '/colombia' },
+                  { label: 'Argentina', href: '/argentina' },
+                  { label: 'Chile', href: '/chile' },
+                  { label: 'Perú', href: '/peru' },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Contacto */}
             <div className="min-w-[120px]">
               <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
