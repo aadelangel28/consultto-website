@@ -37,6 +37,12 @@ function MapCanvas({ slug }: { slug: string }) {
     const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
     const COLOR_R = 118, COLOR_G = 61, COLOR_B = 80
 
+    // Chile es muy alargado verticalmente — rotamos 90° para que ocupe mejor el hero
+    const rotate90 = slug === 'chile'
+    // Tras rotar, el ancho lógico es vbH y el alto lógico es vbW
+    const logW = rotate90 ? vbH : vbW
+    const logH = rotate90 ? vbW : vbH
+
     const mouse = { x: -9999, y: -9999 }
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
@@ -56,35 +62,60 @@ function MapCanvas({ slug }: { slug: string }) {
       ctx.clearRect(0, 0, W, H)
 
       const padding = 100
-      const scaleX = (W - padding * 2) / vbW
-      const scaleY = (H - padding * 2) / vbH
+      const scaleX = (W - padding * 2) / logW
+      const scaleY = (H - padding * 2) / logH
       const scale = Math.min(scaleX, scaleY)
-      const offsetX = (W - vbW * scale) / 2
-      const offsetY = (H - vbH * scale) / 2
+      const offsetX = (W - logW * scale) / 2
+      const offsetY = (H - logH * scale) / 2
 
       const path2d = new Path2D(pathData.d)
 
+      // Aplicar rotación si es Chile
+      const applyTransform = () => {
+        ctx.translate(offsetX, offsetY)
+        if (rotate90) {
+          // Rotar 90° alrededor del centro del viewBox original
+          ctx.translate(logW * scale / 2, logH * scale / 2)
+          ctx.rotate(-Math.PI / 2)
+          ctx.translate(-vbW * scale / 2, -vbH * scale / 2)
+          ctx.scale(scale, scale)
+        } else {
+          ctx.scale(scale, scale)
+        }
+      }
+
       ctx.save()
-      ctx.translate(offsetX, offsetY)
-      ctx.scale(scale, scale)
+      applyTransform()
       ctx.fillStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.07)`
       ctx.fill(path2d)
       ctx.restore()
 
       if (mouse.x > -100) {
         ctx.save()
-        ctx.translate(offsetX, offsetY)
-        ctx.scale(scale, scale)
+        applyTransform()
         ctx.clip(new Path2D(pathData.d))
-        const mx = (mouse.x - offsetX) / scale
-        const my = (mouse.y - offsetY) / scale
+        // Convertir mouse a coordenadas del path (antes de rotar)
+        let mx: number, my: number
+        if (rotate90) {
+          // Invertir la rotación para el spotlight
+          const cx = logW * scale / 2 + offsetX
+          const cy = logH * scale / 2 + offsetY
+          const dx = mouse.x - cx
+          const dy = mouse.y - cy
+          mx = (cy - mouse.y + vbH * scale / 2) / scale
+          my = (mouse.x - cx + vbW * scale / 2) / scale
+          void dx; void dy
+        } else {
+          mx = (mouse.x - offsetX) / scale
+          my = (mouse.y - offsetY) / scale
+        }
         const r = SPOTLIGHT_RADIUS / scale
         const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, r)
         gradient.addColorStop(0,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.35)`)
         gradient.addColorStop(0.5, `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.15)`)
         gradient.addColorStop(1,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0)`)
         ctx.fillStyle = gradient
-        ctx.fillRect(-padding / scale, -padding / scale, (W + padding * 2) / scale, (H + padding * 2) / scale)
+        ctx.fillRect(0, 0, vbW, vbH)
         ctx.restore()
       }
 
