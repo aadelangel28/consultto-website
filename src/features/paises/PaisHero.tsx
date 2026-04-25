@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { PaisData } from './data'
 import { PAIS_PATHS } from './paisPaths'
@@ -8,6 +8,9 @@ import { PAIS_PATHS } from './paisPaths'
 interface Props {
   pais: PaisData
 }
+
+const DRAW_DURATION = 2200   // ms para dibujar el trazo
+const TEXT_DELAY    = 2000   // ms antes de que aparezca el texto
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -34,10 +37,9 @@ function MapCanvas({ slug }: { slug: string }) {
     resize()
     window.addEventListener('resize', resize)
 
-    // Parse viewBox to get original dimensions
     const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
+    const COLOR_R = 118, COLOR_G = 61, COLOR_B = 80
 
-    // Mouse
     const mouse = { x: -9999, y: -9999 }
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
@@ -51,80 +53,46 @@ function MapCanvas({ slug }: { slug: string }) {
     }
 
     const SPOTLIGHT_RADIUS = 200
-    const COLOR_R = 118, COLOR_G = 61, COLOR_B = 80
-
     let raf: number
 
     const tick = () => {
       ctx.clearRect(0, 0, W, H)
 
-      // Scale and center the path within the canvas
-      const padding = 80
+      const padding = 100
       const scaleX = (W - padding * 2) / vbW
       const scaleY = (H - padding * 2) / vbH
       const scale = Math.min(scaleX, scaleY)
       const offsetX = (W - vbW * scale) / 2
       const offsetY = (H - vbH * scale) / 2
 
+      const path2d = new Path2D(pathData.d)
+
+      // Base fill — dim
       ctx.save()
       ctx.translate(offsetX, offsetY)
       ctx.scale(scale, scale)
-
-      const path2d = new Path2D(pathData.d)
-
-      // Dim base layer — always visible
       ctx.fillStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.06)`
       ctx.fill(path2d)
-
-      // Stroke outline — always visible
       ctx.strokeStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.10)`
       ctx.lineWidth = 1.5 / scale
       ctx.stroke(path2d)
-
       ctx.restore()
 
-      // Spotlight fill — revealed only near cursor
+      // Spotlight
       if (mouse.x > -100) {
         ctx.save()
         ctx.translate(offsetX, offsetY)
         ctx.scale(scale, scale)
-
-        // Clip to country shape
-        ctx.beginPath()
-        ctx.clip(path2d)
-
-        ctx.restore()
-
-        // Now draw a radial gradient spotlight in screen coords
-        ctx.save()
-
-        // Re-clip in screen coords by rebuilding the transformed path
-        ctx.translate(offsetX, offsetY)
-        ctx.scale(scale, scale)
-        const clipPath = new Path2D(pathData.d)
-        ctx.beginPath()
-        ctx.clip(clipPath)
-        ctx.restore()
-
-        // Draw spotlight inside clipped area
-        ctx.save()
-        ctx.translate(offsetX, offsetY)
-        ctx.scale(scale, scale)
         ctx.clip(new Path2D(pathData.d))
-
-        // Convert mouse to path coordinate space
         const mx = (mouse.x - offsetX) / scale
         const my = (mouse.y - offsetY) / scale
         const r = SPOTLIGHT_RADIUS / scale
-
         const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, r)
         gradient.addColorStop(0,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.35)`)
-        gradient.addColorStop(0.4, `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.18)`)
+        gradient.addColorStop(0.5, `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.15)`)
         gradient.addColorStop(1,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0)`)
-
         ctx.fillStyle = gradient
         ctx.fillRect(-padding / scale, -padding / scale, (W + padding * 2) / scale, (H + padding * 2) / scale)
-
         ctx.restore()
       }
 
@@ -152,39 +120,121 @@ function MapCanvas({ slug }: { slug: string }) {
   )
 }
 
+function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
+  const pathRef = useRef<SVGPathElement>(null)
+  const [length, setLength] = useState(0)
+
+  useEffect(() => {
+    if (pathRef.current) {
+      setLength(pathRef.current.getTotalLength())
+    }
+    const timer = setTimeout(onDone, DRAW_DURATION + 200)
+    return () => clearTimeout(timer)
+  }, [onDone])
+
+  const pathData = PAIS_PATHS[slug]
+  if (!pathData) return null
+
+  const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
+
+  return (
+    <svg
+      viewBox={`0 0 ${vbW} ${vbH}`}
+      className="absolute inset-0 w-full h-full"
+      style={{ padding: '80px' }}
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <style>{`
+        @keyframes draw-path {
+          from { stroke-dashoffset: ${length}; opacity: 0.15; }
+          to   { stroke-dashoffset: 0; opacity: 1; }
+        }
+        @keyframes fill-appear {
+          from { opacity: 0; }
+          to   { opacity: 0.08; }
+        }
+        .map-stroke {
+          stroke-dasharray: ${length};
+          stroke-dashoffset: ${length};
+          animation: draw-path ${DRAW_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .map-fill {
+          animation: fill-appear ${DRAW_DURATION * 0.6}ms ease ${DRAW_DURATION * 0.5}ms forwards;
+          opacity: 0;
+        }
+      `}</style>
+
+      {/* Fill que aparece mientras se dibuja */}
+      <path
+        d={pathData.d}
+        fill="rgba(118,61,80,1)"
+        className="map-fill"
+      />
+
+      {/* Trazo que se dibuja */}
+      <path
+        ref={pathRef}
+        d={pathData.d}
+        fill="none"
+        stroke="rgba(118,61,80,0.7)"
+        strokeWidth="2"
+        vectorEffect="non-scaling-stroke"
+        className={length > 0 ? 'map-stroke' : ''}
+      />
+    </svg>
+  )
+}
+
 export function PaisHero({ pais }: Props) {
+  const [phase, setPhase] = useState<'drawing' | 'done'>('drawing')
+  const [textVisible, setTextVisible] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setTextVisible(true), TEXT_DELAY)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center bg-[#fafafa]">
 
       {/* Accent line top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/30 to-transparent" />
 
-      {/* Map canvas — interactive spotlight */}
-      <MapCanvas slug={pais.slug} />
+      {/* Phase 1: SVG drawing animation */}
+      {phase === 'drawing' && (
+        <DrawingSVG slug={pais.slug} onDone={() => setPhase('done')} />
+      )}
 
-      {/* Subtle glow center */}
+      {/* Phase 2: Canvas con hover spotlight */}
+      {phase === 'done' && (
+        <MapCanvas slug={pais.slug} />
+      )}
+
+      {/* Glow center */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div style={{
           width: 700, height: 500,
-          background: 'radial-gradient(ellipse, rgba(118,61,80,0.05) 0%, rgba(118,61,80,0.02) 50%, transparent 72%)',
+          background: 'radial-gradient(ellipse, rgba(118,61,80,0.04) 0%, transparent 72%)',
           filter: 'blur(50px)', flexShrink: 0,
         }} />
       </div>
 
-      {/* Content — centered */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
-
-        {/* Headline */}
+      {/* Texto — aparece cuando termina la animación */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 transition-all duration-700"
+        style={{
+          opacity: textVisible ? 1 : 0,
+          transform: textVisible ? 'translateY(0)' : 'translateY(20px)',
+        }}
+      >
         <h1 className="text-[#1f2020] text-4xl md:text-6xl font-light leading-[1.1] mb-6 max-w-3xl">
           {pais.heroTitle}
         </h1>
 
-        {/* Subtitle */}
         <p className="text-[#3a3a3a]/55 text-lg leading-relaxed mb-12 max-w-xl">
           {pais.heroSubtitle}
         </p>
 
-        {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/demo"
@@ -199,11 +249,13 @@ export function PaisHero({ pais }: Props) {
             Hablar con un consultor
           </Link>
         </div>
-
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none">
+      <div
+        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-700"
+        style={{ opacity: textVisible ? 1 : 0 }}
+      >
         <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/30 font-medium">
           Descubre más
         </p>
