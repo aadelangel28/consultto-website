@@ -32,15 +32,15 @@ export function PaisLandingPage({ pais }: Props) {
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/40 to-transparent" />
 
           {/* Country silhouette — right side */}
-          <div className="absolute right-0 top-0 bottom-0 flex items-center pr-8 md:pr-16 pointer-events-none select-none">
+          <div className="absolute right-4 md:right-16 top-1/2 -translate-y-1/2 pointer-events-none select-none">
             <PaisSVG
               slug={pais.slug}
-              className="text-[#763d50] opacity-[0.07] h-[480px] w-auto max-w-[420px]"
+              className="text-[#763d50] opacity-[0.16] h-[520px] w-auto max-w-[480px]"
             />
           </div>
 
           {/* Glowing orb behind silhouette */}
-          <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#763d50]/5 blur-[80px] pointer-events-none" />
+          <div className="absolute right-[8%] top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#763d50]/8 blur-[60px] pointer-events-none" />
 
           {/* Content */}
           <div className="relative max-w-5xl mx-auto w-full">
