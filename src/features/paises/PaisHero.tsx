@@ -118,36 +118,50 @@ function MapCanvas({ slug }: { slug: string }) {
 }
 
 function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
-  const pathRef = useRef<SVGPathElement>(null)
-  const [length, setLength] = useState<number | null>(null)
-  const [strokeVisible, setStrokeVisible] = useState(true)
+  const strokeRef = useRef<SVGPathElement>(null)
+  const fillRef   = useRef<SVGPathElement>(null)
 
   useEffect(() => {
-    if (!pathRef.current) return
-    const l = pathRef.current.getTotalLength()
-    setLength(l)
-    pathRef.current.style.strokeDasharray = `${l}`
-    pathRef.current.style.strokeDashoffset = `${l}`
-  }, [])
+    const stroke = strokeRef.current
+    const fill   = fillRef.current
+    if (!stroke) return
 
-  // Escuchar animationend para sincronizar exactamente con el fin del trazo
-  useEffect(() => {
-    if (length === null || !pathRef.current) return
-    const path = pathRef.current
-    const handleEnd = () => {
-      setStrokeVisible(false)
+    const l = stroke.getTotalLength()
+
+    // Inyectar keyframes directamente — sin esperar un re-render de React
+    const styleEl = document.createElement('style')
+    styleEl.textContent = `
+      @keyframes cto-draw { from { stroke-dashoffset: ${l}; } to { stroke-dashoffset: 0; } }
+      @keyframes cto-fill { from { opacity: 0; } to { opacity: 0.07; } }
+    `
+    document.head.appendChild(styleEl)
+
+    // Aplicar animaciones via inline style (sin pasar por clases CSS + re-render)
+    stroke.style.strokeDasharray  = `${l}`
+    stroke.style.strokeDashoffset = `${l}`
+    stroke.style.animation = `cto-draw ${DRAW_DURATION}ms cubic-bezier(0.4,0,0.2,1) forwards`
+
+    if (fill) {
+      fill.style.animation = `cto-fill ${DRAW_DURATION}ms ease forwards`
+    }
+
+    // Listener sincronizado: dispara exactamente cuando termina el trazo
+    const handleEnd = (e: AnimationEvent) => {
+      if (e.animationName !== 'cto-draw') return
+      stroke.style.opacity = '0'
       onDone()
     }
-    path.addEventListener('animationend', handleEnd)
-    return () => path.removeEventListener('animationend', handleEnd)
-  }, [length, onDone])
+    stroke.addEventListener('animationend', handleEnd)
+
+    return () => {
+      stroke.removeEventListener('animationend', handleEnd)
+      styleEl.remove()
+    }
+  }, [onDone])
 
   const pathData = PAIS_PATHS[slug]
   if (!pathData) return null
   const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
-
-  // Use only the first sub-path (main landmass) for the stroke animation
-  // so it forms a single closed loop from start to end
   const mainPath = pathData.d.split(' M ')[0]
 
   return (
@@ -157,52 +171,22 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
       style={{ padding: '80px', boxSizing: 'border-box' }}
       preserveAspectRatio="xMidYMid meet"
     >
-      {length !== null && (
-        <style>{`
-          @keyframes draw-stroke {
-            from { stroke-dashoffset: ${length}; }
-            to   { stroke-dashoffset: 0; }
-          }
-          @keyframes fade-fill {
-            from { opacity: 0; }
-            to   { opacity: 0.07; }
-          }
-          @keyframes fade-out-stroke {
-            from { opacity: 1; }
-            to   { opacity: 0; }
-          }
-          .map-stroke {
-            stroke-dasharray: ${length};
-            stroke-dashoffset: ${length};
-            animation: draw-stroke ${DRAW_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          }
-          .map-stroke-fadeout {
-            animation: fade-out-stroke 400ms ease forwards;
-          }
-          .map-fill {
-            animation: fade-fill ${DRAW_DURATION}ms ease forwards;
-          }
-        `}</style>
-      )}
-
-      {/* Fill completo (todos los sub-paths) */}
+      {/* Fill completo */}
       <path
+        ref={fillRef}
         d={pathData.d}
         fill="rgba(118,61,80,1)"
-        className="map-fill"
         style={{ opacity: 0 }}
       />
 
-      {/* Trazo — solo el contorno principal para que forme un loop cerrado */}
+      {/* Trazo — solo el contorno principal */}
       <path
-        ref={pathRef}
+        ref={strokeRef}
         d={mainPath}
         fill="none"
         stroke="rgba(118,61,80,0.65)"
         strokeWidth="2"
         vectorEffect="non-scaling-stroke"
-        className={length !== null ? `map-stroke${!strokeVisible ? ' map-stroke-fadeout' : ''}` : ''}
-        style={length === null ? { opacity: 0 } : undefined}
       />
     </svg>
   )
