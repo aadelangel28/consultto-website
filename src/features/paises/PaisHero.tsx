@@ -1,188 +1,230 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { PaisData } from './data'
-import { PaisSVG } from './PaisSVG'
+import { PAIS_PATHS } from './paisPaths'
 
 interface Props {
   pais: PaisData
 }
 
-export function PaisHero({ pais }: Props) {
-  const [fillProgress, setFillProgress] = useState(0)
-  const [textVisible, setTextVisible] = useState(false)
-  const animationRef = useRef<number | null>(null)
-  const startTimeRef = useRef<number | null>(null)
+function MapCanvas({ slug }: { slug: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const FILL_DURATION = 2200 // ms to fill the map
-    const TEXT_DELAY = 1800    // ms before text fades in
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    const textTimer = setTimeout(() => setTextVisible(true), TEXT_DELAY)
+    const pathData = PAIS_PATHS[slug]
+    if (!pathData) return
 
-    const animate = (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp
-      const elapsed = timestamp - startTimeRef.current
-      const progress = Math.min(elapsed / FILL_DURATION, 1)
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
 
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setFillProgress(eased)
+    let W = 0, H = 0
+    const resize = () => {
+      W = canvas.offsetWidth
+      H = canvas.offsetHeight
+      canvas.width = W * window.devicePixelRatio
+      canvas.height = H * window.devicePixelRatio
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+    }
+    resize()
+    window.addEventListener('resize', resize)
 
-      if (progress < 1) {
-        animationRef.current = requestAnimationFrame(animate)
-      }
+    // Parse viewBox to get original dimensions
+    const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
+
+    // Mouse
+    const mouse = { x: -9999, y: -9999 }
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
+    }
+    const onMouseLeave = () => { mouse.x = -9999; mouse.y = -9999 }
+    if (!isTouch) {
+      window.addEventListener('mousemove', onMouseMove)
+      window.addEventListener('mouseleave', onMouseLeave)
     }
 
-    animationRef.current = requestAnimationFrame(animate)
+    const SPOTLIGHT_RADIUS = 200
+    const COLOR_R = 118, COLOR_G = 61, COLOR_B = 80
+
+    let raf: number
+
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H)
+
+      // Scale and center the path within the canvas
+      const padding = 80
+      const scaleX = (W - padding * 2) / vbW
+      const scaleY = (H - padding * 2) / vbH
+      const scale = Math.min(scaleX, scaleY)
+      const offsetX = (W - vbW * scale) / 2
+      const offsetY = (H - vbH * scale) / 2
+
+      ctx.save()
+      ctx.translate(offsetX, offsetY)
+      ctx.scale(scale, scale)
+
+      const path2d = new Path2D(pathData.d)
+
+      // Dim base layer — always visible
+      ctx.fillStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.06)`
+      ctx.fill(path2d)
+
+      // Stroke outline — always visible
+      ctx.strokeStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.10)`
+      ctx.lineWidth = 1.5 / scale
+      ctx.stroke(path2d)
+
+      ctx.restore()
+
+      // Spotlight fill — revealed only near cursor
+      if (mouse.x > -100) {
+        ctx.save()
+        ctx.translate(offsetX, offsetY)
+        ctx.scale(scale, scale)
+
+        // Clip to country shape
+        ctx.beginPath()
+        ctx.clip(path2d)
+
+        ctx.restore()
+
+        // Now draw a radial gradient spotlight in screen coords
+        ctx.save()
+
+        // Re-clip in screen coords by rebuilding the transformed path
+        ctx.translate(offsetX, offsetY)
+        ctx.scale(scale, scale)
+        const clipPath = new Path2D(pathData.d)
+        ctx.beginPath()
+        ctx.clip(clipPath)
+        ctx.restore()
+
+        // Draw spotlight inside clipped area
+        ctx.save()
+        ctx.translate(offsetX, offsetY)
+        ctx.scale(scale, scale)
+        ctx.clip(new Path2D(pathData.d))
+
+        // Convert mouse to path coordinate space
+        const mx = (mouse.x - offsetX) / scale
+        const my = (mouse.y - offsetY) / scale
+        const r = SPOTLIGHT_RADIUS / scale
+
+        const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, r)
+        gradient.addColorStop(0,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.35)`)
+        gradient.addColorStop(0.4, `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.18)`)
+        gradient.addColorStop(1,   `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0)`)
+
+        ctx.fillStyle = gradient
+        ctx.fillRect(-padding / scale, -padding / scale, (W + padding * 2) / scale, (H + padding * 2) / scale)
+
+        ctx.restore()
+      }
+
+      raf = requestAnimationFrame(tick)
+    }
+
+    tick()
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
-      clearTimeout(textTimer)
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+      if (!isTouch) {
+        window.removeEventListener('mousemove', onMouseMove)
+        window.removeEventListener('mouseleave', onMouseLeave)
+      }
     }
-  }, [])
-
-  // fillProgress goes 0→1, we reveal the fill from bottom to top
-  // by moving a clipPath rect upward
-  const fillPercent = fillProgress * 100
-  const clipY = 100 - fillPercent // starts at 100 (hidden), goes to 0 (fully shown)
-
-  const clipId = `fill-clip-${pais.slug}`
+  }, [slug])
 
   return (
-    <section className="relative bg-[#faf8f6] overflow-hidden min-h-screen flex items-center">
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ pointerEvents: 'none' }}
+    />
+  )
+}
 
-      {/* Dot grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #763d50 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
+export function PaisHero({ pais }: Props) {
+  return (
+    <section className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center bg-[#fafafa]">
 
       {/* Accent line top */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/30 to-transparent" />
 
-      {/* Map — centered right half */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center pointer-events-none select-none">
+      {/* Map canvas — interactive spotlight */}
+      <MapCanvas slug={pais.slug} />
 
-        {/* Glow behind map */}
-        <div
-          className="absolute w-[600px] h-[600px] rounded-full blur-[100px] transition-opacity duration-1000"
-          style={{ backgroundColor: `rgba(118,61,80,${0.06 + fillProgress * 0.08})` }}
-        />
-
-        {/* SVG with two layers: outline + fill revealed bottom-to-top */}
-        <div className="relative h-[580px] w-auto">
-          <svg
-            viewBox="0 0 1 1"
-            className="absolute inset-0 w-full h-full"
-            style={{ overflow: 'visible' }}
-          >
-            <defs>
-              <clipPath id={clipId} clipPathUnits="objectBoundingBox">
-                {/* rect starts at y=clipY/100, height covers the rest — reveals from bottom */}
-                <rect
-                  x="-0.5"
-                  y={clipY / 100}
-                  width="2"
-                  height="2"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-
-          {/* Outline layer — always visible, low opacity */}
-          <PaisSVG
-            slug={pais.slug}
-            className="absolute inset-0 h-full w-auto text-[#763d50] opacity-[0.12]"
-          />
-
-          {/* Fill layer — revealed bottom to top via clip */}
-          <div
-            className="absolute inset-0 h-full w-auto overflow-hidden"
-            style={{
-              clipPath: `inset(${clipY}% 0 0 0)`,
-            }}
-          >
-            <PaisSVG
-              slug={pais.slug}
-              className="h-full w-auto text-[#763d50] opacity-[0.28]"
-            />
-          </div>
-
-          {/* Shimmer line at the fill boundary */}
-          {fillProgress > 0 && fillProgress < 1 && (
-            <div
-              className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#763d50]/60 to-transparent pointer-events-none"
-              style={{ top: `${clipY}%` }}
-            />
-          )}
-        </div>
+      {/* Subtle glow center */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div style={{
+          width: 700, height: 500,
+          background: 'radial-gradient(ellipse, rgba(118,61,80,0.05) 0%, rgba(118,61,80,0.02) 50%, transparent 72%)',
+          filter: 'blur(50px)', flexShrink: 0,
+        }} />
       </div>
 
-      {/* Content — left side */}
-      <div className="relative max-w-6xl mx-auto px-6 w-full pt-32 pb-28">
-        <div className="max-w-[520px]">
+      {/* Content — centered */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
 
-          {/* Breadcrumb */}
-          <div
-            className="flex items-center gap-2 mb-8 transition-all duration-700"
-            style={{ opacity: textVisible ? 1 : 0, transform: textVisible ? 'translateY(0)' : 'translateY(12px)' }}
-          >
-            <span className="text-[#3a3a3a]/35 text-xs">Consultto</span>
-            <span className="text-[#3a3a3a]/25 text-xs">›</span>
-            <span className="text-[#763d50] text-xs font-semibold">{pais.nombre}</span>
-          </div>
-
-          {/* Organismo badge */}
-          <div
-            className="inline-flex items-center gap-2 bg-white border border-[#e8e0e3] rounded-full px-4 py-1.5 mb-7 shadow-sm transition-all duration-700 delay-100"
-            style={{ opacity: textVisible ? 1 : 0, transform: textVisible ? 'translateY(0)' : 'translateY(12px)' }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
-            <span className="text-[#763d50] text-xs font-semibold">{pais.organismoLocal}</span>
-            <span className="text-[#3a3a3a]/40 text-xs hidden sm:inline">— {pais.organismoDesc}</span>
-          </div>
-
-          {/* Headline */}
-          <h1
-            className="text-[#1f2020] text-4xl md:text-5xl font-light leading-[1.15] mb-5 transition-all duration-700 delay-150"
-            style={{ opacity: textVisible ? 1 : 0, transform: textVisible ? 'translateY(0)' : 'translateY(16px)' }}
-          >
-            {pais.heroTitle}
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="text-[#3a3a3a]/60 text-lg leading-relaxed mb-10 transition-all duration-700 delay-200"
-            style={{ opacity: textVisible ? 1 : 0, transform: textVisible ? 'translateY(0)' : 'translateY(16px)' }}
-          >
-            {pais.heroSubtitle}
-          </p>
-
-          {/* CTAs */}
-          <div
-            className="flex flex-col sm:flex-row gap-3 transition-all duration-700 delay-300"
-            style={{ opacity: textVisible ? 1 : 0, transform: textVisible ? 'translateY(0)' : 'translateY(16px)' }}
-          >
-            <Link
-              href="/demo"
-              className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
-            >
-              Agendar demo gratuita
-            </Link>
-            <Link
-              href="/consultor"
-              className="border border-[#d9d9d9] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] bg-white px-8 py-3.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap text-center"
-            >
-              Hablar con un consultor
-            </Link>
-          </div>
-
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 mb-8">
+          <span className="text-[#3a3a3a]/35 text-xs">Consultto</span>
+          <span className="text-[#3a3a3a]/25 text-xs">›</span>
+          <span className="text-[#763d50] text-xs font-semibold">{pais.nombre}</span>
         </div>
+
+        {/* Organismo badge */}
+        <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-[#e8e0e3] rounded-full px-4 py-1.5 mb-8 shadow-sm">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
+          <span className="text-[#763d50] text-xs font-semibold">{pais.organismoLocal}</span>
+          <span className="text-[#3a3a3a]/40 text-xs hidden sm:inline">— {pais.organismoDesc}</span>
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-[#1f2020] text-4xl md:text-6xl font-light leading-[1.1] mb-6 max-w-3xl">
+          {pais.heroTitle}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-[#3a3a3a]/55 text-lg leading-relaxed mb-12 max-w-xl">
+          {pais.heroSubtitle}
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/demo"
+            className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
+          >
+            Agendar demo gratuita
+          </Link>
+          <Link
+            href="/consultor"
+            className="border border-[#d9d9d9] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] bg-white/80 px-8 py-3.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap text-center"
+          >
+            Hablar con un consultor
+          </Link>
+        </div>
+
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none">
+        <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/30 font-medium">
+          Descubre más
+        </p>
+        <svg className="w-4 h-4 animate-bounce" style={{ color: 'rgba(118,61,80,0.35)' }}
+          fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v10M4 9l4 4 4-4" />
+        </svg>
       </div>
 
     </section>
