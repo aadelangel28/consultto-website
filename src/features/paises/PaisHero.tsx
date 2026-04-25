@@ -10,7 +10,7 @@ interface Props {
 }
 
 const DRAW_DURATION = 3800  // ms para dibujar el trazo
-const PAUSE_AFTER   = 150   // ms de espera antes de mostrar texto
+const PAUSE_AFTER   = 0     // ms de espera antes de mostrar texto
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -240,7 +240,7 @@ export function PaisHero({ pais }: Props) {
 
       {/* Texto */}
       <div
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 transition-all duration-700"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 transition-all duration-300"
         style={{
           opacity: textVisible ? 1 : 0,
           transform: textVisible ? 'translateY(0)' : 'translateY(20px)',
