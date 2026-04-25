@@ -9,8 +9,8 @@ interface Props {
   pais: PaisData
 }
 
-const DRAW_DURATION = 2200  // ms para dibujar el trazo
-const PAUSE_AFTER   = 1000  // ms de espera antes de mostrar texto
+const DRAW_DURATION = 3800  // ms para dibujar el trazo
+const PAUSE_AFTER   = 500   // ms de espera antes de mostrar texto
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
