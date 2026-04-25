@@ -126,6 +126,8 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
     if (!pathRef.current) return
     const l = pathRef.current.getTotalLength()
     setLength(l)
+    pathRef.current.style.strokeDasharray = `${l}`
+    pathRef.current.style.strokeDashoffset = `${l}`
 
     // Cuando termina el trazo, esperamos PAUSE_AFTER y avisamos
     const t1 = setTimeout(() => {
@@ -139,6 +141,10 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
   const pathData = PAIS_PATHS[slug]
   if (!pathData) return null
   const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
+
+  // Use only the first sub-path (main landmass) for the stroke animation
+  // so it forms a single closed loop from start to end
+  const mainPath = pathData.d.split(' M ')[0]
 
   return (
     <svg
@@ -175,7 +181,7 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
         `}</style>
       )}
 
-      {/* Fill sutil que aparece mientras se dibuja */}
+      {/* Fill completo (todos los sub-paths) */}
       <path
         d={pathData.d}
         fill="rgba(118,61,80,1)"
@@ -183,28 +189,17 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
         style={{ opacity: 0 }}
       />
 
-      {/* Trazo */}
-      {length !== null && (
-        <path
-          ref={pathRef}
-          d={pathData.d}
-          fill="none"
-          stroke="rgba(118,61,80,0.65)"
-          strokeWidth="2"
-          vectorEffect="non-scaling-stroke"
-          className={`map-stroke${!strokeVisible ? ' map-stroke-fadeout' : ''}`}
-        />
-      )}
-
-      {/* Path invisible solo para medir length */}
-      {length === null && (
-        <path
-          ref={pathRef}
-          d={pathData.d}
-          fill="none"
-          stroke="none"
-        />
-      )}
+      {/* Trazo — solo el contorno principal para que forme un loop cerrado */}
+      <path
+        ref={pathRef}
+        d={mainPath}
+        fill="none"
+        stroke="rgba(118,61,80,0.65)"
+        strokeWidth="2"
+        vectorEffect="non-scaling-stroke"
+        className={length !== null ? `map-stroke${!strokeVisible ? ' map-stroke-fadeout' : ''}` : ''}
+        style={length === null ? { opacity: 0 } : undefined}
+      />
     </svg>
   )
 }
