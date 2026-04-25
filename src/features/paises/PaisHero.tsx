@@ -174,13 +174,6 @@ export function PaisHero({ pais }: Props) {
       {/* Content — centered */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
 
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 mb-8">
-          <span className="text-[#3a3a3a]/35 text-xs">Consultto</span>
-          <span className="text-[#3a3a3a]/25 text-xs">›</span>
-          <span className="text-[#763d50] text-xs font-semibold">{pais.nombre}</span>
-        </div>
-
         {/* Organismo badge */}
         <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-[#e8e0e3] rounded-full px-4 py-1.5 mb-8 shadow-sm">
           <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
