@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { PaisData } from './data'
 import { PAIS_PATHS } from './paisPaths'
@@ -8,8 +8,6 @@ import { PAIS_PATHS } from './paisPaths'
 interface Props {
   pais: PaisData
 }
-
-const DRAW_DURATION = 3800  // ms para dibujar el trazo
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -114,93 +112,15 @@ function MapCanvas({ slug }: { slug: string }) {
   )
 }
 
-// Solo dibuja la animación — el timing lo controla el padre (PaisHero)
-function DrawingSVG({ slug }: { slug: string }) {
-  const strokeRef = useRef<SVGPathElement>(null)
-  const fillRef   = useRef<SVGPathElement>(null)
-
-  useEffect(() => {
-    const stroke = strokeRef.current
-    const fill   = fillRef.current
-    if (!stroke) return
-
-    const l = stroke.getTotalLength()
-
-    const styleEl = document.createElement('style')
-    styleEl.textContent = `
-      @keyframes cto-draw { from { stroke-dashoffset: ${l}; } to { stroke-dashoffset: 0; } }
-      @keyframes cto-fill { from { opacity: 0; } to { opacity: 0.07; } }
-    `
-    document.head.appendChild(styleEl)
-
-    stroke.style.strokeDasharray  = `${l}`
-    stroke.style.strokeDashoffset = `${l}`
-    stroke.style.animation = `cto-draw ${DRAW_DURATION}ms cubic-bezier(0.4,0,0.2,1) forwards`
-
-    if (fill) {
-      fill.style.animation = `cto-fill ${DRAW_DURATION}ms ease forwards`
-    }
-
-    return () => styleEl.remove()
-  }, [])
-
-  const pathData = PAIS_PATHS[slug]
-  if (!pathData) return null
-  const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
-  const mainPath = pathData.d.split(' M ')[0]
-
-  return (
-    <svg
-      viewBox={`0 0 ${vbW} ${vbH}`}
-      className="absolute inset-0 w-full h-full"
-      style={{ padding: '80px', boxSizing: 'border-box' }}
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <path
-        ref={fillRef}
-        d={pathData.d}
-        fill="rgba(118,61,80,1)"
-        style={{ opacity: 0 }}
-      />
-      <path
-        ref={strokeRef}
-        d={mainPath}
-        fill="none"
-        stroke="rgba(118,61,80,0.65)"
-        strokeWidth="2"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  )
-}
-
 export function PaisHero({ pais }: Props) {
-  const [phase, setPhase] = useState<'drawing' | 'done'>('drawing')
-  const [textVisible, setTextVisible] = useState(false)
-
-  // El timer arranca en el padre, al mismo tiempo que DrawingSVG monta y empieza su animación.
-  // Sin animationend, sin callbacks — garantizado independientemente del browser.
-  useEffect(() => {
-    const t1 = setTimeout(() => setTextVisible(true), DRAW_DURATION)
-    const t2 = setTimeout(() => setPhase('done'),     DRAW_DURATION + 400)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
-
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center bg-[#fafafa]">
 
       {/* Accent line top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/30 to-transparent" />
 
-      {/* Fase 1: trazo dibujándose */}
-      {phase === 'drawing' && (
-        <DrawingSVG slug={pais.slug} />
-      )}
-
-      {/* Fase 2: canvas con hover spotlight */}
-      {phase === 'done' && (
-        <MapCanvas slug={pais.slug} />
-      )}
+      {/* Mapa de fondo con hover spotlight */}
+      <MapCanvas slug={pais.slug} />
 
       {/* Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
@@ -211,15 +131,8 @@ export function PaisHero({ pais }: Props) {
         }} />
       </div>
 
-      {/* Texto */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 transition-all duration-300"
-        style={{
-          opacity: textVisible ? 1 : 0,
-          transform: textVisible ? 'translateY(0)' : 'translateY(20px)',
-          pointerEvents: textVisible ? 'auto' : 'none',
-        }}
-      >
+      {/* Texto — visible de inmediato */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
         <h1 className="text-[#1f2020] text-4xl md:text-6xl font-light leading-[1.1] mb-6 max-w-3xl">
           {pais.heroTitle}
         </h1>
@@ -243,10 +156,7 @@ export function PaisHero({ pais }: Props) {
       </div>
 
       {/* Scroll indicator */}
-      <div
-        className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-700"
-        style={{ opacity: textVisible ? 1 : 0 }}
-      >
+      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none">
         <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/30 font-medium">Descubre más</p>
         <svg className="w-4 h-4 animate-bounce" style={{ color: 'rgba(118,61,80,0.35)' }}
           fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
