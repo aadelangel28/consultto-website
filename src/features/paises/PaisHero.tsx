@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { PaisData } from './data'
 import { PAIS_PATHS } from './paisPaths'
@@ -9,8 +9,8 @@ interface Props {
   pais: PaisData
 }
 
-const DRAW_DURATION = 2200   // ms para dibujar el trazo
-const TEXT_DELAY    = 2000   // ms antes de que aparezca el texto
+const DRAW_DURATION = 2200  // ms para dibujar el trazo
+const PAUSE_AFTER   = 1000  // ms de espera antes de mostrar texto
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -67,15 +67,12 @@ function MapCanvas({ slug }: { slug: string }) {
 
       const path2d = new Path2D(pathData.d)
 
-      // Base fill — dim
+      // Base fill
       ctx.save()
       ctx.translate(offsetX, offsetY)
       ctx.scale(scale, scale)
-      ctx.fillStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.06)`
+      ctx.fillStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.07)`
       ctx.fill(path2d)
-      ctx.strokeStyle = `rgba(${COLOR_R},${COLOR_G},${COLOR_B},0.10)`
-      ctx.lineWidth = 1.5 / scale
-      ctx.stroke(path2d)
       ctx.restore()
 
       // Spotlight
@@ -122,65 +119,92 @@ function MapCanvas({ slug }: { slug: string }) {
 
 function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
   const pathRef = useRef<SVGPathElement>(null)
-  const [length, setLength] = useState(0)
+  const [length, setLength] = useState<number | null>(null)
+  const [strokeVisible, setStrokeVisible] = useState(true)
 
   useEffect(() => {
-    if (pathRef.current) {
-      setLength(pathRef.current.getTotalLength())
-    }
-    const timer = setTimeout(onDone, DRAW_DURATION + 200)
-    return () => clearTimeout(timer)
+    if (!pathRef.current) return
+    const l = pathRef.current.getTotalLength()
+    setLength(l)
+
+    // Cuando termina el trazo, esperamos PAUSE_AFTER y avisamos
+    const t1 = setTimeout(() => {
+      setStrokeVisible(false) // eliminar contorno
+      onDone()
+    }, DRAW_DURATION + PAUSE_AFTER)
+
+    return () => clearTimeout(t1)
   }, [onDone])
 
   const pathData = PAIS_PATHS[slug]
   if (!pathData) return null
-
   const [, , vbW, vbH] = pathData.viewBox.split(' ').map(Number)
 
   return (
     <svg
       viewBox={`0 0 ${vbW} ${vbH}`}
       className="absolute inset-0 w-full h-full"
-      style={{ padding: '80px' }}
+      style={{ padding: '80px', boxSizing: 'border-box' }}
       preserveAspectRatio="xMidYMid meet"
     >
-      <style>{`
-        @keyframes draw-path {
-          from { stroke-dashoffset: ${length}; opacity: 0.15; }
-          to   { stroke-dashoffset: 0; opacity: 1; }
-        }
-        @keyframes fill-appear {
-          from { opacity: 0; }
-          to   { opacity: 0.08; }
-        }
-        .map-stroke {
-          stroke-dasharray: ${length};
-          stroke-dashoffset: ${length};
-          animation: draw-path ${DRAW_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .map-fill {
-          animation: fill-appear ${DRAW_DURATION * 0.6}ms ease ${DRAW_DURATION * 0.5}ms forwards;
-          opacity: 0;
-        }
-      `}</style>
+      {length !== null && (
+        <style>{`
+          @keyframes draw-stroke {
+            from { stroke-dashoffset: ${length}; }
+            to   { stroke-dashoffset: 0; }
+          }
+          @keyframes fade-fill {
+            from { opacity: 0; }
+            to   { opacity: 0.07; }
+          }
+          @keyframes fade-out-stroke {
+            from { opacity: 1; }
+            to   { opacity: 0; }
+          }
+          .map-stroke {
+            stroke-dasharray: ${length};
+            stroke-dashoffset: ${length};
+            animation: draw-stroke ${DRAW_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .map-stroke-fadeout {
+            animation: fade-out-stroke 400ms ease forwards;
+          }
+          .map-fill {
+            animation: fade-fill ${DRAW_DURATION}ms ease forwards;
+          }
+        `}</style>
+      )}
 
-      {/* Fill que aparece mientras se dibuja */}
+      {/* Fill sutil que aparece mientras se dibuja */}
       <path
         d={pathData.d}
         fill="rgba(118,61,80,1)"
         className="map-fill"
+        style={{ opacity: 0 }}
       />
 
-      {/* Trazo que se dibuja */}
-      <path
-        ref={pathRef}
-        d={pathData.d}
-        fill="none"
-        stroke="rgba(118,61,80,0.7)"
-        strokeWidth="2"
-        vectorEffect="non-scaling-stroke"
-        className={length > 0 ? 'map-stroke' : ''}
-      />
+      {/* Trazo */}
+      {length !== null && (
+        <path
+          ref={pathRef}
+          d={pathData.d}
+          fill="none"
+          stroke="rgba(118,61,80,0.65)"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+          className={`map-stroke${!strokeVisible ? ' map-stroke-fadeout' : ''}`}
+        />
+      )}
+
+      {/* Path invisible solo para medir length */}
+      {length === null && (
+        <path
+          ref={pathRef}
+          d={pathData.d}
+          fill="none"
+          stroke="none"
+        />
+      )}
     </svg>
   )
 }
@@ -189,9 +213,9 @@ export function PaisHero({ pais }: Props) {
   const [phase, setPhase] = useState<'drawing' | 'done'>('drawing')
   const [textVisible, setTextVisible] = useState(false)
 
-  useEffect(() => {
-    const t = setTimeout(() => setTextVisible(true), TEXT_DELAY)
-    return () => clearTimeout(t)
+  const handleDrawDone = useCallback(() => {
+    setPhase('done')
+    setTextVisible(true)
   }, [])
 
   return (
@@ -200,17 +224,17 @@ export function PaisHero({ pais }: Props) {
       {/* Accent line top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/30 to-transparent" />
 
-      {/* Phase 1: SVG drawing animation */}
+      {/* Fase 1: trazo dibujándose */}
       {phase === 'drawing' && (
-        <DrawingSVG slug={pais.slug} onDone={() => setPhase('done')} />
+        <DrawingSVG slug={pais.slug} onDone={handleDrawDone} />
       )}
 
-      {/* Phase 2: Canvas con hover spotlight */}
+      {/* Fase 2: canvas con hover spotlight */}
       {phase === 'done' && (
         <MapCanvas slug={pais.slug} />
       )}
 
-      {/* Glow center */}
+      {/* Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div style={{
           width: 700, height: 500,
@@ -219,22 +243,21 @@ export function PaisHero({ pais }: Props) {
         }} />
       </div>
 
-      {/* Texto — aparece cuando termina la animación */}
+      {/* Texto */}
       <div
         className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 transition-all duration-700"
         style={{
           opacity: textVisible ? 1 : 0,
           transform: textVisible ? 'translateY(0)' : 'translateY(20px)',
+          pointerEvents: textVisible ? 'auto' : 'none',
         }}
       >
         <h1 className="text-[#1f2020] text-4xl md:text-6xl font-light leading-[1.1] mb-6 max-w-3xl">
           {pais.heroTitle}
         </h1>
-
         <p className="text-[#3a3a3a]/55 text-lg leading-relaxed mb-12 max-w-xl">
           {pais.heroSubtitle}
         </p>
-
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/demo"
@@ -256,9 +279,7 @@ export function PaisHero({ pais }: Props) {
         className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-700"
         style={{ opacity: textVisible ? 1 : 0 }}
       >
-        <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/30 font-medium">
-          Descubre más
-        </p>
+        <p className="text-[10px] uppercase tracking-[0.25em] text-[#3a3a3a]/30 font-medium">Descubre más</p>
         <svg className="w-4 h-4 animate-bounce" style={{ color: 'rgba(118,61,80,0.35)' }}
           fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v10M4 9l4 4 4-4" />
