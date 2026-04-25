@@ -128,15 +128,19 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
     setLength(l)
     pathRef.current.style.strokeDasharray = `${l}`
     pathRef.current.style.strokeDashoffset = `${l}`
+  }, [])
 
-    // Cuando termina el trazo, esperamos PAUSE_AFTER y avisamos
-    const t1 = setTimeout(() => {
-      setStrokeVisible(false) // eliminar contorno
+  // Escuchar animationend para sincronizar exactamente con el fin del trazo
+  useEffect(() => {
+    if (length === null || !pathRef.current) return
+    const path = pathRef.current
+    const handleEnd = () => {
+      setStrokeVisible(false)
       onDone()
-    }, DRAW_DURATION + PAUSE_AFTER)
-
-    return () => clearTimeout(t1)
-  }, [onDone])
+    }
+    path.addEventListener('animationend', handleEnd)
+    return () => path.removeEventListener('animationend', handleEnd)
+  }, [length, onDone])
 
   const pathData = PAIS_PATHS[slug]
   if (!pathData) return null
