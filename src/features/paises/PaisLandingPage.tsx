@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { PaisData } from './data'
-import { PaisSVG } from './PaisSVG'
+import { PaisHero } from './PaisHero'
 import { CTASection } from '@/features/landing/components/CTASection'
 import { LanguageProvider } from '@/lib/i18n/LanguageContext'
 import { Navbar } from '@/features/landing/components/Navbar'
@@ -16,75 +16,7 @@ export function PaisLandingPage({ pais }: Props) {
       <Navbar />
       <main>
 
-        {/* Hero */}
-        <section className="relative bg-[#faf8f6] overflow-hidden pt-28 pb-24 px-6 min-h-[600px] flex items-center">
-
-          {/* Dot grid background */}
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage: 'radial-gradient(circle, #763d50 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-            }}
-          />
-
-          {/* Accent line top */}
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#763d50]/40 to-transparent" />
-
-          {/* Country silhouette — right side */}
-          <div className="absolute right-4 md:right-16 top-1/2 -translate-y-1/2 pointer-events-none select-none">
-            <PaisSVG
-              slug={pais.slug}
-              className="text-[#763d50] opacity-[0.16] h-[520px] w-auto max-w-[480px]"
-            />
-          </div>
-
-          {/* Glowing orb behind silhouette */}
-          <div className="absolute right-[8%] top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#763d50]/8 blur-[60px] pointer-events-none" />
-
-          {/* Content */}
-          <div className="relative max-w-5xl mx-auto w-full">
-            <div className="max-w-xl">
-
-              {/* Breadcrumb */}
-              <div className="flex items-center gap-2 mb-8">
-                <span className="text-[#3a3a3a]/35 text-xs">Consultto</span>
-                <span className="text-[#3a3a3a]/25 text-xs">›</span>
-                <span className="text-[#763d50] text-xs font-semibold">{pais.nombre}</span>
-              </div>
-
-              {/* Organismo badge */}
-              <div className="inline-flex items-center gap-2 bg-white border border-[#e8e0e3] rounded-full px-4 py-1.5 mb-6 shadow-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
-                <span className="text-[#763d50] text-xs font-semibold">{pais.organismoLocal}</span>
-                <span className="text-[#3a3a3a]/40 text-xs">— {pais.organismoDesc}</span>
-              </div>
-
-              <h1 className="text-[#1f2020] text-4xl md:text-5xl font-light leading-[1.15] mb-5">
-                {pais.heroTitle}
-              </h1>
-              <p className="text-[#3a3a3a]/60 text-lg leading-relaxed mb-10">
-                {pais.heroSubtitle}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/demo"
-                  className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm whitespace-nowrap text-center"
-                >
-                  Agendar demo gratuita
-                </Link>
-                <Link
-                  href="/consultor"
-                  className="border border-[#d9d9d9] hover:border-[#763d50]/40 text-[#3a3a3a] hover:text-[#763d50] bg-white px-8 py-3.5 rounded-full font-semibold transition-all text-sm whitespace-nowrap text-center"
-                >
-                  Hablar con un consultor
-                </Link>
-              </div>
-
-            </div>
-          </div>
-        </section>
+        <PaisHero pais={pais} />
 
         {/* Stats */}
         <section className="bg-white border-b border-[#f0f0f0] py-12 px-6">
