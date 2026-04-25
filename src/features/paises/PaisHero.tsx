@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { PaisData } from './data'
 import { PAIS_PATHS } from './paisPaths'
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const DRAW_DURATION = 3800  // ms para dibujar el trazo
-const PAUSE_AFTER   = 0     // ms de espera antes de mostrar texto
 
 function MapCanvas({ slug }: { slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -67,7 +66,6 @@ function MapCanvas({ slug }: { slug: string }) {
 
       const path2d = new Path2D(pathData.d)
 
-      // Base fill
       ctx.save()
       ctx.translate(offsetX, offsetY)
       ctx.scale(scale, scale)
@@ -75,7 +73,6 @@ function MapCanvas({ slug }: { slug: string }) {
       ctx.fill(path2d)
       ctx.restore()
 
-      // Spotlight
       if (mouse.x > -100) {
         ctx.save()
         ctx.translate(offsetX, offsetY)
@@ -117,7 +114,8 @@ function MapCanvas({ slug }: { slug: string }) {
   )
 }
 
-function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
+// Solo dibuja la animación — el timing lo controla el padre (PaisHero)
+function DrawingSVG({ slug }: { slug: string }) {
   const strokeRef = useRef<SVGPathElement>(null)
   const fillRef   = useRef<SVGPathElement>(null)
 
@@ -128,7 +126,6 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
 
     const l = stroke.getTotalLength()
 
-    // Inyectar keyframes directamente — sin esperar un re-render de React
     const styleEl = document.createElement('style')
     styleEl.textContent = `
       @keyframes cto-draw { from { stroke-dashoffset: ${l}; } to { stroke-dashoffset: 0; } }
@@ -136,7 +133,6 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
     `
     document.head.appendChild(styleEl)
 
-    // Aplicar animaciones via inline style (sin pasar por clases CSS + re-render)
     stroke.style.strokeDasharray  = `${l}`
     stroke.style.strokeDashoffset = `${l}`
     stroke.style.animation = `cto-draw ${DRAW_DURATION}ms cubic-bezier(0.4,0,0.2,1) forwards`
@@ -145,19 +141,8 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
       fill.style.animation = `cto-fill ${DRAW_DURATION}ms ease forwards`
     }
 
-    // Listener sincronizado: dispara exactamente cuando termina el trazo
-    const handleEnd = (e: AnimationEvent) => {
-      if (e.animationName !== 'cto-draw') return
-      stroke.style.opacity = '0'
-      onDone()
-    }
-    stroke.addEventListener('animationend', handleEnd)
-
-    return () => {
-      stroke.removeEventListener('animationend', handleEnd)
-      styleEl.remove()
-    }
-  }, [onDone])
+    return () => styleEl.remove()
+  }, [])
 
   const pathData = PAIS_PATHS[slug]
   if (!pathData) return null
@@ -171,15 +156,12 @@ function DrawingSVG({ slug, onDone }: { slug: string; onDone: () => void }) {
       style={{ padding: '80px', boxSizing: 'border-box' }}
       preserveAspectRatio="xMidYMid meet"
     >
-      {/* Fill completo */}
       <path
         ref={fillRef}
         d={pathData.d}
         fill="rgba(118,61,80,1)"
         style={{ opacity: 0 }}
       />
-
-      {/* Trazo — solo el contorno principal */}
       <path
         ref={strokeRef}
         d={mainPath}
@@ -196,9 +178,12 @@ export function PaisHero({ pais }: Props) {
   const [phase, setPhase] = useState<'drawing' | 'done'>('drawing')
   const [textVisible, setTextVisible] = useState(false)
 
-  const handleDrawDone = useCallback(() => {
-    setPhase('done')
-    setTextVisible(true)
+  // El timer arranca en el padre, al mismo tiempo que DrawingSVG monta y empieza su animación.
+  // Sin animationend, sin callbacks — garantizado independientemente del browser.
+  useEffect(() => {
+    const t1 = setTimeout(() => setTextVisible(true), DRAW_DURATION)
+    const t2 = setTimeout(() => setPhase('done'),     DRAW_DURATION + 400)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
   return (
@@ -209,7 +194,7 @@ export function PaisHero({ pais }: Props) {
 
       {/* Fase 1: trazo dibujándose */}
       {phase === 'drawing' && (
-        <DrawingSVG slug={pais.slug} onDone={handleDrawDone} />
+        <DrawingSVG slug={pais.slug} />
       )}
 
       {/* Fase 2: canvas con hover spotlight */}
