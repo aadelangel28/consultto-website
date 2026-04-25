@@ -174,13 +174,6 @@ export function PaisHero({ pais }: Props) {
       {/* Content — centered */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32">
 
-        {/* Organismo badge */}
-        <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-[#e8e0e3] rounded-full px-4 py-1.5 mb-8 shadow-sm">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#763d50]" />
-          <span className="text-[#763d50] text-xs font-semibold">{pais.organismoLocal}</span>
-          <span className="text-[#3a3a3a]/40 text-xs hidden sm:inline">— {pais.organismoDesc}</span>
-        </div>
-
         {/* Headline */}
         <h1 className="text-[#1f2020] text-4xl md:text-6xl font-light leading-[1.1] mb-6 max-w-3xl">
           {pais.heroTitle}
