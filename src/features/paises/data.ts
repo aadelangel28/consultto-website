@@ -7,7 +7,7 @@ export interface PaisData {
   heroSubtitle: string
   contexto: string
   normasDestacadas: { codigo: string; nombre: string; porQue: string; href: string }[]
-  sectores: string[]
+  sectores: { nombre: string; href?: string }[]
   stats: { value: string; label: string }[]
   metaTitle: string
   metaDescription: string
@@ -48,7 +48,14 @@ export const PAISES: PaisData[] = [
         href: '/normas/iso-45001',
       },
     ],
-    sectores: ['Automotriz', 'Manufactura', 'Alimentos y Bebidas', 'Logística', 'Construcción', 'Farmacéutica'],
+    sectores: [
+      { nombre: 'Automotriz',        href: '/industrias/automotriz' },
+      { nombre: 'Manufactura',       href: '/industrias/manufactura' },
+      { nombre: 'Alimentos y Bebidas', href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Logística',         href: '/industrias/logistica-y-transporte' },
+      { nombre: 'Construcción',      href: '/industrias/construccion' },
+      { nombre: 'Farmacéutica',      href: '/industrias/farmaceutica' },
+    ],
     stats: [
       { value: '+12,000', label: 'empresas certificadas en ISO 9001 en México' },
       { value: '3er lugar', label: 'en LATAM por número de certificaciones ISO' },
@@ -91,7 +98,14 @@ export const PAISES: PaisData[] = [
         href: '/normas/iso-45001',
       },
     ],
-    sectores: ['Agroindustria', 'Flores y Exportación', 'Manufactura', 'Construcción', 'Minería', 'Servicios'],
+    sectores: [
+      { nombre: 'Agroindustria',        href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Flores y Exportación' },
+      { nombre: 'Manufactura',          href: '/industrias/manufactura' },
+      { nombre: 'Construcción',         href: '/industrias/construccion' },
+      { nombre: 'Minería' },
+      { nombre: 'Servicios',            href: '/industrias/servicios-profesionales' },
+    ],
     stats: [
       { value: '+8,000', label: 'empresas certificadas en ISO 9001 en Colombia' },
       { value: 'ICONTEC', label: 'referente de normalización en LATAM desde 1963' },
@@ -134,7 +148,14 @@ export const PAISES: PaisData[] = [
         href: '/normas/iso-14001',
       },
     ],
-    sectores: ['Farmacéutica', 'Agroindustria', 'Manufactura', 'Alimentos y Bebidas', 'Automotriz', 'Servicios Profesionales'],
+    sectores: [
+      { nombre: 'Farmacéutica',          href: '/industrias/farmaceutica' },
+      { nombre: 'Agroindustria',         href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Manufactura',           href: '/industrias/manufactura' },
+      { nombre: 'Alimentos y Bebidas',   href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Automotriz',            href: '/industrias/automotriz' },
+      { nombre: 'Servicios Profesionales', href: '/industrias/servicios-profesionales' },
+    ],
     stats: [
       { value: '+7,000', label: 'empresas certificadas en ISO 9001 en Argentina' },
       { value: 'IRAM', label: 'referente de normalización desde 1935' },
@@ -177,7 +198,14 @@ export const PAISES: PaisData[] = [
         href: '/normas/iso-27001',
       },
     ],
-    sectores: ['Minería', 'Agroindustria', 'Construcción', 'Servicios Financieros', 'Tecnología', 'Retail'],
+    sectores: [
+      { nombre: 'Minería' },
+      { nombre: 'Agroindustria',        href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Construcción',         href: '/industrias/construccion' },
+      { nombre: 'Servicios Financieros' },
+      { nombre: 'Tecnología',           href: '/industrias/tecnologia-y-software' },
+      { nombre: 'Retail' },
+    ],
     stats: [
       { value: '+5,000', label: 'empresas certificadas en ISO 9001 en Chile' },
       { value: '1er lugar', label: 'en LATAM en facilidad para hacer negocios' },
@@ -220,7 +248,14 @@ export const PAISES: PaisData[] = [
         href: '/normas/iso-14001',
       },
     ],
-    sectores: ['Minería', 'Agroindustria', 'Construcción', 'Pesca y Acuicultura', 'Manufactura', 'Servicios'],
+    sectores: [
+      { nombre: 'Minería' },
+      { nombre: 'Agroindustria',    href: '/industrias/alimentos-y-bebidas' },
+      { nombre: 'Construcción',     href: '/industrias/construccion' },
+      { nombre: 'Pesca y Acuicultura' },
+      { nombre: 'Manufactura',      href: '/industrias/manufactura' },
+      { nombre: 'Servicios',        href: '/industrias/servicios-profesionales' },
+    ],
     stats: [
       { value: '+4,000', label: 'empresas certificadas en ISO 9001 en Perú' },
       { value: 'INACAL', label: 'organismo nacional de calidad desde 2014' },

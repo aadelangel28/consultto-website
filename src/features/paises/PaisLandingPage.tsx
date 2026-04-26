@@ -78,10 +78,16 @@ export function PaisLandingPage({ pais }: Props) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-[#763d50] text-xs font-bold uppercase tracking-wide mb-1">{norma.codigo}</p>
                       <p className="text-[#1f2020] font-semibold text-sm mb-2">{norma.nombre}</p>
-                      <p className="text-[#3a3a3a]/60 text-sm leading-relaxed">{norma.porQue}</p>
+                      <p className="text-[#3a3a3a]/60 text-sm leading-relaxed mb-3">{norma.porQue}</p>
+                      <span className="text-[#763d50] text-xs font-semibold group-hover:underline inline-flex items-center gap-1">
+                        Aprende más
+                        <svg className="w-3 h-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -100,14 +106,27 @@ export function PaisLandingPage({ pais }: Props) {
               Sectores que más se certifican en {pais.nombre}
             </h2>
             <div className="flex flex-wrap gap-3">
-              {pais.sectores.map((sector) => (
-                <span
-                  key={sector}
-                  className="px-4 py-2 bg-white border border-[#e8e8e8] rounded-full text-sm text-[#3a3a3a]/70"
-                >
-                  {sector}
-                </span>
-              ))}
+              {pais.sectores.map((sector) =>
+                sector.href ? (
+                  <Link
+                    key={sector.nombre}
+                    href={sector.href}
+                    className="group px-4 py-2 bg-white border border-[#e8e8e8] hover:border-[#763d50]/40 rounded-full text-sm text-[#3a3a3a]/70 hover:text-[#763d50] transition-all inline-flex items-center gap-1.5"
+                  >
+                    {sector.nombre}
+                    <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1 group-hover:translate-x-0 transition-transform" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <span
+                    key={sector.nombre}
+                    className="px-4 py-2 bg-white border border-[#e8e8e8] rounded-full text-sm text-[#3a3a3a]/70"
+                  >
+                    {sector.nombre}
+                  </span>
+                )
+              )}
             </div>
           </div>
         </section>
