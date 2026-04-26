@@ -326,6 +326,10 @@ const NORM_IMAGES: Record<string, string> = {
   'ICH Q9':               'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80',
   'NOM-059-SSA1':         'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&q=80',
   'AIAG FMEA':            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
+  'GlobalG.A.P.':         'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80',
+  'Rainforest Alliance':  'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+  'ISO 31000:2018':       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+  'BAP (Best Aquaculture Practices)': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
 }
 
 const NORM_META_ES: Record<string, { description: string; scope: string; summary: string }> = {
@@ -356,6 +360,10 @@ const NORM_META_ES: Record<string, { description: string; scope: string; summary
   'ICH Q9':               { description: 'Gestión de riesgos de calidad',       scope: 'Toma de decisiones',           summary: 'Guía para la gestión sistemática de riesgos de calidad en la industria farmacéutica, facilitando decisiones basadas en evidencia científica.' },
   'NOM-059-SSA1':         { description: 'Regulación sanitaria mexicana',       scope: 'Autoridad COFEPRIS',           summary: 'Norma oficial mexicana que establece los requisitos mínimos para la fabricación de medicamentos alopáticos, supervisada por COFEPRIS.' },
   'AIAG FMEA':            { description: 'Análisis de modo y efecto de falla',  scope: 'Prevención de defectos',       summary: 'Metodología estructurada para identificar modos de falla potenciales en productos y procesos, evaluando su severidad, ocurrencia y detectabilidad.' },
+  'GlobalG.A.P.':         { description: 'Buenas prácticas agrícolas globales', scope: 'Agricultura y exportación',    summary: 'Estándar privado de certificación reconocido globalmente para buenas prácticas agrícolas. Exigido por supermercados europeos para acceder a sus cadenas de suministro.' },
+  'Rainforest Alliance':  { description: 'Sostenibilidad y comercio responsable', scope: 'Agricultura sostenible',     summary: 'Certificación que verifica que una operación agrícola cumple estándares de sostenibilidad ambiental, social y económica. Reconocida por mercados premium globales.' },
+  'ISO 31000:2018':       { description: 'Gestión de riesgos',                  scope: 'Marco y directrices',          summary: 'Proporciona directrices para la gestión de riesgos aplicable a cualquier organización. Define principios, marco y proceso para identificar, evaluar y tratar riesgos.' },
+  'BAP (Best Aquaculture Practices)': { description: 'Buenas prácticas acuícolas', scope: 'Acuicultura responsable', summary: 'Estándar de certificación para la acuicultura responsable. Evalúa el impacto ambiental, social y de inocuidad en toda la cadena de producción acuícola.' },
 }
 
 const NORM_META_EN: Record<string, { description: string; scope: string; summary: string }> = {
@@ -386,6 +394,10 @@ const NORM_META_EN: Record<string, { description: string; scope: string; summary
   'ICH Q9':               { description: 'Quality risk management',               scope: 'Decision making',              summary: 'Guide for systematic quality risk management in the pharmaceutical industry, facilitating evidence-based decisions.' },
   'NOM-059-SSA1':         { description: 'Mexican health regulation',             scope: 'COFEPRIS authority',           summary: 'Mexican official standard establishing minimum requirements for the manufacture of allopathic drugs, supervised by COFEPRIS.' },
   'AIAG FMEA':            { description: 'Failure mode and effect analysis',      scope: 'Defect prevention',            summary: 'Structured methodology to identify potential failure modes in products and processes, evaluating severity, occurrence and detectability.' },
+  'GlobalG.A.P.':         { description: 'Global good agricultural practices',   scope: 'Agriculture and export',       summary: 'Globally recognized private certification standard for good agricultural practices. Required by European supermarkets to access their supply chains.' },
+  'Rainforest Alliance':  { description: 'Sustainability and responsible trade', scope: 'Sustainable agriculture',      summary: 'Certification verifying that an agricultural operation meets environmental, social and economic sustainability standards. Recognized by premium global markets.' },
+  'ISO 31000:2018':       { description: 'Risk management',                      scope: 'Framework and guidelines',     summary: 'Provides guidelines for risk management applicable to any organization. Defines principles, framework and process for identifying, evaluating and treating risks.' },
+  'BAP (Best Aquaculture Practices)': { description: 'Best aquaculture practices', scope: 'Responsible aquaculture',  summary: 'Certification standard for responsible aquaculture. Evaluates environmental, social and food safety impact throughout the aquaculture production chain.' },
 }
 
 const NORM_META_PT: Record<string, { description: string; scope: string; summary: string }> = {
@@ -416,6 +428,10 @@ const NORM_META_PT: Record<string, { description: string; scope: string; summary
   'ICH Q9':               { description: 'Gestão de riscos de qualidade',         scope: 'Tomada de decisões',           summary: 'Guia para a gestão sistemática de riscos de qualidade na indústria farmacêutica, facilitando decisões baseadas em evidências científicas.' },
   'NOM-059-SSA1':         { description: 'Regulamentação sanitária mexicana',     scope: 'Autoridade COFEPRIS',          summary: 'Norma oficial mexicana que estabelece os requisitos mínimos para a fabricação de medicamentos alopáticos, supervisionada pela COFEPRIS.' },
   'AIAG FMEA':            { description: 'Análise de modo e efeito de falha',     scope: 'Prevenção de defeitos',        summary: 'Metodologia estruturada para identificar modos de falha potenciais em produtos e processos, avaliando sua severidade, ocorrência e detectabilidade.' },
+  'GlobalG.A.P.':         { description: 'Boas práticas agrícolas globais',       scope: 'Agricultura e exportação',     summary: 'Padrão de certificação privado reconhecido globalmente para boas práticas agrícolas. Exigido por supermercados europeus para acesso às suas cadeias de suprimentos.' },
+  'Rainforest Alliance':  { description: 'Sustentabilidade e comércio responsável', scope: 'Agricultura sustentável',    summary: 'Certificação que verifica que uma operação agrícola cumpre padrões de sustentabilidade ambiental, social e econômica. Reconhecida por mercados premium globais.' },
+  'ISO 31000:2018':       { description: 'Gestão de riscos',                      scope: 'Estrutura e diretrizes',       summary: 'Fornece diretrizes para gestão de riscos aplicável a qualquer organização. Define princípios, estrutura e processo para identificar, avaliar e tratar riscos.' },
+  'BAP (Best Aquaculture Practices)': { description: 'Melhores práticas aquícolas', scope: 'Aquicultura responsável',  summary: 'Padrão de certificação para aquicultura responsável. Avalia o impacto ambiental, social e de inocuidade em toda a cadeia de produção aquícola.' },
 }
 
 // ─── Resúmenes contextualizados por industria ─────────────────────────────────
