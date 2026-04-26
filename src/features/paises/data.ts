@@ -100,10 +100,10 @@ export const PAISES: PaisData[] = [
     ],
     sectores: [
       { nombre: 'Agroindustria',        href: '/industrias/alimentos-y-bebidas' },
-      { nombre: 'Flores y Exportación' },
+      { nombre: 'Flores y Exportación', href: '/industrias/flores-y-exportacion' },
       { nombre: 'Manufactura',          href: '/industrias/manufactura' },
       { nombre: 'Construcción',         href: '/industrias/construccion' },
-      { nombre: 'Minería' },
+      { nombre: 'Minería', href: '/industrias/mineria' },
       { nombre: 'Servicios',            href: '/industrias/servicios-profesionales' },
     ],
     stats: [
@@ -199,12 +199,12 @@ export const PAISES: PaisData[] = [
       },
     ],
     sectores: [
-      { nombre: 'Minería' },
+      { nombre: 'Minería', href: '/industrias/mineria' },
       { nombre: 'Agroindustria',        href: '/industrias/alimentos-y-bebidas' },
       { nombre: 'Construcción',         href: '/industrias/construccion' },
-      { nombre: 'Servicios Financieros' },
+      { nombre: 'Servicios Financieros', href: '/industrias/servicios-financieros' },
       { nombre: 'Tecnología',           href: '/industrias/tecnologia-y-software' },
-      { nombre: 'Retail' },
+      { nombre: 'Retail', href: '/industrias/retail' },
     ],
     stats: [
       { value: '+5,000', label: 'empresas certificadas en ISO 9001 en Chile' },
@@ -249,10 +249,10 @@ export const PAISES: PaisData[] = [
       },
     ],
     sectores: [
-      { nombre: 'Minería' },
+      { nombre: 'Minería', href: '/industrias/mineria' },
       { nombre: 'Agroindustria',    href: '/industrias/alimentos-y-bebidas' },
       { nombre: 'Construcción',     href: '/industrias/construccion' },
-      { nombre: 'Pesca y Acuicultura' },
+      { nombre: 'Pesca y Acuicultura', href: '/industrias/pesca-y-acuicultura' },
       { nombre: 'Manufactura',      href: '/industrias/manufactura' },
       { nombre: 'Servicios',        href: '/industrias/servicios-profesionales' },
     ],

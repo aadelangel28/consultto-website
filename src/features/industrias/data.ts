@@ -659,6 +659,326 @@ export const INDUSTRIAS: IndustriaData[] = [
       aiFollowUp: '¿Abro el expediente OOS, asigno al responsable de investigación y activo el bloqueo preventivo del lote?',
     },
   },
+  {
+    slug: 'mineria',
+    name: 'Minería',
+    heroTitle: 'Seguridad, trazabilidad y cumplimiento normativo en minería.',
+    heroSubtitle:
+      'La minería opera en entornos de alto riesgo donde un accidente o una no conformidad puede detener la operación. Consultto te da el sistema de gestión para mantener ISO 45001 e ISO 14001 activos sin burocracia.',
+    retos: [
+      {
+        title: 'Gestión de seguridad en entornos de alto riesgo',
+        description:
+          'Los incidentes y casi-accidentes en mina no se registran de forma consistente, lo que impide identificar patrones y prevenir accidentes mayores antes de que ocurran.',
+      },
+      {
+        title: 'Cumplimiento ambiental con múltiples organismos reguladores',
+        description:
+          'Las operaciones mineras deben cumplir con exigencias ambientales de distintos organismos. Sin un sistema centralizado, el seguimiento de compromisos y reportes se pierde.',
+      },
+      {
+        title: 'Proveedores y contratistas sin evaluación formal',
+        description:
+          'En minería, los contratistas representan una parte significativa de los accidentes. Sin evaluación y control formal de contratistas, el riesgo legal y operacional es elevado.',
+      },
+      {
+        title: 'Preparación para auditorías de certificación y fiscalización',
+        description:
+          'Las auditorías de ISO 45001 e ISO 14001 llegan con poco aviso. Sin evidencias organizadas y sistemas actualizados, el proceso es caótico y costoso.',
+      },
+    ],
+    soluciones: [
+      {
+        title: 'Registro y seguimiento de incidentes y casi-accidentes',
+        description:
+          'Documenta cada incidente en terreno, realiza el análisis de causa raíz y hace seguimiento automático hasta el cierre de las acciones correctivas.',
+      },
+      {
+        title: 'Gestión de compromisos ambientales y reportes regulatorios',
+        description:
+          'Centraliza los compromisos de la DGA, SERNAGEOMIN y otros organismos. El sistema alerta vencimientos y genera reportes de cumplimiento ambiental.',
+      },
+      {
+        title: 'Evaluación y control de contratistas',
+        description:
+          'Califica a tus contratistas por seguridad, calidad y cumplimiento. Registra inducciones, auditorías de terreno y desempeño histórico en un solo lugar.',
+      },
+      {
+        title: 'Evidencias de auditoría siempre listas',
+        description:
+          'Todos los registros de ISO 45001 e ISO 14001 están organizados por cláusula. Cuando llega la auditoría, solo tienes que mostrar — no buscar.',
+      },
+    ],
+    normas: ['ISO 45001:2018', 'ISO 14001:2015', 'ISO 9001:2015', 'ISO 50001:2018'],
+    ctaTitle: 'Opera con cero accidentes. Certifícate sin pausar la producción.',
+    ctaSubtitle: 'Consultto adapta tu sistema de gestión al ritmo de la operación minera, sin papeles y sin interrupciones.',
+    agentChat: {
+      userMessage: 'Tuvimos un casi-accidente en el frente de voladura esta mañana. ¿Qué hacemos?',
+      aiIntro: 'Activando el protocolo de registro de casi-accidente. Necesito capturar la información mientras está fresca.',
+      aiPoints: [
+        '→ ¿Hubo personas involucradas o solo daño a equipos?',
+        '→ ¿El área ya fue aislada y el jefe de turno notificado?',
+        '→ Voy a abrir el registro de incidente y asignar el análisis de causa raíz al equipo de seguridad',
+      ],
+      aiFollowUp: '¿Inicio el registro formal del casi-accidente y notifico al prevencionista de turno?',
+    },
+  },
+  {
+    slug: 'flores-y-exportacion',
+    name: 'Flores y Exportación',
+    heroTitle: 'Calidad certificada para exportar sin rechazos ni retrasos.',
+    heroSubtitle:
+      'Los mercados de Europa y Norteamérica exigen trazabilidad, inocuidad y cumplimiento de estándares internacionales. Consultto te ayuda a certificarte y mantener tu acceso a esos mercados.',
+    retos: [
+      {
+        title: 'Trazabilidad de producto desde el campo hasta el cliente',
+        description:
+          'Los compradores internacionales exigen trazabilidad completa de lote, origen y condiciones de manejo. Sin sistema, la información se dispersa entre hojas y correos.',
+      },
+      {
+        title: 'Requisitos fitosanitarios y de inocuidad en constante cambio',
+        description:
+          'Los requisitos de los mercados de destino cambian con frecuencia. Sin un sistema de seguimiento, las actualizaciones llegan tarde y los embarques se rechazan.',
+      },
+      {
+        title: 'Auditorías de clientes internacionales sin preparación',
+        description:
+          'Los compradores de flores realizan auditorías periódicas. Sin evidencias organizadas ni sistema de gestión, cada auditoría es una crisis interna.',
+      },
+      {
+        title: 'Control de proveedores agrícolas sin estándar',
+        description:
+          'La calidad del producto final depende de proveedores de insumos y fincas satélite. Sin evaluación formal, la variabilidad afecta la calidad de exportación.',
+      },
+    ],
+    soluciones: [
+      {
+        title: 'Trazabilidad de lote y cadena de custodia',
+        description:
+          'Registra el origen, condiciones de manejo y cada etapa del proceso exportador. Ante una reclamación, tienes la trazabilidad completa en segundos.',
+      },
+      {
+        title: 'Gestión de requisitos de mercados de destino',
+        description:
+          'Centraliza los requisitos fitosanitarios y de calidad de cada mercado. El sistema alerta cambios y vencimientos de certificaciones de exportación.',
+      },
+      {
+        title: 'Evidencias de auditoría organizadas por estándar',
+        description:
+          'Todos tus registros de GlobalG.A.P., Rainforest Alliance o ISO están organizados y listos. Las auditorías de cliente dejan de ser una sorpresa.',
+      },
+      {
+        title: 'Evaluación de fincas y proveedores de insumos',
+        description:
+          'Califica y audita a tus proveedores agrícolas con checklists estandarizados. El sistema registra el historial y alerta cuando baja el desempeño.',
+      },
+    ],
+    normas: ['ISO 9001:2015', 'GlobalG.A.P.', 'Rainforest Alliance', 'HACCP', 'ISO 14001:2015'],
+    ctaTitle: 'Exporta con la confianza de que tu calidad está documentada.',
+    ctaSubtitle: 'Mercados exigentes requieren sistemas sólidos. Consultto te da el sistema sin la complejidad.',
+    agentChat: {
+      userMessage: 'Un comprador de Holanda rechazó un embarque por falta de trazabilidad. ¿Cómo evitamos que pase de nuevo?',
+      aiIntro: 'Revisé el proceso. El problema está en el registro de custodia entre la finca y el centro de empaque.',
+      aiPoints: [
+        '→ No hay registro digital de temperatura en las últimas 48h de cadena de frío',
+        '→ El lote rechazado no tiene número de finca origen registrado',
+        '→ El protocolo de empaque no tiene versión aprobada para el mercado UE',
+      ],
+      aiFollowUp: '¿Activo el procedimiento de trazabilidad de lote y genero la no conformidad para el proceso de empaque?',
+    },
+  },
+  {
+    slug: 'servicios-financieros',
+    name: 'Servicios Financieros',
+    heroTitle: 'Cumplimiento normativo y seguridad de datos en servicios financieros.',
+    heroSubtitle:
+      'Bancos, aseguradoras, fintechs y gestoras de inversión operan bajo escrutinio regulatorio constante. Consultto centraliza tu sistema de gestión para que el cumplimiento no paralice el negocio.',
+    retos: [
+      {
+        title: 'Gestión de riesgos operacionales dispersa en silos',
+        description:
+          'Los riesgos operacionales se gestionan en hojas de cálculo por área. Sin una visión consolidada, la dirección no puede priorizar ni reportar al regulador con confianza.',
+      },
+      {
+        title: 'Seguridad de la información sin sistema de gestión formal',
+        description:
+          'Las instituciones financieras manejan datos críticos de clientes. Sin ISO 27001, la gestión de activos de información, accesos y vulnerabilidades es informal y auditable.',
+      },
+      {
+        title: 'Cumplimiento regulatorio con múltiples organismos',
+        description:
+          'Superintendencias, bancos centrales y reguladores locales exigen reportes y evidencias constantes. Sin sistema centralizado, el esfuerzo de cumplimiento es enorme.',
+      },
+      {
+        title: 'Incidentes de seguridad sin protocolo de respuesta',
+        description:
+          'Cuando ocurre un incidente de seguridad o brecha de datos, la respuesta se improvisa. Sin un procedimiento documentado, el tiempo de reacción y el daño se multiplican.',
+      },
+    ],
+    soluciones: [
+      {
+        title: 'Mapa y seguimiento de riesgos operacionales',
+        description:
+          'Centraliza la gestión de riesgos operacionales por área y proceso. El sistema consolida el perfil de riesgo institucional y genera reportes para el directorio y el regulador.',
+      },
+      {
+        title: 'Sistema de gestión de seguridad de la información (ISO 27001)',
+        description:
+          'Gestiona el inventario de activos de información, el análisis de riesgos y los controles del Anexo A de ISO 27001 en un solo lugar, con evidencias de cumplimiento.',
+      },
+      {
+        title: 'Seguimiento de compromisos regulatorios y reportes',
+        description:
+          'Registra los compromisos con cada organismo regulador, alerta vencimientos y genera la evidencia de cumplimiento lista para presentar en inspecciones.',
+      },
+      {
+        title: 'Protocolo de gestión de incidentes de seguridad',
+        description:
+          'Cuando ocurre un incidente, el sistema activa el protocolo de respuesta: registro, clasificación, notificación al regulador y plan de acción con seguimiento.',
+      },
+    ],
+    normas: ['ISO 27001:2022', 'ISO 9001:2015', 'ISO 31000:2018', 'SOC 2'],
+    ctaTitle: 'Cumple con el regulador sin detener el negocio.',
+    ctaSubtitle: 'Consultto organiza tu sistema de gestión para que el cumplimiento sea parte del día a día, no una crisis.',
+    agentChat: {
+      userMessage: 'La superintendencia nos pidió evidencias de gestión de riesgos operacionales para la próxima semana.',
+      aiIntro: 'Revisé el estado actual. Puedo preparar el reporte en base a lo que ya está registrado en el sistema.',
+      aiPoints: [
+        '→ 12 riesgos operacionales registrados, 8 con plan de mitigación activo',
+        '→ Faltan 3 controles del Anexo A de ISO 27001 con evidencia pendiente',
+        '→ El último reporte al directorio fue hace 45 días — el regulador suele pedir el más reciente',
+      ],
+      aiFollowUp: '¿Genero el reporte de riesgos operacionales con el estado actual y lo preparo en formato regulatorio?',
+    },
+  },
+  {
+    slug: 'retail',
+    name: 'Retail',
+    heroTitle: 'Calidad consistente en cada punto de venta.',
+    heroSubtitle:
+      'En retail, la experiencia del cliente depende de procesos estandarizados en múltiples tiendas. Consultto te da el sistema para mantener la calidad, la inocuidad y el cumplimiento en toda tu red.',
+    retos: [
+      {
+        title: 'Procesos inconsistentes entre tiendas y sucursales',
+        description:
+          'Cada tienda opera de forma diferente porque los procedimientos no están estandarizados ni actualizados. El resultado es una experiencia de cliente variable y riesgos de calidad.',
+      },
+      {
+        title: 'Gestión de proveedores sin evaluación formal',
+        description:
+          'Los proveedores de producto y servicio se evalúan de forma informal. Sin un sistema, los problemas de calidad de proveedor se detectan tarde y afectan al cliente final.',
+      },
+      {
+        title: 'Reclamos de clientes sin seguimiento estructurado',
+        description:
+          'Los reclamos llegan por múltiples canales y no se centralizan. Sin análisis de tendencias, los problemas recurrentes no se detectan a tiempo.',
+      },
+      {
+        title: 'Inocuidad en retail alimentario sin trazabilidad',
+        description:
+          'Los retailers con área de alimentos frescos deben garantizar la cadena de frío y la inocuidad. Sin registros digitales, una inspección sanitaria puede convertirse en una crisis.',
+      },
+    ],
+    soluciones: [
+      {
+        title: 'Estandarización de procesos en toda la red de tiendas',
+        description:
+          'Cada procedimiento operativo está disponible en la versión vigente para todos los puntos de venta. Los cambios se distribuyen automáticamente a toda la red.',
+      },
+      {
+        title: 'Evaluación y desempeño de proveedores',
+        description:
+          'Califica a tus proveedores por calidad, cumplimiento y servicio. El sistema registra el historial y alerta cuando el desempeño baja del umbral aceptable.',
+      },
+      {
+        title: 'Gestión centralizada de reclamos de clientes',
+        description:
+          'Todos los reclamos se registran en un solo lugar, se clasifican por tipo y se analizan para detectar tendencias. El sistema hace seguimiento hasta el cierre.',
+      },
+      {
+        title: 'Control de inocuidad y cadena de frío',
+        description:
+          'Registra temperaturas, fechas de vencimiento y condiciones de almacenamiento. Ante una inspección sanitaria, tienes toda la evidencia organizada y disponible.',
+      },
+    ],
+    normas: ['ISO 9001:2015', 'HACCP', 'ISO 22000:2018', 'ISO 14001:2015'],
+    ctaTitle: 'La misma calidad en cada tienda, cada día.',
+    ctaSubtitle: 'Consultto estandariza tus operaciones de retail para que la calidad no dependa de quién esté de turno.',
+    agentChat: {
+      userMessage: 'Tuvimos una queja por un producto vencido en tres tiendas diferentes este mes.',
+      aiIntro: 'Revisé los registros. El problema tiene un patrón claro relacionado con el proceso de recepción de mercancía.',
+      aiPoints: [
+        '→ Las 3 tiendas no tienen registro de inspección de recepción del lote afectado',
+        '→ El procedimiento de verificación de fechas no está en la versión vigente en esas sucursales',
+        '→ No hay no conformidad abierta para el proveedor responsable del lote',
+      ],
+      aiFollowUp: '¿Abro la no conformidad, notifico al proveedor y distribuyo el procedimiento actualizado a todas las tiendas?',
+    },
+  },
+  {
+    slug: 'pesca-y-acuicultura',
+    name: 'Pesca y Acuicultura',
+    heroTitle: 'Inocuidad y trazabilidad desde el mar hasta el mercado.',
+    heroSubtitle:
+      'Los mercados internacionales exigen trazabilidad completa del producto pesquero y acuícola. Consultto te da el sistema para certificarte en HACCP e ISO 22000 sin burocracia.',
+    retos: [
+      {
+        title: 'Trazabilidad de lote desde la captura o cosecha',
+        description:
+          'Los compradores internacionales y los reguladores exigen trazabilidad completa desde el origen. Sin sistema, rastrear un lote ante una reclamación toma días y puede implicar retiros masivos.',
+      },
+      {
+        title: 'Control de cadena de frío sin registros digitales',
+        description:
+          'La inocuidad del producto pesquero depende de mantener la cadena de frío. Sin registros digitales de temperatura, una inspección sanitaria puede detener el embarque.',
+      },
+      {
+        title: 'Cumplimiento de requisitos fitosanitarios de exportación',
+        description:
+          'Los mercados de EE.UU., UE y Asia tienen requisitos sanitarios específicos que cambian con frecuencia. Sin seguimiento formal, los rechazos en frontera son costosos.',
+      },
+      {
+        title: 'Gestión de puntos críticos de control (HACCP) en planta',
+        description:
+          'Los PCC del plan HACCP se monitorean manualmente en papel. Cuando llega una auditoría, encontrar los registros de los últimos 6 meses es un caos.',
+      },
+    ],
+    soluciones: [
+      {
+        title: 'Trazabilidad completa de lote por especie y origen',
+        description:
+          'Registra cada lote desde la captura o cosecha, con especie, embarcación o estanque, fecha y condiciones. Ante una reclamación, tienes la trazabilidad en segundos.',
+      },
+      {
+        title: 'Registro digital de cadena de frío y temperaturas',
+        description:
+          'Documenta las condiciones de temperatura en cada etapa del proceso. Los registros están disponibles de inmediato para inspecciones sanitarias y auditorías.',
+      },
+      {
+        title: 'Gestión de requisitos de mercados de exportación',
+        description:
+          'Centraliza los requisitos sanitarios de cada mercado de destino. El sistema alerta cambios regulatorios y vencimientos de certificaciones de exportación.',
+      },
+      {
+        title: 'Control digital de puntos críticos HACCP',
+        description:
+          'Los PCC del plan HACCP se monitorean y registran digitalmente. Los límites críticos con desviaciones generan alertas automáticas y acciones correctivas inmediatas.',
+      },
+    ],
+    normas: ['HACCP', 'ISO 22000:2018', 'ISO 9001:2015', 'ISO 14001:2015', 'BAP (Best Aquaculture Practices)'],
+    ctaTitle: 'Certifícate en HACCP e ISO 22000 sin detener tu operación.',
+    ctaSubtitle: 'Consultto organiza tu sistema de gestión pesquero para que cada embarque salga con la documentación lista.',
+    agentChat: {
+      userMessage: 'SERNAPESCA nos pidió los registros HACCP de los últimos 3 meses para una inspección la próxima semana.',
+      aiIntro: 'Revisé el estado de los registros. Hay algunos puntos que necesitamos completar antes de la inspección.',
+      aiPoints: [
+        '→ 847 registros de PCC disponibles, 12 con desviaciones sin acción correctiva cerrada',
+        '→ Los registros de temperatura de la cámara 3 tienen un gap de 4 días en febrero',
+        '→ El plan HACCP vigente no tiene la firma de validación del período actual',
+      ],
+      aiFollowUp: '¿Cierro las acciones correctivas pendientes y genero el informe de registros HACCP para la inspección?',
+    },
+  },
 ]
 
 export function getIndustria(slug: string): IndustriaData | undefined {
