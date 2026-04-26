@@ -190,6 +190,13 @@ export function Navbar() {
                   >
                     <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.about}</div>
                   </Link>
+                  <Link
+                    href="/glosario"
+                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                    onClick={() => setRecursosOpen(false)}
+                  >
+                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.glossary}</div>
+                  </Link>
                 </div>
               </div>
             )}
@@ -359,6 +366,13 @@ export function Navbar() {
                   onClick={() => { setRecursosOpen(false); setMobileOpen(false) }}
                 >
                   {t.nav.about}
+                </Link>
+                <Link
+                  href="/glosario"
+                  className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                  onClick={() => { setRecursosOpen(false); setMobileOpen(false) }}
+                >
+                  {t.nav.glossary}
                 </Link>
               </div>
             )}

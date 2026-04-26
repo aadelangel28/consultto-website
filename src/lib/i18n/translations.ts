@@ -12,6 +12,7 @@ export const translations = {
       norms: 'Normas',
       resources: 'Recursos',
       blog: 'Blog',
+      glossary: 'Glosario',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },
@@ -640,6 +641,7 @@ export const translations = {
       norms: 'Standards',
       resources: 'Resources',
       blog: 'Blog',
+      glossary: 'Glossary',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },
@@ -1268,6 +1270,7 @@ export const translations = {
       norms: 'Normas',
       resources: 'Recursos',
       blog: 'Blog',
+      glossary: 'Glossário',
     },
     normas: [
       { label: 'ISO 9001:2015', href: '/normas/iso-9001' },
