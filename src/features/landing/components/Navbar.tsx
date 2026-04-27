@@ -112,7 +112,7 @@ export function Navbar() {
                       className="block px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                       onClick={() => setIndustriasOpen(false)}
                     >
-                      <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">
+                      <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">
                         {industria.label}
                       </div>
                     </Link>
@@ -146,7 +146,7 @@ export function Navbar() {
                       className="text-left px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors"
                       onClick={() => setNormasOpen(false)}
                     >
-                      <div className="text-[#1f2020] text-xs font-medium hover:text-[#763d50] transition-colors">
+                      <div className="text-[#1f2020] text-sm font-medium hover:text-[#763d50] transition-colors">
                         {norma.label}
                       </div>
                     </Link>
