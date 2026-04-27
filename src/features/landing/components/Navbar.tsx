@@ -80,18 +80,18 @@ export function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/agente-ia" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
+          <Link href="/agente-ia" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-xs font-medium">
             {t.nav.agentIA}
           </Link>
 
-          <Link href="/plataforma" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium">
+          <Link href="/plataforma" className="text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-xs font-medium">
             {t.nav.platform}
           </Link>
 
           {/* Industrias dropdown */}
           <div className="relative" ref={dropdownRef} onMouseEnter={() => { setIndustriasOpen(true); setNormasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setIndustriasOpen(false)}>
             <button
-              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
+              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-xs font-medium"
             >
               {t.nav.industries}
               <svg
@@ -112,7 +112,7 @@ export function Navbar() {
                       className="block px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                       onClick={() => setIndustriasOpen(false)}
                     >
-                      <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">
+                      <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">
                         {industria.label}
                       </div>
                     </Link>
@@ -125,7 +125,7 @@ export function Navbar() {
           {/* Normas dropdown */}
           <div className="relative" ref={normasRef} onMouseEnter={() => { setNormasOpen(true); setIndustriasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setNormasOpen(false)}>
             <button
-              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
+              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-xs font-medium"
             >
               {t.nav.norms}
               <svg
@@ -146,7 +146,7 @@ export function Navbar() {
                       className="text-left px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors"
                       onClick={() => setNormasOpen(false)}
                     >
-                      <div className="text-[#1f2020] text-sm font-medium hover:text-[#763d50] transition-colors">
+                      <div className="text-[#1f2020] text-xs font-medium hover:text-[#763d50] transition-colors">
                         {norma.label}
                       </div>
                     </Link>
@@ -159,7 +159,7 @@ export function Navbar() {
           {/* Recursos dropdown */}
           <div className="relative" ref={recursosRef} onMouseEnter={() => { setRecursosOpen(true); setIndustriasOpen(false); setNormasOpen(false) }} onMouseLeave={() => setRecursosOpen(false)}>
             <button
-              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
+              className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-xs font-medium"
             >
               {t.nav.resources}
               <svg
@@ -178,21 +178,21 @@ export function Navbar() {
                     className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                     onClick={() => setRecursosOpen(false)}
                   >
-                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.blog}</div>
+                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">{t.nav.blog}</div>
                   </Link>
                   <Link
                     href="/nosotros"
                     className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                     onClick={() => setRecursosOpen(false)}
                   >
-                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.about}</div>
+                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">{t.nav.about}</div>
                   </Link>
                   <Link
                     href="/glosario"
                     className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                     onClick={() => setRecursosOpen(false)}
                   >
-                    <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">{t.nav.glossary}</div>
+                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">{t.nav.glossary}</div>
                   </Link>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export function Navbar() {
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-1.5 text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm font-medium px-2 py-1.5 rounded-lg hover:bg-[#f4f4f4]"
+              className="flex items-center gap-1.5 text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-xs font-medium px-2 py-1.5 rounded-lg hover:bg-[#f4f4f4]"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
