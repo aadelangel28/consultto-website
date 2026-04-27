@@ -89,22 +89,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Empresa */}
-            <div className="min-w-[120px]">
-              <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
-                {f.company}
-              </h4>
-              <ul className="space-y-3">
-                {f.companyLinks.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Regiones */}
             <div className="min-w-[120px]">
               <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
@@ -122,6 +106,22 @@ export function Footer() {
                     <Link href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
                       {item.label}
                     </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Empresa */}
+            <div className="min-w-[120px]">
+              <h4 className="text-[#3a3a3a]/40 text-xs font-semibold uppercase tracking-widest mb-4">
+                {f.company}
+              </h4>
+              <ul className="space-y-3">
+                {f.companyLinks.map((item) => (
+                  <li key={item.label}>
+                    <a href={item.href} className="text-[#3a3a3a]/60 hover:text-[#1f2020] transition-colors text-sm">
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>
