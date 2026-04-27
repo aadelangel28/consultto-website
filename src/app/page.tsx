@@ -10,6 +10,7 @@ import { HeroSection } from '@/features/landing/components/HeroSection'
 import { WhatWeDoSection } from '@/features/landing/components/WhatWeDoSection'
 import { FeaturesSection } from '@/features/landing/components/FeaturesSection'
 import { ComparisonSection } from '@/features/landing/components/ComparisonSection'
+import { SecuritySection } from '@/features/landing/components/SecuritySection'
 import { StatsSection } from '@/features/landing/components/StatsSection'
 import { FAQSection } from '@/features/landing/components/FAQSection'
 import { CTASection } from '@/features/landing/components/CTASection'
@@ -26,6 +27,7 @@ export default function Home() {
         <StatsSection />
         <FeaturesSection />
         <ComparisonSection />
+        <SecuritySection />
         <FAQSection />
         <CTASection />
         <Footer />

@@ -175,6 +175,17 @@ export const translations = {
         { feature: 'Visitas presenciales', consultto: 'Sí — nuestros consultores van a tus instalaciones cuando el proceso lo requiere', traditional: 'Sí — pero sin plataforma digital que respalde el trabajo', bothCheck: true },
       ],
     },
+    security: {
+      label: 'Seguridad',
+      title: 'Tu información, segura por diseño',
+      subtitle: 'Consultto está construido para manejar documentos sensibles, procesos críticos y datos de toda tu organización — un entorno donde la seguridad no es opcional.',
+      items: [
+        { num: '01', title: 'Encriptación extremo a extremo', description: 'Todos los datos en tránsito y en reposo están encriptados con AES-256 y TLS 1.3. Sin almacenamiento en texto plano, nunca.' },
+        { num: '02', title: 'Control de acceso por roles', description: 'Define quién puede ver, editar o aprobar cada documento. Tu equipo accede solo a lo que le corresponde.' },
+        { num: '03', title: 'Backups automáticos', description: 'Copias de seguridad automáticas con retención configurable. Tus datos nunca se pierden, sin importar lo que ocurra.' },
+        { num: '04', title: 'Infraestructura cloud enterprise', description: 'Alojado en proveedores cloud de nivel empresarial con uptime garantizado, redundancia y monitoreo continuo.' },
+      ],
+    },
     cta: {
       label: 'Empieza hoy',
       title: 'Tu sistema de gestión empieza con una conversación',
@@ -804,6 +815,17 @@ export const translations = {
         { feature: 'On-site visits', consultto: 'Yes — our consultants visit your facilities when the process requires it', traditional: 'Yes — but without a digital platform to back up the work', bothCheck: true },
       ],
     },
+    security: {
+      label: 'Security',
+      title: 'Your information, secure by design',
+      subtitle: 'Consultto is built to handle sensitive documents, critical processes, and data from your entire organization — an environment where security is non-negotiable.',
+      items: [
+        { num: '01', title: 'End-to-end encryption', description: 'All data in transit and at rest is encrypted with AES-256 and TLS 1.3. No plain-text storage, ever.' },
+        { num: '02', title: 'Role-based access control', description: 'Define who can view, edit, or approve each document. Your team accesses only what they need.' },
+        { num: '03', title: 'Automatic backups', description: 'Automatic backups with configurable retention. Your data is never lost, no matter what happens.' },
+        { num: '04', title: 'Enterprise cloud infrastructure', description: 'Hosted on enterprise-grade cloud providers with guaranteed uptime, redundancy, and continuous monitoring.' },
+      ],
+    },
     cta: {
       label: 'Get started today',
       title: 'Your management system starts with a conversation',
@@ -1431,6 +1453,17 @@ export const translations = {
         { feature: 'Adoção pela equipe', consultto: 'Sistema projetado para uso diário', traditional: 'Manuais que ninguém lê após o projeto' },
         { feature: 'Melhoria contínua', consultto: 'Incorporada ao sistema desde o primeiro dia', traditional: 'Requer contratar o consultor novamente' },
         { feature: 'Visitas presenciais', consultto: 'Sim — nossos consultores vão às suas instalações quando o processo exige', traditional: 'Sim — mas sem uma plataforma digital para apoiar o trabalho', bothCheck: true },
+      ],
+    },
+    security: {
+      label: 'Segurança',
+      title: 'Sua informação, segura por design',
+      subtitle: 'Consultto foi construído para gerenciar documentos sensíveis, processos críticos e dados de toda a sua organização — um ambiente onde a segurança não é opcional.',
+      items: [
+        { num: '01', title: 'Criptografia ponta a ponta', description: 'Todos os dados em trânsito e em repouso são criptografados com AES-256 e TLS 1.3. Sem armazenamento em texto simples, nunca.' },
+        { num: '02', title: 'Controle de acesso por funções', description: 'Defina quem pode visualizar, editar ou aprovar cada documento. Sua equipe acessa apenas o que lhe compete.' },
+        { num: '03', title: 'Backups automáticos', description: 'Cópias de segurança automáticas com retenção configurável. Seus dados nunca são perdidos, independentemente do que aconteça.' },
+        { num: '04', title: 'Infraestrutura cloud enterprise', description: 'Hospedado em provedores cloud de nível empresarial com uptime garantido, redundância e monitoramento contínuo.' },
       ],
     },
     cta: {
