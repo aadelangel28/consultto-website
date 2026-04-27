@@ -80,20 +80,6 @@ function SecurityIllus() {
       <path d="M368 185 L320 245" stroke="#1f2020" strokeWidth="0.8" strokeDasharray="3 2" opacity="0.28" />
       <path d="M322 249 L320 245 L324 242" stroke="#1f2020" strokeWidth="0.8" opacity="0.28" />
 
-      {/* ── X marks (blocked access) ── */}
-      {([[106, 270], [414, 270], [106, 350], [414, 350]] as [number,number][]).map(([x, y], i) => (
-        <g key={i}>
-          <line x1={x - 7} y1={y - 7} x2={x + 7} y2={y + 7} stroke="#1f2020" strokeWidth="1" opacity="0.18" />
-          <line x1={x + 7} y1={y - 7} x2={x - 7} y2={y + 7} stroke="#1f2020" strokeWidth="1" opacity="0.18" />
-        </g>
-      ))}
-
-      {/* ── Labels ── */}
-      <text x="62" y="236" fontSize="8.5" fill="#1f2020" opacity="0.35" fontFamily="system-ui">Outer Ring</text>
-      <text x="62" y="247" fontSize="8" fill="#1f2020" opacity="0.28" fontFamily="system-ui">E2E Encrypted</text>
-
-      <text x="130" y="251" fontSize="8.5" fill="#763d50" opacity="0.45" fontFamily="system-ui">Middle Ring</text>
-      <text x="130" y="262" fontSize="8" fill="#763d50" opacity="0.35" fontFamily="system-ui">Role-Based Access</text>
 
     </svg>
   )
