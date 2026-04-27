@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 const DURATIONS = [2000, 2000, 2500, 2200]
@@ -387,18 +388,20 @@ export function StatsSection() {
 
             {/* Badge */}
             <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center gap-4"
-                style={{ boxShadow: '0 1px 12px rgba(0,0,0,0.06)' }}>
-                <div className="w-10 h-10 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              <Link href="/normas">
+                <div className="bg-white/95 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center gap-4 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+                  style={{ boxShadow: '0 1px 12px rgba(0,0,0,0.06)' }}>
+                  <div className="w-10 h-10 rounded-full bg-[#763d50]/10 flex items-center justify-center shrink-0">
+                    <svg className="w-5 h-5 text-[#763d50]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-[#1f2020] text-sm font-semibold">{t.stats.badge.title}</p>
+                    <p className="text-[#3a3a3a]/50 text-xs mt-0.5">{t.stats.badge.subtitle}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[#1f2020] text-sm font-semibold">{t.stats.badge.title}</p>
-                  <p className="text-[#3a3a3a]/50 text-xs mt-0.5">{t.stats.badge.subtitle}</p>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
 
