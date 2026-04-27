@@ -191,13 +191,13 @@ function FeatureCard({ card, index }: { card: FeatureCard; index: number }) {
   const Illus = ILLUSTRATIONS[index]
   return (
     <div className="group bg-[#f7f7f7] rounded-2xl overflow-hidden flex flex-col border border-[#f0f0f0] hover:border-[#e2e2e2] transition-all duration-300">
-      <div className="h-52 flex items-center justify-center px-6 pt-4">
+      <div className="h-64 flex items-center justify-center px-4 pt-4">
         <Illus />
       </div>
-      <div className="px-6 pb-7 pt-1">
-        <p className="text-[#763d50] text-[10px] font-bold uppercase tracking-widest mb-2">{card.tag}</p>
-        <h3 className="text-[#1f2020] text-base font-semibold leading-snug mb-2">{card.title}</h3>
-        <p className="text-[#3a3a3a]/55 text-sm leading-relaxed">{card.description}</p>
+      <div className="px-5 pb-5 pt-2">
+        <p className="text-[#763d50] text-[10px] font-bold uppercase tracking-widest mb-1.5">{card.tag}</p>
+        <h3 className="text-[#1f2020] text-sm font-semibold leading-snug mb-1.5">{card.title}</h3>
+        <p className="text-[#3a3a3a]/55 text-xs leading-relaxed">{card.description}</p>
       </div>
     </div>
   )
