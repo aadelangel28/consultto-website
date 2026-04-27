@@ -217,7 +217,9 @@ export const translations = {
         { label: 'Automotriz', href: '/industrias/automotriz' },
         { label: 'Alimentos y Bebidas', href: '/industrias/alimentos-y-bebidas' },
         { label: 'Farmacéutica', href: '/industrias/farmaceutica' },
-        { label: 'Salud y Dispositivos Médicos', href: '/industrias/salud-y-dispositivos-medicos' },
+        { label: 'Minería', href: '/industrias/mineria' },
+        { label: 'Construcción', href: '/industrias/construccion' },
+        { label: 'Tecnología y Software', href: '/industrias/tecnologia-y-software' },
       ],
       normLinks: [
         { label: 'ISO 9001', href: '/normas/iso-9001' },
@@ -225,10 +227,13 @@ export const translations = {
         { label: 'ISO 45001', href: '/normas/iso-45001' },
         { label: 'IATF 16949', href: '/normas/iatf-16949' },
         { label: 'ISO 22000', href: '/normas/iso-22000' },
+        { label: 'FSSC 22000', href: '/normas/fssc-22000' },
+        { label: 'ISO 27001', href: '/normas/iso-27001' },
       ],
       companyLinks: [
         { label: 'Nosotros', href: '/nosotros' },
         { label: 'Blog', href: '/blog' },
+        { label: 'Glosario', href: '/glosario' },
       ],
       contactLinks: [
         { label: 'Agendar demo', href: '/demo' },
