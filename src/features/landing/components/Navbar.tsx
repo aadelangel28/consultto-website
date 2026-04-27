@@ -89,9 +89,8 @@ export function Navbar() {
           </Link>
 
           {/* Industrias dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative" ref={dropdownRef} onMouseEnter={() => { setIndustriasOpen(true); setNormasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setIndustriasOpen(false)}>
             <button
-              onClick={() => { setIndustriasOpen(!industriasOpen); setNormasOpen(false); setRecursosOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.industries}
@@ -105,15 +104,15 @@ export function Navbar() {
 
             {industriasOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-[#d9d9d9] rounded-2xl shadow-xl shadow-black/8 overflow-hidden animate-fade-in">
-                <div className="p-2">
+                <div className="p-2 grid grid-cols-2 gap-0.5">
                   {t.industrias.map((industria) => (
                     <Link
                       key={industria.label}
                       href={industria.href}
-                      className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                      className="block px-3 py-2.5 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                       onClick={() => setIndustriasOpen(false)}
                     >
-                      <div className="text-[#1f2020] text-sm font-medium group-hover:text-[#763d50] transition-colors">
+                      <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">
                         {industria.label}
                       </div>
                     </Link>
@@ -124,9 +123,8 @@ export function Navbar() {
           </div>
 
           {/* Normas dropdown */}
-          <div className="relative" ref={normasRef}>
+          <div className="relative" ref={normasRef} onMouseEnter={() => { setNormasOpen(true); setIndustriasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setNormasOpen(false)}>
             <button
-              onClick={() => { setNormasOpen(!normasOpen); setIndustriasOpen(false); setRecursosOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.norms}
@@ -159,9 +157,8 @@ export function Navbar() {
           </div>
 
           {/* Recursos dropdown */}
-          <div className="relative" ref={recursosRef}>
+          <div className="relative" ref={recursosRef} onMouseEnter={() => { setRecursosOpen(true); setIndustriasOpen(false); setNormasOpen(false) }} onMouseLeave={() => setRecursosOpen(false)}>
             <button
-              onClick={() => { setRecursosOpen(!recursosOpen); setIndustriasOpen(false); setNormasOpen(false) }}
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
               {t.nav.resources}
