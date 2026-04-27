@@ -22,6 +22,25 @@ export function Navbar() {
   const recursosRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
   const lastScrollY = useRef(0)
+  const closeTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({})
+
+  function openMenu(name: string) {
+    if (closeTimers.current[name]) clearTimeout(closeTimers.current[name])
+    if (name !== 'industrias') setIndustriasOpen(false)
+    if (name !== 'normas') setNormasOpen(false)
+    if (name !== 'recursos') setRecursosOpen(false)
+    if (name === 'industrias') setIndustriasOpen(true)
+    if (name === 'normas') setNormasOpen(true)
+    if (name === 'recursos') setRecursosOpen(true)
+  }
+
+  function closeMenu(name: string) {
+    closeTimers.current[name] = setTimeout(() => {
+      if (name === 'industrias') setIndustriasOpen(false)
+      if (name === 'normas') setNormasOpen(false)
+      if (name === 'recursos') setRecursosOpen(false)
+    }, 120)
+  }
 
   useEffect(() => {
     const handler = () => {
@@ -89,7 +108,7 @@ export function Navbar() {
           </Link>
 
           {/* Industrias dropdown */}
-          <div className="relative" ref={dropdownRef} onMouseEnter={() => { setIndustriasOpen(true); setNormasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setIndustriasOpen(false)}>
+          <div className="relative" ref={dropdownRef} onMouseEnter={() => openMenu('industrias')} onMouseLeave={() => closeMenu('industrias')}>
             <button
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
@@ -123,7 +142,7 @@ export function Navbar() {
           </div>
 
           {/* Normas dropdown */}
-          <div className="relative" ref={normasRef} onMouseEnter={() => { setNormasOpen(true); setIndustriasOpen(false); setRecursosOpen(false) }} onMouseLeave={() => setNormasOpen(false)}>
+          <div className="relative" ref={normasRef} onMouseEnter={() => openMenu('normas')} onMouseLeave={() => closeMenu('normas')}>
             <button
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
@@ -157,7 +176,7 @@ export function Navbar() {
           </div>
 
           {/* Recursos dropdown */}
-          <div className="relative" ref={recursosRef} onMouseEnter={() => { setRecursosOpen(true); setIndustriasOpen(false); setNormasOpen(false) }} onMouseLeave={() => setRecursosOpen(false)}>
+          <div className="relative" ref={recursosRef} onMouseEnter={() => openMenu('recursos')} onMouseLeave={() => closeMenu('recursos')}>
             <button
               className="flex items-center gap-1.5 text-[#3a3a3a] hover:text-[#1f2020] transition-colors text-sm font-medium"
             >
