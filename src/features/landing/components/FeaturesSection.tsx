@@ -215,7 +215,7 @@ export function FeaturesSection() {
           <p className="text-[#763d50] text-xs font-bold uppercase tracking-widest mb-4">
             {t.features.label}
           </p>
-          <h2 className="text-[#1f2020] text-3xl md:text-5xl font-light leading-tight mb-5 max-w-2xl">
+          <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-5 max-w-2xl">
             {t.features.title}
           </h2>
           <p className="text-[#3a3a3a]/55 text-sm leading-relaxed max-w-lg">
