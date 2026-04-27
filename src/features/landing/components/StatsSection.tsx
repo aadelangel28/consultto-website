@@ -346,10 +346,10 @@ export function StatsSection() {
 
   return (
     <section id="como-funciona" className="bg-white py-16 md:py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         {/* Título fuera del grid */}
-        <p className="text-[#763d50] text-sm font-semibold uppercase tracking-widest mb-3">
+        <p className="text-[#763d50] text-xs font-bold uppercase tracking-widest mb-3">
           {t.stats.label}
         </p>
         <h2 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-tight mb-8">
