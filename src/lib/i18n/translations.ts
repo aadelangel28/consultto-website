@@ -183,7 +183,7 @@ export const translations = {
         { num: '01', title: 'Encriptación extremo a extremo', description: 'Todos los datos en tránsito y en reposo están encriptados con AES-256 y TLS 1.3. Sin almacenamiento en texto plano, nunca.' },
         { num: '02', title: 'Control de acceso por roles', description: 'Define quién puede ver, editar o aprobar cada documento. Tu equipo accede solo a lo que le corresponde.' },
         { num: '03', title: 'Backups automáticos', description: 'Copias de seguridad automáticas con retención configurable. Tus datos nunca se pierden, sin importar lo que ocurra.' },
-        { num: '04', title: 'Infraestructura cloud enterprise', description: 'Alojado en proveedores cloud de nivel empresarial con uptime garantizado, redundancia y monitoreo continuo.' },
+        { num: '04', title: 'Tus datos, solo tuyos', description: 'Tu información nunca se comparte ni se usa para entrenar modelos. Cada cliente opera en un entorno completamente aislado.' },
       ],
     },
     cta: {
@@ -831,7 +831,7 @@ export const translations = {
         { num: '01', title: 'End-to-end encryption', description: 'All data in transit and at rest is encrypted with AES-256 and TLS 1.3. No plain-text storage, ever.' },
         { num: '02', title: 'Role-based access control', description: 'Define who can view, edit, or approve each document. Your team accesses only what they need.' },
         { num: '03', title: 'Automatic backups', description: 'Automatic backups with configurable retention. Your data is never lost, no matter what happens.' },
-        { num: '04', title: 'Enterprise cloud infrastructure', description: 'Hosted on enterprise-grade cloud providers with guaranteed uptime, redundancy, and continuous monitoring.' },
+        { num: '04', title: 'Your data, yours only', description: 'Your information is never shared or used to train models. Each client operates in a fully isolated environment.' },
       ],
     },
     cta: {
@@ -1479,7 +1479,7 @@ export const translations = {
         { num: '01', title: 'Criptografia ponta a ponta', description: 'Todos os dados em trânsito e em repouso são criptografados com AES-256 e TLS 1.3. Sem armazenamento em texto simples, nunca.' },
         { num: '02', title: 'Controle de acesso por funções', description: 'Defina quem pode visualizar, editar ou aprovar cada documento. Sua equipe acessa apenas o que lhe compete.' },
         { num: '03', title: 'Backups automáticos', description: 'Cópias de segurança automáticas com retenção configurável. Seus dados nunca são perdidos, independentemente do que aconteça.' },
-        { num: '04', title: 'Infraestrutura cloud enterprise', description: 'Hospedado em provedores cloud de nível empresarial com uptime garantido, redundância e monitoramento contínuo.' },
+        { num: '04', title: 'Seus dados, só seus', description: 'Suas informações nunca são compartilhadas nem usadas para treinar modelos. Cada cliente opera em um ambiente completamente isolado.' },
       ],
     },
     cta: {
