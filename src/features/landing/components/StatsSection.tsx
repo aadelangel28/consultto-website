@@ -317,7 +317,7 @@ function StatCard({
 
       {/* Number */}
       <div
-        className="text-5xl font-semibold leading-none tabular-nums"
+        className="text-4xl font-medium leading-none tabular-nums"
         style={{ color: '#763d50' }}
       >
         {triggered ? count : 0}
