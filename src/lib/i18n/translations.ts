@@ -477,6 +477,12 @@ export const translations = {
       text: 'Somos una plataforma de certificación y cumplimiento normativo que combina software, Agente IA y humanos expertos para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.',
       learnMore: 'Conoce más',
       pills: ['Software de gestión', 'Agente IA 24/7', 'Consultoría presencial'],
+      cards: [
+        { title: 'Agente IA', description: 'Un experto en tu norma disponible 24/7. Guía, responde y anticipa.' },
+        { title: 'Software de gestión', description: 'Todo tu sistema de calidad en una sola plataforma, siempre actualizado.' },
+        { title: 'Gestión documental', description: 'Documentos versionados, aprobaciones digitales y sin carpetas físicas.' },
+        { title: 'Consultoría presencial', description: 'Consultores certificados que van a tus instalaciones cuando lo necesitas.' },
+      ],
     },
     blog: {
       eyebrow: 'Blog',
@@ -1119,6 +1125,12 @@ export const translations = {
       text: 'We are a certification and regulatory compliance platform that combines software, AI Agent, and human experts so your company gets certified faster, spends less, and never loses its certification.',
       learnMore: 'Learn more',
       pills: ['Management software', 'AI Agent 24/7', 'On-site consulting'],
+      cards: [
+        { title: 'AI Agent', description: 'An expert in your standard available 24/7. Guides, answers, and anticipates.' },
+        { title: 'Management software', description: 'Your entire quality system on one platform, always up to date.' },
+        { title: 'Document management', description: 'Versioned documents, digital approvals, no physical folders.' },
+        { title: 'On-site consulting', description: 'Certified consultants who visit your facilities when you need them.' },
+      ],
     },
     blog: {
       eyebrow: 'Blog',
@@ -1761,6 +1773,12 @@ export const translations = {
       text: 'Somos uma plataforma de certificação e conformidade normativa que combina software, Agente de IA e especialistas humanos para que sua empresa se certifique mais rápido, gaste menos e nunca perca sua certificação.',
       learnMore: 'Saiba mais',
       pills: ['Software de gestão', 'Agente de IA 24/7', 'Consultoria presencial'],
+      cards: [
+        { title: 'Agente de IA', description: 'Um especialista na sua norma disponível 24/7. Orienta, responde e antecipa.' },
+        { title: 'Software de gestão', description: 'Todo o seu sistema de qualidade em uma plataforma, sempre atualizado.' },
+        { title: 'Gestão documental', description: 'Documentos versionados, aprovações digitais e sem pastas físicas.' },
+        { title: 'Consultoria presencial', description: 'Consultores certificados que vão às suas instalações quando necessário.' },
+      ],
     },
     blog: {
       eyebrow: 'Blog',
