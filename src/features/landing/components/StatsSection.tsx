@@ -373,7 +373,7 @@ export function StatsSection() {
 
           {/* Right: Handle-style illustration (changes on hover) */}
           <div className="relative w-full h-64 sm:h-80 lg:h-[420px] rounded-2xl overflow-hidden hidden lg:block"
-            style={{ background: '#f5f3f1', border: '1px solid #e8e4e1' }}>
+            style={{ background: '#ffffff', border: '1px solid #e8e8e8' }}>
 
             {STAT_ILLUSTRATIONS.map((Illus, i) => (
               <div
