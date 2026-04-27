@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 type FeatureCard = {
@@ -232,6 +233,15 @@ export function FeaturesSection() {
           {cards.slice(3).map((card, i) => (
             <FeatureCard key={card.tag} card={card} index={i + 3} />
           ))}
+        </div>
+
+        <div className="mt-8 flex justify-end">
+          <Link href="/plataforma" className="inline-flex items-center gap-1.5 text-[#763d50] text-sm font-medium hover:gap-2.5 transition-all duration-200">
+            Conoce toda la plataforma
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
 
       </div>
