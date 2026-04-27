@@ -475,6 +475,7 @@ export const translations = {
       eyebrow: 'Qué es Consultto',
       text: 'Somos una plataforma de certificación y cumplimiento normativo que combina software, Agente IA y humanos expertos para que tu empresa se certifique más rápido, gaste menos y nunca pierda su certificación.',
       learnMore: 'Conoce más',
+      pills: ['Software de gestión', 'Agente IA 24/7', 'Consultoría presencial'],
     },
     blog: {
       eyebrow: 'Blog',
@@ -1115,6 +1116,7 @@ export const translations = {
       eyebrow: 'What is Consultto',
       text: 'We are a certification and regulatory compliance platform that combines software, AI Agent, and human experts so your company gets certified faster, spends less, and never loses its certification.',
       learnMore: 'Learn more',
+      pills: ['Management software', 'AI Agent 24/7', 'On-site consulting'],
     },
     blog: {
       eyebrow: 'Blog',
@@ -1755,6 +1757,7 @@ export const translations = {
       eyebrow: 'O que é o Consultto',
       text: 'Somos uma plataforma de certificação e conformidade normativa que combina software, Agente de IA e especialistas humanos para que sua empresa se certifique mais rápido, gaste menos e nunca perca sua certificação.',
       learnMore: 'Saiba mais',
+      pills: ['Software de gestão', 'Agente de IA 24/7', 'Consultoria presencial'],
     },
     blog: {
       eyebrow: 'Blog',

@@ -63,7 +63,15 @@ export function WhatWeDoSection() {
           ))}
         </h2>
 
-        <div className="mt-16" style={{ opacity: done ? 1 : 0, transition: 'opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)' }}>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3" style={{ opacity: done ? 1 : 0, transition: 'opacity 500ms cubic-bezier(0.16, 1, 0.3, 1)' }}>
+          {(t.whatWeDo.pills as unknown as string[]).map((pill) => (
+            <span key={pill} className="px-5 py-2 rounded-full border border-[#e2e2e2] text-[#3a3a3a]/60 text-xs font-medium">
+              {pill}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8" style={{ opacity: done ? 1 : 0, transition: 'opacity 600ms cubic-bezier(0.16, 1, 0.3, 1)' }}>
           <Link
             href="#como-funciona"
             className="inline-flex items-center gap-2 text-[#3a3a3a]/50 hover:text-[#1f2020] transition-colors text-sm font-medium"
