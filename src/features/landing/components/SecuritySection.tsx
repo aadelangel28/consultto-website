@@ -121,7 +121,7 @@ export function SecuritySection() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {(s.items as SecurityItem[]).map((item) => (
+              {(s.items as unknown as SecurityItem[]).map((item) => (
                 <div key={item.num}>
                   <span className="text-[#763d50]/50 text-xs font-mono font-semibold">{item.num}</span>
                   <h3 className="text-[#1f2020] text-sm font-semibold mt-1 mb-1">{item.title}</h3>
