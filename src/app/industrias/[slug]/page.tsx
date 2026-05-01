@@ -51,6 +51,26 @@ const SEO_META: Record<string, { title: string; description: string }> = {
     title: 'Gestión de Calidad Farmacéutica — BPM, ISO 9001 con IA | Consultto',
     description: 'Implementa Buenas Prácticas de Manufactura y ISO 9001 en la industria farmacéutica con IA. Control de cambios, validaciones y auditorías regulatorias desde una sola plataforma.',
   },
+  'mineria': {
+    title: 'Gestión de Calidad para Minería — ISO 9001, ISO 45001 con IA | Consultto',
+    description: 'Implementa ISO 9001 e ISO 45001 en operaciones mineras con IA. Gestiona seguridad laboral, control documental y auditorías en campo para cumplir con requisitos corporativos y regulatorios.',
+  },
+  'flores-y-exportacion': {
+    title: 'Gestión de Calidad para Floricultura y Exportación — ISO 9001 con IA | Consultto',
+    description: 'Certifícate en ISO 9001 para exportación de flores con IA. Gestiona trazabilidad, control de calidad de producto y auditorías requeridas por mercados internacionales.',
+  },
+  'servicios-financieros': {
+    title: 'Gestión de Calidad para Servicios Financieros — ISO 9001, ISO 27001 con IA | Consultto',
+    description: 'Implementa ISO 9001 e ISO 27001 en servicios financieros con IA. Gestiona seguridad de la información, procesos regulados y auditorías desde una sola plataforma.',
+  },
+  'retail': {
+    title: 'Gestión de Calidad para Retail — ISO 9001 con IA | Consultto',
+    description: 'Certifícate en ISO 9001 para empresas de retail con IA. Estandariza procesos de atención, gestión de proveedores y auditorías internas para mejorar la experiencia del cliente.',
+  },
+  'pesca-y-acuicultura': {
+    title: 'Gestión de Inocuidad para Pesca y Acuicultura — HACCP, ISO 22000 con IA | Consultto',
+    description: 'Implementa HACCP e ISO 22000 en pesca y acuicultura con IA. Gestiona inocuidad, trazabilidad de lotes y auditorías para cumplir con requisitos de exportación y retail internacional.',
+  },
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -125,6 +145,36 @@ const FAQ_ITEMS: Record<string, { q: string; a: string }[]> = {
     { q: '¿Qué normas aplican en la industria farmacéutica?', a: 'Las principales son BPM (Buenas Prácticas de Manufactura), ISO 9001, ICH Q10 (sistema de calidad farmacéutico) e ISO 15378 para materiales de empaque primario. Consultto soporta los requisitos documentales y de trazabilidad de todas estas normas.' },
     { q: '¿Cómo gestiona Consultto el sistema de calidad farmacéutico?', a: 'Consultto centraliza el control de cambios, validaciones, desviaciones, CAPA (acciones correctivas y preventivas), registros de lotes y auditorías regulatorias. El Agente IA guía al equipo en los requisitos de COFEPRIS y otros entes regulatorios aplicables.' },
     { q: '¿Cuánto tiempo toma implementar BPM en una empresa farmacéutica?', a: 'La implementación de un sistema BPM puede tomar entre 12 y 24 meses dependiendo de la complejidad del portafolio de productos. Consultto acelera el proceso al estructurar los procedimientos requeridos y dar trazabilidad completa desde una sola plataforma.' },
+  ],
+  'mineria': [
+    { q: '¿Por qué las empresas mineras necesitan ISO 9001 e ISO 45001?', a: 'ISO 9001 permite a las mineras cumplir con los requisitos de calidad de sus clientes corporativos y concesiones gubernamentales, mientras que ISO 45001 demuestra gestión de seguridad laboral en operaciones de alto riesgo. Ambas son requisitos frecuentes para contratos y permisos de operación.' },
+    { q: '¿Qué normas ISO aplican en la industria minera?', a: 'Las principales son ISO 9001 (calidad), ISO 45001 (seguridad y salud laboral) e ISO 14001 (gestión ambiental). Para operaciones con presencia en múltiples países, también puede aplicar ISO 26000 de responsabilidad social.' },
+    { q: '¿Cómo gestiona Consultto el sistema de calidad en minería?', a: 'Consultto adapta el sistema de gestión a las condiciones de operaciones mineras: múltiples sitios, equipos en campo y requisitos regulatorios estrictos. Centraliza procedimientos de seguridad, no conformidades, auditorías en campo y control documental desde una sola plataforma.' },
+    { q: '¿Cuánto tiempo toma certificarse en ISO 45001 para una empresa minera?', a: 'La certificación ISO 45001 en minería suele tomar entre 9 y 18 meses dependiendo del tamaño de las operaciones. Consultto acelera el proceso al estructurar los controles operativos y generar automáticamente la evidencia requerida por el auditor externo.' },
+  ],
+  'flores-y-exportacion': [
+    { q: '¿Por qué las empresas florícolas necesitan certificarse en ISO 9001?', a: 'La certificación ISO 9001 es requisito de grandes importadores y cadenas de retail internacionales para garantizar calidad y consistencia en el suministro de flores. Sin ella, muchas empresas no pueden acceder a mercados de EE.UU., Europa y Asia.' },
+    { q: '¿Qué normas aplican en floricultura y exportación?', a: 'Las principales son ISO 9001 (calidad del proceso), GlobalG.A.P. (buenas prácticas agrícolas) y Rainforest Alliance (sostenibilidad). Consultto gestiona los requisitos documentales y de trazabilidad que exigen estos esquemas de certificación.' },
+    { q: '¿Cómo ayuda Consultto a empresas de floricultura y exportación?', a: 'Consultto centraliza el control de calidad del producto, trazabilidad por lote, gestión de no conformidades en producción y auditorías internas. El Agente IA guía al equipo en los requisitos específicos de cada mercado de exportación.' },
+    { q: '¿Cuánto tiempo toma certificarse en ISO 9001 para una empresa florícola?', a: 'El proceso de certificación toma entre 6 y 12 meses. Consultto reduce este tiempo al estructurar los procesos clave de producción y exportación, y generar automáticamente la documentación requerida por el auditor.' },
+  ],
+  'servicios-financieros': [
+    { q: '¿Por qué las empresas de servicios financieros necesitan ISO 9001 o ISO 27001?', a: 'ISO 9001 demuestra calidad en la prestación de servicios financieros y es requisito para contratos corporativos e institucionales. ISO 27001 garantiza la seguridad de la información de los clientes, cumpliendo con regulaciones de CNBV, Banco de México y otras autoridades financieras.' },
+    { q: '¿Qué normas ISO aplican en servicios financieros?', a: 'Las principales son ISO 9001 (calidad de servicio), ISO 27001 (seguridad de la información) e ISO 22301 (continuidad del negocio). Consultto soporta estos estándares y adapta el sistema de gestión a los requisitos regulatorios del sector financiero.' },
+    { q: '¿Cómo gestiona Consultto el sistema de calidad en servicios financieros?', a: 'Consultto centraliza el control de procesos regulados, gestión de incidentes de seguridad, auditorías internas y cumplimiento documental. El Agente IA guía al equipo en los requisitos de ISO 27001 y las regulaciones aplicables al sector financiero.' },
+    { q: '¿Cuánto tiempo toma certificarse en ISO 27001 para una empresa financiera?', a: 'La certificación ISO 27001 en servicios financieros suele tomar entre 12 y 18 meses. Consultto acelera el proceso al estructurar el análisis de riesgos, los controles del Anexo A y la documentación requerida por la norma.' },
+  ],
+  'retail': [
+    { q: '¿Por qué las empresas de retail necesitan certificarse en ISO 9001?', a: 'La certificación ISO 9001 en retail estandariza los procesos de atención al cliente, gestión de proveedores y logística interna. Es un diferenciador ante competidores y puede ser requisito para contratos con grandes marcas o franquicias.' },
+    { q: '¿Qué normas ISO aplican en empresas de retail?', a: 'La principal es ISO 9001 para gestión de calidad en procesos comerciales. Para retail de alimentos, puede aplicar también FSSC 22000 o BRC Food. Consultto adapta el sistema de gestión a las particularidades de cada tipo de negocio retail.' },
+    { q: '¿Cómo ayuda Consultto a empresas de retail?', a: 'Consultto estandariza los procesos de atención al cliente, devoluciones, gestión de proveedores y auditorías internas de sucursales. El Agente IA guía al equipo en los requisitos de ISO 9001 adaptados a los procesos específicos del retail.' },
+    { q: '¿Cuánto tiempo toma certificarse en ISO 9001 para una empresa de retail?', a: 'Dependiendo del número de sucursales y complejidad de la operación, el proceso toma entre 6 y 12 meses. Consultto facilita la implementación al estructurar los procesos clave y permitir la gestión centralizada de múltiples puntos de venta.' },
+  ],
+  'pesca-y-acuicultura': [
+    { q: '¿Por qué las empresas de pesca necesitan HACCP o ISO 22000?', a: 'HACCP e ISO 22000 son requisitos para exportar productos del mar a mercados como EE.UU., Europa y Japón. Garantizan la inocuidad del producto mediante el análisis de peligros y puntos críticos de control en toda la cadena.' },
+    { q: '¿Qué normas aplican en pesca y acuicultura?', a: 'Las principales son HACCP, ISO 22000 y FSSC 22000 para inocuidad alimentaria. Para exportación, también aplican estándares como BAP (Best Aquaculture Practices) y ASC (Aquaculture Stewardship Council). Consultto gestiona los requisitos documentales de todos estos esquemas.' },
+    { q: '¿Cómo ayuda Consultto a empresas pesqueras y acuícolas?', a: 'Consultto centraliza el plan HACCP, registros de monitoreo de PCCs, trazabilidad de lotes, control de proveedores y auditorías internas. El Agente IA guía al equipo en los requisitos específicos de inocuidad para productos del mar.' },
+    { q: '¿Cuánto tiempo toma certificarse en ISO 22000 para una empresa pesquera?', a: 'La certificación ISO 22000 en pesca y acuicultura suele tomar entre 6 y 12 meses. Consultto acelera el proceso al estructurar automáticamente el análisis HACCP y la documentación de inocuidad requerida por el auditor externo.' },
   ],
 }
 
