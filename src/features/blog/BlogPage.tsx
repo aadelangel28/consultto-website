@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { articles, categories } from './data'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
@@ -94,13 +95,15 @@ function ArticleCard({ article, readTime, readArticle }: { article: typeof artic
   )
 }
 
-export function BlogPage() {
+function BlogContent() {
   const { t } = useLanguage()
-  const [activeCategory, setActiveCategory] = useState('Todos')
-  const [page, setPage] = useState(1)
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const page = Number(searchParams.get('page') ?? 1)
+  const activeCategory = searchParams.get('category') ?? 'Todos'
 
   const rest = articles.slice(1)
-
   const filtered = activeCategory === 'Todos'
     ? rest
     : rest.filter((a) => a.category === activeCategory)
@@ -108,9 +111,17 @@ export function BlogPage() {
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
+  function goToPage(newPage: number, cat?: string) {
+    const params = new URLSearchParams()
+    const cat_ = cat ?? activeCategory
+    if (cat_ !== 'Todos') params.set('category', cat_)
+    if (newPage > 1) params.set('page', String(newPage))
+    const query = params.toString()
+    router.push(`/blog${query ? `?${query}` : ''}`)
+  }
+
   function handleCategory(cat: string) {
-    setActiveCategory(cat)
-    setPage(1)
+    goToPage(1, cat)
   }
 
   return (
@@ -157,7 +168,7 @@ export function BlogPage() {
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-16">
             <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              onClick={() => goToPage(Math.max(1, page - 1))}
               disabled={page === 1}
               className="w-9 h-9 flex items-center justify-center rounded-full border border-[#e0e0e0] text-[#3a3a3a]/50 hover:border-[#1f2020]/40 hover:text-[#1f2020] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
@@ -169,7 +180,7 @@ export function BlogPage() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
               <button
                 key={n}
-                onClick={() => setPage(n)}
+                onClick={() => goToPage(n)}
                 className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-semibold transition-all ${
                   n === page
                     ? 'bg-[#1f2020] text-white'
@@ -181,7 +192,7 @@ export function BlogPage() {
             ))}
 
             <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              onClick={() => goToPage(Math.min(totalPages, page + 1))}
               disabled={page === totalPages}
               className="w-9 h-9 flex items-center justify-center rounded-full border border-[#e0e0e0] text-[#3a3a3a]/50 hover:border-[#1f2020]/40 hover:text-[#1f2020] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
@@ -193,5 +204,13 @@ export function BlogPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export function BlogPage() {
+  return (
+    <Suspense>
+      <BlogContent />
+    </Suspense>
   )
 }
