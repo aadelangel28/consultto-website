@@ -133,29 +133,31 @@ export function ArticleDetailPage({ article, content }: ArticleDetailPageProps) 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="relative w-full h-[420px] md:h-[520px]">
-        <Image
-          src={article.image}
-          alt={article.title}
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1f2020]/90 via-[#1f2020]/40 to-transparent" />
-
-        {/* Title content */}
-        <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-6 pb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-[#c97a8f] text-xs font-bold uppercase tracking-widest">
+      <div className="bg-white pt-32 pb-0">
+        <div className="max-w-3xl mx-auto px-6 pt-10 pb-8">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[#763d50] text-xs font-bold uppercase tracking-widest">
               {article.category}
             </span>
-            <span className="text-white/30 text-xs">·</span>
-            <span className="text-white/50 text-xs">{article.readTime} de lectura</span>
+            <span className="text-[#3a3a3a]/30 text-xs">·</span>
+            <span className="text-[#3a3a3a]/40 text-xs">{article.readTime} de lectura</span>
           </div>
-          <h1 className="text-white text-3xl md:text-4xl font-light leading-[1.2] max-w-2xl">
+          <h1 className="text-[#1f2020] text-3xl md:text-4xl font-light leading-[1.2]">
             {article.title}
           </h1>
+        </div>
+
+        {/* Contained image */}
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="relative w-full h-[300px] md:h-[380px] rounded-2xl overflow-hidden">
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
       </div>
 
