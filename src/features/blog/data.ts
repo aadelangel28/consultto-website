@@ -54,7 +54,7 @@ export const articles: Article[] = [
     authorRole: 'Especialistas en SGC',
     date: '06 may 2026',
     readTime: '7 min',
-    image: 'https://images.unsplash.com/photo-1565117100050-3e67cdaf7b4e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
   },
   {
     slug: 'diferencia-certificacion-acreditacion',
