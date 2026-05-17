@@ -193,6 +193,13 @@ export function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 bg-white border border-[#d9d9d9] rounded-2xl shadow-xl shadow-black/8 overflow-hidden animate-fade-in">
                 <div className="p-2">
                   <Link
+                    href="/integraciones"
+                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                    onClick={() => setRecursosOpen(false)}
+                  >
+                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">Integraciones</div>
+                  </Link>
+                  <Link
                     href="/blog"
                     className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
                     onClick={() => setRecursosOpen(false)}
@@ -212,13 +219,6 @@ export function Navbar() {
                     onClick={() => setRecursosOpen(false)}
                   >
                     <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">{t.nav.glossary}</div>
-                  </Link>
-                  <Link
-                    href="/integraciones"
-                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
-                    onClick={() => setRecursosOpen(false)}
-                  >
-                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">Integraciones</div>
                   </Link>
                 </div>
               </div>
@@ -376,6 +376,13 @@ export function Navbar() {
             </button>
             {recursosOpen && (
               <div className="mt-2 pl-3 flex flex-col gap-1 border-l-2 border-[#d9d9d9]">
+                <Link
+                  href="/integraciones"
+                  className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
+                  onClick={() => { setRecursosOpen(false); setMobileOpen(false) }}
+                >
+                  Integraciones
+                </Link>
                 <Link
                   href="/blog"
                   className="py-1.5 text-[#3a3a3a]/70 text-sm hover:text-[#763d50] transition-colors"
