@@ -213,6 +213,13 @@ export function Navbar() {
                   >
                     <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">{t.nav.glossary}</div>
                   </Link>
+                  <Link
+                    href="/integraciones"
+                    className="block px-4 py-3 rounded-xl hover:bg-[#f8f8f8] transition-colors group"
+                    onClick={() => setRecursosOpen(false)}
+                  >
+                    <div className="text-[#1f2020] text-xs font-medium group-hover:text-[#763d50] transition-colors">Integraciones</div>
+                  </Link>
                 </div>
               </div>
             )}
