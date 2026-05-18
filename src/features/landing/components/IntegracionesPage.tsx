@@ -330,25 +330,38 @@ function CategoriasLista() {
             </div>
           </div>
 
-          {/* Tools — grid estilo Handle */}
+          {/* Tools — chips en mobile, grid estilo Handle en desktop */}
           <div className="px-8 md:px-6 flex-1">
-            <div className="flex flex-wrap overflow-hidden rounded-lg">
+            {/* Mobile: chips */}
+            <div className="flex md:hidden flex-wrap gap-2">
+              {cat.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="inline-flex items-center px-3 py-1.5 rounded-lg border border-[#e8e8e8] bg-white text-[#3a3a3a]/70 text-xs font-medium"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+
+            {/* Desktop: grid con bordes interiores */}
+            <div className="hidden md:flex flex-wrap overflow-hidden rounded-lg">
               {cat.tools.map((tool, ti) => {
                 const cols = Math.min(cat.tools.length, 4)
                 const showR = ti % 4 < cols - 1
                 const showB = ti + 4 < cat.tools.length
                 return (
-                <div
-                  key={tool}
-                  className={`w-1/4 px-5 py-3.5 cursor-default hover:bg-[#fafafa] transition-colors duration-150
-                    ${showR ? 'border-r border-[#ebebeb]' : ''}
-                    ${showB ? 'border-b border-[#ebebeb]' : ''}
-                  `}
-                >
-                  <p className="text-[#1f2020] text-xs font-medium leading-snug text-center">
-                    {tool}
-                  </p>
-                </div>
+                  <div
+                    key={tool}
+                    className={`w-1/4 px-5 py-3.5 cursor-default hover:bg-[#fafafa] transition-colors duration-150
+                      ${showR ? 'border-r border-[#ebebeb]' : ''}
+                      ${showB ? 'border-b border-[#ebebeb]' : ''}
+                    `}
+                  >
+                    <p className="text-[#1f2020] text-xs font-medium leading-snug text-center">
+                      {tool}
+                    </p>
+                  </div>
                 )
               })}
             </div>
@@ -388,13 +401,13 @@ export function IntegracionesPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/demo"
-              className="bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
+              className="flex items-center justify-center bg-[#763d50] hover:bg-[#8a4a5e] text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
             >
               Agendar demo gratuita
             </Link>
             <Link
               href="/consultor"
-              className="border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white/70 hover:bg-[#f8f8f8] px-8 py-3.5 rounded-full font-semibold transition-all text-sm"
+              className="flex items-center justify-center border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white/70 hover:bg-[#f8f8f8] px-8 py-3.5 rounded-full font-semibold transition-all text-sm"
             >
               Hablar con un consultor
             </Link>
@@ -448,13 +461,13 @@ export function IntegracionesPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/demo"
-              className="inline-flex bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
+              className="flex items-center justify-center bg-[#763d50] hover:bg-[#8a4a5e] text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md hover:shadow-[#763d50]/20 text-sm"
             >
               Agendar demo gratuita
             </Link>
             <Link
               href="/consultor"
-              className="inline-flex border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm"
+              className="flex items-center justify-center border border-[#d9d9d9] hover:border-[#3a3a3a]/40 text-[#3a3a3a] bg-white hover:bg-[#f8f8f8] px-7 py-3 rounded-full font-semibold transition-all text-sm"
             >
               Hablar con un consultor
             </Link>
